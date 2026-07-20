@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /articles/_catalog.json
 
 # Allow Google AdSense crawler explicitly
 User-agent: Mediapartners-Google

@@ -1,0 +1,154 @@
+{
+  "_purpose": "INTERNAL FILE - not linked from any page, not in sitemap.xml, disallowed in robots.txt. Not meant for site visitors. Before writing new articles for this site, read this file and make sure no new topic duplicates or substantially overlaps an entry below. Each entry's 'covers' field summarizes the specific angle/scope of that article so overlap is easy to spot.",
+  "last_updated": "2026-07-20",
+  "article_count": 21,
+  "articles": [
+    {
+      "slug": "obbba-2026-changes",
+      "title": "What's New for 2026: How the One Big Beautiful Bill Act Affects Your Taxes",
+      "category": "news",
+      "published": "2026-01-15",
+      "covers": "Every filing season brings small adjustments — updated brackets, a slightly higher standard deduction."
+    },
+    {
+      "slug": "standard-vs-itemized-2026",
+      "title": "Standard vs. Itemized Deductions in 2026: Which Saves You More?",
+      "category": "deductions",
+      "published": "2026-01-20",
+      "covers": "Every filer makes this choice, whether they realize it or not: take the flat standard deduction, or add up specific deductible expenses and itemize instead."
+    },
+    {
+      "slug": "marginal-vs-effective-rate",
+      "title": "Marginal vs. Effective Tax Rate: Understanding What You Really Pay",
+      "category": "guides",
+      "published": "2026-01-22",
+      "covers": "US federal income tax is progressive: your income is sliced into layers (brackets), and each layer is taxed at its own rate."
+    },
+    {
+      "slug": "self-employment-tax-guide",
+      "title": "The Complete Guide to Self-Employment Tax: Understanding the 15.3%",
+      "category": "self-employment",
+      "published": "2026-01-25",
+      "covers": "If you freelance, contract, consult, or run a side business, you face a tax that W-2 employees never see written on a pay stub: the Self-Employment Tax (SE tax)."
+    },
+    {
+      "slug": "child-tax-credit-2026",
+      "title": "Child Tax Credit 2026: Rules, Amounts, and Phase-Outs Explained",
+      "category": "deductions",
+      "published": "2026-01-28",
+      "covers": "The Child Tax Credit (CTC) is one of the most valuable tax benefits available to families, often worth more than any single deduction."
+    },
+    {
+      "slug": "long-term-capital-gains",
+      "title": "Long-Term Capital Gains Tax: The 0%, 15%, and 20% Brackets Explained",
+      "category": "investing",
+      "published": "2026-01-30",
+      "covers": "Sell an appreciated asset — stocks, mutual funds, real estate, a stake in a business — and capital gains tax comes into play."
+    },
+    {
+      "slug": "tax-filing-deadlines-2026",
+      "title": "Tax Filing Deadlines 2026: Every Date You Need to Know",
+      "category": "guides",
+      "published": "2026-02-05",
+      "covers": "Missing a tax deadline costs money even in years you would have owed nothing — a late-filing penalty can apply on top of a late-payment penalty, and both accrue interest."
+    },
+    {
+      "slug": "w4-withholding-guide",
+      "title": "Tax Withholding and Form W-4: How to Stop Overpaying or Owing at Tax Time",
+      "category": "guides",
+      "published": "2026-02-08",
+      "covers": "A massive refund every April can feel like a bonus, but it's really an interest-free loan you gave the government all year."
+    },
+    {
+      "slug": "overlooked-deductions-credits",
+      "title": "Commonly Overlooked Tax Deductions and Credits: A Checklist",
+      "category": "deductions",
+      "published": "2026-02-11",
+      "covers": "Taking the standard deduction doesn't lock you out of everything else."
+    },
+    {
+      "slug": "retirement-accounts-taxes",
+      "title": "401(k), Traditional IRA, and Roth IRA: How Each One Is Taxed",
+      "category": "deductions",
+      "published": "2026-02-14",
+      "covers": "A 401(k), a traditional IRA, and a Roth IRA all exist to help you save for retirement, but they're taxed in almost opposite ways."
+    },
+    {
+      "slug": "married-filing-jointly-vs-separately",
+      "title": "Married Filing Jointly vs. Separately: Which Should You Choose?",
+      "category": "guides",
+      "published": "2026-02-17",
+      "covers": "Married couples get to choose between two filing statuses every year, and the choice isn't locked in — you can pick whichever is better each time you file."
+    },
+    {
+      "slug": "head-of-household-filing-status",
+      "title": "Head of Household Filing Status: Who Qualifies and Why It Pays to Check",
+      "category": "guides",
+      "published": "2026-02-20",
+      "covers": "Of the five filing statuses, Head of Household (HoH) is the one people most often qualify for without realizing it — and the one people incorrectly claim without realizing they don't."
+    },
+    {
+      "slug": "dependents-qualifying-child-relative",
+      "title": "Who Counts as a Dependent? Qualifying Child vs. Qualifying Relative, Explained",
+      "category": "deductions",
+      "published": "2026-02-23",
+      "covers": "The Child Tax Credit, Head of Household filing status, the Dependent Care Credit, and several other benefits all start with the same question: does this person legally count as your dependent?"
+    },
+    {
+      "slug": "bonuses-stock-options-rsu-taxes",
+      "title": "How Bonuses, Stock Options, and RSUs Are Actually Taxed",
+      "category": "investing",
+      "published": "2026-02-26",
+      "covers": "Equity compensation and bonuses are taxed as income like anything else, but the timing and mechanics differ enough from a regular paycheck that they consistently surprise people — usually either at withholding time or th"
+    },
+    {
+      "slug": "alternative-minimum-tax-amt-explained",
+      "title": "The Alternative Minimum Tax (AMT): What It Is and Who It Actually Affects",
+      "category": "guides",
+      "published": "2026-03-01",
+      "covers": "The Alternative Minimum Tax has a reputation for being mysterious and vaguely threatening, mostly because very few filers ever interact with it directly."
+    },
+    {
+      "slug": "education-tax-credits-aotc-vs-llc",
+      "title": "Education Tax Credits: American Opportunity Credit vs. Lifetime Learning Credit",
+      "category": "deductions",
+      "published": "2026-03-04",
+      "covers": "Two federal credits can offset the cost of tuition and related expenses, and they're easy to mix up because they cover overlapping situations."
+    },
+    {
+      "slug": "hsa-vs-fsa-tax-differences",
+      "title": "HSA vs. FSA: The Real Tax Differences",
+      "category": "deductions",
+      "published": "2026-03-07",
+      "covers": "Health Savings Accounts and Flexible Spending Accounts both let you set aside pre-tax money for medical costs, and the two get confused constantly because the acronyms look similar and the pitch sounds identical."
+    },
+    {
+      "slug": "amending-tax-return-1040x",
+      "title": "Amending Your Tax Return: When and How to File Form 1040-X",
+      "category": "guides",
+      "published": "2026-03-10",
+      "covers": "Discovering an error after you've already filed is more common than it feels in the moment, and it's rarely a crisis."
+    },
+    {
+      "slug": "rental-property-income-taxes",
+      "title": "Rental Property Income: How It's Actually Taxed",
+      "category": "investing",
+      "published": "2026-03-13",
+      "covers": "Rental income is taxable like any other income, but the deductions available against it are unusually generous compared to a typical job or side business — particularly one deduction that doesn't require spending any act"
+    },
+    {
+      "slug": "charitable-giving-tax-deduction",
+      "title": "Charitable Giving and Taxes: How Donations Actually Reduce Your Bill",
+      "category": "deductions",
+      "published": "2026-03-16",
+      "covers": "Charitable giving is one of the most flexible parts of the tax code, and also one of the most misunderstood — largely because the tax benefit depends heavily on how you give, not just how much."
+    },
+    {
+      "slug": "is-social-security-taxable",
+      "title": "Is Social Security Taxable? Understanding Tax on Retirement and Other Non-Wage Income",
+      "category": "guides",
+      "published": "2026-03-19",
+      "covers": "A lot of retirees assume Social Security benefits are simply tax-free."
+    }
+  ]
+}
