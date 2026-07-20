@@ -1689,7 +1689,7 @@
                                         <th><span class="i18n-zh">总税负</span><span class="i18n-en">Total Tax</span><span class="i18n-es">Impuesto Total</span></th>
                                         <th><span class="i18n-zh">有效税率</span><span class="i18n-en">Effective Rate</span><span class="i18n-es">Tasa Efectiva</span></th>
                                         <th><span class="i18n-zh">税后收入</span><span class="i18n-en">After-Tax</span><span class="i18n-es">Después de Impuestos</span></th>
-                                        <th><span class="i18n-zh">退税/补税</span><span class="i18n-en">Refund/Owed</span><span class="i18n-es">Reembolso/A Pagar</span></th>
+                                        <th data-tooltip-key="tt_refund"><span class="i18n-zh">退税/补税</span><span class="i18n-en">Refund/Owed</span><span class="i18n-es">Reembolso/A Pagar</span></th>
                                     </tr>
                                 </thead>
                                 <tbody id="scenarioTableBody"></tbody>
@@ -3620,21 +3620,17 @@
 
             const grossIncome = wages + seIncome + otherIncome + ltcg;
 
-            let seTaxDeduction = 0, seTax = 0;
-            let ssTax = 0, medicareTax = 0, additionalMedicareTax = 0;
+            // Self-employment tax (only when self-employed and there's SE income). The Social
+            // Security portion shares its wage base with any W-2 wages above — SE income only
+            // gets the remaining headroom, not a fresh $184,500 cap of its own.
+            let seTaxDeduction = 0, seTax = 0, seTaxable = 0;
             if (isSE && seIncome > 0) {
-                const seTaxable = seIncome * 0.9235;
-                const ssPortion = Math.min(seTaxable, SS_WAGE_BASE);
-                const medicarePortion = seTaxable;
-                ssTax = ssPortion * 0.124;
-                medicareTax = medicarePortion * 0.029;
-                seTax = ssTax + medicareTax;
-                const totalEarned = wages + seTaxable;
-                const threshold = (status === 'married_joint') ? 250000 : 200000;
-                if (totalEarned > threshold) {
-                    additionalMedicareTax = (totalEarned - threshold) * 0.009;
-                    seTax += additionalMedicareTax;
-                }
+                seTaxable = seIncome * 0.9235;
+                const remainingSSBase = Math.max(0, SS_WAGE_BASE - wages);
+                const seSsPortion = Math.min(seTaxable, remainingSSBase);
+                const seSsTax = seSsPortion * 0.124;
+                const seMedicareTax = seTaxable * 0.029;
+                seTax = seSsTax + seMedicareTax;
                 seTaxDeduction = seTax * 0.5;
             }
 
@@ -3699,22 +3695,34 @@
             }
             const federalTaxAfterCredits = Math.max(0, federalTax - ctc);
 
-            // FICA
-            let ficaTax = 0;
-            if (!isSE) {
-                ssTax = Math.min(wages, SS_WAGE_BASE) * 0.062;
-                medicareTax = wages * 0.0145;
-                ficaTax = ssTax + medicareTax;
-                const threshold = (status === 'married_joint') ? 250000 : 200000;
-                if (wages > threshold) {
-                    additionalMedicareTax = (wages - threshold) * 0.009;
-                    ficaTax += additionalMedicareTax;
-                }
-            } else { ficaTax = seTax; }
+            // FICA: wage-based Social Security + Medicare always apply when there are wages,
+            // independently of self-employment tax on any separate self-employment income above
+            // (a person can have both a W-2 job and a side business in the same return).
+            const ssTaxWages = Math.min(wages, SS_WAGE_BASE) * 0.062;
+            const medicareTaxWages = wages * 0.0145;
+            const wageFica = ssTaxWages + medicareTaxWages;
+
+            // Additional 0.9% Medicare surtax: computed on combined wages + SE-taxable income
+            // against the filing-status threshold, then split into the portion attributable to
+            // wages (withheld by an employer once wages alone cross the threshold) and the
+            // portion attributable to SE income (the incremental amount from adding it on top),
+            // matching how IRS Form 8959 splits the two pieces.
+            const addlMedicareThreshold = (status === 'married_joint') ? 250000 : 200000;
+            const wageAddlMedicare = Math.max(0, wages - addlMedicareThreshold) * 0.009;
+            const totalEarned = wages + seTaxable;
+            const totalAddlMedicare = Math.max(0, totalEarned - addlMedicareThreshold) * 0.009;
+            const seAddlMedicare = Math.max(0, totalAddlMedicare - wageAddlMedicare);
+            const additionalMedicareTax = wageAddlMedicare + seAddlMedicare;
+
+            const ficaTax = wageFica + wageAddlMedicare + seTax + seAddlMedicare;
+            const ssTax = ssTaxWages, medicareTax = medicareTaxWages; // kept for the explanation panel below
 
             const totalTax = federalTaxAfterCredits + ficaTax;
             const effectiveRate = grossIncome > 0 ? (totalTax / grossIncome * 100) : 0;
-            const refund = withheld - federalTaxAfterCredits;
+            // Refund/owed excludes wage-based FICA (already withheld by the employer via payroll
+            // all year) but includes self-employment tax and its share of the additional Medicare
+            // surtax, since neither is withheld by anyone during the year.
+            const refund = withheld - federalTaxAfterCredits - seTax - seAddlMedicare;
 
             currentResult = {
                 taxYear: TAX_YEAR, timestamp: new Date().toISOString(), filingStatus: status,
@@ -3800,8 +3808,10 @@
             // (a) Tax composition
             const fedPct = pctOfTotal(ctx.federalTaxAfterCredits);
             const ficaPct = pctOfTotal(ctx.ficaTax);
-            const ficaLabel = zh ? (ctx.isSE ? '自雇税' : 'FICA 工资税')
-                                 : (ctx.isSE ? 'Self-employment tax' : 'FICA payroll tax');
+            const bothFicaTypes = ctx.isSE && ctx.seIncome > 0 && ctx.wages > 0;
+            const ficaLabel = zh
+                ? (bothFicaTypes ? 'FICA + 自雇税' : (ctx.isSE ? '自雇税' : 'FICA 工资税'))
+                : (bothFicaTypes ? 'FICA + Self-Employment Tax' : (ctx.isSE ? 'Self-employment tax' : 'FICA payroll tax'));
             html += '<div class="explain-block">';
             html += '<div class="explain-subtitle">' + (zh ? '🧾 税额组成' : '🧾 Tax Composition') + '</div>';
             html += '<div class="tax-mix-bar">'
@@ -3887,8 +3897,8 @@
                     ? '自雇收入按 92.35% 计入后缴纳 15.3% 自雇税（' + fmt(ctx.seTax) + '），其中一半（' + fmt(ctx.seTaxDeduction) + '）已从收入中扣除。'
                     : 'Self-employment income is taxed at 15.3% on 92.35% of net earnings (' + fmt(ctx.seTax) + '); half of that (' + fmt(ctx.seTaxDeduction) + ') was deducted from your income.');
             }
-            // 5. FICA for employees
-            if (!ctx.isSE && ctx.wages > 0) {
+            // 5. FICA for wage income (can coexist with self-employment tax above)
+            if (ctx.wages > 0) {
                 let s = zh
                     ? '社保税 6.2%（工资上限 ' + ssBase + '）+ 医保税 1.45%，合计 ' + fmt(ctx.ssTax + ctx.medicareTax) + '。'
                     : 'Social Security tax of 6.2% (on wages up to ' + ssBase + ') plus Medicare tax of 1.45% total ' + fmt(ctx.ssTax + ctx.medicareTax) + '.';
@@ -4231,7 +4241,7 @@
         });
 
 // ===================== Tooltip System =====================
-        const TOOLTIP_DATA = {"zh": {"tt_filing_status": "申报身份决定了你的税率级距和标准扣除额。\\\n单身税率最高，已婚联合申报可享受更宽的级距和更高的扣除额。", "tt_wages": "W-2 表格 Box 1 中的金额，即你的工资、薪金、小费等已扣税前收入。这是最常见的收入来源。", "tt_self_employment": "1099-NEC 或 Schedule C 报告的收入。自雇人士需缴纳 SE Tax（15.3%），但可扣除一半作为 above-the-line 扣除。", "tt_other_income": "包括银行存款利息（1099-INT）、股息（1099-DIV）、租金收入、失业金、退休金等普通收入。", "tt_ltcg": "持有超过一年的资产（股票、房产等）出售后的利润。税率优惠：0%、15% 或 20%，取决于你的总收入。", "tt_deduction_type": "标准扣除是固定金额，无需证明。分项扣除需逐项列出（房贷利息、州税、慈善捐赠等），只有当总额超过标准扣除时才划算。", "tt_itemized": "包括：州和地方税（SALT，上限 $10,000）、房贷利息、慈善捐赠、医疗费用（超过 AGI 7.5% 部分）等。", "tt_standard_deduction": "IRS 自动给予的固定扣除额，无需提供任何证明。2026年单身 $16,100，已婚联合 $32,200。", "tt_above_line": "又称 adjustments to income。包括：学生贷款利息（上限 $2,500）、HSA 供款、传统 IRA 供款、自雇税一半扣除等。这些扣除即使选择标准扣除也能享受。", "tt_children": "16岁以下的合格子女可享受 Child Tax Credit。2026年每名子女最高 $2,200，其中 $1,700 可退还（即使不欠税也能拿到）。", "tt_withheld": "雇主从你的工资中预扣的联邦所得税（W-2 Box 2）。年终报税时，如果预扣 > 实际应缴，差额退税；反之需补税。", "tt_is_se": "自雇人士需缴纳 Self-Employment Tax（15.3% = 12.4% Social Security + 2.9% Medicare），但可扣除其中一半。", "tt_agi": "Adjusted Gross Income = 总收入 - Above-the-line 扣除。AGI 是许多税收抵免和扣除的门槛基准。", "tt_taxable_income": "Taxable Income = AGI - 标准/分项扣除。这是实际用于计算联邦所得税的金额。", "tt_federal_tax": "根据应税收入按 7 级累进税率计算得出的联邦所得税额，已扣除 Child Tax Credit 等抵免。", "tt_fica": "FICA = Social Security Tax (6.2%, 上限 $184,500) + Medicare Tax (1.45%, 无上限)。高收入者额外 0.9% Medicare Tax。", "tt_total_tax": "联邦所得税 + FICA/SE Tax 的总和。这是你的总联邦税负（不含州税）。", "tt_effective_rate": "Effective Rate = 总税负 ÷ 总收入。反映你实际承担的税负比例，通常远低于边际税率。", "tt_marginal_rate": "Marginal Rate = 你最后一美元收入适用的税率。这是你的最高税率，但不是所有收入都按此税率征税。", "tt_refund": "如果预扣税 > 实际应缴联邦税，差额为退税（Refund）；反之为应补税（Amount Owed）。", "tt_bracket": "美国采用累进税制，收入分段征税。每段收入只按对应税率征税，而非全部收入按最高税率征税。", "tt_ctc": "Child Tax Credit 是直接抵减税额的优惠，比扣除（deduction）更有价值。2026年每名合格子女 $2,200。", "tt_se_tax": "Self-Employment Tax 是自雇人士缴纳的 Social Security 和 Medicare 税，总计 15.3%，但可扣除雇主部分（7.65%）。", "tt_qbi": "Qualified Business Income Deduction（199A）允许自雇人士扣除合格商业收入的 20%，但有收入门槛限制。", "tt_amt": "Alternative Minimum Tax 是替代性最低税，防止高收入者通过过多扣除避税。本工具未计算 AMT。", "tt_niit": "Net Investment Income Tax 对高收入者的投资收入（利息、股息、资本收益等）征收 3.8%。本工具未计算。", "tt_salt": "State and Local Tax 扣除上限为 $10,000（已婚分开 $5,000）。本工具未单独计算州税。", "tt_eitc": "Earned Income Tax Credit 是低收入工作者的可退还抵免。本工具未计算 EITC。", "tt_ira": "Traditional IRA 供款可能可扣除，但受收入限制。Roth IRA 供款不可扣除，但退休时免税提取。", "tt_hsa": "Health Savings Account 供款可 above-the-line 扣除。2026年个人上限 $4,300，家庭 $8,550（55岁以上+$1,000）。", "tt_401k": "401(k) 供款降低应税收入。2026年员工供款上限 $23,500（50岁以上+$7,500 catch-up）。", "tt_fbir": "FBAR（FinCEN 114）：海外银行账户超过 $10,000 需申报。Form 8938（FATCA）：海外资产超过门槛需申报。", "tt_itin": "Individual Taxpayer Identification Number，供没有 SSN 的外国人报税使用。需向 IRS 申请。", "tt_substantial_presence": "当年在美 ≥31 天，且近三年累计 ≥183 天（当年全部 + 前一年 1/3 + 前两年 1/6）。满足则为居民外国人。", "tt_treaty": "中美税收协定规定，中国学生/学者前 5 年（学生）或 2-3 年（教师）可享受部分收入免税或降低税率。", "tt_w8ben": "非居民外国人向付款方提交的表格，用于申请税收协定优惠或降低预扣税率。", "tt_8843": "学生/教师/学者提交的豁免声明，即使满足实质居住测试，前 5 年（学生）仍被视为非居民。", "tt_estimated_tax": "自雇人士或收入无预扣者需每季度预缴税款（4/15, 6/15, 9/15, 1/15）。欠税 ≥$1,000 可能面临罚款。", "tt_extension": "Form 4868 可将报税截止日期延至 10 月 15 日，但税款仍需在 4 月 15 日前缴纳，否则产生利息和罚款。", "tt_audit": "IRS 审计是对报税表的审查。保留所有支持文件至少 3 年（建议 7 年）。收到 CP 系列通知需及时回复。"}, "en": {"tt_filing_status": "Filing status determines your tax brackets and standard deduction.\\\nSingle has the highest rates; Married Filing Jointly gets wider brackets and higher deductions.", "tt_wages": "Amount from W-2 Box 1. Your pre-tax salary, wages, and tips. This is the most common income source.", "tt_self_employment": "Income reported on 1099-NEC or Schedule C. Self-employed pay SE Tax (15.3%) but can deduct half as an above-the-line deduction.", "tt_other_income": "Includes bank interest (1099-INT), dividends (1099-DIV), rental income, unemployment benefits, retirement distributions, etc.", "tt_ltcg": "Profit from selling assets held over one year (stocks, real estate, etc.). Preferential rates: 0%, 15%, or 20% depending on total income.", "tt_deduction_type": "Standard deduction is a fixed amount with no proof needed. Itemized requires listing each deduction (mortgage interest, SALT, charity). Only itemize if total exceeds standard.", "tt_itemized": "Includes: State and Local Taxes (SALT, capped at $10,000), mortgage interest, charitable donations, medical expenses (over 7.5% of AGI), etc.", "tt_standard_deduction": "Fixed deduction automatically granted by IRS with no documentation. 2026: Single $16,100, Married Joint $32,200.", "tt_above_line": "Also called adjustments to income. Includes: student loan interest (up to $2,500), HSA contributions, traditional IRA contributions, one-half of SE tax. Available even with standard deduction.", "tt_children": "Children under 17 qualify for Child Tax Credit. 2026 max $2,200 per child, with $1,700 refundable (you get it even if you owe no tax).", "tt_withheld": "Federal income tax withheld from your paycheck by employer (W-2 Box 2). If withholding > actual tax due, you get a refund; otherwise you owe.", "tt_is_se": "Self-employed pay Self-Employment Tax (15.3% = 12.4% Social Security + 2.9% Medicare) but can deduct the employer portion (7.65%).", "tt_agi": "Adjusted Gross Income = Gross Income - Above-the-line deductions. AGI is the threshold benchmark for many credits and deductions.", "tt_taxable_income": "Taxable Income = AGI - Standard/Itemized Deduction. This is the amount actually used to calculate federal income tax.", "tt_federal_tax": "Federal income tax calculated from taxable income using 7 progressive brackets, after subtracting credits like Child Tax Credit.", "tt_fica": "FICA = Social Security Tax (6.2%, cap $184,500) + Medicare Tax (1.45%, no cap). High earners pay additional 0.9% Medicare Tax.", "tt_total_tax": "Sum of Federal Income Tax + FICA/SE Tax. This is your total federal tax liability (state taxes not included).", "tt_effective_rate": "Effective Rate = Total Tax ÷ Gross Income. Reflects your actual tax burden, usually much lower than marginal rate.", "tt_marginal_rate": "Marginal Rate = The rate applied to your last dollar of income. This is your highest bracket, but not all income is taxed at this rate.", "tt_refund": "If withholding > actual federal tax due, the difference is a Refund. If withholding < tax due, you owe the difference.", "tt_bracket": "The US uses a progressive tax system. Income is taxed in segments, each at its corresponding rate, not all at the highest rate.", "tt_ctc": "Child Tax Credit directly reduces your tax liability dollar-for-dollar, making it more valuable than a deduction. 2026: $2,200 per qualifying child.", "tt_se_tax": "Self-Employment Tax covers Social Security and Medicare for self-employed individuals, totaling 15.3%. The employer portion (7.65%) is deductible.", "tt_qbi": "Qualified Business Income Deduction (199A) allows self-employed to deduct 20% of qualified business income, subject to income thresholds.", "tt_amt": "Alternative Minimum Tax prevents high-income taxpayers from using excessive deductions to avoid taxes. This tool does not calculate AMT.", "tt_niit": "Net Investment Income Tax imposes 3.8% on investment income (interest, dividends, capital gains) for high-income individuals. Not calculated here.", "tt_salt": "State and Local Tax deduction is capped at $10,000 ($5,000 if Married Filing Separately). State taxes are not calculated in this tool.", "tt_eitc": "Earned Income Tax Credit is a refundable credit for low-to-moderate income workers. This tool does not calculate EITC.", "tt_ira": "Traditional IRA contributions may be deductible but are subject to income limits. Roth IRA contributions are not deductible but withdrawals in retirement are tax-free.", "tt_hsa": "Health Savings Account contributions are above-the-line deductible. 2026 limits: $4,300 individual, $8,550 family (+$1,000 catch-up if 55+).", "tt_401k": "401(k) contributions reduce taxable income. 2026 employee limit: $23,500 (+$7,500 catch-up if 50+).", "tt_fbir": "FBAR (FinCEN 114): Required if foreign bank accounts exceed $10,000. Form 8938 (FATCA): Required if foreign assets exceed thresholds.", "tt_itin": "Individual Taxpayer Identification Number for foreigners without an SSN who need to file US taxes. Apply through IRS.", "tt_substantial_presence": "≥31 days in current year AND ≥183 days over 3 years (current year + 1/3 of prior year + 1/6 of year before). If met, you are a resident alien.", "tt_treaty": "The US-China tax treaty allows Chinese students/scholars exemption for 5 years (students) or 2-3 years (teachers) on certain income.", "tt_w8ben": "Form submitted by non-resident aliens to payers to claim treaty benefits or reduced withholding rates.", "tt_8843": "Exempt individual statement filed by students/teachers/scholars. Even if substantial presence test is met, first 5 years (students) still treated as non-resident.", "tt_estimated_tax": "Self-employed or those without withholding must pay quarterly (Apr 15, Jun 15, Sep 15, Jan 15). Owing ≥$1,000 may trigger penalties.", "tt_extension": "Form 4868 extends filing deadline to Oct 15, but tax payment is still due Apr 15. Interest and penalties apply to unpaid amounts.", "tt_audit": "An IRS audit reviews your tax return. Keep all supporting documents for at least 3 years (7 years recommended). Respond promptly to CP notices."}};
+        const TOOLTIP_DATA = {"zh": {"tt_filing_status": "申报身份决定了你的税率级距和标准扣除额。\\\n单身税率最高，已婚联合申报可享受更宽的级距和更高的扣除额。", "tt_wages": "W-2 表格 Box 1 中的金额，即你的工资、薪金、小费等已扣税前收入。这是最常见的收入来源。", "tt_self_employment": "1099-NEC 或 Schedule C 报告的收入。自雇人士需缴纳 SE Tax（15.3%），但可扣除一半作为 above-the-line 扣除。", "tt_other_income": "包括银行存款利息（1099-INT）、股息（1099-DIV）、租金收入、失业金、退休金等普通收入。", "tt_ltcg": "持有超过一年的资产（股票、房产等）出售后的利润。税率优惠：0%、15% 或 20%，取决于你的总收入。", "tt_deduction_type": "标准扣除是固定金额，无需证明。分项扣除需逐项列出（房贷利息、州税、慈善捐赠等），只有当总额超过标准扣除时才划算。", "tt_itemized": "包括：州和地方税（SALT，2026 年上限 $40,400）、房贷利息、慈善捐赠、医疗费用（超过 AGI 7.5% 部分）等。", "tt_standard_deduction": "IRS 自动给予的固定扣除额，无需提供任何证明。2026年单身 $16,100，已婚联合 $32,200。", "tt_above_line": "又称 adjustments to income。包括：学生贷款利息（上限 $2,500）、HSA 供款、传统 IRA 供款、自雇税一半扣除等。这些扣除即使选择标准扣除也能享受。", "tt_children": "16岁以下的合格子女可享受 Child Tax Credit。2026年每名子女最高 $2,200，其中 $1,700 可退还（即使不欠税也能拿到）。", "tt_withheld": "雇主从你的工资中预扣的联邦所得税（W-2 Box 2）。年终报税时，如果预扣 > 实际应缴，差额退税；反之需补税。", "tt_is_se": "自雇人士需缴纳 Self-Employment Tax（15.3% = 12.4% Social Security + 2.9% Medicare），但可扣除其中一半。", "tt_agi": "Adjusted Gross Income = 总收入 - Above-the-line 扣除。AGI 是许多税收抵免和扣除的门槛基准。", "tt_taxable_income": "Taxable Income = AGI - 标准/分项扣除。这是实际用于计算联邦所得税的金额。", "tt_federal_tax": "根据应税收入按 7 级累进税率计算得出的联邦所得税额，已扣除 Child Tax Credit 等抵免。", "tt_fica": "FICA = Social Security Tax (6.2%, 上限 $184,500) + Medicare Tax (1.45%, 无上限)。高收入者额外 0.9% Medicare Tax。", "tt_total_tax": "联邦所得税 + FICA/SE Tax 的总和。这是你的总联邦税负（不含州税）。", "tt_effective_rate": "Effective Rate = 总税负 ÷ 总收入。反映你实际承担的税负比例，通常远低于边际税率。", "tt_marginal_rate": "Marginal Rate = 你最后一美元收入适用的税率。这是你的最高税率，但不是所有收入都按此税率征税。", "tt_refund": "如果预扣税大于实际应缴的联邦所得税（自雇者需另加自雇税），差额为退税；反之则需补税。工资部分的 FICA 由雇主直接代扣代缴，不计入此项对比——只有联邦所得税、以及自雇税（如适用）才会在报税时与预扣税比较。", "tt_bracket": "美国采用累进税制，收入分段征税。每段收入只按对应税率征税，而非全部收入按最高税率征税。", "tt_ctc": "Child Tax Credit 是直接抵减税额的优惠，比扣除（deduction）更有价值。2026年每名合格子女 $2,200。", "tt_se_tax": "Self-Employment Tax 是自雇人士缴纳的 Social Security 和 Medicare 税，总计 15.3%，但可扣除雇主部分（7.65%）。", "tt_qbi": "Qualified Business Income Deduction（199A）允许自雇人士扣除合格商业收入的 20%，但有收入门槛限制。", "tt_amt": "Alternative Minimum Tax 是替代性最低税，防止高收入者通过过多扣除避税。本工具未计算 AMT。", "tt_niit": "Net Investment Income Tax 对高收入者的投资收入（利息、股息、资本收益等）征收 3.8%。本工具未计算。", "tt_salt": "State and Local Tax 扣除上限（OBBBA 后）为 $40,400，已婚分开报税为 $20,200（高收入者逐步减少，MAGI 超 $505,000 起）。本工具未单独计算州税。", "tt_eitc": "Earned Income Tax Credit 是低收入工作者的可退还抵免。本工具未计算 EITC。", "tt_ira": "Traditional IRA 供款可能可扣除，但受收入限制。Roth IRA 供款不可扣除，但退休时免税提取。", "tt_hsa": "Health Savings Account 供款可 above-the-line 扣除。2026年个人上限 $4,400，家庭 $8,750（55岁以上+$1,000）。", "tt_401k": "401(k) 供款降低应税收入。2026年员工供款上限 $24,500（50岁以上+$8,000 catch-up）。", "tt_fbir": "FBAR（FinCEN 114）：海外银行账户超过 $10,000 需申报。Form 8938（FATCA）：海外资产超过门槛需申报。", "tt_itin": "Individual Taxpayer Identification Number，供没有 SSN 的外国人报税使用。需向 IRS 申请。", "tt_substantial_presence": "当年在美 ≥31 天，且近三年累计 ≥183 天（当年全部 + 前一年 1/3 + 前两年 1/6）。满足则为居民外国人。", "tt_treaty": "中美税收协定规定，中国学生/学者前 5 年（学生）或 2-3 年（教师）可享受部分收入免税或降低税率。", "tt_w8ben": "非居民外国人向付款方提交的表格，用于申请税收协定优惠或降低预扣税率。", "tt_8843": "学生/教师/学者提交的豁免声明，即使满足实质居住测试，前 5 年（学生）仍被视为非居民。", "tt_estimated_tax": "自雇人士或收入无预扣者需每季度预缴税款（4/15, 6/15, 9/15, 1/15）。欠税 ≥$1,000 可能面临罚款。", "tt_extension": "Form 4868 可将报税截止日期延至 10 月 15 日，但税款仍需在 4 月 15 日前缴纳，否则产生利息和罚款。", "tt_audit": "IRS 审计是对报税表的审查。保留所有支持文件至少 3 年（建议 7 年）。收到 CP 系列通知需及时回复。"}, "en": {"tt_filing_status": "Filing status determines your tax brackets and standard deduction.\\\nSingle has the highest rates; Married Filing Jointly gets wider brackets and higher deductions.", "tt_wages": "Amount from W-2 Box 1. Your pre-tax salary, wages, and tips. This is the most common income source.", "tt_self_employment": "Income reported on 1099-NEC or Schedule C. Self-employed pay SE Tax (15.3%) but can deduct half as an above-the-line deduction.", "tt_other_income": "Includes bank interest (1099-INT), dividends (1099-DIV), rental income, unemployment benefits, retirement distributions, etc.", "tt_ltcg": "Profit from selling assets held over one year (stocks, real estate, etc.). Preferential rates: 0%, 15%, or 20% depending on total income.", "tt_deduction_type": "Standard deduction is a fixed amount with no proof needed. Itemized requires listing each deduction (mortgage interest, SALT, charity). Only itemize if total exceeds standard.", "tt_itemized": "Includes: State and Local Taxes (SALT, capped at $40,400 for 2026), mortgage interest, charitable donations, medical expenses (over 7.5% of AGI), etc.", "tt_standard_deduction": "Fixed deduction automatically granted by IRS with no documentation. 2026: Single $16,100, Married Joint $32,200.", "tt_above_line": "Also called adjustments to income. Includes: student loan interest (up to $2,500), HSA contributions, traditional IRA contributions, one-half of SE tax. Available even with standard deduction.", "tt_children": "Children under 17 qualify for Child Tax Credit. 2026 max $2,200 per child, with $1,700 refundable (you get it even if you owe no tax).", "tt_withheld": "Federal income tax withheld from your paycheck by employer (W-2 Box 2). If withholding > actual tax due, you get a refund; otherwise you owe.", "tt_is_se": "Self-employed pay Self-Employment Tax (15.3% = 12.4% Social Security + 2.9% Medicare) but can deduct the employer portion (7.65%).", "tt_agi": "Adjusted Gross Income = Gross Income - Above-the-line deductions. AGI is the threshold benchmark for many credits and deductions.", "tt_taxable_income": "Taxable Income = AGI - Standard/Itemized Deduction. This is the amount actually used to calculate federal income tax.", "tt_federal_tax": "Federal income tax calculated from taxable income using 7 progressive brackets, after subtracting credits like Child Tax Credit.", "tt_fica": "FICA = Social Security Tax (6.2%, cap $184,500) + Medicare Tax (1.45%, no cap). High earners pay additional 0.9% Medicare Tax.", "tt_total_tax": "Sum of Federal Income Tax + FICA/SE Tax. This is your total federal tax liability (state taxes not included).", "tt_effective_rate": "Effective Rate = Total Tax ÷ Gross Income. Reflects your actual tax burden, usually much lower than marginal rate.", "tt_marginal_rate": "Marginal Rate = The rate applied to your last dollar of income. This is your highest bracket, but not all income is taxed at this rate.", "tt_refund": "If your withholding exceeds your actual federal income tax due (plus self-employment tax, if applicable), the difference is a refund; otherwise you owe the difference. FICA withheld from wages is handled directly by your employer and is not part of this comparison \u2014 only federal income tax, and self-employment tax when applicable, are reconciled against withholding when you file.", "tt_bracket": "The US uses a progressive tax system. Income is taxed in segments, each at its corresponding rate, not all at the highest rate.", "tt_ctc": "Child Tax Credit directly reduces your tax liability dollar-for-dollar, making it more valuable than a deduction. 2026: $2,200 per qualifying child.", "tt_se_tax": "Self-Employment Tax covers Social Security and Medicare for self-employed individuals, totaling 15.3%. The employer portion (7.65%) is deductible.", "tt_qbi": "Qualified Business Income Deduction (199A) allows self-employed to deduct 20% of qualified business income, subject to income thresholds.", "tt_amt": "Alternative Minimum Tax prevents high-income taxpayers from using excessive deductions to avoid taxes. This tool does not calculate AMT.", "tt_niit": "Net Investment Income Tax imposes 3.8% on investment income (interest, dividends, capital gains) for high-income individuals. Not calculated here.", "tt_salt": "State and Local Tax deduction is capped at $40,400 for 2026 under OBBBA ($20,200 if Married Filing Separately), phasing down for high earners above $505,000 MAGI. State taxes are not calculated in this tool.", "tt_eitc": "Earned Income Tax Credit is a refundable credit for low-to-moderate income workers. This tool does not calculate EITC.", "tt_ira": "Traditional IRA contributions may be deductible but are subject to income limits. Roth IRA contributions are not deductible but withdrawals in retirement are tax-free.", "tt_hsa": "Health Savings Account contributions are above-the-line deductible. 2026 limits: $4,400 individual, $8,750 family (+$1,000 catch-up if 55+).", "tt_401k": "401(k) contributions reduce taxable income. 2026 employee limit: $24,500 (+$8,000 catch-up if 50+).", "tt_fbir": "FBAR (FinCEN 114): Required if foreign bank accounts exceed $10,000. Form 8938 (FATCA): Required if foreign assets exceed thresholds.", "tt_itin": "Individual Taxpayer Identification Number for foreigners without an SSN who need to file US taxes. Apply through IRS.", "tt_substantial_presence": "≥31 days in current year AND ≥183 days over 3 years (current year + 1/3 of prior year + 1/6 of year before). If met, you are a resident alien.", "tt_treaty": "The US-China tax treaty allows Chinese students/scholars exemption for 5 years (students) or 2-3 years (teachers) on certain income.", "tt_w8ben": "Form submitted by non-resident aliens to payers to claim treaty benefits or reduced withholding rates.", "tt_8843": "Exempt individual statement filed by students/teachers/scholars. Even if substantial presence test is met, first 5 years (students) still treated as non-resident.", "tt_estimated_tax": "Self-employed or those without withholding must pay quarterly (Apr 15, Jun 15, Sep 15, Jan 15). Owing ≥$1,000 may trigger penalties.", "tt_extension": "Form 4868 extends filing deadline to Oct 15, but tax payment is still due Apr 15. Interest and penalties apply to unpaid amounts.", "tt_audit": "An IRS audit reviews your tax return. Keep all supporting documents for at least 3 years (7 years recommended). Respond promptly to CP notices."}};
 
         let tooltipTimer = null;
         let currentTooltipEl = null;
@@ -4250,17 +4260,20 @@
                 function initCheckboxFix() {
             const group = document.getElementById('seCheckboxGroup');
             if (!group) return;
+            const checkbox = document.getElementById('isSelfEmployed');
+            const label = document.getElementById('labelIsSE');
+            if (!checkbox) return;
 
             group.onclick = function(e) {
-                const checkbox = document.getElementById('isSelfEmployed');
-                if (!checkbox) return true;
-
-                // If clicking directly on the checkbox, let native behavior work
-                if (e.target === checkbox) {
+                // The checkbox itself and its <label for="isSelfEmployed"> already toggle it
+                // natively via the browser's built-in label association — manually toggling
+                // again here for those targets was causing a net no-op (toggle, then immediately
+                // un-toggle) whenever someone clicked the label text instead of the tiny checkbox.
+                // Only handle genuinely empty space elsewhere in the group.
+                if (e.target === checkbox || e.target === label || (label && label.contains(e.target))) {
                     return true;
                 }
 
-                // For clicks on label or empty space within the group, toggle
                 checkbox.checked = !checkbox.checked;
                 checkbox.dispatchEvent(new Event('change', { bubbles: true }));
                 return true;
