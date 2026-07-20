@@ -690,6 +690,7 @@
         }
         .sn-link:hover { color: var(--primary); }
         .sn-link[aria-current="page"] { background: #ffffff; color: var(--primary); box-shadow: 0 2px 8px rgba(15,23,42,0.10); }
+        .sn-link[aria-current="page"]::before { content: "🏠"; margin-right: 6px; }
 
         /* Data source attribution strip */
         .data-source-note {
@@ -1315,7 +1316,7 @@
                 <li class="an-item">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 <span class="i18n-zh">税务计算</span><span class="i18n-en">Calculator</span><span class="i18n-es">Calculadora</span></button>
                     <div class="an-menu site-nav" aria-label="Site">
-                        <a href="/#/" class="sn-link" aria-current="page"><span class="i18n-zh">🏠 联邦税计算器</span><span class="i18n-en">🏠 Federal Tax</span><span class="i18n-es">🏠 Impuesto Federal</span></a>
+                        <a href="/#/" class="sn-link" aria-current="page"><span class="i18n-zh">联邦税计算器</span><span class="i18n-en">Federal Tax</span><span class="i18n-es">Impuesto Federal</span></a>
                         <a href="/#/self-employment" class="sn-link"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Trabajo por Cuenta Propia</span></a>
                         <a href="/#/capital-gains" class="sn-link"><span class="i18n-zh">资本利得税</span><span class="i18n-en">Capital Gains</span><span class="i18n-es">Ganancias de Capital</span></a>
                         <a href="/#/child-tax-credit" class="sn-link"><span class="i18n-zh">儿童税收抵免</span><span class="i18n-en">Child Tax Credit</span><span class="i18n-es">Crédito Tributario por Hijos</span></a>
