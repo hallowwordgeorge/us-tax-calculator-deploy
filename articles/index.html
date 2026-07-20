@@ -12,10 +12,13 @@
 <meta property="og:description" content="Original guides on 2026 US federal taxes: the new tax law, deductions, self-employment tax, the Child Tax Credit, and capital gains.">
 <meta property="og:url" content="https://us-tax-calculator.com/articles/">
 <meta property="og:image" content="https://us-tax-calculator.com/logo-icon.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:site_name" content="US Tax Calculator">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tax Articles | US Tax Calculator 2026">
 <meta name="twitter:description" content="Original guides on 2026 US federal taxes: the new tax law, deductions, self-employment tax, the Child Tax Credit, and capital gains.">
+<meta name="twitter:image" content="https://us-tax-calculator.com/logo-icon.png">
 <link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -37,10 +40,6 @@
 .site-nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding:5px;background:#e9edf6;border-radius:14px;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
 .sn-link{flex:none;padding:7px 14px;border-radius:10px;background:transparent;border:none;color:var(--text-secondary);text-decoration:none;font-size:.85rem;font-weight:600;transition:all .22s cubic-bezier(.4,0,.2,1);}
 .sn-link:hover{color:var(--primary);}
-.sn-link[aria-current="page"]{background:#ffffff;color:var(--primary);box-shadow:0 2px 8px rgba(15,23,42,.10);}
-.mode-toggle,.lang-toggle{display:flex;gap:4px;background:#e9edf6;padding:4px;border-radius:12px;}
-.mode-toggle button,.lang-toggle button{padding:8px 16px;border:none;background:transparent;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--text-secondary);}
-.mode-toggle button.active,.lang-toggle button.active{background:#ffffff;color:var(--primary);box-shadow:0 2px 8px rgba(15,23,42,.10);}
 
         /* ===== Apple-style flat nav ===== */
         .apple-nav{background:#ffffff;border-bottom:1px solid var(--border);position:relative;z-index:100;}
@@ -98,20 +97,6 @@ html{scroll-behavior:smooth;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;}
 a{color:var(--primary);}
 
-/* i18n */
-.i18n-zh,.i18n-es{display:none;}
-body.lang-zh .i18n-zh{display:inline;}
-body.lang-zh .i18n-en,body.lang-zh .i18n-es{display:none;}
-body.lang-es .i18n-es{display:inline;}
-body.lang-es .i18n-en,body.lang-es .i18n-zh{display:none;}
-.i18n-zh.block,.i18n-en.block,.i18n-es.block{display:none;}
-body.lang-zh .i18n-zh.block{display:block;}
-body.lang-es .i18n-es.block{display:block;}
-body:not(.lang-zh):not(.lang-es) .i18n-en.block{display:block;}
-body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
-
-/* Fill the screen below the nav bar: page sections run full-bleed width,
-   only the actual reading text is kept to a comfortable column. */
 .page-wide{max-width:1200px;margin:0 auto;padding:0 24px;}
 .prose{max-width:760px;margin:0 auto;padding:0 24px;}
 
@@ -125,8 +110,10 @@ body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
 .chip.active{background:var(--primary);border-color:var(--primary);color:#fff !important;}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:48px;}
-.card{display:flex;flex-direction:column;gap:9px;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--card-bg);text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s,border-color .15s;}
+.card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:16px;background:var(--card-bg);text-decoration:none;color:inherit;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s;}
 .card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,42,90,.10);border-color:var(--primary-light);}
+.card img{width:100%;height:150px;object-fit:cover;display:block;background:#e9edf6;}
+.card .card-body{display:flex;flex-direction:column;gap:9px;padding:18px 20px 22px;flex:1;}
 .badge{align-self:flex-start;font-size:.72rem;font-weight:700;color:var(--primary);background:rgba(26,95,180,.10);padding:3px 11px;border-radius:999px;}
 .card h3{font-size:1.06rem;font-weight:700;line-height:1.35;color:var(--text);}
 .card p{font-size:.89rem;color:var(--text-secondary);line-height:1.55;flex:1;}
@@ -135,7 +122,8 @@ body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
 .back-link{display:inline-block;margin:26px 0 8px;font-size:.87rem;font-weight:700;text-decoration:none;}
 .article-head{padding:10px 0 6px;}
 .article-head .meta-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
-.article-head h1{font-size:1.9rem;line-height:1.28;font-weight:800;color:var(--primary-dark);margin:6px 0 28px;letter-spacing:-.01em;}
+.article-head h1{font-size:1.9rem;line-height:1.28;font-weight:800;color:var(--primary-dark);margin:6px 0 24px;letter-spacing:-.01em;}
+.article-hero-img{width:100%;height:auto;border-radius:16px;margin-bottom:28px;display:block;box-shadow:var(--shadow);}
 .article-body{font-size:1.06rem;line-height:1.85;padding-bottom:14px;}
 .article-body h5{font-size:1.15rem;font-weight:700;margin:28px 0 10px;color:var(--primary-dark);}
 .article-body p{margin:0 0 16px;}
@@ -179,44 +167,37 @@ body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
 
             <ul class="an-items" id="anItems">
                 <li class="an-item">
-                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 <span class="i18n-zh">税务计算</span><span class="i18n-en">Calculator</span><span class="i18n-es">Calculadora</span></button>
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 Calculator</button>
                     <div class="an-menu site-nav" aria-label="Site">
-                        <a href="/#/" class="sn-link"><span class="i18n-zh">🏠 联邦税计算器</span><span class="i18n-en">🏠 Federal Tax</span><span class="i18n-es">🏠 Impuesto Federal</span></a>
-                        <a href="/#/self-employment" class="sn-link"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Trabajo por Cuenta Propia</span></a>
-                        <a href="/#/capital-gains" class="sn-link"><span class="i18n-zh">资本利得税</span><span class="i18n-en">Capital Gains</span><span class="i18n-es">Ganancias de Capital</span></a>
-                        <a href="/#/child-tax-credit" class="sn-link"><span class="i18n-zh">儿童税收抵免</span><span class="i18n-en">Child Tax Credit</span><span class="i18n-es">Crédito Tributario por Hijos</span></a>
-                        <a href="/#/fica" class="sn-link"><span class="i18n-zh">FICA 工资税</span><span class="i18n-en">FICA / Payroll</span><span class="i18n-es">FICA / Nómina</span></a>
+                        <a href="/#/" class="sn-link">🏠 Federal Tax</a>
+                        <a href="/#/self-employment" class="sn-link">Self-Employment</a>
+                        <a href="/#/capital-gains" class="sn-link">Capital Gains</a>
+                        <a href="/#/child-tax-credit" class="sn-link">Child Tax Credit</a>
+                        <a href="/#/fica" class="sn-link">FICA / Payroll</a>
                     </div>
                 </li>
-                <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ 州税计算</a></li>
-                <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 历史记录</a></li>
-                <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 对比图表</a></li>
+                <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ State Tax</a></li>
+                <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 History</a></li>
+                <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 Compare</a></li>
                 <li class="an-item">
-                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 <span class="i18n-zh">资源</span><span class="i18n-en">Resources</span><span class="i18n-es">Recursos</span></button>
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 Resources</button>
                     <div class="an-menu">
-                        <a href="/#/guide" class="tab-btn dropdown-tab-btn" data-tab="guide" id="tabGuide">📖 使用说明</a>
-                        <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 计算详解</a>
-                        <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 使用教程</a>
-                        <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ 常见问题</a>
-                        <a href="/#/about" class="tab-btn dropdown-tab-btn" data-tab="about" id="tabAbout">ℹ️ 关于我们</a>
+                        <a href="/#/guide" class="tab-btn dropdown-tab-btn" data-tab="guide" id="tabGuide">📖 Guide</a>
+                        <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 How It Works</a>
+                        <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 Tutorials</a>
+                        <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ FAQ</a>
+                        <a href="/#/about" class="tab-btn dropdown-tab-btn" data-tab="about" id="tabAbout">ℹ️ About</a>
                     </div>
                 </li>
                 <li class="an-item">
-                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 <span class="i18n-zh">文章</span><span class="i18n-en">Articles</span><span class="i18n-es">Artículos</span></button>
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 Articles</button>
                     <div class="an-menu">
-                        <a href="/articles/?cat=news"><span class="i18n-zh">2026 税务动态</span><span class="i18n-en">Tax News 2026</span><span class="i18n-es">Novedades 2026</span></a>
-                        <a href="/articles/?cat=guides"><span class="i18n-zh">报税指南</span><span class="i18n-en">Filing Guides</span><span class="i18n-es">Guías</span></a>
-                        <a href="/articles/?cat=deductions"><span class="i18n-zh">扣除与抵免</span><span class="i18n-en">Deductions &amp; Credits</span><span class="i18n-es">Deducciones</span></a>
-                        <a href="/articles/?cat=self-employment"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Cuenta Propia</span></a>
-                        <a href="/articles/?cat=investing"><span class="i18n-zh">投资与资本利得</span><span class="i18n-en">Investing &amp; Gains</span><span class="i18n-es">Inversiones</span></a>
-                        <a href="/articles/" class="an-menu-all"><span class="i18n-zh">浏览全部文章 →</span><span class="i18n-en">Browse All Articles →</span><span class="i18n-es">Ver Todos →</span></a>
-                    </div>
-                </li>
-                <li class="an-item an-lang-item">
-                    <div class="lang-toggle an-lang">
-                        <button data-lang="zh" onclick="setLang('zh')">中文</button>
-                        <button class="active" data-lang="en" onclick="setLang('en')">EN</button>
-                        <button data-lang="es" onclick="setLang('es')">ES</button>
+                        <a href="/articles/?cat=news">Tax News 2026</a>
+                        <a href="/articles/?cat=guides">Filing Guides</a>
+                        <a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
+                        <a href="/articles/?cat=self-employment">Self-Employment</a>
+                        <a href="/articles/?cat=investing">Investing &amp; Gains</a>
+                        <a href="/articles/" class="an-menu-all">Browse All Articles →</a>
                     </div>
                 </li>
             </ul>
@@ -225,8 +206,8 @@ body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
 
 <div class="page-wide">
   <div class="page-intro">
-    <h1><span class="i18n-zh">税务文章</span><span class="i18n-en">Tax Articles</span><span class="i18n-es">Artículos Fiscales</span></h1>
-    <p><span class="i18n-zh">深入理解 2026 年美国联邦税：新税法变化、扣除策略、自雇税、儿童税收抵免与资本利得。</span><span class="i18n-en">Understand your 2026 US federal taxes in depth — the new tax law, deductions, self-employment tax, the Child Tax Credit, and capital gains.</span><span class="i18n-es">Comprenda a fondo sus impuestos federales de 2026: la nueva ley, deducciones, trabajo por cuenta propia, el Crédito por Hijos y las ganancias de capital.</span></p>
+    <h1>Tax Articles</h1>
+    <p>Understand your 2026 US federal taxes in depth — the new tax law, deductions, self-employment tax, the Child Tax Credit, and capital gains.</p>
   </div>
   <div class="chips">
 <button type="button" class="chip active" data-cat="all">All</button>
@@ -238,40 +219,58 @@ body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
   </div>
   <div class="grid" id="articleGrid">
 <a class="card" data-cat="investing" href="/articles/long-term-capital-gains/">
-  <span class="badge">Investing & Gains</span>
-  <h3>Long-Term Capital Gains Tax: The 0%, 15%, and 20% Brackets Explained</h3>
-  <p>Sell an appreciated asset — stocks, funds, real estate — and capital gains tax comes into play. How long you held the as…</p>
-  <span class="meta">2026-01-30 · 6 min read</span>
+  <img src="/articles/assets/hero-long-term-capital-gains.png" alt="Long-Term Capital Gains Tax: The 0%, 15%, and 20% Brackets Explained" width="1200" height="630" loading="lazy">
+  <div class="card-body">
+    <span class="badge">Investing & Gains</span>
+    <h3>Long-Term Capital Gains Tax: The 0%, 15%, and 20% Brackets Explained</h3>
+    <p>Sell an appreciated asset — stocks, funds, real estate — and capital gains tax comes into play. How long you held the as…</p>
+    <span class="meta">2026-01-30 · 4 min read</span>
+  </div>
 </a>
 <a class="card" data-cat="deductions" href="/articles/child-tax-credit-2026/">
-  <span class="badge">Deductions & Credits</span>
-  <h3>Child Tax Credit 2026: Rules, Amounts, and Phase-Outs Explained</h3>
-  <p>The Child Tax Credit (CTC) is one of the most valuable tax benefits for families with children. For 2026 it grows under…</p>
-  <span class="meta">2026-01-28 · 6 min read</span>
+  <img src="/articles/assets/hero-child-tax-credit-2026.png" alt="Child Tax Credit 2026: Rules, Amounts, and Phase-Outs Explained" width="1200" height="630" loading="lazy">
+  <div class="card-body">
+    <span class="badge">Deductions & Credits</span>
+    <h3>Child Tax Credit 2026: Rules, Amounts, and Phase-Outs Explained</h3>
+    <p>The Child Tax Credit (CTC) is one of the most valuable tax benefits for families with children. For 2026 it grows under…</p>
+    <span class="meta">2026-01-28 · 4 min read</span>
+  </div>
 </a>
 <a class="card" data-cat="self-employment" href="/articles/self-employment-tax-guide/">
-  <span class="badge">Self-Employment</span>
-  <h3>The Complete Guide to Self-Employment Tax: Understanding the 15.3%</h3>
-  <p>If you freelance, contract, or run a side business, you face a tax that employees never see: the Self-Employment Tax (SE…</p>
-  <span class="meta">2026-01-25 · 7 min read</span>
+  <img src="/articles/assets/hero-self-employment-tax-guide.png" alt="The Complete Guide to Self-Employment Tax: Understanding the 15.3%" width="1200" height="630" loading="lazy">
+  <div class="card-body">
+    <span class="badge">Self-Employment</span>
+    <h3>The Complete Guide to Self-Employment Tax: Understanding the 15.3%</h3>
+    <p>If you freelance, contract, or run a side business, you face a tax that employees never see: the Self-Employment Tax (SE…</p>
+    <span class="meta">2026-01-25 · 4 min read</span>
+  </div>
 </a>
 <a class="card" data-cat="guides" href="/articles/marginal-vs-effective-rate/">
-  <span class="badge">Filing Guides</span>
-  <h3>Marginal vs. Effective Tax Rate: Understanding What You Really Pay</h3>
-  <p>US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…</p>
-  <span class="meta">2026-01-22 · 5 min read</span>
+  <img src="/articles/assets/hero-marginal-vs-effective-rate.png" alt="Marginal vs. Effective Tax Rate: Understanding What You Really Pay" width="1200" height="630" loading="lazy">
+  <div class="card-body">
+    <span class="badge">Filing Guides</span>
+    <h3>Marginal vs. Effective Tax Rate: Understanding What You Really Pay</h3>
+    <p>US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…</p>
+    <span class="meta">2026-01-22 · 4 min read</span>
+  </div>
 </a>
 <a class="card" data-cat="deductions" href="/articles/standard-vs-itemized-2026/">
-  <span class="badge">Deductions & Credits</span>
-  <h3>Standard vs. Itemized Deductions in 2026: Which Saves You More?</h3>
-  <p>Itemizing means listing each tax-deductible expense individually and subtracting the total from your adjusted gross inco…</p>
-  <span class="meta">2026-01-20 · 6 min read</span>
+  <img src="/articles/assets/hero-standard-vs-itemized-2026.png" alt="Standard vs. Itemized Deductions in 2026: Which Saves You More?" width="1200" height="630" loading="lazy">
+  <div class="card-body">
+    <span class="badge">Deductions & Credits</span>
+    <h3>Standard vs. Itemized Deductions in 2026: Which Saves You More?</h3>
+    <p>Itemizing means listing each tax-deductible expense individually and subtracting the total from your adjusted gross inco…</p>
+    <span class="meta">2026-01-20 · 4 min read</span>
+  </div>
 </a>
 <a class="card" data-cat="news" href="/articles/obbba-2026-changes/">
-  <span class="badge">Tax News 2026</span>
-  <h3>What's New for 2026: How the One Big Beautiful Bill Act Affects Your Taxes</h3>
-  <p>The One Big Beautiful Bill Act (OBBBA), signed into law in 2025, reshaped the 2026 tax year — the first full filing seas…</p>
-  <span class="meta">2026-01-15 · 7 min read</span>
+  <img src="/articles/assets/hero-obbba-2026-changes.png" alt="What's New for 2026: How the One Big Beautiful Bill Act Affects Your Taxes" width="1200" height="630" loading="lazy">
+  <div class="card-body">
+    <span class="badge">Tax News 2026</span>
+    <h3>What's New for 2026: How the One Big Beautiful Bill Act Affects Your Taxes</h3>
+    <p>The One Big Beautiful Bill Act (OBBBA), signed into law in 2025, reshaped the 2026 tax year — the first full filing seas…</p>
+    <span class="meta">2026-01-15 · 4 min read</span>
+  </div>
 </a>
   </div>
   <div class="empty" id="emptyMsg" style="display:none;">No articles in this category yet.</div>
@@ -284,18 +283,9 @@ body:not(.lang-zh):not(.lang-es) .i18n-en{display:inline;}
     <a href="/#/privacy">Privacy</a> ·
     <a href="/#/disclaimer">Disclaimer</a>
   </div>
-  <p><span class="i18n-zh">本站文章仅供教育参考，不构成税务建议。具体报税事宜请咨询注册会计师 (CPA) 或注册税务师 (EA)。</span><span class="i18n-en">These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</span><span class="i18n-es">Estos artículos son contenido educativo, no asesoría fiscal. Consulte a un CPA o Agente Inscrito para sus decisiones de declaración.</span></p>
+  <p>These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
 </div></footer>
 <script>
-var currentLang = 'en';
-function setLang(l){
-  currentLang = l;
-  document.body.classList.toggle('lang-zh', l === 'zh');
-  document.body.classList.toggle('lang-es', l === 'es');
-  document.querySelectorAll('.lang-toggle button').forEach(function(b){
-    b.classList.toggle('active', b.dataset.lang === l);
-  });
-}
         // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +
         // click-outside-to-close on touch; auto-detected via matchMedia.
         (function () {
