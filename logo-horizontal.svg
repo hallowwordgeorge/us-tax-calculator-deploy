@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A3D8F"/><stop offset="1" stop-color="#1A5FB4"/>
+    </linearGradient>
+    <linearGradient id="barG2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#CFE3FF"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(20,20)">
+    <rect width="160" height="160" rx="38" fill="url(#bg2)"/>
+    <path d="M 80.0,29.0 L 83.6,39.0 L 94.3,39.4 L 85.9,45.9 L 88.8,56.1 L 80.0,50.2 L 71.2,56.1 L 74.1,45.9 L 65.7,39.4 L 76.4,39.0 Z" fill="#F2C14E"/>
+    <rect x="34" y="120" width="92" height="4" rx="2" fill="#FFFFFF" opacity="0.35"/>
+    <rect x="38" y="96"  width="22" height="26" rx="5" fill="url(#barG2)" opacity="0.6"/>
+    <rect x="69" y="80"  width="22" height="42" rx="5" fill="url(#barG2)" opacity="0.8"/>
+    <rect x="100" y="60" width="22" height="62" rx="5" fill="url(#barG2)"/>
+  </g>
+  <g transform="translate(210,0)" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+    <text x="0" y="92" font-size="52" font-weight="800" fill="#0A3D8F" letter-spacing="-1">US Tax Calculator</text>
+    <text x="2" y="132" font-size="26" font-weight="600" fill="#1A5FB4" opacity="0.85">Federal Tax Estimator · 2026</text>
+    <text x="2" y="166" font-size="20" font-weight="500" fill="#5b6b82">us-tax-calculator.com</text>
+  </g>
+</svg>

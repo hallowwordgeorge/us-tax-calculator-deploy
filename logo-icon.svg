@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A3D8F"/>
+      <stop offset="1" stop-color="#1A5FB4"/>
+    </linearGradient>
+    <linearGradient id="barG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#CFE3FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="#FFFFFF" opacity="0.05"/>
+  <!-- star (US / top) -->
+  <path d="M 256.0,86.0 L 267.2,116.6 L 299.7,117.8 L 274.1,137.9 L 283.0,169.2 L 256.0,151.0 L 229.0,169.2 L 237.9,137.9 L 212.3,117.8 L 244.8,116.6 Z" fill="#F2C14E"/>
+  <!-- baseline -->
+  <rect x="118" y="380" width="276" height="10" rx="5" fill="#FFFFFF" opacity="0.35"/>
+  <!-- ascending bars (comparison chart motif) -->
+  <rect x="126" y="300" width="72" height="80"  rx="16" fill="url(#barG)" opacity="0.6"/>
+  <rect x="220" y="252" width="72" height="128" rx="16" fill="url(#barG)" opacity="0.8"/>
+  <rect x="314" y="196" width="72" height="184" rx="16" fill="url(#barG)"/>
+</svg>

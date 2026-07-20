@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Allow Google AdSense crawler explicitly
+User-agent: Mediapartners-Google
+Allow: /
+
+# Allow Google AdSense verification crawler
+User-agent: AdsBot-Google
+Allow: /
+
+Sitemap: https://us-tax-calculator.com/sitemap.xml
