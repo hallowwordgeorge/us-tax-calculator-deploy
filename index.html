@@ -972,6 +972,11 @@
         #scenarioTable tr.highlight { background: #e4ebfd; font-weight: 600; }
         #scenarioTable td:last-child { text-align: right; }
 
+        .stale-warning-box {
+            background: #fdecea; border-left: 4px solid var(--danger);
+            padding: 10px 14px; border-radius: 0 8px 8px 0; margin: -8px 0 16px;
+            font-size: 0.85rem; color: #8a1c13; line-height: 1.5; font-weight: 600;
+        }
         .year-warning-box {
             background: #fff8e1; border-left: 4px solid var(--warning);
             padding: 10px 14px; border-radius: 0 8px 8px 0; margin: -8px 0 16px;
@@ -1120,7 +1125,7 @@
           "name": "How do you keep federal and state tax rules updated as regulations change each year?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The site uses primary sources only — IRS Revenue Procedures, the text of tax legislation such as OBBBA, SSA wage-base announcements, and each state's Department of Revenue — on a fixed calendar: projected figures are replaced with official ones within days of the IRS's October–November release, state rules are re-verified in December–January as states finalize them, major legislation is incorporated within days of signing, and a full data audit runs every quarter. Current status: 2025 official and final, 2026 official, 2027 projected until the IRS publishes; the 50-state module uses 2026 rules."
+            "text": "The site uses primary sources only — IRS Revenue Procedures, the text of tax legislation such as OBBBA, SSA wage-base announcements, and each state's Department of Revenue — on a fixed calendar: projected figures are replaced with official ones within days of the IRS's October–November release, state rules are re-verified in December–January as states finalize them, major legislation is incorporated within days of signing, and a full data audit runs every quarter. A built-in staleness watchdog also shows a yellow notice near the calculator when an update window opens, escalating to a red do-not-use warning if the window closes before the data is refreshed — tracked per state and for federal rules. Current status: 2025 official and final, 2026 official, 2027 projected until the IRS publishes; the 50-state module uses 2026 rules."
           }
         },
         {
@@ -1433,7 +1438,7 @@
         <div class="page-eyebrow">
             <h1 id="headerTitle">🇺🇸 美国联邦税务计算器</h1>
             <span class="year-badge" id="yearBadge">📅 Tax Year 2026 (File in 2027)</span>
-            <p id="headerSubtitle">US Federal Tax Calculator — 基于 2026 年 IRS 官方税率</p>
+            <p id="headerSubtitle">US Federal Tax Calculator — 基于 IRS 官方税率，支持 2025/2026/2027 三个税年</p>
         </div>
         <!-- Hidden helper: keeps applyRoute()'s querySelector('.tab-btn[data-tab="calculator"]') working now
              that the visible "Calculator" nav word is a <summary> disclosure trigger, not a tab-btn itself. -->
@@ -1453,8 +1458,8 @@
 
             <div class="data-source-note">
                 <span>📑</span>
-                <span class="i18n-zh">数据来源：税率与扣除额基于 IRS 官方 2026 税年文件（Rev. Proc. 2025-32）、SSA 社保工资基数公告及《One Big Beautiful Bill Act》。<strong>税率规则最近更新：2026 年 7 月</strong> · <a href="https://www.irs.gov/" target="_blank" rel="noopener">IRS.gov</a> · <a href="https://www.ssa.gov/" target="_blank" rel="noopener">SSA.gov</a></span>
-                <span class="i18n-en">Sources: 2026 figures per official IRS guidance (Rev. Proc. 2025-32), the SSA wage-base announcement, and the One Big Beautiful Bill Act. <strong>Tax rules last updated: July 2026</strong> · <a href="https://www.irs.gov/" target="_blank" rel="noopener">IRS.gov</a> · <a href="https://www.ssa.gov/" target="_blank" rel="noopener">SSA.gov</a></span>
+                <span class="i18n-zh">数据来源：税率与扣除额基于 IRS 官方税年文件（2025：Rev. Proc. 2024-40；2026：Rev. Proc. 2025-32；2027：预测，官方发布后替换）、SSA 社保工资基数公告及《One Big Beautiful Bill Act》。<strong>税率规则最近更新：2026 年 7 月 21 日</strong> · <a href="https://www.irs.gov/" target="_blank" rel="noopener">IRS.gov</a> · <a href="https://www.ssa.gov/" target="_blank" rel="noopener">SSA.gov</a></span>
+                <span class="i18n-en">Sources: official IRS guidance per tax year (2025: Rev. Proc. 2024-40; 2026: Rev. Proc. 2025-32; 2027: projected, replaced when published), the SSA wage-base announcement, and the One Big Beautiful Bill Act. <strong>Tax rules last updated: July 21, 2026</strong> · <a href="https://www.irs.gov/" target="_blank" rel="noopener">IRS.gov</a> · <a href="https://www.ssa.gov/" target="_blank" rel="noopener">SSA.gov</a></span>
             </div>
 
             <div class="card page-intro" id="intro-self-employment" style="display:none">
@@ -1528,6 +1533,7 @@
                             <option value="2027" id="optYear2027">2027 (Projected)</option>
                         </select>
                     </div>
+                    <div id="fedFreshnessBanner"></div>
                     <div class="year-warning-box" id="year2027Warning" style="display:none;">
                         <span id="year2027WarningText">⚠️ 2027 数据为预测估算值，IRS 尚未发布官方 2027 年税务数据（预计 2026 年 10 月发布）。仅供方向性规划参考，不要用于精确报税。 / Projected estimate — the IRS has not yet published official 2027 figures (expected ~Oct 2026). For directional planning only, not precise filing.</span>
                     </div>
@@ -2435,11 +2441,11 @@
                         <div class="i18n-zh"><p>我们的宗旨是：<strong>站上的数字永远与官方最新口径一致</strong>。做法分两部分——只用一手来源，以及一套固定的更新日历。</p>
                         <p><strong>数据来源（全部为官方一手资料）：</strong>联邦数字来自 IRS 每年发布的 Revenue Procedure 通胀调整（如 2026 年的 Rev. Proc. 2025-32）与税改法案原文（如 2025 年 7 月的 OBBBA）；社保工资基数来自 SSA 的年度公告；各州税率与规则来自各州税务局（Department of Revenue）的官方发布。我们不转抄第三方汇总表。</p>
                         <p><strong>更新日历：</strong>① 每年 <strong>10–11 月</strong>，IRS 发布次年 Revenue Procedure、SSA 公布次年工资基数后，我们在数日内把站上的「预测」数字替换为官方数字（例如 2027 年的预测数据预计在 2026 年 10 月转为官方版）；② <strong>12–1 月</strong>，各州陆续定稿次年税率与预扣表，我们逐州核对并更新州税模块；③ 重大税法签署后（如 OBBBA），受影响的数字在<strong>数日内</strong>完成修订，并同步更新 FAQ 与相关文章；④ 每个<strong>季度</strong>做一次全量数据抽查审计，防止遗漏。</p>
-                        <p><strong>当前数据状态：</strong>2025 = 官方最终（Rev. Proc. 2024-40 + OBBBA 追溯调整）；2026 = 官方（Rev. Proc. 2025-32 + OBBBA）；2027 = 预测（IRS 官方数据发布后即替换）；50 州州税模块按 2026 年规则计算。本站无需注册，所有用户任何时候用到的都是同一套最新数据。</p></div>
+                        <p><strong>当前数据状态：</strong>2025 = 官方最终（Rev. Proc. 2024-40 + OBBBA 追溯调整）；2026 = 官方（Rev. Proc. 2025-32 + OBBBA）；2027 = 预测（IRS 官方数据发布后即替换）；50 州州税模块按 2026 年规则计算。本站无需注册，所有用户任何时候用到的都是同一套最新数据。<strong>此外，页面内置了数据时效预警：</strong>进入年度更新窗口而我们尚未完成核对时，计算器上方会出现黄色提示；如果窗口结束仍未更新，会升级为红色警告，明确建议暂停使用、等待更新——联邦和每个州分别独立监测。</p></div>
                         <div class="i18n-en"><p>Our operating principle is simple: <strong>the numbers on this site always match the latest official figures</strong>. That rests on two things — primary sources only, and a fixed update calendar.</p>
                         <p><strong>Sources (all primary and official):</strong> federal figures come from the IRS's annual Revenue Procedure inflation adjustments (e.g. Rev. Proc. 2025-32 for 2026) and from the text of tax legislation itself (e.g. the OBBBA enacted in July 2025); the Social Security wage base comes from the SSA's annual announcement; state rates and rules come from each state's Department of Revenue. We do not copy third-party summary tables.</p>
                         <p><strong>Update calendar:</strong> ① Every <strong>October–November</strong>, once the IRS publishes the next year's Revenue Procedure and the SSA announces the wage base, we replace the site's "projected" figures with official ones within days (for example, the 2027 projections are expected to become official in October 2026); ② in <strong>December–January</strong>, as states finalize next-year rates and withholding tables, we verify and update the state module state by state; ③ when major legislation is signed (like OBBBA), affected figures are revised <strong>within days</strong>, with the FAQ and related articles updated in the same pass; ④ every <strong>quarter</strong> we run a full spot-check audit of the data set.</p>
-                        <p><strong>Current data status:</strong> 2025 = official and final (Rev. Proc. 2024-40 + OBBBA retroactive changes); 2026 = official (Rev. Proc. 2025-32 + OBBBA); 2027 = projected (replaced as soon as the IRS publishes); the 50-state module calculates under 2026 rules. No signup is required — every visitor always sees the same, latest data set.</p></div>
+                        <p><strong>Current data status:</strong> 2025 = official and final (Rev. Proc. 2024-40 + OBBBA retroactive changes); 2026 = official (Rev. Proc. 2025-32 + OBBBA); 2027 = projected (replaced as soon as the IRS publishes); the 50-state module calculates under 2026 rules. No signup is required — every visitor always sees the same, latest data set. <strong>The page also has a built-in staleness watchdog:</strong> if an annual update window opens before we have re-verified the data, a yellow notice appears near the calculator; if the window closes and the data still hasn't been refreshed, it escalates to a red warning telling you to pause and wait for the update — tracked independently for federal rules and for every state.</p></div>
                     </div>
                 </div>
 
@@ -3077,7 +3083,7 @@
 
                 pageTitle: "🇺🇸 美国联邦税务计算器 2026 | US Federal Tax Calculator",
                 headerTitle: "🇺🇸 美国联邦税务计算器",
-                headerSubtitle: "US Federal Tax Calculator — 基于 2026 年 IRS 官方税率",
+                headerSubtitle: "US Federal Tax Calculator — 基于 IRS 官方税率，支持 2025/2026/2027 三个税年",
                 yearBadge: "📅 Tax Year 2026 (File in 2027)",
                 tabCalc: "🧮 税务计算",
                 tabArticles: "📚 税务文章",
@@ -3274,7 +3280,7 @@
                 tutBtnSkip: "Saltar tutorial →",
                 pageTitle: "🇺🇸 Calculadora de Impuestos Federales de EE. UU. 2026",
                 headerTitle: "🇺🇸 Calculadora de Impuestos Federales de EE. UU.",
-                headerSubtitle: "Basada en las tasas y tramos oficiales del IRS para 2026",
+                headerSubtitle: "Basada en las tasas oficiales del IRS — años fiscales 2025/2026/2027",
                 yearBadge: "📅 Año Fiscal 2026 (Declaración en 2027)",
                 tabCalc: "🧮 Calculadora",
                 tabArticles: "📚 Artículos Fiscales",
@@ -3473,7 +3479,7 @@
 
                 pageTitle: "🇺🇸 US Federal Tax Calculator 2026",
                 headerTitle: "🇺🇸 US Federal Tax Calculator",
-                headerSubtitle: "Based on official 2026 IRS tax rates and brackets",
+                headerSubtitle: "Based on official IRS rates — tax years 2025 / 2026 / 2027 supported",
                 yearBadge: "📅 Tax Year 2026 (File in 2027)",
                 tabCalc: "🧮 Calculator",
                 tabArticles: "📚 Tax Articles",
@@ -5008,6 +5014,8 @@
             }
             // Multi-year comparison table (row labels, head, title suffix)
             if (currentResult && lastCalcInput) renderYearComparison(lastCalcInput);
+            // Data-freshness banners (their text is built with L() at render time)
+            renderFreshnessBanners();
             // Saved-records list (button labels, empty state) + What-If tables
             updateHistoryDisplay();
             if (taxRecords.length) renderCompare(); else renderScenarioSideBySide();
@@ -5277,6 +5285,85 @@
 
         // Renders the per-state panel (success callout for no-tax states, mini calculator otherwise).
         // opts.preserve keeps the current income/status input values (used on language switch).
+        // ===================== Data-freshness watchdog =====================
+        // Registry of when each data set was last verified against official sources,
+        // and the annual window in which new official figures are normally published.
+        // MAINTENANCE: whenever you refresh tax data, bump the matching `updated`
+        // date here AND in DATA-FRESHNESS.md at the repo root (same information,
+        // human-readable). Dates are YYYY-MM-DD; windows are month/day, recurring
+        // yearly (a window may cross Dec 31, e.g. Nov 1 -> Jan 31).
+        const DATA_FRESHNESS = {
+            federal: {
+                updated: '2026-07-21',
+                window: { sm: 10, sd: 1, em: 11, ed: 30 } // IRS Rev. Proc. + SSA wage base: mid-Oct..Nov
+            },
+            stateWindow: { sm: 11, sd: 1, em: 1, ed: 31 }, // states finalize next-year rules Nov..Jan (effective Jan 1)
+            states: { AK:{updated:'2026-07-21'}, FL:{updated:'2026-07-21'}, NH:{updated:'2026-07-21'}, NV:{updated:'2026-07-21'}, SD:{updated:'2026-07-21'}, TN:{updated:'2026-07-21'}, TX:{updated:'2026-07-21'}, WA:{updated:'2026-07-21'}, WY:{updated:'2026-07-21'}, AZ:{updated:'2026-07-21'}, CO:{updated:'2026-07-21'}, GA:{updated:'2026-07-21'}, IA:{updated:'2026-07-21'}, ID:{updated:'2026-07-21'}, IL:{updated:'2026-07-21'}, IN:{updated:'2026-07-21'}, KY:{updated:'2026-07-21'}, LA:{updated:'2026-07-21'}, MA:{updated:'2026-07-21'}, MI:{updated:'2026-07-21'}, MS:{updated:'2026-07-21'}, NC:{updated:'2026-07-21'}, PA:{updated:'2026-07-21'}, UT:{updated:'2026-07-21'}, AL:{updated:'2026-07-21'}, AR:{updated:'2026-07-21'}, CA:{updated:'2026-07-21'}, CT:{updated:'2026-07-21'}, DC:{updated:'2026-07-21'}, DE:{updated:'2026-07-21'}, HI:{updated:'2026-07-21'}, KS:{updated:'2026-07-21'}, MD:{updated:'2026-07-21'}, ME:{updated:'2026-07-21'}, MN:{updated:'2026-07-21'}, MO:{updated:'2026-07-21'}, MT:{updated:'2026-07-21'}, ND:{updated:'2026-07-21'}, NE:{updated:'2026-07-21'}, NJ:{updated:'2026-07-21'}, NM:{updated:'2026-07-21'}, NY:{updated:'2026-07-21'}, OH:{updated:'2026-07-21'}, OK:{updated:'2026-07-21'}, OR:{updated:'2026-07-21'}, RI:{updated:'2026-07-21'}, SC:{updated:'2026-07-21'}, VA:{updated:'2026-07-21'}, VT:{updated:'2026-07-21'}, WI:{updated:'2026-07-21'}, WV:{updated:'2026-07-21'} }
+        };
+
+        // 'ok'     -> data verified during/after the most recent publication window
+        // 'window' -> we are inside the current publication window and have not yet re-verified
+        // 'stale'  -> the window has closed and the data was NOT re-verified this cycle
+        function freshnessStatus(updatedStr, win, now) {
+            now = now || new Date();
+            const mk = function (y, m, d) { return new Date(y, m - 1, d, 23, 59, 59); };
+            const crosses = (win.em < win.sm) || (win.em === win.sm && win.ed < win.sd);
+            let S = new Date(now.getFullYear(), win.sm - 1, win.sd);
+            if (S > now) S = new Date(now.getFullYear() - 1, win.sm - 1, win.sd);
+            const E = mk(S.getFullYear() + (crosses ? 1 : 0), win.em, win.ed);
+            const updated = new Date(updatedStr + 'T00:00:00');
+            if (updated >= S) return 'ok';
+            if (now <= E) return 'window';
+            return 'stale';
+        }
+
+        function freshnessWindowText(win) {
+            const crosses = (win.em < win.sm) || (win.em === win.sm && win.ed < win.sd);
+            const mEn = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const mEs = ['', 'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+            return L(
+                'every year ' + mEn[win.sm] + ' ' + win.sd + ' – ' + mEn[win.em] + ' ' + win.ed + (crosses ? ' (following year)' : ''),
+                '每年 ' + win.sm + ' 月 ' + win.sd + ' 日 – ' + (crosses ? '次年 ' : '') + win.em + ' 月 ' + win.ed + ' 日',
+                'cada año ' + mEs[win.sm] + ' ' + win.sd + ' – ' + mEs[win.em] + ' ' + win.ed + (crosses ? ' (año siguiente)' : '')
+            );
+        }
+
+        function freshnessBannerHtml(status, scopeLabel, updatedStr, win) {
+            if (status === 'ok') return '';
+            const range = freshnessWindowText(win);
+            if (status === 'window') {
+                return '<div class="year-warning-box" style="display:block;">⏳ '
+                    + L('Heads-up: we are inside the annual update window for ' + scopeLabel + ' tax rules (' + range + '), when official new figures are normally published. This calculator\'s data was last verified on ' + updatedStr + ' and will be refreshed within this window — until then, treat results for the upcoming year as provisional.',
+                        '提示：现在正处于' + scopeLabel + '税务规则的年度更新窗口（' + range + '），官方新数字通常在此期间发布。本计算器数据最近核对于 ' + updatedStr + '，我们会在窗口期内完成更新——在那之前，涉及新一年的结果请仅作参考。',
+                        'Aviso: estamos dentro de la ventana anual de actualización de las reglas fiscales de ' + scopeLabel + ' (' + range + '). Los datos se verificaron por última vez el ' + updatedStr + ' y se actualizarán dentro de esta ventana; hasta entonces, considere provisionales los resultados.')
+                    + '</div>';
+            }
+            return '<div class="stale-warning-box">⚠️ '
+                + L('Warning: the annual update window for ' + scopeLabel + ' tax rules (' + range + ') has closed, but this calculator\'s data (last verified ' + updatedStr + ') has not been refreshed for the current cycle. Results are very likely OUT OF DATE — please do not rely on this calculator for now and wait for the data update.',
+                    '警告：' + scopeLabel + '税务规则的年度更新窗口（' + range + '）已结束，但本计算器数据（最近核对 ' + updatedStr + '）尚未完成本轮更新，计算结果很可能已过时。请暂时不要使用本计算器，耐心等待数据更新。',
+                    'Advertencia: la ventana anual de actualización de ' + scopeLabel + ' (' + range + ') ya cerró y los datos (verificados el ' + updatedStr + ') aún no se han actualizado en este ciclo. Los resultados probablemente estén DESACTUALIZADOS; no utilice la calculadora por ahora.')
+                + '</div>';
+        }
+
+        function stateFreshnessHtml(code) {
+            const entry = DATA_FRESHNESS.states[code];
+            if (!entry) return '';
+            const status = freshnessStatus(entry.updated, DATA_FRESHNESS.stateWindow);
+            if (status === 'ok') return '';
+            const nm = (typeof STATE_NAMES !== 'undefined' && STATE_NAMES[code])
+                ? L(STATE_NAMES[code].en, (STATE_NAMES[code].zh || '').replace(/（[^）]*）/g, ''), STATE_NAMES[code].en)
+                : code;
+            return freshnessBannerHtml(status, L(nm + ' state', nm, 'el estado de ' + nm), entry.updated, DATA_FRESHNESS.stateWindow);
+        }
+
+        function renderFreshnessBanners() {
+            const fb = document.getElementById('fedFreshnessBanner');
+            if (fb) {
+                const f = DATA_FRESHNESS.federal;
+                fb.innerHTML = freshnessBannerHtml(freshnessStatus(f.updated, f.window), L('federal', '联邦', 'federales'), f.updated, f.window);
+            }
+        }
+
         function renderStatePanel(code, opts) {
             opts = opts || {};
             const st = STATE_TAX[code];
@@ -5293,7 +5380,7 @@
                     + '<p style="margin-top:8px;"><a href="#/">' + (zh ? '使用联邦计算器 →' : 'Use the federal calculator →') + '</a></p>'
                     + '</div>';
                 if (st.note) html += '<div class="tip-box"><p>' + (zh ? st.note.zh : st.note.en) + '</p></div>';
-                panel.innerHTML = html;
+                panel.innerHTML = stateFreshnessHtml(code) + html;
                 return;
             }
             let incomeVal = '', statusVal = 'single';
@@ -5327,7 +5414,7 @@
                 + '<div id="stateResult"></div>'
                 + (st.note ? '<div class="tip-box"><p>' + (zh ? st.note.zh : st.note.en) + '</p></div>' : '')
                 + '</div>';
-            panel.innerHTML = html;
+            panel.innerHTML = stateFreshnessHtml(code) + html;
         }
 
         // Renders the stored lastStateResult into #stateResult (called by calcStateTax and on language switch).
@@ -6113,6 +6200,7 @@
         document.body.classList.toggle('lang-es', currentLang === 'es');
         ensureEsFallback();
         applyI18N();
+        renderFreshnessBanners();
         initTooltips();
         initCheckboxFix();
         updateFilingStatusOptions();
