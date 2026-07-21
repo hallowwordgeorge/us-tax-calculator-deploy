@@ -1,7 +1,7 @@
 {
   "_purpose": "INTERNAL FILE - not linked from any page, not in sitemap.xml, disallowed in robots.txt. Not meant for site visitors. Before writing new articles for this site, read this file and make sure no new topic duplicates or substantially overlaps an entry below. Each entry's 'covers' field summarizes the specific angle/scope of that article so overlap is easy to spot.",
-  "last_updated": "2026-07-20",
-  "article_count": 21,
+  "last_updated": "2026-07-21",
+  "article_count": 26,
   "articles": [
     {
       "slug": "obbba-2026-changes",
@@ -149,6 +149,41 @@
       "category": "guides",
       "published": "2026-03-19",
       "covers": "A lot of retirees assume Social Security benefits are simply tax-free."
+    },
+    {
+      "slug": "how-to-file-taxes-first-time",
+      "title": "How to File Your Taxes for the First Time: A Complete Step-by-Step Guide",
+      "category": "tutorials",
+      "published": "2026-04-02",
+      "covers": "Filing for the first time? Here's the exact order of operations — what to gather, how to pick your filing status, and how to get a real number before you file, step by step."
+    },
+    {
+      "slug": "how-to-file-taxes-freelancer-1099",
+      "title": "How to File Taxes as a Freelancer or 1099 Contractor: Step by Step",
+      "category": "tutorials",
+      "published": "2026-04-05",
+      "covers": "Freelance and 1099 income comes with a tax nobody withholds for you. Here's the exact step-by-step process — from tracking expenses to quarterly payments — plus where to run the real numbers."
+    },
+    {
+      "slug": "how-to-file-taxes-w2-plus-freelance",
+      "title": "How to File Taxes With Both a W-2 Job and Freelance Income",
+      "category": "tutorials",
+      "published": "2026-04-09",
+      "covers": "Have a day job and side income? The two don't combine the way most people assume. Here's the step-by-step process for getting an accurate combined number instead of an unpleasant surprise."
+    },
+    {
+      "slug": "how-to-file-state-and-federal-taxes",
+      "title": "How to File State and Federal Taxes Together: A Step-by-Step Walkthrough",
+      "category": "tutorials",
+      "published": "2026-04-13",
+      "covers": "Federal and state taxes are calculated separately but need to be planned together. Here's the step-by-step process for getting a full combined picture, plus what changes if you moved or worked across state lines."
+    },
+    {
+      "slug": "how-to-file-taxes-after-life-change",
+      "title": "How to File Taxes After a Major Life Change: New Job, Marriage, or Side Income",
+      "category": "tutorials",
+      "published": "2026-04-16",
+      "covers": "Marriage, a new job, or new side income all change your tax picture — but most people only find out how much at filing time. Here's how to check before then, step by step."
     }
   ]
 }
