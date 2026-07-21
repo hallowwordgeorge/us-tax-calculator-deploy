@@ -973,6 +973,8 @@
         #scenarioTable td:last-child { text-align: right; }
 
         /* ===== Guided walkthrough (pinned floater + step highlights) ===== */
+        .tour-float.tf-enter{animation:tfIn .45s ease;}
+        @keyframes tfIn{0%{transform:translateY(-14px);opacity:0;}60%{box-shadow:0 0 0 6px rgba(29,78,216,.25),0 12px 34px rgba(15,23,42,.20);}100%{transform:none;opacity:1;}}
         .tour-float{position:fixed;right:14px;top:76px;width:332px;max-width:calc(100vw - 24px);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 34px rgba(15,23,42,.20);z-index:800;padding:14px 16px;font-size:.86rem;}
         .tour-float .tf-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font-weight:800;color:var(--primary-dark);font-size:.9rem;line-height:1.35;}
         .tour-float .tf-close{border:none;background:none;font-size:1.05rem;cursor:pointer;color:var(--text-secondary);line-height:1;padding:2px;flex:none;}
@@ -2161,8 +2163,8 @@
         <div class="section" id="tutorials">
             <div class="card">
                 <div class="card-title"><div class="icon">🎓</div><span><span class="i18n-zh">使用教程</span><span class="i18n-en">Tutorials</span><span class="i18n-es">Tutoriales</span></span></div>
-                <div class="i18n-zh content-intro">从 5 分钟快速估算到自由职业者季度预估税，手把手学会本计算器的每一项功能。每篇教程都带<strong>「▶ 开始互动引导」</strong>按钮：点击后右上角会出现一个跟随浮窗，切换页面也不消失，并按步骤高亮闪烁提示当前要操作的位置——完成一步自动进入下一步。</div>
-                <div class="i18n-en content-intro">From a 5-minute quick estimate to quarterly taxes for freelancers — master every feature of this calculator, step by step. Every tutorial has a <strong>"▶ Start interactive walkthrough"</strong> button: it pins a floating guide to the top-right that survives tab switches and highlights the exact control for each step, automatically advancing as you complete it.</div><div class="i18n-es content-intro">Desde una estimación rápida de 5 minutos hasta los impuestos trimestrales para autónomos: domine cada función, paso a paso. Cada tutorial incluye una <strong>guía interactiva</strong> fijada arriba a la derecha que resalta cada control y avanza automáticamente.</div>
+                <div class="i18n-zh content-intro">从 5 分钟快速估算到自由职业者季度预估税，手把手学会本计算器的每一项功能。每篇教程<strong>正文末尾</strong>都有<strong>「▶ 开始本教程的互动引导」</strong>按钮：点击后右上角会出现一个跟随浮窗，切换页面也不消失，并按步骤高亮闪烁提示当前要操作的位置——完成一步自动进入下一步。</div>
+                <div class="i18n-en content-intro">From a 5-minute quick estimate to quarterly taxes for freelancers — master every feature of this calculator, step by step. At the <strong>end of every tutorial</strong> there is a <strong>"▶ Start interactive walkthrough"</strong> button: it pins a floating guide to the top-right that survives tab switches and highlights the exact control for each step, automatically advancing as you complete it.</div><div class="i18n-es content-intro">Desde una estimación rápida de 5 minutos hasta los impuestos trimestrales para autónomos: domine cada función, paso a paso. Cada tutorial incluye una <strong>guía interactiva</strong> fijada arriba a la derecha que resalta cada control y avanza automáticamente.</div>
 
                 <!-- Tutorial 1 -->
                 <div class="guide-section">
@@ -2171,8 +2173,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t1')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>适合第一次使用、只想快速了解大致税负的用户。</p>
                             <ol class="steps">
@@ -2195,6 +2195,7 @@
                             </ol>
                             <div class="tip-box"><p>💡 No W-2 yet? Just use your expected annual salary — enough for a quick ballpark.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t1')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2205,8 +2206,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t2')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>复杂模式覆盖 Form 1040 的主要字段，逐项说明如下：</p>
                             <ol class="steps">
@@ -2235,6 +2234,7 @@
                                 <li>Click calculate — the results panel breaks down income tax, FICA / SE tax, and your refund or balance due.</li>
                             </ol>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t2')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2245,8 +2245,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t3')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>把每次计算保存下来，就能追踪全年的税负变化。</p>
                             <ol class="steps">
@@ -2267,6 +2265,7 @@
                             </ol>
                             <div class="warning-box"><p>⚠️ Privacy note: records live only in the current browser session and are lost on refresh or close (this tool runs 100% locally and uploads nothing). Download the JSON file for anything you want to keep.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t3')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2277,8 +2276,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t4')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>情景：你是自由设计师，预计 2026 年净自雇收入 $80,000，需要估算季度预估税。</p>
                             <ol class="steps">
@@ -2301,6 +2298,7 @@
                             </ol>
                             <div class="tip-box"><p>💡 Safe-harbor rule: prepay 100% of last year's tax (110% for higher earners) or 90% of this year's tax and you avoid underpayment penalties. With volatile income, the safe harbor is the safer path.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t4')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2311,8 +2309,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t5')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>情景：你是 W-2 员工，想确认 2026 年的预扣税是否足够，避免明年 4 月补税。</p>
                             <ol class="steps">
@@ -2335,6 +2331,7 @@
                             </ol>
                             <div class="tip-box"><p>💡 You can also cross-check with the IRS <a href="https://www.irs.gov/individuals/tax-withholding-estimator" target="_blank" rel="noopener">Tax Withholding Estimator</a>, which produces specific W-4 recommendations.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t5')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2345,8 +2342,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t6')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>州税标签页覆盖全部 50 个州 + 华盛顿特区，用地图点选即可估算州所得税。</p>
                             <ol class="steps">
@@ -2371,6 +2366,7 @@
                             </ol>
                             <div class="tip-box"><p>💡 Run the federal calculation first and the state results also show combined federal + state tax, the combined effective rate, and combined monthly take-home.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t6')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2381,8 +2377,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t7')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>想知道同样的收入去年、今年、明年各要交多少税？或者在纠结把一笔大额可扣除支出放在今年还是明年？跨税年对比功能就是为此设计的——现在支持 2025（官方最终）、2026（官方）与 2027（预测）三个税年的任意组合。</p>
                             <ol class="steps">
@@ -2407,6 +2401,7 @@
                             <div class="tip-box"><p>💡 A typical freelancer workflow: run and save one calculation with deductions bunched into 2026, run and save another with them deferred to 2027, then check the comparison table to see which arrangement produces the lower combined two-year tax.</p></div>
                             <div class="warning-box"><p>⚠️ The 2027 figures are projections based on historical inflation adjustments (about +2.5% for brackets/deductions/credits and +4.5% for the Social Security wage base). Use them for directional planning only, never for precise filing. This site will update to the official IRS figures as soon as they are published.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t7')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
 
@@ -2417,8 +2412,6 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t8')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
-                        
                         <div class="i18n-zh">
                             <p>在决定「要不要辞职做全职自由职业」「要不要接受这份报价」之前，最想知道的其实是：两种选择的<strong>税后净收入</strong>差多少。场景对比功能让你把任意几种情况分别算出来、保存下来，再在同一页里逐行并排对比——不用再开两个浏览器标签页手动抄数字。</p>
                             <ol class="steps">
@@ -2445,6 +2438,7 @@
                             <div class="tip-box"><p>💡 After-tax income = gross income − total federal tax (state tax not included). The freelance scenario usually shows a large "owed" figure — that's because no employer withholds for you, so you prepay quarterly (Apr 15, Jun 15, Sep 15, Jan 15). When comparing, look at that cash-flow line as well as the total tax.</p></div>
                             <div class="warning-box"><p>⚠️ For privacy, records live only in the current browser session and are cleared on refresh. To keep them, click "Download JSON" in the results, then drag the file back in on the History tab later to continue comparing.</p></div>
                         </div>
+                        <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t8')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
                 </div>
             </div>
@@ -4958,6 +4952,11 @@
             var sec = document.getElementById(tab);
             if (sec) sec.classList.add('active');
             if (tab === 'compare') updateChart();
+            // keep the URL/router in sync (also makes browser Back behave sensibly)
+            try {
+                var routes = { calculator: '#/', states: '#/states', history: '#/history', compare: '#/compare', tutorials: '#/tutorials' };
+                if (routes[tab] && location.hash !== routes[tab]) location.hash = routes[tab];
+            } catch (e) {}
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         function tourTabName(tab) {
@@ -4982,13 +4981,12 @@
             if (!GUIDED_TOURS[id]) return;
             endTour(true);
             activeTour = { id: id, idx: 0, state: {}, touched: new Set(), clicked: new Set(), finished: false };
-            var first = GUIDED_TOURS[id].steps[0];
-            if (first.tab && !document.getElementById(first.tab).classList.contains('active')) tourGoTab(first.tab);
             enterTourStep(0);
             activeTour.timer = setInterval(tourTick, 400);
             positionTourFloat();
-            var t0 = document.querySelector((first.targets || [])[0]);
-            if (t0) { try { t0.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
+            // entrance attention: slide-in glow so the pinned guide can't be missed
+            var f = document.getElementById('tourFloat');
+            if (f) { f.classList.remove('tf-enter'); void f.offsetWidth; f.classList.add('tf-enter'); }
         }
         function endTour(silent) {
             if (activeTour && activeTour.timer) clearInterval(activeTour.timer);
