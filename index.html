@@ -515,6 +515,19 @@
         }
 
         /* Tutorial Modal Overlay */
+        /* First-visit nudge bubble pointing at the How-to-Use button */
+        .tut-nudge{position:fixed;right:24px;bottom:86px;width:300px;max-width:calc(100vw - 32px);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 32px rgba(15,23,42,.18);z-index:499;padding:14px 16px;font-size:.86rem;line-height:1.55;color:var(--text-primary);animation:tnIn .4s ease;}
+        .tut-nudge::after{content:'';position:absolute;bottom:-8px;right:38px;width:16px;height:16px;background:#fff;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transform:rotate(45deg);}
+        @keyframes tnIn{from{transform:translateY(10px);opacity:0;}to{transform:none;opacity:1;}}
+        .tut-nudge .tn-close{position:absolute;top:8px;right:10px;border:none;background:none;font-size:.95rem;color:var(--text-secondary);cursor:pointer;line-height:1;padding:2px;}
+        .tut-nudge .tn-text{margin:0 14px 10px 0;}
+        .tut-nudge .tn-btn{width:100%;}
+        .tut-nudge .i18n-zh,.tut-nudge .i18n-es{display:none;}
+        body.lang-zh .tut-nudge .i18n-zh{display:inline;}
+        body.lang-zh .tut-nudge .i18n-en{display:none;}
+        body.lang-es .tut-nudge .i18n-es{display:inline;}
+        body.lang-es .tut-nudge .i18n-en{display:none;}
+        @media(max-width:640px){.tut-nudge{right:12px;bottom:78px;}}
         .tutorial-fab{position:fixed;bottom:24px;right:24px;z-index:500;display:inline-flex;align-items:center;gap:8px;padding:14px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;font-size:.92rem;font-weight:700;box-shadow:0 8px 24px rgba(29,78,216,.35);cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);}
         .tutorial-fab:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(29,78,216,.4);}
         .tutorial-fab .fab-icon{font-size:1.1rem;}
@@ -1294,7 +1307,13 @@
 </head>
 <body class="quick-mode">
     <!-- Tutorial Modal -->
-    <button type="button" class="tutorial-fab" onclick="showTutorial(true)" aria-label="How to use">
+    <div class="tut-nudge" id="tutNudge" style="display:none;" role="note">
+        <button type="button" class="tn-close" onclick="hideTutNudge(true)" aria-label="close">✕</button>
+        <p class="tn-text"><span class="i18n-zh">👋 不知道怎么使用？来教程里看看吧——8 篇分步教程（含互动引导）会帮助你更好地使用此计算器。</span><span class="i18n-en">👋 Not sure how to use this? Check out the tutorials — 8 step-by-step guides (with interactive walkthroughs) will help you get the most out of the calculator.</span><span class="i18n-es">👋 ¿No sabe cómo empezar? Visite los tutoriales: 8 guías paso a paso (con recorridos interactivos) le ayudarán a aprovechar la calculadora.</span></p>
+        <button type="button" class="btn btn-primary btn-sm tn-btn" onclick="goTutorialsFromNudge()"><span class="i18n-zh">🎓 去看看教程</span><span class="i18n-en">🎓 Take me to the tutorials</span><span class="i18n-es">🎓 Ver los tutoriales</span></button>
+    </div>
+
+    <button type="button" class="tutorial-fab" onclick="showTutorial(true); hideTutNudge(true);" aria-label="How to use">
         <span class="fab-icon">❓</span>
         <span class="fab-label"><span class="i18n-zh">如何使用</span><span class="i18n-en">How to Use</span><span class="i18n-es">Cómo Usar</span></span>
     </button>
@@ -4792,6 +4811,33 @@
 
         
         
+        // ===================== Tutorials nudge (first load + language switch) =====================
+        // A small bubble above the How-to-Use button pointing new users at the
+        // Tutorials tab. It floats in the bottom-right corner and never blocks or
+        // overlays the page content. Shown shortly after load and again after each
+        // language switch (dismissal lasts for the current page load only).
+        let tutNudgeDismissed = false;
+        function showTutNudge() {
+            if (tutNudgeDismissed) return;
+            if (typeof activeTour !== 'undefined' && activeTour) return; // never compete with a running walkthrough
+            const ov = document.getElementById('tutorialOverlay');
+            if (ov && !ov.classList.contains('hidden')) return; // onboarding modal already open
+            const n = document.getElementById('tutNudge');
+            if (!n) return;
+            n.style.display = 'block';
+            // retrigger the entrance animation
+            n.style.animation = 'none'; void n.offsetWidth; n.style.animation = '';
+        }
+        function hideTutNudge(dismiss) {
+            const n = document.getElementById('tutNudge');
+            if (n) n.style.display = 'none';
+            if (dismiss) tutNudgeDismissed = true;
+        }
+        function goTutorialsFromNudge() {
+            hideTutNudge(true);
+            tourGoTab('tutorials');
+        }
+
         // ===================== Guided Walkthroughs =====================
         // Pinned floating guide (top-right, never covering the nav) that survives tab
         // switches, highlights the control(s) for the current step with a pulsing
@@ -4981,6 +5027,7 @@
             if (!GUIDED_TOURS[id]) return;
             endTour(true);
             activeTour = { id: id, idx: 0, state: {}, touched: new Set(), clicked: new Set(), finished: false };
+            hideTutNudge(true);
             enterTourStep(0);
             activeTour.timer = setInterval(tourTick, 400);
             positionTourFloat();
@@ -5357,6 +5404,9 @@
             renderFreshnessBanners();
             // Guided-walkthrough floater
             if (activeTour) renderTourFloat();
+            // Re-surface the tutorials nudge in the new language
+            tutNudgeDismissed = false;
+            showTutNudge();
             // Saved-records list (button labels, empty state) + What-If tables
             updateHistoryDisplay();
             if (taxRecords.length) renderCompare(); else renderScenarioSideBySide();
@@ -6543,6 +6593,7 @@
         applyI18N();
         renderFreshnessBanners();
         initTooltips();
+        setTimeout(showTutNudge, 900);
         initCheckboxFix();
         updateFilingStatusOptions();
         renderStateNames();
