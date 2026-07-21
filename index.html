@@ -1061,9 +1061,11 @@
         .new-pill{display:inline-block;margin-left:6px;background:var(--success);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.05em;padding:2px 7px;border-radius:10px;vertical-align:middle;}
         .result-year-badge{display:inline-block;margin-left:8px;background:rgba(29,78,216,.08);color:var(--primary);border:1px solid rgba(29,78,216,.16);padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:700;vertical-align:middle;}
         #yearCompareTable td{text-align:right;}
-        #yearCompareTable th{white-space:nowrap;}
+        #yearCompareTable th{white-space:nowrap;text-align:right;}
+        #yearCompareTable th:first-child{text-align:left;}
         #scenarioSideBySideTable td{text-align:right;}
-        #scenarioSideBySideTable th{white-space:nowrap;}
+        #scenarioSideBySideTable th{white-space:nowrap;text-align:right;}
+        #scenarioSideBySideTable th:first-child{text-align:left;}
         #scenarioSideBySideTable td:first-child{text-align:left;}
         .scn-check{accent-color:var(--primary);width:16px;height:16px;cursor:pointer;}
         .scn-divider-row td{background:var(--bg-secondary,#f1f5f9);font-weight:700;text-align:left !important;font-size:.78rem;letter-spacing:.04em;color:var(--text-secondary);}
@@ -1134,7 +1136,7 @@
           "name": "How do I save scenarios and compare them side by side, like a W-2 job vs full-time freelance?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Calculate scenario A (e.g. your W-2 job), click Save Record and name it; change the inputs to scenario B (e.g. self-employment income with the self-employed box ticked), calculate and save again. Then open the What-If tab and tick the Compare checkbox on 2-3 rows of the scenario table: a Scenario Side-by-Side Detail expands right below it, comparing every input and result line by line — including after-tax income — with a delta column when exactly two scenarios are selected. Records stay in the current browser session only; download them as JSON to keep them."
+            "text": "Calculate scenario A (e.g. your W-2 job), click Save Record and name it; change the inputs to scenario B (e.g. self-employment income with the self-employed box ticked), calculate and save again. Then open the Compare tab in the top navigation and tick the Compare checkbox on 2-3 rows of the What-If scenario table: a Scenario Side-by-Side Detail expands right below it, comparing every input and result line by line — including after-tax income — with a delta column when exactly two scenarios are selected. Records stay in the current browser session only; download them as JSON to keep them."
           }
         },
         {
@@ -2346,7 +2348,7 @@
                                 <li>在其正下方的<strong>「跨税年对比 Compare Tax Years」下拉框</strong>中选择对比组合：<strong>2025 vs 2026</strong>、<strong>2026 vs 2027（预测）</strong>，或<strong>三年全对比 2025 vs 2026 vs 2027</strong>。</li>
                                 <li>照常填写收入与扣除信息，点击「计算税务」。</li>
                                 <li>在结果区「税率级距明细」下方查看「跨税年对比」表格：所选各年并排成列，适用扣除额、应税收入、联邦所得税、FICA/自雇税、总税负、有效税率和应退/应补金额逐行对比；相邻两年之间各有一列差额 Δ，<strong>绿色表示对您更有利，红色表示更不利</strong>。</li>
-                                <li>选「不对比」即可恢复单年结果。如需在「假设分析」中保留多个跨年情景，把不同年份的计算分别「保存记录」——每条记录会记住自己的税年，2027 会标注「（预测）」。</li>
+                                <li>选「不对比」即可恢复单年结果。如需保留多个跨年情景，把不同年份的计算分别「保存记录」——每条记录会记住自己的税年，在「对比图表」页的情景表中 2027 会标注「（预测）」。</li>
                             </ol>
                             <div class="tip-box"><p>💡 自由职业者的典型用法：先按「扣除集中在 2026」算一遍并保存，再按「扣除推迟到 2027」算一遍并保存，然后在对比表中看哪种安排的两年合计税负更低。</p></div>
                             <div class="warning-box"><p>⚠️ 2027 年数字是基于历史通胀调整幅度的预测（级距/扣除/抵免约 +2.5%，社保工资基数约 +4.5%），仅供方向性规划参考，不要用于精确报税。IRS 发布官方数据后本站会及时更新。</p></div>
@@ -2379,7 +2381,7 @@
                                 <li>在「税务计算」页按<strong>现状</strong>填写（例如 W-2 工资 $85,000、预扣税 $10,000），点击「计算税务」。</li>
                                 <li>点结果区底部的<strong>「保存本次记录」</strong>，在弹窗中给场景命名，例如「W-2 现职」，确认保存。</li>
                                 <li>把输入改成<strong>另一种情况</strong>：切到高级模式，清空工资，填入自雇收入 $110,000，勾选「我是自雇人士」，预扣税填 0，再次计算并保存为「全职自由职业」。</li>
-                                <li>打开顶部导航的<strong>「假设分析」</strong>页——所有已保存记录都在「情景对比」表中。</li>
+                                <li>打开顶部导航的<strong>「对比图表 Compare」</strong>页——所有已保存记录都在页面下方的「情景对比 What-If」表中。</li>
                                 <li>勾选「W-2 现职」和「全职自由职业」两行最左侧的<strong>「对比」</strong>复选框。</li>
                                 <li>表格正下方立即展开<strong>「场景并排对比明细」</strong>：上半部分逐行对比两个场景的输入（税年、申报身份、各项收入、预扣税），下半部分对比结果（AGI、应税收入、联邦税、FICA/自雇税、总税负、有效/边际税率、<strong>税后净收入</strong>、应退/应补）。恰好选 2 个场景时最右侧还有 Δ 差额列——<strong>绿色代表第二个场景对您更有利</strong>。</li>
                             </ol>
@@ -2392,7 +2394,7 @@
                                 <li>On the Calculator tab, enter your <strong>current situation</strong> (say, W-2 wages of $85,000 with $10,000 withheld) and click Calculate.</li>
                                 <li>Click <strong>Save Record</strong> at the bottom of the results and name the scenario in the popup — for example "W-2 job" — then confirm.</li>
                                 <li>Change the inputs to the <strong>alternative</strong>: switch to Advanced mode, clear wages, enter $110,000 of self-employment income, tick "I am self-employed", set withholding to 0, then calculate and save again as "Full-time freelance".</li>
-                                <li>Open the <strong>What-If</strong> tab from the top navigation — every saved record appears in the scenario table.</li>
+                                <li>Open the <strong>Compare</strong> tab from the top navigation — every saved record appears in the "What-If Scenarios" table further down the page.</li>
                                 <li>Tick the <strong>Compare</strong> checkbox in the leftmost column of the "W-2 job" and "Full-time freelance" rows.</li>
                                 <li>A <strong>Scenario Side-by-Side Detail</strong> expands right under the table: the top half compares the inputs of each scenario (tax year, filing status, each income type, withholding) and the bottom half the results (AGI, taxable income, federal tax, FICA/SE tax, total tax, effective and marginal rates, <strong>after-tax income</strong>, refund/owed). With exactly 2 scenarios selected, a Δ column on the right shows the differences — <strong>green means the second scenario is better for you</strong>.</li>
                             </ol>
@@ -2460,7 +2462,7 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="i18n-zh"><p>在「税务计算」页面的「计算年份 Tax Year」下拉框正下方，用<strong>「跨税年对比 Compare Tax Years」下拉框</strong>选择一个对比组合——<strong>2025 vs 2026</strong>、<strong>2026 vs 2027（预测）</strong>，或者<strong>三年全对比 2025 vs 2026 vs 2027</strong>——然后照常点击「计算税务」。结果区会在税率级距明细下方展开一张「跨税年对比」表格：同一组收入与扣除分别按所选各税年的规则各算一遍，逐行对比适用扣除额、应税收入、联邦所得税、FICA/自雇税、总税负、有效税率和应退/应补金额；相邻两年之间各有一列差额 Δ（后一年 − 前一年），<strong>绿色表示对您更有利，红色表示更不利</strong>。典型用法：年中决定是否调整预扣税时看 2025 vs 2026 的退税变化；自由职业者决定把可分项扣除的大额支出集中在 2026 还是推迟到 2027 时看 2026 vs 2027。另外，「假设分析 What-If」情景表也支持跨年：保存记录会记住各自的税年，2027 的记录会标注「（预测）」。</p></div>
+                        <div class="i18n-zh"><p>在「税务计算」页面的「计算年份 Tax Year」下拉框正下方，用<strong>「跨税年对比 Compare Tax Years」下拉框</strong>选择一个对比组合——<strong>2025 vs 2026</strong>、<strong>2026 vs 2027（预测）</strong>，或者<strong>三年全对比 2025 vs 2026 vs 2027</strong>——然后照常点击「计算税务」。结果区会在税率级距明细下方展开一张「跨税年对比」表格：同一组收入与扣除分别按所选各税年的规则各算一遍，逐行对比适用扣除额、应税收入、联邦所得税、FICA/自雇税、总税负、有效税率和应退/应补金额；相邻两年之间各有一列差额 Δ（后一年 − 前一年），<strong>绿色表示对您更有利，红色表示更不利</strong>。典型用法：年中决定是否调整预扣税时看 2025 vs 2026 的退税变化；自由职业者决定把可分项扣除的大额支出集中在 2026 还是推迟到 2027 时看 2026 vs 2027。另外，「对比图表」页的「情景对比 What-If」表也支持跨年：保存记录会记住各自的税年，2027 的记录会标注「（预测）」。</p></div>
                         <div class="i18n-en"><p>Directly below the "Tax Year" dropdown on the Calculator tab, use the <strong>"Compare Tax Years" dropdown</strong> to pick a comparison set — <strong>2025 vs 2026</strong>, <strong>2026 vs 2027 (projected)</strong>, or the full <strong>2025 vs 2026 vs 2027</strong> three-year view — then click Calculate as usual. A "Multi-Year Comparison" table expands in the results below the bracket breakdown: the same income and deductions are calculated once under each selected year's rules, comparing the applied deduction, taxable income, federal income tax, FICA/SE tax, total tax, effective rate, and refund/owed line by line. Each pair of adjacent years gets its own Δ column (later year − earlier year): <strong>green means better for you, red means worse</strong>. Typical uses: check 2025 vs 2026 refund changes before adjusting your withholding mid-year, or — as a freelancer — check 2026 vs 2027 before deciding whether to bunch large itemizable expenses into 2026 or defer them. The What-If scenario table also works across years: saved records remember their tax year, and 2027 rows are marked "(Est.)".</p></div>
                     </div>
                 </div>
@@ -2475,13 +2477,13 @@
                         <div class="i18n-zh"><p>这个功能就是为「转全职自由职业前想先看清税务影响」这类重大决策设计的，不用再开两个浏览器标签页手动对着算：</p>
                         <ol class="steps"><li>在「税务计算」页按<strong>场景 A</strong>填写（例如现在的 W-2 工资、预扣税），点击「计算税务」，然后点<strong>「保存本次记录」</strong>并命名，如「W-2 现职」。</li>
                         <li>把输入改成<strong>场景 B</strong>（例如清空工资、在高级模式填入自雇收入并勾选「我是自雇人士」），再次计算并保存，命名「全职自由职业」。</li>
-                        <li>打开<strong>「假设分析 What-If」</strong>页，在情景表中勾选这两行的<strong>「对比」</strong>复选框。</li>
+                        <li>打开顶部导航的<strong>「对比图表 Compare」</strong>页，在下方「情景对比 What-If」表中勾选这两行的<strong>「对比」</strong>复选框。</li>
                         <li>表格正下方会立即展开<strong>「场景并排对比明细」</strong>：税年、申报身份、各项收入、预扣税等输入，以及 AGI、应税收入、联邦税、FICA/自雇税、总税负、有效/边际税率、<strong>税后净收入</strong>和应退/应补，逐行并排；恰好选 2 个场景时还有 Δ 差额列（绿色 = 对您更有利）。</li></ol>
                         <p>最多可同时对比 3 个场景。记录出于隐私设计仅保存在当前浏览器会话中，刷新即清空——需要长期保留时可先「下载 JSON」，之后在「历史记录」页重新导入。</p></div>
                         <div class="i18n-en"><p>This feature exists precisely for decisions like "see the tax impact before going self-employed" — no more running the numbers manually in two browser tabs:</p>
                         <ol class="steps"><li>On the Calculator tab, fill in <strong>scenario A</strong> (say, your current W-2 wages and withholding), click Calculate, then click <strong>Save Record</strong> and name it, e.g. "W-2 job".</li>
                         <li>Change the inputs to <strong>scenario B</strong> (for example, clear wages, enter self-employment income in Advanced mode and tick "I am self-employed"), calculate again and save it as "Full-time freelance".</li>
-                        <li>Open the <strong>What-If</strong> tab and tick the <strong>Compare</strong> checkbox on those two rows of the scenario table.</li>
+                        <li>Open the <strong>Compare</strong> tab from the top navigation and tick the <strong>Compare</strong> checkbox on those two rows of the "What-If Scenarios" table.</li>
                         <li>A <strong>Scenario Side-by-Side Detail</strong> expands right under the table: inputs (tax year, filing status, each income type, withholding) and results (AGI, taxable income, federal tax, FICA/SE tax, total tax, effective and marginal rates, <strong>after-tax income</strong>, refund/owed) line by line — and with exactly 2 scenarios selected, a Δ column shows the difference (green = better for you).</li></ol>
                         <p>You can compare up to 3 scenarios at once. For privacy, records live only in the current browser session and are cleared on refresh — use Download JSON to keep them, then re-import on the History tab later.</p></div>
                     </div>
@@ -2687,7 +2689,7 @@
                             <p>我们专注于服务多语言用户：新移民、国际学生、跨境家庭，以及任何习惯用不止一种语言思考金钱的人。计算器界面、教程和常见问题均以英文、中文、西班牙文三种语言原生撰写；深度税务文章目前提供英文版本，未来会逐步扩展到更多语言。</p>
                             <p>我们不是报税师，也不销售报税服务。我们的工作是把规则讲清楚：如果您离开本站时，比来时更懂自己的边际税率、FICA 预扣税或儿童税收抵免，我们就完成了使命。</p>
                             <h5>我们提供什么</h5>
-                            <p>核心是一个联邦税计算器：内置官方税率表、标准扣除额与主要税收抵免，并提供自雇税、资本利得税、儿童税收抵免、FICA 工资税等常用场景的一键预设，无需分别打开多个工具。计算器支持 2025（官方最终）、2026（官方）与 2027（预测估算）三个税年，通过「跨税年对比」下拉框可把同一组输入按任意 2–3 个税年并排对比；还可以把不同场景（如 W-2 工作 vs 全职自由职业）分别保存为记录，在「假设分析」页勾选后逐行并排对比。此外还有覆盖全 50 州加华盛顿特区的独立州税计算器、可保存历史记录并做多维度对比的图表工具，以及一个不断扩充的免费税务文章库（目前已有 21 篇深入指南）。全部功能完全在您的浏览器中运行——无需注册、不上传数据、没有付费墙。</p>
+                            <p>核心是一个联邦税计算器：内置官方税率表、标准扣除额与主要税收抵免，并提供自雇税、资本利得税、儿童税收抵免、FICA 工资税等常用场景的一键预设，无需分别打开多个工具。计算器支持 2025（官方最终）、2026（官方）与 2027（预测估算）三个税年，通过「跨税年对比」下拉框可把同一组输入按任意 2–3 个税年并排对比；还可以把不同场景（如 W-2 工作 vs 全职自由职业）分别保存为记录，在「对比图表」页勾选后逐行并排对比。此外还有覆盖全 50 州加华盛顿特区的独立州税计算器、可保存历史记录并做多维度对比的图表工具，以及一个不断扩充的免费税务文章库（目前已有 21 篇深入指南）。全部功能完全在您的浏览器中运行——无需注册、不上传数据、没有付费墙。</p>
                             <p>工具之外，每个页面还配有分步教程、演算示例和常见问题，帮助您不仅知道数字是多少，更明白数字背后的原因；文章库则围绕具体主题（申报截止日期、W-4 预扣税、易被忽略的扣除、退休账户等）提供更深入的讲解。无论您是需要估算季度税的自由职业者，还是核对预扣税的 W-2 雇员，都有为您而写的内容。</p>
                             <h5>我们的数据与编辑标准</h5>
                             <p>所有数字均来自一手来源：2026 年税率表、标准扣除额与各项门槛取自 IRS《税收程序公告 2025-32》（Rev. Proc. 2025-32）；$184,500 的社保工资上限来自社会保障局（SSA）年度公告；同时纳入《One Big Beautiful Bill Act》（OBBBA）中影响 2026 年申报的条款。</p>
@@ -2703,7 +2705,7 @@
                             <p>Our focus is serving multilingual users: immigrants, international students, cross-border families, and anyone who thinks about money in more than one language. The calculator interface, tutorials, and FAQ are written natively in English, Chinese, and Spanish; our in-depth tax articles are currently available in English, with more languages planned.</p>
                             <p>We are not tax preparers and we do not sell filing services. Our job is to make the rules legible: if you leave this site understanding your marginal rate, your FICA withholding, or your Child Tax Credit better than when you arrived, we have done our work.</p>
                             <h5>What We Offer</h5>
-                            <p>At the core is one federal tax calculator with built-in brackets, standard deduction, and major credits, plus one-click presets for common scenarios &mdash; self-employment tax, capital gains, the Child Tax Credit, and FICA &mdash; so you don't need to open separate tools. The calculator supports three tax years — 2025 (official, final), 2026 (official), and 2027 (projected estimates) — and a Compare Tax Years dropdown runs the same inputs under any 2–3 of them side by side; you can also save different scenarios (say, a W-2 job vs full-time freelance) as records and compare them line by line on the What-If tab. Alongside it is a dedicated State Tax calculator covering all 50 states plus DC, a history and comparison toolkit with multiple chart views, and a growing free article library (21 in-depth guides and counting). Everything runs entirely in your browser &mdash; no sign-up, no data upload, no paywall.</p>
+                            <p>At the core is one federal tax calculator with built-in brackets, standard deduction, and major credits, plus one-click presets for common scenarios &mdash; self-employment tax, capital gains, the Child Tax Credit, and FICA &mdash; so you don't need to open separate tools. The calculator supports three tax years — 2025 (official, final), 2026 (official), and 2027 (projected estimates) — and a Compare Tax Years dropdown runs the same inputs under any 2–3 of them side by side; you can also save different scenarios (say, a W-2 job vs full-time freelance) as records and compare them line by line on the Compare tab. Alongside it is a dedicated State Tax calculator covering all 50 states plus DC, a history and comparison toolkit with multiple chart views, and a growing free article library (21 in-depth guides and counting). Everything runs entirely in your browser &mdash; no sign-up, no data upload, no paywall.</p>
                             <p>Beyond the tools, every page carries step-by-step tutorials, worked examples, and FAQs so you understand the why behind every number, and the article library goes deeper on specific topics &mdash; filing deadlines, W-4 withholding, commonly missed deductions, retirement accounts, and more. Whether you are estimating quarterly taxes as a freelancer or checking withholding as a W-2 employee, there is content written for your situation.</p>
                             <h5>Our Data &amp; Editorial Standards</h5>
                             <p>All figures come from primary sources: IRS Revenue Procedure 2025-32 for 2026 tax brackets, standard deduction amounts, and thresholds; the Social Security Administration's annual announcement for the $184,500 wage base; and the One Big Beautiful Bill Act (OBBBA) provisions affecting 2026 returns.</p>
@@ -3957,10 +3959,20 @@
         }
 
         // ===================== Tax Calculation =====================
+        // The 2027-projection warning shows whenever 2027 is involved at all —
+        // either selected as the tax year OR included in the chosen compare mode.
+        function updateYearWarning() {
+            const warn = document.getElementById('year2027Warning');
+            if (!warn) return;
+            const sel = document.getElementById('taxYearSelect');
+            const years = getCompareYears();
+            const uses2027 = (sel && sel.value === '2027') || (years && years.indexOf(2027) !== -1);
+            warn.style.display = uses2027 ? 'block' : 'none';
+        }
+
         function onTaxYearChange() {
             const sel = document.getElementById('taxYearSelect');
-            const warn = document.getElementById('year2027Warning');
-            if (warn) warn.style.display = (sel && sel.value === '2027') ? 'block' : 'none';
+            updateYearWarning();
             // Keep the standard-deduction preview in sync with the chosen year
             const y = parseInt(sel && sel.value) || 2026;
             const d = TAX_DATA_BY_YEAR[y] || TAX_DATA_BY_YEAR[2026];
@@ -4209,6 +4221,7 @@
         }
 
         function onCompareModeChange() {
+            updateYearWarning();
             // If a result is already on screen, recalculate so the comparison
             // table appears, changes years, or disappears immediately.
             if (currentResult) calculateTax();
@@ -4487,6 +4500,7 @@
             onTaxYearChange();
             const cms = document.getElementById('compareModeSelect');
             if (cms) cms.value = 'none';
+            updateYearWarning();
             const ycs = document.getElementById('yearCompareSection');
             if (ycs) ycs.style.display = 'none';
             const ryb = document.getElementById('resultsYearBadge');
@@ -4514,7 +4528,9 @@
             taxRecords.push(record);
             updateHistoryDisplay();
             closeModal();
-            alert(currentLang === 'zh' ? '✅ 记录已保存！' : '✅ Record saved!');
+            alert(L('✅ Record saved! Open the "Compare" tab and tick 2–3 records in the What-If table to compare them side by side.',
+                    '✅ 记录已保存！打开顶部「对比图表」页，在情景表中勾选 2–3 条记录即可并排对比。',
+                    '✅ ¡Registro guardado! Abra la pestaña "Comparar" y marque 2–3 registros en la tabla de escenarios para compararlos.'));
         }
         function downloadJSON() {
             if (!currentResult) { alert(currentLang === 'zh' ? '请先计算税务！' : 'Please calculate tax first!'); return; }
