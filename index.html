@@ -985,6 +985,20 @@
         #scenarioTable tr.highlight { background: #e4ebfd; font-weight: 600; }
         #scenarioTable td:last-child { text-align: right; }
 
+        /* ===== Social row: X account + Share (nav bar, top-right) ===== */
+        .an-social-item{display:flex;align-items:center;}
+        .social-row{display:flex;align-items:center;gap:8px;position:relative;}
+        .social-circle-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--text-primary);cursor:pointer;text-decoration:none;transition:background .15s,transform .15s,border-color .15s;flex:none;}
+        .social-circle-btn:hover{background:#f5f7fb;border-color:var(--primary);color:var(--primary);transform:translateY(-1px);}
+        .social-popup{display:none;position:absolute;top:100%;right:0;margin-top:10px;width:266px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg);padding:16px;z-index:120;font-size:.84rem;line-height:1.6;color:var(--text-primary);text-align:left;}
+        .an-social-item:hover .social-popup,.an-social-item:focus-within .social-popup{display:block;}
+        .social-popup .sp-title{font-weight:800;color:var(--primary-dark);margin-bottom:8px;font-size:.86rem;}
+        .social-popup a{color:var(--primary);text-decoration:none;font-weight:600;}
+        .social-popup a:hover{text-decoration:underline;}
+        .social-popup .sp-row{margin-bottom:6px;}
+        .share-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--primary-dark);color:#fff;padding:12px 20px;border-radius:12px;font-size:.86rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}
+        .share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+        @media(max-width:900px){.social-popup{right:-40px;}}
         /* ===== Guided walkthrough (pinned floater + step highlights) ===== */
         .tour-float.tf-enter{animation:tfIn .45s ease;}
         @keyframes tfIn{0%{transform:translateY(-14px);opacity:0;}60%{box-shadow:0 0 0 6px rgba(29,78,216,.25),0 12px 34px rgba(15,23,42,.20);}100%{transform:none;opacity:1;}}
@@ -1471,6 +1485,18 @@
                         <button data-lang="zh" onclick="setLang('zh')">中文</button>
                         <button class="active" data-lang="en" onclick="setLang('en')">EN</button>
                         <button data-lang="es" onclick="setLang('es')">ES</button>
+                    </div>
+                </li>
+                <li class="an-item an-social-item" tabindex="0">
+                    <div class="social-row">
+                        <a href="https://x.com/AndrewGeorgeea" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
+                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
+                        <div class="social-popup" role="tooltip">
+                            <div class="sp-title">📣 <span class="i18n-zh">动态与联系方式</span><span class="i18n-en">Updates &amp; Contact</span><span class="i18n-es">Novedades y Contacto</span></div>
+                            <div class="sp-row"><span class="i18n-zh">在 X 上关注：</span><span class="i18n-en">Follow on X: </span><span class="i18n-es">Síguenos en X: </span><a href="https://x.com/AndrewGeorgeea" target="_blank" rel="noopener">@AndrewGeorgeea</a></div>
+                            <div class="sp-row"><span class="i18n-zh">联系邮箱：</span><span class="i18n-en">Contact: </span><span class="i18n-es">Contacto: </span><a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 <span class="i18n-zh">网站运行状态</span><span class="i18n-en">Site status &amp; uptime</span><span class="i18n-es">Estado del sitio</span> →</a></div>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -2754,7 +2780,7 @@
                             <h5>我们的独立性</h5>
                             <p>本站免费使用，由广告支持运营。广告永远不会影响计算结果：所有计算都基于公开的 IRS 数据在您的浏览器本地完成；我们不接受任何付费植入、赞助结果，也不会偏向任何产品、服务或申报方式。</p>
                             <h5>联系我们</h5>
-                            <p>有问题、更正建议，或希望我们开发下一款计算器？每一条留言我们都会认真阅读——欢迎随时通过<a href="#/contact">联系页面</a>与我们沟通。</p>
+                            <p>有问题、更正建议，或希望我们开发下一款计算器？每一条留言我们都会认真阅读——欢迎随时通过<a href="#/contact">联系页面</a>与我们沟通，也可以在 X 上关注 <a href="https://x.com/AndrewGeorgeea" target="_blank" rel="noopener">@AndrewGeorgeea</a> 获取最新动态，或查看我们的<a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">网站运行状态</a>。</p>
                         </div>
                         <div class="i18n-en">
                             <h5>Who We Are</h5>
@@ -2770,7 +2796,7 @@
                             <h5>Our Independence</h5>
                             <p>This site is free to use and supported by advertising. Ads never influence results: every calculation runs locally in your browser using published IRS figures, and we accept no paid placements, sponsored results, or preferential treatment of any product, service, or filing method.</p>
                             <h5>Contact</h5>
-                            <p>Questions, corrections, or ideas for a calculator we should build next? We read every message — reach us any time through our <a href="#/contact">contact page</a>.</p>
+                            <p>Questions, corrections, or ideas for a calculator we should build next? We read every message — reach us any time through our <a href="#/contact">contact page</a>, follow <a href="https://x.com/AndrewGeorgeea" target="_blank" rel="noopener">@AndrewGeorgeea</a> on X for the latest updates, or check our <a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">site status page</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -3092,6 +3118,9 @@
         </div>
     </footer>
 
+    <div class="share-toast" id="shareToast">
+        <span class="i18n-zh">🔗 链接已复制！感谢分享 🙌</span><span class="i18n-en">🔗 Link copied! Thanks for sharing 🙌</span><span class="i18n-es">🔗 ¡Enlace copiado! Gracias por compartir 🙌</span>
+    </div>
     <div class="tour-float" id="tourFloat" style="display:none;"></div>
 
     <div class="modal-overlay" id="saveModal">
@@ -4836,6 +4865,31 @@
         function goTutorialsFromNudge() {
             hideTutNudge(true);
             tourGoTab('tutorials');
+        }
+
+        // ===================== Social: Share button =====================
+        function shareSite() {
+            var url = 'https://us-tax-calculator.com/';
+            function done() { showShareToast(); }
+            function fallbackCopy(text) {
+                var ta = document.createElement('textarea');
+                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.focus(); ta.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                document.body.removeChild(ta);
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(done).catch(function () { fallbackCopy(url); done(); });
+            } else {
+                fallbackCopy(url); done();
+            }
+        }
+        function showShareToast() {
+            var t = document.getElementById('shareToast');
+            if (!t) return;
+            t.classList.add('show');
+            clearTimeout(window.__shareToastTimer);
+            window.__shareToastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600);
         }
 
         // ===================== Guided Walkthroughs =====================
