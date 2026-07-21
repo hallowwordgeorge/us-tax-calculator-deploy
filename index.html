@@ -7,7 +7,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3921174462772081"
      crossorigin="anonymous"></script>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Free trilingual (EN/ZH/ES) 2026 US federal tax calculator: official IRS tax brackets, standard deduction, FICA, self-employment tax, Child Tax Credit, capital gains, and a 50-state tax comparison. 免费英中西三语 2026 美国联邦税计算器：最新税率表、标准扣除额、FICA、自雇税、儿童税收抵免，附州税对比、原创税务文章与常见问题。">
+    <meta name="description" content="Free trilingual (EN/ZH/ES) US federal tax calculator: official IRS brackets, standard deduction, FICA, self-employment tax, Child Tax Credit, capital gains, a 50-state comparison, multi-year 2025/2026/2027 side-by-side comparison, and saved-scenario comparison (W-2 vs freelance). 免费英中西三语美国联邦税计算器：官方税率表、标准扣除额、FICA、自雇税、儿童税收抵免，附 50 州对比、2025/2026/2027 跨年对比与场景保存并排对比。">
     <meta name="keywords" content="2026 tax calculator, federal tax calculator, US tax brackets 2026, standard deduction 2026, FICA calculator, self-employment tax, child tax credit 2026, long-term capital gains tax, marginal vs effective tax rate, 美国税务计算器, 联邦税计算, 2026税率表, 标准扣除额, 自雇税, 儿童税收抵免, 长期资本利得税">
     <meta name="author" content="US Tax Calculator 2026">
     <meta name="robots" content="index, follow">
@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://us-tax-calculator.com/">
     <meta property="og:site_name" content="US Tax Calculator 2026">
     <meta property="og:title" content="US Federal Tax Calculator 2026 | 美国联邦税务计算器 2026">
-    <meta property="og:description" content="Free trilingual (EN/ZH/ES) 2026 federal tax calculator with official IRS brackets, FICA, self-employment tax, Child Tax Credit, and 50-state comparison. 免费英中西三语 2026 联邦税计算器：最新税率、FICA、自雇税、儿童税收抵免与州税对比。">
+    <meta property="og:description" content="Free trilingual (EN/ZH/ES) federal tax calculator with official IRS brackets, FICA, self-employment tax, Child Tax Credit, 50-state comparison, 2025/2026/2027 multi-year comparison, and saved-scenario comparison (W-2 vs freelance). 免费英中西三语联邦税计算器：官方税率、FICA、自雇税、儿童税收抵免、50 州对比、2025/2026/2027 跨年对比与场景并排对比。">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="zh_CN">
@@ -1057,6 +1057,18 @@
         .page-eyebrow .year-badge{display:inline-block;margin-left:10px;background:rgba(29,78,216,.08);color:var(--primary);border:1px solid rgba(29,78,216,.16);padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:700;vertical-align:middle;}
         .page-eyebrow p{font-size:.86rem;color:var(--text-secondary);margin-top:4px;}
 
+        /* ===== Tax-year selector: NEW badge, compare toggle, year-comparison table ===== */
+        .new-pill{display:inline-block;margin-left:6px;background:var(--success);color:#fff;font-size:.6rem;font-weight:800;letter-spacing:.05em;padding:2px 7px;border-radius:10px;vertical-align:middle;}
+        .result-year-badge{display:inline-block;margin-left:8px;background:rgba(29,78,216,.08);color:var(--primary);border:1px solid rgba(29,78,216,.16);padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:700;vertical-align:middle;}
+        #yearCompareTable td{text-align:right;}
+        #yearCompareTable th{white-space:nowrap;}
+        #scenarioSideBySideTable td{text-align:right;}
+        #scenarioSideBySideTable th{white-space:nowrap;}
+        #scenarioSideBySideTable td:first-child{text-align:left;}
+        .scn-check{accent-color:var(--primary);width:16px;height:16px;cursor:pointer;}
+        .scn-divider-row td{background:var(--bg-secondary,#f1f5f9);font-weight:700;text-align:left !important;font-size:.78rem;letter-spacing:.04em;color:var(--text-secondary);}
+        .yc-est{font-size:.72rem;color:var(--text-secondary);font-weight:500;}
+
         /* ===== Mode toggle, relocated into the Calculator card ===== */
         .calc-mode-row{display:flex;justify-content:flex-end;margin-bottom:14px;}
         @media(max-width:640px){.calc-mode-row{justify-content:stretch;}.calc-mode-row .mode-toggle{width:100%;}.calc-mode-row .mode-toggle button{flex:1;}}
@@ -1076,8 +1088,8 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "featureList": "2026 IRS federal income tax brackets, standard deduction, FICA (Social Security and Medicare), self-employment tax, Child Tax Credit, long-term capital gains, 50-state tax comparison, trilingual English-Chinese-Spanish interface",
-      "description": "Free trilingual 2026 US federal tax calculator with official IRS brackets, FICA, self-employment tax, Child Tax Credit, and a 50-state comparison tool."
+      "featureList": "IRS federal income tax brackets, standard deduction, FICA (Social Security and Medicare), self-employment tax, Child Tax Credit, long-term capital gains, 50-state tax comparison, three tax years (2025 official final, 2026 official, 2027 projected) with multi-year side-by-side comparison, saved-scenario side-by-side comparison such as W-2 vs freelance, trilingual English-Chinese-Spanish interface",
+      "description": "Free trilingual US federal tax calculator with official IRS brackets, FICA, self-employment tax, Child Tax Credit, a 50-state comparison tool, multi-year 2025/2026/2027 side-by-side comparison, and saved-scenario comparison (e.g. W-2 vs freelance)."
     }
     </script>
     <script type="application/ld+json">
@@ -1095,6 +1107,38 @@
         },
         {
           "@type": "Question",
+          "name": "Which tax years does the calculator support? How accurate is the 2027 data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The calculator supports three tax years: 2025 (official, final figures per Rev. Proc. 2024-40 including OBBBA retroactive changes), 2026 (official figures per Rev. Proc. 2025-32), and 2027 (projected estimates). The Tax Year selector is the first field in the Income card of the Calculator tab. The 2027 numbers are projected from the official 2026 figures using typical inflation adjustments (about +2.5% CPI indexing for brackets, the standard deduction, capital-gains thresholds, and the Child Tax Credit, and about +4.5% wage indexing for the Social Security wage base). Official 2027 figures are expected from the IRS around October 2026 and will replace the projections then. A warning appears whenever 2027 is selected: treat 2027 results as directional planning guidance only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you keep federal and state tax rules updated as regulations change each year?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The site uses primary sources only — IRS Revenue Procedures, the text of tax legislation such as OBBBA, SSA wage-base announcements, and each state's Department of Revenue — on a fixed calendar: projected figures are replaced with official ones within days of the IRS's October–November release, state rules are re-verified in December–January as states finalize them, major legislation is incorporated within days of signing, and a full data audit runs every quarter. Current status: 2025 official and final, 2026 official, 2027 projected until the IRS publishes; the 50-state module uses 2026 rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I compare my 2025 / 2026 / 2027 taxes side by side?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the Compare Tax Years dropdown directly below the Tax Year selector on the Calculator tab to pick 2025 vs 2026, 2026 vs 2027 (projected), or the full 2025 vs 2026 vs 2027 view, then click Calculate. A Multi-Year Comparison table expands in the results: the same inputs are calculated under each selected year's rules, comparing the applied deduction, taxable income, federal income tax, FICA/SE tax, total tax, effective rate, and refund or amount owed, with a delta column between each pair of adjacent years (green = better for you). Typical uses: checking 2025 vs 2026 before adjusting withholding mid-year, or 2026 vs 2027 before bunching or deferring deductible expenses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I save scenarios and compare them side by side, like a W-2 job vs full-time freelance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Calculate scenario A (e.g. your W-2 job), click Save Record and name it; change the inputs to scenario B (e.g. self-employment income with the self-employed box ticked), calculate and save again. Then open the What-If tab and tick the Compare checkbox on 2-3 rows of the scenario table: a Scenario Side-by-Side Detail expands right below it, comparing every input and result line by line — including after-tax income — with a delta column when exactly two scenarios are selected. Records stay in the current browser session only; download them as JSON to keep them."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "What is the standard deduction for 2026?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -1106,7 +1150,7 @@
           "name": "Should I take the standard deduction or itemize?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Itemize only when your total itemized deductions exceed the standard deduction for your filing status ($16,100 Single, $32,200 Married Filing Jointly, or $24,150 Head of Household in 2026). Common itemized deductions include state and local taxes (capped at $40,000 in 2026), mortgage interest, charitable gifts, and medical expenses above 7.5% of AGI. Use the calculator's Advanced mode to compare both options side by side."
+            "text": "Itemize only when your total itemized deductions exceed the standard deduction for your filing status ($16,100 Single, $32,200 Married Filing Jointly, or $24,150 Head of Household in 2026). Common itemized deductions include state and local taxes (capped at $40,400 in 2026), mortgage interest, charitable gifts, and medical expenses above 7.5% of AGI. Use the calculator's Advanced mode to compare both options side by side."
           }
         },
         {
@@ -1210,7 +1254,7 @@
           "name": "Where can I find more in-depth tax articles?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This site maintains a growing free article library at /articles/ (11 articles and counting) that goes deeper than the FAQ on specific topics: the 2026 tax law changes, standard vs. itemized deductions, marginal vs. effective tax rate, self-employment tax, the Child Tax Credit, capital gains tax, filing deadlines, W-4 withholding, commonly overlooked deductions and credits, retirement account taxation, and Married Filing Jointly vs. Separately. Each article is its own page. Articles are currently available in English."
+            "text": "This site maintains a growing free article library at /articles/ (21 articles and counting) that goes deeper than the FAQ on specific topics: the 2026 tax law changes, standard vs. itemized deductions, marginal vs. effective tax rate, self-employment tax, the Child Tax Credit, capital gains tax, filing deadlines, W-4 withholding, commonly overlooked deductions and credits, retirement account taxation, and Married Filing Jointly vs. Separately. Each article is its own page. Articles are currently available in English."
           }
         }
       ]
@@ -1244,7 +1288,7 @@
                     <div class="step-num">2</div>
                     <div class="step-content">
                         <h4 id="tutS2Title">🧮 Calculate Your Tax</h4>
-                        <p id="tutS2Desc">Enter your income and deductions. The calculator uses official 2026 IRS brackets, FICA rates, and Child Tax Credit rules. Results show federal tax, FICA, effective rate, and marginal rate.</p>
+                        <p id="tutS2Desc">Enter your income and deductions. The Tax Year dropdown at the top of the form offers 2025 (official, final), 2026 (official), and 2027 (projected), and the Compare Tax Years dropdown below it shows any combination of 2025/2026/2027 side by side. Results show federal tax, FICA, effective rate, and marginal rate.</p>
                     </div>
                 </div>
 
@@ -1283,7 +1327,7 @@
                     </div>
                     <div class="tutorial-feature">
                         <span class="icon">📚</span>
-                        <span id="tutFeat5">11+ In-Depth Tax Articles</span>
+                        <span id="tutFeat5">21+ In-Depth Tax Articles</span>
                     </div>
                 </div>
 
@@ -1475,14 +1519,24 @@
                 <div class="card">
                     <div class="card-title"><div class="icon">💰</div><span id="incomeTitle">收入信息 Income</span></div>
                     <div class="form-group">
-                        <label class="form-label" id="labelTaxYear" data-tooltip-key="tt_tax_year">计算年份 Tax Year <span class="hint">*</span></label>
+                        <label class="form-label" id="labelTaxYear" data-tooltip-key="tt_tax_year">Tax Year <span class="new-pill">NEW</span></label>
                         <select class="form-select" id="taxYearSelect" onchange="onTaxYearChange()">
-                            <option value="2026">2026</option>
-                            <option value="2027" id="optYear2027">2027 (预测 Estimated)</option>
+                            <option value="2025">2025</option>
+                            <option value="2026" selected>2026</option>
+                            <option value="2027" id="optYear2027">2027 (Projected)</option>
                         </select>
                     </div>
                     <div class="year-warning-box" id="year2027Warning" style="display:none;">
                         <span id="year2027WarningText">⚠️ 2027 数据为预测估算值，IRS 尚未发布官方 2027 年税务数据（预计 2026 年 10 月发布）。仅供方向性规划参考，不要用于精确报税。 / Projected estimate — the IRS has not yet published official 2027 figures (expected ~Oct 2026). For directional planning only, not precise filing.</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" id="labelCompareMode" data-tooltip-key="tt_compare_mode">Compare Tax Years <span class="new-pill">NEW</span></label>
+                        <select class="form-select" id="compareModeSelect" onchange="onCompareModeChange()">
+                            <option value="none" id="optCmpNone">No comparison (selected year only)</option>
+                            <option value="2025,2026">2025 vs 2026</option>
+                            <option value="2026,2027" id="optCmp2627">2026 vs 2027 (projected)</option>
+                            <option value="2025,2026,2027" id="optCmpAll">2025 vs 2026 vs 2027 (projected)</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label" id="labelFilingStatus" data-tooltip-key="tt_filing_status">申报身份 Filing Status <span class="hint">*</span></label>
@@ -1562,7 +1616,7 @@
         </div>
 <div id="results" style="display:none; margin-top: 32px;">
                 <div class="card">
-                    <div class="card-title"><div class="icon">📋</div><span id="resultsTitle">计算结果 Tax Results</span></div>
+                    <div class="card-title"><div class="icon">📋</div><span id="resultsTitle">计算结果 Tax Results</span><span class="result-year-badge" id="resultsYearBadge" style="display:none;"></span></div>
                     <div class="result-grid">
                         <div class="result-card"><div class="result-label" id="rlGross" data-tooltip-key="tt_wages">总收入 Gross Income</div><div class="result-value" id="resGross">$0</div></div>
                         <div class="result-card complex-only"><div class="result-label" id="rlAGI" data-tooltip-key="tt_agi">调整后总收入 AGI</div><div class="result-value" id="resAGI">$0</div></div>
@@ -1581,6 +1635,18 @@
                         <thead><tr><th id="thRate" data-tooltip-key="tt_bracket">税率 Rate</th><th id="thRange">收入区间 Income Range</th><th id="thAmount">该区间收入 Amount</th><th id="thTax">该区间税额 Tax</th></tr></thead>
                         <tbody id="bracketBody"></tbody>
                     </table>
+
+                    <div id="yearCompareSection" style="display:none;">
+                        <div class="divider"></div>
+                        <h4 style="margin-bottom: 6px; color: var(--primary-dark);">🔁 <span class="i18n-zh">跨税年对比：</span><span class="i18n-en">Multi-Year Comparison: </span><span class="i18n-es">Comparación entre Años: </span><span id="ycYears"></span></h4>
+                        <p style="font-size:.82rem;color:var(--text-secondary);margin-bottom:14px;"><span class="i18n-zh">同一组输入分别按所选各税年的联邦规则各算一遍。差额列 Δ = 后一年 − 前一年，<strong style="color:var(--success);">绿色 = 对您更有利</strong>，<strong style="color:var(--danger);">红色 = 更不利</strong>。</span><span class="i18n-en">The same inputs calculated under each selected year's federal rules. In the Δ columns (later year − earlier year), <strong style="color:var(--success);">green = better for you</strong>, <strong style="color:var(--danger);">red = worse</strong>.</span><span class="i18n-es">Las mismas entradas calculadas con las reglas federales de cada año seleccionado. En las columnas Δ (año posterior − anterior), <strong style="color:var(--success);">verde = mejor para usted</strong>, <strong style="color:var(--danger);">rojo = peor</strong>.</span><span id="ycProjNote" style="display:none;"> <span class="i18n-zh">2027 为预测估算值（IRS 官方数据预计 2026 年 10 月发布），仅供规划参考。</span><span class="i18n-en">2027 is a projected estimate (official IRS figures expected around October 2026) — for planning only.</span><span class="i18n-es">2027 es una estimación proyectada (cifras oficiales del IRS previstas hacia octubre de 2026): solo para planificación.</span></span></p>
+                        <div style="overflow-x:auto;">
+                        <table class="bracket-table" id="yearCompareTable">
+                            <thead id="yearCompareHead"></thead>
+                            <tbody id="yearCompareBody"></tbody>
+                        </table>
+                        </div>
+                    </div>
 
                     <div class="divider"></div>
                     <h4 style="margin-bottom: 16px; color: var(--primary-dark);" id="explainTitle">💡 <span class="i18n-zh">结果解读</span><span class="i18n-en">Understanding Your Result</span><span class="i18n-es">Cómo Entender su Resultado</span></h4>
@@ -1691,12 +1757,13 @@
                     <!-- Scenario Comparison Table -->
                     <div class="card" style="margin-top: 24px;" id="scenarioPanel">
                         <div class="card-title"><div class="icon">🔮</div><span class="i18n-zh">情景对比 What-If Scenarios</span><span class="i18n-en">What-If Scenarios</span><span class="i18n-es">Escenarios Hipotéticos</span></div>
-                        <div class="i18n-zh content-intro" style="margin-bottom: 16px;">保存不同参数组合，并排对比各种财务决策的税务影响。</div>
-                        <div class="i18n-en content-intro" style="margin-bottom: 16px;">Save different parameter combinations and compare the tax impact of various financial decisions side by side.</div><div class="i18n-es content-intro" style="margin-bottom: 16px;">Guarde distintas combinaciones de parámetros y compare lado a lado el impacto fiscal de diversas decisiones financieras.</div>
+                        <div class="i18n-zh content-intro" style="margin-bottom: 16px;">保存不同参数组合，并排对比各种财务决策的税务影响——例如「W-2 工作 vs 全职自由职业」。勾选下表任意 <strong>2–3</strong> 行的「对比」框，表格下方会立即展开一张逐行的并排对比明细。</div>
+                        <div class="i18n-en content-intro" style="margin-bottom: 16px;">Save different parameter combinations and compare the tax impact of financial decisions side by side — for example "W-2 job vs full-time freelance". Tick the Compare box on any <strong>2–3</strong> rows below and a line-by-line side-by-side detail expands right under the table.</div><div class="i18n-es content-intro" style="margin-bottom: 16px;">Guarde distintas combinaciones de parámetros y compare el impacto fiscal de sus decisiones lado a lado — por ejemplo, "empleo W-2 vs freelance a tiempo completo". Marque la casilla Comparar en <strong>2–3</strong> filas y un detalle línea por línea se despliega justo debajo de la tabla.</div>
                         <div id="scenarioTableContainer">
                             <table class="bracket-table" id="scenarioTable">
                                 <thead>
                                     <tr>
+                                        <th><span class="i18n-zh">对比</span><span class="i18n-en">Compare</span><span class="i18n-es">Comparar</span></th>
                                         <th><span class="i18n-zh">情景</span><span class="i18n-en">Scenario</span><span class="i18n-es">Escenario</span></th>
                                         <th data-tooltip-key="tt_tax_year"><span class="i18n-zh">年份</span><span class="i18n-en">Year</span><span class="i18n-es">Año</span></th>
                                         <th><span class="i18n-zh">总收入</span><span class="i18n-en">Gross Income</span><span class="i18n-es">Ingreso Bruto</span></th>
@@ -1710,6 +1777,16 @@
                                 </thead>
                                 <tbody id="scenarioTableBody"></tbody>
                             </table>
+                        </div>
+                        <div id="scenarioSideBySide" style="display:none;margin-top:22px;">
+                            <h4 style="margin-bottom:6px;color:var(--primary-dark);">🆚 <span class="i18n-zh">场景并排对比明细</span><span class="i18n-en">Scenario Side-by-Side Detail</span><span class="i18n-es">Detalle de Escenarios Lado a Lado</span></h4>
+                            <p style="font-size:.82rem;color:var(--text-secondary);margin-bottom:14px;"><span class="i18n-zh">所选场景的输入与结果逐行对比。选择恰好 2 个场景时会显示差额列 Δ（第 2 个 − 第 1 个）：结果部分<strong style="color:var(--success);">绿色 = 对您更有利</strong>、<strong style="color:var(--danger);">红色 = 更不利</strong>，输入部分的差额仅作灰色展示。</span><span class="i18n-en">Inputs and results of the selected scenarios, line by line. With exactly 2 scenarios a Δ column (second − first) appears: in the results section <strong style="color:var(--success);">green = better for you</strong> and <strong style="color:var(--danger);">red = worse</strong>; input differences are shown in neutral gray.</span><span class="i18n-es">Entradas y resultados de los escenarios seleccionados, línea por línea. Con exactamente 2 escenarios aparece una columna Δ (segundo − primero): en los resultados, <strong style="color:var(--success);">verde = mejor para usted</strong> y <strong style="color:var(--danger);">rojo = peor</strong>; las diferencias de entrada se muestran en gris neutro.</span></p>
+                            <div style="overflow-x:auto;">
+                            <table class="bracket-table" id="scenarioSideBySideTable">
+                                <thead id="scnSbsHead"></thead>
+                                <tbody id="scnSbsBody"></tbody>
+                            </table>
+                            </div>
                         </div>
                     </div>
 
@@ -1738,8 +1815,8 @@
                     <div class="guide-content">
                         <h5 id="g1h1">1. 确定是否需要报税 Determine Filing Requirement</h5>
                         <ul>
-                            <li id="g1l1">单身 (Single)：2026 年总收入超过 $14,600 需报税（65 岁以上 $16,550）</li>
-                            <li id="g1l2">已婚联合 (MFJ)：总收入超过 $29,200 需报税（一方 65 岁以上 $30,750）</li>
+                            <li id="g1l1">单身 (Single)：2026 年总收入超过 $16,100 需报税（65 岁以上约 $18,150）</li>
+                            <li id="g1l2">已婚联合 (MFJ)：总收入超过 $32,200 需报税（一方 65 岁以上约 $33,850）</li>
                             <li id="g1l3">即使收入低于门槛，如果有预扣税（withholding）想退税，也必须报税</li>
                         </ul>
                         <h5 id="g1h2">2. 收集必要文件 Gather Documents</h5>
@@ -2254,6 +2331,76 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Tutorial 7: multi-year planning -->
+                <div class="guide-section">
+                    <div class="guide-header" onclick="toggleGuide(this)">
+                        <h4>7️⃣ <span class="i18n-zh">跨税年规划：并排对比 2026 与 2027（预测）</span><span class="i18n-en">Multi-Year Planning: Comparing 2026 vs 2027 (Projected) Side by Side</span><span class="i18n-es">Planificación Multianual: Comparar 2026 y 2027 (Proyectado) Lado a Lado</span></h4>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="guide-content article">
+                        <div class="i18n-zh">
+                            <p>想知道同样的收入去年、今年、明年各要交多少税？或者在纠结把一笔大额可扣除支出放在今年还是明年？跨税年对比功能就是为此设计的——现在支持 2025（官方最终）、2026（官方）与 2027（预测）三个税年的任意组合。</p>
+                            <ol class="steps">
+                                <li>打开「税务计算」页面，找到「收入信息」卡片的<strong>第一个字段「计算年份 Tax Year」</strong>（可选 2025 / 2026 / 2027，在便捷模式和复杂模式下都可见）。选择 2027 时页面会显示黄色预测提示。</li>
+                                <li>在其正下方的<strong>「跨税年对比 Compare Tax Years」下拉框</strong>中选择对比组合：<strong>2025 vs 2026</strong>、<strong>2026 vs 2027（预测）</strong>，或<strong>三年全对比 2025 vs 2026 vs 2027</strong>。</li>
+                                <li>照常填写收入与扣除信息，点击「计算税务」。</li>
+                                <li>在结果区「税率级距明细」下方查看「跨税年对比」表格：所选各年并排成列，适用扣除额、应税收入、联邦所得税、FICA/自雇税、总税负、有效税率和应退/应补金额逐行对比；相邻两年之间各有一列差额 Δ，<strong>绿色表示对您更有利，红色表示更不利</strong>。</li>
+                                <li>选「不对比」即可恢复单年结果。如需在「假设分析」中保留多个跨年情景，把不同年份的计算分别「保存记录」——每条记录会记住自己的税年，2027 会标注「（预测）」。</li>
+                            </ol>
+                            <div class="tip-box"><p>💡 自由职业者的典型用法：先按「扣除集中在 2026」算一遍并保存，再按「扣除推迟到 2027」算一遍并保存，然后在对比表中看哪种安排的两年合计税负更低。</p></div>
+                            <div class="warning-box"><p>⚠️ 2027 年数字是基于历史通胀调整幅度的预测（级距/扣除/抵免约 +2.5%，社保工资基数约 +4.5%），仅供方向性规划参考，不要用于精确报税。IRS 发布官方数据后本站会及时更新。</p></div>
+                        </div>
+                        <div class="i18n-en">
+                            <p>Want to know what the same income costs you in tax last year, this year, and next — or deciding whether to place a large deductible expense this year or next? The multi-year comparison was built for exactly this, and now covers any combination of 2025 (official, final), 2026 (official), and 2027 (projected).</p>
+                            <ol class="steps">
+                                <li>Open the Calculator tab and find the <strong>first field in the Income card, labeled "Tax Year"</strong> (2025 / 2026 / 2027; visible in both Quick and Advanced modes). Picking 2027 shows a yellow projection notice.</li>
+                                <li>In the <strong>"Compare Tax Years" dropdown directly below it</strong>, pick a comparison set: <strong>2025 vs 2026</strong>, <strong>2026 vs 2027 (projected)</strong>, or the full <strong>2025 vs 2026 vs 2027</strong> three-year view.</li>
+                                <li>Fill in your income and deductions as usual and click Calculate.</li>
+                                <li>Below the bracket breakdown, read the "Multi-Year Comparison" table: the selected years sit side by side as columns — applied deduction, taxable income, federal income tax, FICA/SE tax, total tax, effective rate, and refund/owed compared line by line, with a Δ column between each pair of adjacent years where <strong>green means better for you and red means worse</strong>.</li>
+                                <li>Choose "No comparison" to return to a single-year result. To keep several cross-year scenarios in the What-If analysis, save each year's calculation as its own record — every record remembers its tax year, and 2027 rows are marked "(Est.)".</li>
+                            </ol>
+                            <div class="tip-box"><p>💡 A typical freelancer workflow: run and save one calculation with deductions bunched into 2026, run and save another with them deferred to 2027, then check the comparison table to see which arrangement produces the lower combined two-year tax.</p></div>
+                            <div class="warning-box"><p>⚠️ The 2027 figures are projections based on historical inflation adjustments (about +2.5% for brackets/deductions/credits and +4.5% for the Social Security wage base). Use them for directional planning only, never for precise filing. This site will update to the official IRS figures as soon as they are published.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tutorial 8: scenario side-by-side comparison -->
+                <div class="guide-section">
+                    <div class="guide-header" onclick="toggleGuide(this)">
+                        <h4>8️⃣ <span class="i18n-zh">重大决策助手：保存场景并并排对比（W-2 vs 全职自由职业）</span><span class="i18n-en">Decision Helper: Saving Scenarios and Comparing Them Side by Side (W-2 vs Full-Time Freelance)</span><span class="i18n-es">Asistente de Decisiones: Guardar Escenarios y Compararlos Lado a Lado (W-2 vs Freelance)</span></h4>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="guide-content article">
+                        <div class="i18n-zh">
+                            <p>在决定「要不要辞职做全职自由职业」「要不要接受这份报价」之前，最想知道的其实是：两种选择的<strong>税后净收入</strong>差多少。场景对比功能让你把任意几种情况分别算出来、保存下来，再在同一页里逐行并排对比——不用再开两个浏览器标签页手动抄数字。</p>
+                            <ol class="steps">
+                                <li>在「税务计算」页按<strong>现状</strong>填写（例如 W-2 工资 $85,000、预扣税 $10,000），点击「计算税务」。</li>
+                                <li>点结果区底部的<strong>「保存本次记录」</strong>，在弹窗中给场景命名，例如「W-2 现职」，确认保存。</li>
+                                <li>把输入改成<strong>另一种情况</strong>：切到高级模式，清空工资，填入自雇收入 $110,000，勾选「我是自雇人士」，预扣税填 0，再次计算并保存为「全职自由职业」。</li>
+                                <li>打开顶部导航的<strong>「假设分析」</strong>页——所有已保存记录都在「情景对比」表中。</li>
+                                <li>勾选「W-2 现职」和「全职自由职业」两行最左侧的<strong>「对比」</strong>复选框。</li>
+                                <li>表格正下方立即展开<strong>「场景并排对比明细」</strong>：上半部分逐行对比两个场景的输入（税年、申报身份、各项收入、预扣税），下半部分对比结果（AGI、应税收入、联邦税、FICA/自雇税、总税负、有效/边际税率、<strong>税后净收入</strong>、应退/应补）。恰好选 2 个场景时最右侧还有 Δ 差额列——<strong>绿色代表第二个场景对您更有利</strong>。</li>
+                            </ol>
+                            <div class="tip-box"><p>💡 税后净收入 = 总收入 − 联邦总税负（不含州税）。自由职业场景的「应补」数字通常很大——那是因为没有雇主代扣，需要按季度自行预缴（4/15、6/15、9/15、次年 1/15）。对比时别只看总税负，也要看这条现金流差异。</p></div>
+                            <div class="warning-box"><p>⚠️ 出于隐私设计，记录仅保存在当前浏览器会话中，刷新或关闭页面即清空。想长期保留，请在结果区点「下载 JSON 文件」，之后在「历史记录」页拖拽导入即可继续对比。</p></div>
+                        </div>
+                        <div class="i18n-en">
+                            <p>Before deciding "should I quit and freelance full time" or "should I take this offer", what you really want to know is how much the <strong>after-tax income</strong> differs between the two paths. Scenario comparison lets you calculate and save each situation, then read them line by line on the same page — no more copying numbers between two browser tabs.</p>
+                            <ol class="steps">
+                                <li>On the Calculator tab, enter your <strong>current situation</strong> (say, W-2 wages of $85,000 with $10,000 withheld) and click Calculate.</li>
+                                <li>Click <strong>Save Record</strong> at the bottom of the results and name the scenario in the popup — for example "W-2 job" — then confirm.</li>
+                                <li>Change the inputs to the <strong>alternative</strong>: switch to Advanced mode, clear wages, enter $110,000 of self-employment income, tick "I am self-employed", set withholding to 0, then calculate and save again as "Full-time freelance".</li>
+                                <li>Open the <strong>What-If</strong> tab from the top navigation — every saved record appears in the scenario table.</li>
+                                <li>Tick the <strong>Compare</strong> checkbox in the leftmost column of the "W-2 job" and "Full-time freelance" rows.</li>
+                                <li>A <strong>Scenario Side-by-Side Detail</strong> expands right under the table: the top half compares the inputs of each scenario (tax year, filing status, each income type, withholding) and the bottom half the results (AGI, taxable income, federal tax, FICA/SE tax, total tax, effective and marginal rates, <strong>after-tax income</strong>, refund/owed). With exactly 2 scenarios selected, a Δ column on the right shows the differences — <strong>green means the second scenario is better for you</strong>.</li>
+                            </ol>
+                            <div class="tip-box"><p>💡 After-tax income = gross income − total federal tax (state tax not included). The freelance scenario usually shows a large "owed" figure — that's because no employer withholds for you, so you prepay quarterly (Apr 15, Jun 15, Sep 15, Jan 15). When comparing, look at that cash-flow line as well as the total tax.</p></div>
+                            <div class="warning-box"><p>⚠️ For privacy, records live only in the current browser session and are cleared on refresh. To keep them, click "Download JSON" in the results, then drag the file back in on the History tab later to continue comparing.</p></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -2261,8 +2408,8 @@
         <div class="section" id="faq">
             <div class="card">
                 <div class="card-title"><div class="icon">❓</div><span><span class="i18n-zh">常见问题</span><span class="i18n-en">Frequently Asked Questions</span><span class="i18n-es">Preguntas Frecuentes</span></span></div>
-                <div class="i18n-zh content-intro">关于 2026 年联邦税、本计算器使用方法和常见税务概念的 16 个高频问题。</div>
-                <div class="i18n-en content-intro">The 16 most common questions about 2026 federal taxes, this calculator, and core tax concepts.</div><div class="i18n-es content-intro">Las 16 preguntas más comunes sobre los impuestos federales de 2026, esta calculadora y los conceptos fiscales esenciales.</div>
+                <div class="i18n-zh content-intro">关于 2025–2027 联邦税、本计算器使用方法和常见税务概念的 20 个高频问题。</div>
+                <div class="i18n-en content-intro">The 20 most common questions about 2025–2027 federal taxes, this calculator, and core tax concepts.</div><div class="i18n-es content-intro">Las 20 preguntas más comunes sobre los impuestos federales de 2025–2027, esta calculadora y los conceptos fiscales esenciales.</div>
 
                 <!-- FAQ 1 -->
                 <div class="guide-section">
@@ -2273,6 +2420,70 @@
                     <div class="guide-content article">
                         <div class="i18n-zh"><p>本计算器采用 IRS 在《Revenue Procedure 2025-32》中公布的 2026 年官方数据，并结合《One Big Beautiful Bill Act》(OBBBA) 的更新：税率表、标准扣除额、FICA 税率、社保工资上限、长期资本利得门槛和儿童税收抵免。计算结果是可靠的教育与规划估算，但不构成税务建议。具体申报决策请咨询专业税务人士。</p></div>
                         <div class="i18n-en"><p>This calculator uses the official 2026 federal tax figures published by the IRS in Revenue Procedure 2025-32, updated for the One Big Beautiful Bill Act (OBBBA): tax brackets, standard deduction amounts, FICA rates, the Social Security wage base, long-term capital gains thresholds, and the Child Tax Credit. Results are dependable estimates for education and planning, but they are not tax advice. For filing decisions, consult a qualified tax professional.</p></div>
+                    </div>
+                </div>
+
+                <!-- FAQ: how tax data stays updated -->
+                <div class="guide-section">
+                    <div class="guide-header" onclick="toggleGuide(this)">
+                        <h4><span class="i18n-zh">法规每年都在变，你们如何保持联邦和州税数据最新？</span><span class="i18n-en">Tax rules change every year — how do you keep federal and state data up to date?</span><span class="i18n-es">Las reglas cambian cada año: ¿cómo mantienen actualizados los datos federales y estatales?</span></h4>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="guide-content article">
+                        <div class="i18n-zh"><p>我们的宗旨是：<strong>站上的数字永远与官方最新口径一致</strong>。做法分两部分——只用一手来源，以及一套固定的更新日历。</p>
+                        <p><strong>数据来源（全部为官方一手资料）：</strong>联邦数字来自 IRS 每年发布的 Revenue Procedure 通胀调整（如 2026 年的 Rev. Proc. 2025-32）与税改法案原文（如 2025 年 7 月的 OBBBA）；社保工资基数来自 SSA 的年度公告；各州税率与规则来自各州税务局（Department of Revenue）的官方发布。我们不转抄第三方汇总表。</p>
+                        <p><strong>更新日历：</strong>① 每年 <strong>10–11 月</strong>，IRS 发布次年 Revenue Procedure、SSA 公布次年工资基数后，我们在数日内把站上的「预测」数字替换为官方数字（例如 2027 年的预测数据预计在 2026 年 10 月转为官方版）；② <strong>12–1 月</strong>，各州陆续定稿次年税率与预扣表，我们逐州核对并更新州税模块；③ 重大税法签署后（如 OBBBA），受影响的数字在<strong>数日内</strong>完成修订，并同步更新 FAQ 与相关文章；④ 每个<strong>季度</strong>做一次全量数据抽查审计，防止遗漏。</p>
+                        <p><strong>当前数据状态：</strong>2025 = 官方最终（Rev. Proc. 2024-40 + OBBBA 追溯调整）；2026 = 官方（Rev. Proc. 2025-32 + OBBBA）；2027 = 预测（IRS 官方数据发布后即替换）；50 州州税模块按 2026 年规则计算。本站无需注册，所有用户任何时候用到的都是同一套最新数据。</p></div>
+                        <div class="i18n-en"><p>Our operating principle is simple: <strong>the numbers on this site always match the latest official figures</strong>. That rests on two things — primary sources only, and a fixed update calendar.</p>
+                        <p><strong>Sources (all primary and official):</strong> federal figures come from the IRS's annual Revenue Procedure inflation adjustments (e.g. Rev. Proc. 2025-32 for 2026) and from the text of tax legislation itself (e.g. the OBBBA enacted in July 2025); the Social Security wage base comes from the SSA's annual announcement; state rates and rules come from each state's Department of Revenue. We do not copy third-party summary tables.</p>
+                        <p><strong>Update calendar:</strong> ① Every <strong>October–November</strong>, once the IRS publishes the next year's Revenue Procedure and the SSA announces the wage base, we replace the site's "projected" figures with official ones within days (for example, the 2027 projections are expected to become official in October 2026); ② in <strong>December–January</strong>, as states finalize next-year rates and withholding tables, we verify and update the state module state by state; ③ when major legislation is signed (like OBBBA), affected figures are revised <strong>within days</strong>, with the FAQ and related articles updated in the same pass; ④ every <strong>quarter</strong> we run a full spot-check audit of the data set.</p>
+                        <p><strong>Current data status:</strong> 2025 = official and final (Rev. Proc. 2024-40 + OBBBA retroactive changes); 2026 = official (Rev. Proc. 2025-32 + OBBBA); 2027 = projected (replaced as soon as the IRS publishes); the 50-state module calculates under 2026 rules. No signup is required — every visitor always sees the same, latest data set.</p></div>
+                    </div>
+                </div>
+
+                <!-- FAQ: supported tax years / 2027 projection -->
+                <div class="guide-section">
+                    <div class="guide-header" onclick="toggleGuide(this)">
+                        <h4><span class="i18n-zh">计算器支持哪些税年？2027 年的数据准确吗？</span><span class="i18n-en">Which tax years does the calculator support? How accurate is the 2027 data?</span><span class="i18n-es">¿Qué años fiscales admite la calculadora? ¿Qué tan precisos son los datos de 2027?</span></h4>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="guide-content article">
+                        <div class="i18n-zh"><p>计算器支持三个税年：<strong>2025</strong>（官方最终数据，Rev. Proc. 2024-40 并含 OBBBA 对 2025 年的追溯调整——标准扣除提高至 $15,750/$31,500/$23,625）、<strong>2026</strong>（官方数据，Rev. Proc. 2025-32）和 <strong>2027</strong>（预测估算）。年份选择器位于「税务计算」页面「收入信息」卡片的<strong>第一个字段「计算年份 Tax Year」</strong>，在便捷模式和复杂模式下都可见。2025 与 2026 均为 IRS 官方数字，可放心用于核对与规划；2027 年的数字是在 2026 年官方数据基础上按典型通胀调整幅度推算的（税率级距、标准扣除、资本利得门槛、儿童税收抵免按约 +2.5% CPI 调整，社保工资基数按约 +4.5% 工资指数调整），IRS 官方 2027 年数据预计 2026 年 10 月左右发布，届时本站会替换为官方数字。选择 2027 时页面会显示醒目的预测提示——请仅将其用于方向性规划，不要用于精确报税。</p></div>
+                        <div class="i18n-en"><p>The calculator supports three tax years: <strong>2025</strong> (official, final figures per Rev. Proc. 2024-40 including the OBBBA retroactive changes — the 2025 standard deduction was raised to $15,750/$31,500/$23,625), <strong>2026</strong> (official figures per Rev. Proc. 2025-32), and <strong>2027</strong> (projected estimates). The year selector is the <strong>first field, labeled "Tax Year," in the Income card</strong> of the Calculator tab, visible in both Quick and Advanced modes. 2025 and 2026 are official IRS numbers you can rely on for checking and planning; the 2027 numbers are projected from the official 2026 figures using typical inflation adjustments (about +2.5% CPI indexing for brackets, the standard deduction, capital-gains thresholds, and the Child Tax Credit, and about +4.5% wage indexing for the Social Security wage base). The IRS is expected to publish official 2027 figures around October 2026, and this site will swap in the official numbers then. A prominent warning appears whenever 2027 is selected — treat it as directional planning guidance only, never for precise filing.</p></div>
+                    </div>
+                </div>
+
+                <!-- FAQ: side-by-side 2026 vs 2027 comparison -->
+                <div class="guide-section">
+                    <div class="guide-header" onclick="toggleGuide(this)">
+                        <h4><span class="i18n-zh">如何并排对比 2025 / 2026 / 2027 各税年的税负？</span><span class="i18n-en">How do I compare my 2025 / 2026 / 2027 taxes side by side?</span><span class="i18n-es">¿Cómo comparo mis impuestos de 2025 / 2026 / 2027 lado a lado?</span></h4>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="guide-content article">
+                        <div class="i18n-zh"><p>在「税务计算」页面的「计算年份 Tax Year」下拉框正下方，用<strong>「跨税年对比 Compare Tax Years」下拉框</strong>选择一个对比组合——<strong>2025 vs 2026</strong>、<strong>2026 vs 2027（预测）</strong>，或者<strong>三年全对比 2025 vs 2026 vs 2027</strong>——然后照常点击「计算税务」。结果区会在税率级距明细下方展开一张「跨税年对比」表格：同一组收入与扣除分别按所选各税年的规则各算一遍，逐行对比适用扣除额、应税收入、联邦所得税、FICA/自雇税、总税负、有效税率和应退/应补金额；相邻两年之间各有一列差额 Δ（后一年 − 前一年），<strong>绿色表示对您更有利，红色表示更不利</strong>。典型用法：年中决定是否调整预扣税时看 2025 vs 2026 的退税变化；自由职业者决定把可分项扣除的大额支出集中在 2026 还是推迟到 2027 时看 2026 vs 2027。另外，「假设分析 What-If」情景表也支持跨年：保存记录会记住各自的税年，2027 的记录会标注「（预测）」。</p></div>
+                        <div class="i18n-en"><p>Directly below the "Tax Year" dropdown on the Calculator tab, use the <strong>"Compare Tax Years" dropdown</strong> to pick a comparison set — <strong>2025 vs 2026</strong>, <strong>2026 vs 2027 (projected)</strong>, or the full <strong>2025 vs 2026 vs 2027</strong> three-year view — then click Calculate as usual. A "Multi-Year Comparison" table expands in the results below the bracket breakdown: the same income and deductions are calculated once under each selected year's rules, comparing the applied deduction, taxable income, federal income tax, FICA/SE tax, total tax, effective rate, and refund/owed line by line. Each pair of adjacent years gets its own Δ column (later year − earlier year): <strong>green means better for you, red means worse</strong>. Typical uses: check 2025 vs 2026 refund changes before adjusting your withholding mid-year, or — as a freelancer — check 2026 vs 2027 before deciding whether to bunch large itemizable expenses into 2026 or defer them. The What-If scenario table also works across years: saved records remember their tax year, and 2027 rows are marked "(Est.)".</p></div>
+                    </div>
+                </div>
+
+                <!-- FAQ: save scenarios & compare side by side -->
+                <div class="guide-section">
+                    <div class="guide-header" onclick="toggleGuide(this)">
+                        <h4><span class="i18n-zh">如何保存不同场景并并排对比（例如 W-2 工作 vs 全职自由职业）？</span><span class="i18n-en">How do I save scenarios and compare them side by side (e.g. W-2 job vs full-time freelance)?</span><span class="i18n-es">¿Cómo guardo escenarios y los comparo lado a lado (p. ej., empleo W-2 vs freelance)?</span></h4>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="guide-content article">
+                        <div class="i18n-zh"><p>这个功能就是为「转全职自由职业前想先看清税务影响」这类重大决策设计的，不用再开两个浏览器标签页手动对着算：</p>
+                        <ol class="steps"><li>在「税务计算」页按<strong>场景 A</strong>填写（例如现在的 W-2 工资、预扣税），点击「计算税务」，然后点<strong>「保存本次记录」</strong>并命名，如「W-2 现职」。</li>
+                        <li>把输入改成<strong>场景 B</strong>（例如清空工资、在高级模式填入自雇收入并勾选「我是自雇人士」），再次计算并保存，命名「全职自由职业」。</li>
+                        <li>打开<strong>「假设分析 What-If」</strong>页，在情景表中勾选这两行的<strong>「对比」</strong>复选框。</li>
+                        <li>表格正下方会立即展开<strong>「场景并排对比明细」</strong>：税年、申报身份、各项收入、预扣税等输入，以及 AGI、应税收入、联邦税、FICA/自雇税、总税负、有效/边际税率、<strong>税后净收入</strong>和应退/应补，逐行并排；恰好选 2 个场景时还有 Δ 差额列（绿色 = 对您更有利）。</li></ol>
+                        <p>最多可同时对比 3 个场景。记录出于隐私设计仅保存在当前浏览器会话中，刷新即清空——需要长期保留时可先「下载 JSON」，之后在「历史记录」页重新导入。</p></div>
+                        <div class="i18n-en"><p>This feature exists precisely for decisions like "see the tax impact before going self-employed" — no more running the numbers manually in two browser tabs:</p>
+                        <ol class="steps"><li>On the Calculator tab, fill in <strong>scenario A</strong> (say, your current W-2 wages and withholding), click Calculate, then click <strong>Save Record</strong> and name it, e.g. "W-2 job".</li>
+                        <li>Change the inputs to <strong>scenario B</strong> (for example, clear wages, enter self-employment income in Advanced mode and tick "I am self-employed"), calculate again and save it as "Full-time freelance".</li>
+                        <li>Open the <strong>What-If</strong> tab and tick the <strong>Compare</strong> checkbox on those two rows of the scenario table.</li>
+                        <li>A <strong>Scenario Side-by-Side Detail</strong> expands right under the table: inputs (tax year, filing status, each income type, withholding) and results (AGI, taxable income, federal tax, FICA/SE tax, total tax, effective and marginal rates, <strong>after-tax income</strong>, refund/owed) line by line — and with exactly 2 scenarios selected, a Δ column shows the difference (green = better for you).</li></ol>
+                        <p>You can compare up to 3 scenarios at once. For privacy, records live only in the current browser session and are cleared on refresh — use Download JSON to keep them, then re-import on the History tab later.</p></div>
                     </div>
                 </div>
 
@@ -2295,8 +2506,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="i18n-zh"><p>只有当逐项扣除总额超过您申报身份对应的标准扣除（2026 年：单身 $16,100、已婚联合 $32,200、户主 $24,150）时才逐项扣除。常见逐项扣除包括州和地方税（2026 年上限 $40,000）、房贷利息、慈善捐赠和超过 AGI 7.5% 的医疗费用。可在计算器的复杂模式中两种方式各算一次进行比较。</p></div>
-                        <div class="i18n-en"><p>Itemize only when your total itemized deductions exceed the standard deduction for your filing status ($16,100 Single, $32,200 Married Filing Jointly, or $24,150 Head of Household in 2026). Common itemized deductions include state and local taxes (capped at $40,000 in 2026), mortgage interest, charitable gifts, and medical expenses above 7.5% of AGI. Use the calculator's Advanced mode to compare both options side by side.</p></div>
+                        <div class="i18n-zh"><p>只有当逐项扣除总额超过您申报身份对应的标准扣除（2026 年：单身 $16,100、已婚联合 $32,200、户主 $24,150）时才逐项扣除。常见逐项扣除包括州和地方税（2026 年上限 $40,400）、房贷利息、慈善捐赠和超过 AGI 7.5% 的医疗费用。可在计算器的复杂模式中两种方式各算一次进行比较。</p></div>
+                        <div class="i18n-en"><p>Itemize only when your total itemized deductions exceed the standard deduction for your filing status ($16,100 Single, $32,200 Married Filing Jointly, or $24,150 Head of Household in 2026). Common itemized deductions include state and local taxes (capped at $40,400 in 2026), mortgage interest, charitable gifts, and medical expenses above 7.5% of AGI. Use the calculator's Advanced mode to compare both options side by side.</p></div>
                     </div>
                 </div>
 
@@ -2451,8 +2662,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
-                        <div class="i18n-zh"><p>本站在 <a href="/articles/">/articles/</a> 下维护一个持续更新的免费文章库（目前 11 篇），比 FAQ 更深入地讲解具体主题：2026 新税法变化、标准扣除与逐项扣除、边际与有效税率、自雇税、儿童税收抵免、资本利得税、申报截止日期、W-4 预扣税、易被忽略的扣除与抵免、退休账户税务，以及已婚分开报税 vs 联合报税。每篇文章都是独立网页，方便收藏和分享；导航栏「文章」下拉菜单也能按主题快速跳转。文章目前提供英文版本。</p></div>
-                        <div class="i18n-en"><p>This site maintains a growing free article library at <a href="/articles/">/articles/</a> (11 articles and counting) that goes deeper than the FAQ on specific topics: the 2026 tax law changes, standard vs. itemized deductions, marginal vs. effective tax rate, self-employment tax, the Child Tax Credit, capital gains tax, filing deadlines, W-4 withholding, commonly overlooked deductions and credits, retirement account taxation, and Married Filing Jointly vs. Separately. Each article is its own page, easy to bookmark or share, and the "Articles" dropdown in the top navigation lets you jump straight to a topic. Articles are currently available in English.</p></div><div class="i18n-es"><p>Este sitio mantiene una biblioteca de artículos gratuitos en constante crecimiento en <a href="/articles/">/articles/</a> (11 artículos y contando) que profundiza más que las preguntas frecuentes en temas específicos: los cambios de la ley fiscal 2026, deducción estándar vs. detallada, tasa marginal vs. efectiva, impuesto sobre el trabajo por cuenta propia, el Crédito Tributario por Hijos, el impuesto sobre ganancias de capital, fechas límite de declaración, retención W-4, deducciones y créditos comúnmente pasados por alto, impuestos sobre cuentas de jubilación, y declaración conjunta vs. separada para casados. Cada artículo es su propia página, fácil de guardar o compartir. Los artículos están disponibles actualmente en inglés.</p></div>
+                        <div class="i18n-zh"><p>本站在 <a href="/articles/">/articles/</a> 下维护一个持续更新的免费文章库（目前 21 篇），比 FAQ 更深入地讲解具体主题：2026 新税法变化、标准扣除与逐项扣除、边际与有效税率、自雇税、儿童税收抵免、资本利得税、申报截止日期、W-4 预扣税、易被忽略的扣除与抵免、退休账户税务，以及已婚分开报税 vs 联合报税。每篇文章都是独立网页，方便收藏和分享；导航栏「文章」下拉菜单也能按主题快速跳转。文章目前提供英文版本。</p></div>
+                        <div class="i18n-en"><p>This site maintains a growing free article library at <a href="/articles/">/articles/</a> (21 articles and counting) that goes deeper than the FAQ on specific topics: the 2026 tax law changes, standard vs. itemized deductions, marginal vs. effective tax rate, self-employment tax, the Child Tax Credit, capital gains tax, filing deadlines, W-4 withholding, commonly overlooked deductions and credits, retirement account taxation, and Married Filing Jointly vs. Separately. Each article is its own page, easy to bookmark or share, and the "Articles" dropdown in the top navigation lets you jump straight to a topic. Articles are currently available in English.</p></div><div class="i18n-es"><p>Este sitio mantiene una biblioteca de artículos gratuitos en constante crecimiento en <a href="/articles/">/articles/</a> (21 artículos y contando) que profundiza más que las preguntas frecuentes en temas específicos: los cambios de la ley fiscal 2026, deducción estándar vs. detallada, tasa marginal vs. efectiva, impuesto sobre el trabajo por cuenta propia, el Crédito Tributario por Hijos, el impuesto sobre ganancias de capital, fechas límite de declaración, retención W-4, deducciones y créditos comúnmente pasados por alto, impuestos sobre cuentas de jubilación, y declaración conjunta vs. separada para casados. Cada artículo es su propia página, fácil de guardar o compartir. Los artículos están disponibles actualmente en inglés.</p></div>
                     </div>
                 </div>
             </div>
@@ -2476,7 +2687,7 @@
                             <p>我们专注于服务多语言用户：新移民、国际学生、跨境家庭，以及任何习惯用不止一种语言思考金钱的人。计算器界面、教程和常见问题均以英文、中文、西班牙文三种语言原生撰写；深度税务文章目前提供英文版本，未来会逐步扩展到更多语言。</p>
                             <p>我们不是报税师，也不销售报税服务。我们的工作是把规则讲清楚：如果您离开本站时，比来时更懂自己的边际税率、FICA 预扣税或儿童税收抵免，我们就完成了使命。</p>
                             <h5>我们提供什么</h5>
-                            <p>核心是一个联邦税计算器：内置官方税率表、标准扣除额与主要税收抵免，并提供自雇税、资本利得税、儿童税收抵免、FICA 工资税等常用场景的一键预设，无需分别打开多个工具。此外还有覆盖全 50 州加华盛顿特区的独立州税计算器、可保存历史记录并做多维度对比的图表工具，以及一个不断扩充的免费税务文章库（目前已有 11 篇深入指南）。全部功能完全在您的浏览器中运行——无需注册、不上传数据、没有付费墙。</p>
+                            <p>核心是一个联邦税计算器：内置官方税率表、标准扣除额与主要税收抵免，并提供自雇税、资本利得税、儿童税收抵免、FICA 工资税等常用场景的一键预设，无需分别打开多个工具。计算器支持 2025（官方最终）、2026（官方）与 2027（预测估算）三个税年，通过「跨税年对比」下拉框可把同一组输入按任意 2–3 个税年并排对比；还可以把不同场景（如 W-2 工作 vs 全职自由职业）分别保存为记录，在「假设分析」页勾选后逐行并排对比。此外还有覆盖全 50 州加华盛顿特区的独立州税计算器、可保存历史记录并做多维度对比的图表工具，以及一个不断扩充的免费税务文章库（目前已有 21 篇深入指南）。全部功能完全在您的浏览器中运行——无需注册、不上传数据、没有付费墙。</p>
                             <p>工具之外，每个页面还配有分步教程、演算示例和常见问题，帮助您不仅知道数字是多少，更明白数字背后的原因；文章库则围绕具体主题（申报截止日期、W-4 预扣税、易被忽略的扣除、退休账户等）提供更深入的讲解。无论您是需要估算季度税的自由职业者，还是核对预扣税的 W-2 雇员，都有为您而写的内容。</p>
                             <h5>我们的数据与编辑标准</h5>
                             <p>所有数字均来自一手来源：2026 年税率表、标准扣除额与各项门槛取自 IRS《税收程序公告 2025-32》（Rev. Proc. 2025-32）；$184,500 的社保工资上限来自社会保障局（SSA）年度公告；同时纳入《One Big Beautiful Bill Act》（OBBBA）中影响 2026 年申报的条款。</p>
@@ -2492,7 +2703,7 @@
                             <p>Our focus is serving multilingual users: immigrants, international students, cross-border families, and anyone who thinks about money in more than one language. The calculator interface, tutorials, and FAQ are written natively in English, Chinese, and Spanish; our in-depth tax articles are currently available in English, with more languages planned.</p>
                             <p>We are not tax preparers and we do not sell filing services. Our job is to make the rules legible: if you leave this site understanding your marginal rate, your FICA withholding, or your Child Tax Credit better than when you arrived, we have done our work.</p>
                             <h5>What We Offer</h5>
-                            <p>At the core is one federal tax calculator with built-in brackets, standard deduction, and major credits, plus one-click presets for common scenarios &mdash; self-employment tax, capital gains, the Child Tax Credit, and FICA &mdash; so you don't need to open separate tools. Alongside it is a dedicated State Tax calculator covering all 50 states plus DC, a history and comparison toolkit with multiple chart views, and a growing free article library (11 in-depth guides and counting). Everything runs entirely in your browser &mdash; no sign-up, no data upload, no paywall.</p>
+                            <p>At the core is one federal tax calculator with built-in brackets, standard deduction, and major credits, plus one-click presets for common scenarios &mdash; self-employment tax, capital gains, the Child Tax Credit, and FICA &mdash; so you don't need to open separate tools. The calculator supports three tax years — 2025 (official, final), 2026 (official), and 2027 (projected estimates) — and a Compare Tax Years dropdown runs the same inputs under any 2–3 of them side by side; you can also save different scenarios (say, a W-2 job vs full-time freelance) as records and compare them line by line on the What-If tab. Alongside it is a dedicated State Tax calculator covering all 50 states plus DC, a history and comparison toolkit with multiple chart views, and a growing free article library (21 in-depth guides and counting). Everything runs entirely in your browser &mdash; no sign-up, no data upload, no paywall.</p>
                             <p>Beyond the tools, every page carries step-by-step tutorials, worked examples, and FAQs so you understand the why behind every number, and the article library goes deeper on specific topics &mdash; filing deadlines, W-4 withholding, commonly missed deductions, retirement accounts, and more. Whether you are estimating quarterly taxes as a freelancer or checking withholding as a W-2 employee, there is content written for your situation.</p>
                             <h5>Our Data &amp; Editorial Standards</h5>
                             <p>All figures come from primary sources: IRS Revenue Procedure 2025-32 for 2026 tax brackets, standard deduction amounts, and thresholds; the Social Security Administration's annual announcement for the $184,500 wage base; and the One Big Beautiful Bill Act (OBBBA) provisions affecting 2026 returns.</p>
@@ -2847,7 +3058,7 @@
                 tutS1Title: "⚡ 选择模式",
                 tutS1Desc: "便捷模式快速估算（只需工资+申报身份），复杂模式精确计算（含自雇、资本收益、扣除、抵免等）——切换按钮就在「税务计算」标签页内容顶部。",
                 tutS2Title: "🧮 计算税务",
-                tutS2Desc: "输入收入和扣除项。计算器使用 2026 年 IRS 官方税率、FICA 税率和 Child Tax Credit 规则。结果展示联邦税、FICA、有效税率和边际税率。",
+                tutS2Desc: "输入收入和扣除项。表单顶部的「计算年份」下拉框可选 2025（官方最终）、2026（官方）或 2027（预测），其下方的「跨税年对比」下拉框可并排对比 2025/2026/2027 任意组合。结果展示联邦税、FICA、有效税率和边际税率。",
                 tutS3Title: "💾 保存与对比",
                 tutS3Desc: "保存计算记录、下载 JSON 文件，或上传历史记录。对比标签页提供四种视图——总税额、有效/边际税率趋势、税负构成、退税/补税——外加 50 州州税对比。",
                 tutS4Title: "❓ 悬浮查看帮助",
@@ -2856,7 +3067,7 @@
                 tutFeat2: "多维对比图表 + 50 州地图",
                 tutFeat3: "100% 隐私保护 (无服务器)",
                 tutFeat4: "外国人报税指南",
-                tutFeat5: "11+ 篇深度税务文章",
+                tutFeat5: "21+ 篇深度税务文章",
                 tutPrivacyText: "🔒 隐私保证：所有计算都在您的浏览器本地完成。我们绝不收集、传输或存储您的收入、姓名或任何个人信息——您输入的任何内容都不会离开您的电脑，更不会到达任何服务器。",
                 tutLangNote: "💡 默认语言为英文，可随时用右上角按钮切换为中文或西班牙语。",
                 tutBtnStart: "🚀 开始使用",
@@ -2870,6 +3081,13 @@
                 tabArticles: "📚 税务文章",
                 quickHint: "⚡ <strong>便捷模式</strong>：只需输入工资收入和申报身份，即可快速估算联邦所得税。适合快速了解大致税负。",
                 incomeTitle: "收入信息 Income",
+                labelTaxYear: "计算年份 Tax Year",
+                labelCompareMode: "跨税年对比 Compare Tax Years",
+                optYear2027: "2027（预测）",
+                optCmpNone: "不对比（仅计算所选年份）",
+                optCmp2627: "2026 vs 2027（预测）",
+                optCmpAll: "2025 vs 2026 vs 2027（预测）",
+                recordLabelPh: "例如：W-2 现职、全职自由职业、2026 基准…",
                 labelFilingStatus: "申报身份 Filing Status",
                 labelWages: "工资收入 Wages & Salary",
                 hintWages: "(W-2 Box 1)",
@@ -2936,8 +3154,8 @@
                 complexMode: "🔧 复杂模式 Advanced",
                 g1Title: "📋 如何在美国报税 How to File US Taxes",
                 g1h1: "1. 确定是否需要报税 Determine Filing Requirement",
-                g1l1: "单身 (Single)：2026 年总收入超过 $14,600 需报税（65 岁以上 $16,550）",
-                g1l2: "已婚联合 (MFJ)：总收入超过 $29,200 需报税（一方 65 岁以上 $30,750）",
+                g1l1: "单身 (Single)：2026 年总收入超过 $16,100 需报税（65 岁以上约 $18,150）",
+                g1l2: "已婚联合 (MFJ)：总收入超过 $32,200 需报税（一方 65 岁以上约 $33,850）",
                 g1l3: "即使收入低于门槛，如果有预扣税（withholding）想退税，也必须报税",
                 g1h2: "2. 收集必要文件 Gather Documents",
                 g1l4: "W-2：工资收入（雇主提供，1 月底前）",
@@ -3038,7 +3256,7 @@
                 tutS1Title: "⚡ Elija su Modo",
                 tutS1Desc: "Modo Rápido para una estimación veloz (solo salario + estado civil), o Modo Avanzado para un cálculo preciso con trabajo por cuenta propia, ganancias de capital, deducciones y créditos — el interruptor está en la parte superior de la pestaña Calculadora.",
                 tutS2Title: "🧮 Calcule su Impuesto",
-                tutS2Desc: "Ingrese sus ingresos y deducciones. La calculadora usa los tramos oficiales del IRS 2026, las tasas FICA y las reglas del Crédito Tributario por Hijos. Los resultados muestran el impuesto federal, FICA, la tasa efectiva y la tasa marginal.",
+                tutS2Desc: "Ingrese sus ingresos y deducciones. El selector de Año Fiscal ofrece 2025 (oficial, final), 2026 (oficial) y 2027 (proyectado), y el selector Comparar Años Fiscales muestra lado a lado cualquier combinación de 2025/2026/2027. Los resultados muestran el impuesto federal, FICA, la tasa efectiva y la marginal.",
                 tutS3Title: "💾 Guarde y Compare",
                 tutS3Desc: "Guarde cada cálculo como registro, descárguelo en JSON o cargue registros anteriores. La pestaña Comparar los muestra de cuatro formas — impuesto total, tendencia de tasa efectiva/marginal, desglose y reembolso/adeudo — más una comparación de 50 estados.",
                 tutS4Title: "❓ Pase el Cursor para Ayuda",
@@ -3047,7 +3265,7 @@
                 tutFeat2: "Gráficos Comparativos + Mapa de 50 Estados",
                 tutFeat3: "100% Privado (Sin Servidor)",
                 tutFeat4: "Guía de Declaración para Extranjeros",
-                tutFeat5: "11+ Artículos Fiscales Detallados",
+                tutFeat5: "21+ Artículos Fiscales Detallados",
                 tutPrivacyText: "🔒 Su privacidad, garantizada: cada cálculo se ejecuta localmente en su navegador. Nunca recopilamos, transmitimos ni almacenamos su ingreso, nombre u otra información personal — nada de lo que escribe sale de su computadora ni llega jamás a un servidor.",
                 tutLangNote: "💡 El idioma predeterminado es el inglés. Puede cambiar de idioma en cualquier momento con el selector en la parte superior derecha.",
                 tutBtnStart: "🚀 Comenzar",
@@ -3060,6 +3278,13 @@
                 tabArticles: "📚 Artículos Fiscales",
                 quickHint: "⚡ <strong>Modo Rápido</strong>: Solo ingrese su salario y estado civil para una estimación rápida del impuesto federal. Ideal para una vista general.",
                 incomeTitle: "Información de Ingresos",
+                labelTaxYear: "Año Fiscal",
+                labelCompareMode: "Comparar Años Fiscales",
+                optYear2027: "2027 (Proyectado)",
+                optCmpNone: "Sin comparación (solo el año seleccionado)",
+                optCmp2627: "2026 vs 2027 (proyectado)",
+                optCmpAll: "2025 vs 2026 vs 2027 (proyectado)",
+                recordLabelPh: "p. ej.: Empleo W-2, Freelance a tiempo completo, Base 2026…",
                 labelFilingStatus: "Estado Civil para la Declaración",
                 labelWages: "Sueldos y Salarios",
                 hintWages: "(W-2 Casilla 1)",
@@ -3126,8 +3351,8 @@
                 complexMode: "🔧 Modo Avanzado",
                 g1Title: "📋 Cómo Declarar Impuestos en EE. UU.",
                 g1h1: "1. Determine su Obligación de Declarar",
-                g1l1: "Soltero: Debe declarar si el ingreso bruto supera los $14,600 en 2026 ($16,550 si tiene 65 años o más)",
-                g1l2: "Casado que Declara en Conjunto: Debe declarar si el ingreso bruto supera los $29,200 ($30,750 si un cónyuge tiene 65 años o más)",
+                g1l1: "Soltero: Debe declarar si el ingreso bruto supera los $16,100 en 2026 (aprox. $18,150 si tiene 65 años o más)",
+                g1l2: "Casado que Declara en Conjunto: Debe declarar si el ingreso bruto supera los $32,200 (aprox. $33,850 si un cónyuge tiene 65 años o más)",
                 g1l3: "Incluso por debajo del umbral, debe declarar si tuvo retenciones y desea un reembolso",
                 g1h2: "2. Reúna los Documentos",
                 g1l4: "W-2: Ingresos por salario (del empleador, a fines de enero)",
@@ -3229,7 +3454,7 @@
                 tutS1Title: "⚡ Choose Your Mode",
                 tutS1Desc: "Quick Mode for a fast estimate (just wages + filing status), or Advanced Mode for precise calculation with self-employment, capital gains, deductions, and credits — the toggle sits at the top of the Calculator tab.",
                 tutS2Title: "🧮 Calculate Your Tax",
-                tutS2Desc: "Enter your income and deductions. The calculator uses official 2026 IRS brackets, FICA rates, and Child Tax Credit rules. Results show federal tax, FICA, effective rate, and marginal rate.",
+                tutS2Desc: "Enter your income and deductions. The Tax Year dropdown at the top of the form offers 2025 (official, final), 2026 (official), and 2027 (projected), and the Compare Tax Years dropdown below it shows any combination of 2025/2026/2027 side by side. Results show federal tax, FICA, effective rate, and marginal rate.",
                 tutS3Title: "💾 Save & Compare",
                 tutS3Desc: "Save each calculation as a record, download it as a JSON file, or upload past records. The Compare tab visualizes them four ways — total tax, effective-vs-marginal rate trend, tax breakdown, and refund/owed — plus a 50-state tax comparison.",
                 tutS4Title: "❓ Hover for Help",
@@ -3238,7 +3463,7 @@
                 tutFeat2: "Rich Comparison Charts + 50-State Map",
                 tutFeat3: "100% Private (No Server)",
                 tutFeat4: "Filing Guide for Foreigners",
-                tutFeat5: "11+ In-Depth Tax Articles",
+                tutFeat5: "21+ In-Depth Tax Articles",
                 tutPrivacyText: "🔒 Your privacy, guaranteed: every calculation runs locally in your browser. We never collect, transmit, or store your income, name, or any other personal information — nothing you type ever leaves your computer or reaches a server.",
                 tutLangNote: "💡 Default language is English. You can switch between English, Chinese, and Spanish anytime using the top-right toggle.",
                 tutBtnStart: "🚀 Get Started",
@@ -3252,6 +3477,13 @@
                 tabArticles: "📚 Tax Articles",
                 quickHint: "⚡ <strong>Quick Mode</strong>: Just enter your wages and filing status for a fast federal tax estimate. Great for a quick overview.",
                 incomeTitle: "Income Information",
+                labelTaxYear: "Tax Year",
+                labelCompareMode: "Compare Tax Years",
+                optYear2027: "2027 (Projected)",
+                optCmpNone: "No comparison (selected year only)",
+                optCmp2627: "2026 vs 2027 (projected)",
+                optCmpAll: "2025 vs 2026 vs 2027 (projected)",
+                recordLabelPh: "e.g. W-2 job, Full-time freelance, 2026 baseline…",
                 labelFilingStatus: "Filing Status",
                 labelWages: "Wages & Salary",
                 hintWages: "(W-2 Box 1)",
@@ -3318,8 +3550,8 @@
                 complexMode: "🔧 Advanced Mode",
                 g1Title: "📋 How to File US Taxes",
                 g1h1: "1. Determine Filing Requirement",
-                g1l1: "Single: Must file if gross income > $14,600 in 2026 ($16,550 if age 65+)",
-                g1l2: "Married Filing Jointly: Must file if gross income > $29,200 ($30,750 if one spouse age 65+)",
+                g1l1: "Single: Must file if gross income > $16,100 in 2026 (about $18,150 if age 65+)",
+                g1l2: "Married Filing Jointly: Must file if gross income > $32,200 (about $33,850 if one spouse age 65+)",
                 g1l3: "Even below threshold, you must file if you had withholding and want a refund",
                 g1h2: "2. Gather Documents",
                 g1l4: "W-2: Wage income (from employer, by end of January)",
@@ -3465,7 +3697,9 @@
             for (const [key, value] of Object.entries(t)) {
                 const el = document.getElementById(key);
                 if (el) {
-                    if (key === 'quickHint' || (key.startsWith('g') && (key.includes('l') || key.includes('tip') || key.includes('warn') || key.includes('danger')))) {
+                    if (key === 'labelTaxYear' || key === 'labelCompareMode') {
+                        el.innerHTML = value + ' <span class="new-pill">NEW</span>';
+                    } else if (key === 'quickHint' || (key.startsWith('g') && (key.includes('l') || key.includes('tip') || key.includes('warn') || key.includes('danger')))) {
                         el.innerHTML = value;
                     } else if (key.startsWith('tut')) {
                         // Tutorial elements
@@ -3484,6 +3718,9 @@
             // Update mode buttons
             document.querySelector('.mode-toggle button[data-mode="quick"]').textContent = t.quickMode;
             document.querySelector('.mode-toggle button[data-mode="complex"]').textContent = t.complexMode;
+            // Placeholders (textContent-based loop above cannot reach these)
+            const rl = document.getElementById('recordLabel');
+            if (rl && t.recordLabelPh) rl.placeholder = t.recordLabelPh;
         }
 
         // ===================== Guide Toggle =====================
@@ -3496,7 +3733,10 @@
         // ===================== 2026 IRS Tax Data =====================
         const TAX_YEAR = 2026;
 
-        // Year-keyed tax data. 2026 figures are official (IRS Rev. Proc. 2025-32).
+        // Year-keyed tax data. 2025 figures are official and FINAL (IRS Rev. Proc.
+        // 2024-40 as amended by the One Big Beautiful Bill Act — including the OBBBA
+        // retroactive 2025 standard-deduction increase to $15,750/$31,500/$23,625 and
+        // the $2,000 Child Tax Credit). 2026 figures are official (IRS Rev. Proc. 2025-32).
         // 2027 figures are PROJECTED ESTIMATES ONLY — the IRS has not yet published
         // official 2027 inflation adjustments (expected around October 2026). The
         // projection applies +2.5% to CPI-indexed brackets/deductions (matching the
@@ -3506,6 +3746,41 @@
         // to sensible increments. Replace this block with official figures once the
         // IRS publishes Rev. Proc. for tax year 2027.
         const TAX_DATA_BY_YEAR = {
+            2025: {
+                // OFFICIAL & FINAL — Rev. Proc. 2024-40 + OBBBA (retroactive 2025 changes).
+                STANDARD_DEDUCTION: { single: 15750, married_joint: 31500, married_separate: 15750, head_household: 23625 },
+                BRACKETS: {
+                    single: [
+                        { rate: 0.10, limit: 11925 }, { rate: 0.12, limit: 48475 },
+                        { rate: 0.22, limit: 103350 }, { rate: 0.24, limit: 197300 },
+                        { rate: 0.32, limit: 250525 }, { rate: 0.35, limit: 626350 }, { rate: 0.37, limit: Infinity }
+                    ],
+                    married_joint: [
+                        { rate: 0.10, limit: 23850 }, { rate: 0.12, limit: 96950 },
+                        { rate: 0.22, limit: 206700 }, { rate: 0.24, limit: 394600 },
+                        { rate: 0.32, limit: 501050 }, { rate: 0.35, limit: 751600 }, { rate: 0.37, limit: Infinity }
+                    ],
+                    married_separate: [
+                        { rate: 0.10, limit: 11925 }, { rate: 0.12, limit: 48475 },
+                        { rate: 0.22, limit: 103350 }, { rate: 0.24, limit: 197300 },
+                        { rate: 0.32, limit: 250525 }, { rate: 0.35, limit: 375800 }, { rate: 0.37, limit: Infinity }
+                    ],
+                    head_household: [
+                        { rate: 0.10, limit: 17000 }, { rate: 0.12, limit: 64850 },
+                        { rate: 0.22, limit: 103350 }, { rate: 0.24, limit: 197300 },
+                        { rate: 0.32, limit: 250500 }, { rate: 0.35, limit: 626350 }, { rate: 0.37, limit: Infinity }
+                    ]
+                },
+                LTCG_BRACKETS: {
+                    single: [{ rate: 0.00, limit: 48350 }, { rate: 0.15, limit: 533400 }, { rate: 0.20, limit: Infinity }],
+                    married_joint: [{ rate: 0.00, limit: 96700 }, { rate: 0.15, limit: 600050 }, { rate: 0.20, limit: Infinity }],
+                    married_separate: [{ rate: 0.00, limit: 48350 }, { rate: 0.15, limit: 300000 }, { rate: 0.20, limit: Infinity }],
+                    head_household: [{ rate: 0.00, limit: 64750 }, { rate: 0.15, limit: 566700 }, { rate: 0.20, limit: Infinity }]
+                },
+                SS_WAGE_BASE: 176100,
+                CHILD_TAX_CREDIT: 2000,
+                CHILD_TAX_CREDIT_REFUNDABLE: 1700
+            },
             2026: {
                 STANDARD_DEDUCTION: { single: 16100, married_joint: 32200, married_separate: 16100, head_household: 24150 },
                 BRACKETS: {
@@ -3584,7 +3859,23 @@
         let CHILD_TAX_CREDIT_REFUNDABLE = TAX_DATA_BY_YEAR[2026].CHILD_TAX_CREDIT_REFUNDABLE;
 
         let currentResult = null;
+        let lastCalcInput = null;
         let currentExplanationCtx = null;
+        let selectedScenarios = []; // record ids ticked for side-by-side comparison
+
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+
+        function updateResultsYearBadge() {
+            const yearBadge = document.getElementById('resultsYearBadge');
+            if (!yearBadge || !currentResult) return;
+            const y = currentResult.taxYear || 2026;
+            yearBadge.textContent = y >= 2027 ? y + ' ' + L('(Est.)', '（预测）', '(Est.)') : String(y);
+            yearBadge.style.display = 'inline-block';
+        }
         let taxRecords = [];
         let taxChart = null;
 
@@ -3670,39 +3961,45 @@
             const sel = document.getElementById('taxYearSelect');
             const warn = document.getElementById('year2027Warning');
             if (warn) warn.style.display = (sel && sel.value === '2027') ? 'block' : 'none';
+            // Keep the standard-deduction preview in sync with the chosen year
+            const y = parseInt(sel && sel.value) || 2026;
+            const d = TAX_DATA_BY_YEAR[y] || TAX_DATA_BY_YEAR[2026];
+            STANDARD_DEDUCTION = d.STANDARD_DEDUCTION;
+            BRACKETS = d.BRACKETS;
+            LTCG_BRACKETS = d.LTCG_BRACKETS;
+            SS_WAGE_BASE = d.SS_WAGE_BASE;
+            CHILD_TAX_CREDIT = d.CHILD_TAX_CREDIT;
+            CHILD_TAX_CREDIT_REFUNDABLE = d.CHILD_TAX_CREDIT_REFUNDABLE;
+            updateStandardDeduction();
         }
 
-        function calculateTax() {
-            const selectedYear = parseInt((document.getElementById('taxYearSelect') || {}).value) || 2026;
+        // Pure calculation core. Computes federal tax for the given year and inputs
+        // WITHOUT touching the DOM or the shared display bindings, so the same math
+        // can be run for several years in one pass (used by the 2026-vs-2027
+        // side-by-side comparison as well as the normal single-year calculation).
+        function computeTax(selectedYear, inp) {
             const yearData = TAX_DATA_BY_YEAR[selectedYear] || TAX_DATA_BY_YEAR[2026];
-            STANDARD_DEDUCTION = yearData.STANDARD_DEDUCTION;
-            BRACKETS = yearData.BRACKETS;
-            LTCG_BRACKETS = yearData.LTCG_BRACKETS;
-            SS_WAGE_BASE = yearData.SS_WAGE_BASE;
-            CHILD_TAX_CREDIT = yearData.CHILD_TAX_CREDIT;
-            CHILD_TAX_CREDIT_REFUNDABLE = yearData.CHILD_TAX_CREDIT_REFUNDABLE;
+            const SD_TABLE = yearData.STANDARD_DEDUCTION;
+            const BR_TABLE = yearData.BRACKETS;
+            const LTCG_TABLE = yearData.LTCG_BRACKETS;
+            const SS_BASE = yearData.SS_WAGE_BASE;
+            const CTC_PER_CHILD = yearData.CHILD_TAX_CREDIT;
 
-            const status = document.getElementById('filingStatus').value;
-            const wages = parseFloat(document.getElementById('wages').value) || 0;
-            const seIncome = parseFloat(document.getElementById('selfEmployment').value) || 0;
-            const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
-            const ltcg = parseFloat(document.getElementById('ltcg').value) || 0;
-            const deductionType = document.getElementById('deductionType').value;
-            const itemizedAmount = parseFloat(document.getElementById('itemizedAmount').value) || 0;
-            const aboveLine = parseFloat(document.getElementById('aboveLineDeductions').value) || 0;
-            const children = parseInt(document.getElementById('childrenCount').value) || 0;
-            const withheld = parseFloat(document.getElementById('withheld').value) || 0;
-            const isSE = document.getElementById('isSelfEmployed').checked;
+            const status = inp.status, wages = inp.wages, seIncome = inp.seIncome,
+                  otherIncome = inp.otherIncome, ltcg = inp.ltcg,
+                  deductionType = inp.deductionType, itemizedAmount = inp.itemizedAmount,
+                  aboveLine = inp.aboveLine, children = inp.children,
+                  withheld = inp.withheld, isSE = inp.isSE;
 
             const grossIncome = wages + seIncome + otherIncome + ltcg;
 
             // Self-employment tax (only when self-employed and there's SE income). The Social
             // Security portion shares its wage base with any W-2 wages above — SE income only
-            // gets the remaining headroom, not a fresh $184,500 cap of its own.
+            // gets the remaining headroom, not a fresh wage-base cap of its own.
             let seTaxDeduction = 0, seTax = 0, seTaxable = 0;
             if (isSE && seIncome > 0) {
                 seTaxable = seIncome * 0.9235;
-                const remainingSSBase = Math.max(0, SS_WAGE_BASE - wages);
+                const remainingSSBase = Math.max(0, SS_BASE - wages);
                 const seSsPortion = Math.min(seTaxable, remainingSSBase);
                 const seSsTax = seSsPortion * 0.124;
                 const seMedicareTax = seTaxable * 0.029;
@@ -3711,13 +4008,13 @@
             }
 
             const agi = Math.max(0, grossIncome - aboveLine - seTaxDeduction);
-            const standardDed = STANDARD_DEDUCTION[status];
+            const standardDed = SD_TABLE[status];
             const deduction = deductionType === 'itemized' ? Math.max(itemizedAmount, standardDed) : standardDed;
             const ordinaryIncome = wages + seIncome + otherIncome - aboveLine - seTaxDeduction;
             const taxableOrdinary = Math.max(0, ordinaryIncome - deduction);
 
             // Federal Income Tax on Ordinary Income
-            const brackets = BRACKETS[status];
+            const brackets = BR_TABLE[status];
             let remaining = taxableOrdinary;
             let federalTax = 0;
             let prevLimit = 0;
@@ -3743,7 +4040,7 @@
             }
 
             // LTCG Tax
-            const ltbrackets = LTCG_BRACKETS[status];
+            const ltbrackets = LTCG_TABLE[status];
             let ltcgRemaining = ltcg;
             let ltcgTax = 0;
             let ltcgPrev = 0;
@@ -3767,14 +4064,14 @@
                 const phaseoutThreshold = (status === 'married_joint') ? 400000 : 200000;
                 const phaseoutStart = Math.max(0, agi - phaseoutThreshold);
                 const phaseoutAmount = Math.floor(phaseoutStart / 1000) * 50;
-                ctc = Math.max(0, Math.min(children * CHILD_TAX_CREDIT, children * CHILD_TAX_CREDIT - phaseoutAmount));
+                ctc = Math.max(0, Math.min(children * CTC_PER_CHILD, children * CTC_PER_CHILD - phaseoutAmount));
             }
             const federalTaxAfterCredits = Math.max(0, federalTax - ctc);
 
             // FICA: wage-based Social Security + Medicare always apply when there are wages,
             // independently of self-employment tax on any separate self-employment income above
             // (a person can have both a W-2 job and a side business in the same return).
-            const ssTaxWages = Math.min(wages, SS_WAGE_BASE) * 0.062;
+            const ssTaxWages = Math.min(wages, SS_BASE) * 0.062;
             const medicareTaxWages = wages * 0.0145;
             const wageFica = ssTaxWages + medicareTaxWages;
 
@@ -3783,7 +4080,8 @@
             // wages (withheld by an employer once wages alone cross the threshold) and the
             // portion attributable to SE income (the incremental amount from adding it on top),
             // matching how IRS Form 8959 splits the two pieces.
-            const addlMedicareThreshold = (status === 'married_joint') ? 250000 : 200000;
+            const addlMedicareThreshold = (status === 'married_joint') ? 250000
+                : (status === 'married_separate' ? 125000 : 200000); // Form 8959 thresholds
             const wageAddlMedicare = Math.max(0, wages - addlMedicareThreshold) * 0.009;
             const totalEarned = wages + seTaxable;
             const totalAddlMedicare = Math.max(0, totalEarned - addlMedicareThreshold) * 0.009;
@@ -3791,7 +4089,7 @@
             const additionalMedicareTax = wageAddlMedicare + seAddlMedicare;
 
             const ficaTax = wageFica + wageAddlMedicare + seTax + seAddlMedicare;
-            const ssTax = ssTaxWages, medicareTax = medicareTaxWages; // kept for the explanation panel below
+            const ssTax = ssTaxWages, medicareTax = medicareTaxWages; // kept for the explanation panel
 
             const totalTax = federalTaxAfterCredits + ficaTax;
             const effectiveRate = grossIncome > 0 ? (totalTax / grossIncome * 100) : 0;
@@ -3800,33 +4098,80 @@
             // surtax, since neither is withheld by anyone during the year.
             const refund = withheld - federalTaxAfterCredits - seTax - seAddlMedicare;
 
+            return {
+                taxYear: selectedYear, grossIncome, agi, standardDed, deduction,
+                taxableOrdinary, taxableIncome: taxableOrdinary + ltcg,
+                federalTax, ltcgTax, ctc, federalTaxAfterCredits,
+                seTax, seTaxDeduction, ssTax, medicareTax, additionalMedicareTax,
+                ficaTax, totalTax, effectiveRate, marginalRate, refund,
+                bracketBreakdown
+            };
+        }
+
+        function calculateTax() {
+            const selectedYear = parseInt((document.getElementById('taxYearSelect') || {}).value) || 2026;
+            const yearData = TAX_DATA_BY_YEAR[selectedYear] || TAX_DATA_BY_YEAR[2026];
+            // Keep the shared display bindings in sync with the selected year — the
+            // standard-deduction field and the explanation panel read these globals.
+            STANDARD_DEDUCTION = yearData.STANDARD_DEDUCTION;
+            BRACKETS = yearData.BRACKETS;
+            LTCG_BRACKETS = yearData.LTCG_BRACKETS;
+            SS_WAGE_BASE = yearData.SS_WAGE_BASE;
+            CHILD_TAX_CREDIT = yearData.CHILD_TAX_CREDIT;
+            CHILD_TAX_CREDIT_REFUNDABLE = yearData.CHILD_TAX_CREDIT_REFUNDABLE;
+
+            const inp = {
+                status: document.getElementById('filingStatus').value,
+                wages: parseFloat(document.getElementById('wages').value) || 0,
+                seIncome: parseFloat(document.getElementById('selfEmployment').value) || 0,
+                otherIncome: parseFloat(document.getElementById('otherIncome').value) || 0,
+                ltcg: parseFloat(document.getElementById('ltcg').value) || 0,
+                deductionType: document.getElementById('deductionType').value,
+                itemizedAmount: parseFloat(document.getElementById('itemizedAmount').value) || 0,
+                aboveLine: parseFloat(document.getElementById('aboveLineDeductions').value) || 0,
+                children: parseInt(document.getElementById('childrenCount').value) || 0,
+                withheld: parseFloat(document.getElementById('withheld').value) || 0,
+                isSE: document.getElementById('isSelfEmployed').checked
+            };
+
+            const r = computeTax(selectedYear, inp);
+            lastCalcInput = inp; // remembered so language switches can re-render dynamic tables
+
             currentResult = {
-                taxYear: selectedYear, timestamp: new Date().toISOString(), filingStatus: status,
-                grossIncome, agi, taxableIncome: taxableOrdinary + ltcg,
-                federalTax: federalTaxAfterCredits, ficaTax, totalTax, effectiveRate, marginalRate,
-                refund, withheld, ctc, ltcgTax, bracketBreakdown,
-                inputs: { wages, seIncome, otherIncome, ltcg, deductionType, itemizedAmount, aboveLine, children, withheld, isSE }
+                taxYear: selectedYear, timestamp: new Date().toISOString(), filingStatus: inp.status,
+                grossIncome: r.grossIncome, agi: r.agi, taxableIncome: r.taxableIncome,
+                federalTax: r.federalTaxAfterCredits, ficaTax: r.ficaTax, totalTax: r.totalTax,
+                effectiveRate: r.effectiveRate, marginalRate: r.marginalRate,
+                refund: r.refund, withheld: inp.withheld, ctc: r.ctc, ltcgTax: r.ltcgTax,
+                bracketBreakdown: r.bracketBreakdown,
+                inputs: { wages: inp.wages, seIncome: inp.seIncome, otherIncome: inp.otherIncome,
+                          ltcg: inp.ltcg, deductionType: inp.deductionType, itemizedAmount: inp.itemizedAmount,
+                          aboveLine: inp.aboveLine, children: inp.children, withheld: inp.withheld, isSE: inp.isSE }
             };
 
             // Display
-            document.getElementById('resGross').textContent = fmt(grossIncome);
-            document.getElementById('resAGI').textContent = fmt(agi);
-            document.getElementById('resTaxable').textContent = fmt(taxableOrdinary + ltcg);
-            document.getElementById('resFederalTax').textContent = fmt(federalTaxAfterCredits);
-            document.getElementById('resFICA').textContent = fmt(ficaTax);
-            document.getElementById('resTotalTax').textContent = fmt(totalTax);
-            document.getElementById('resEffectiveRate').textContent = effectiveRate.toFixed(2) + '%';
-            document.getElementById('resMarginalRate').textContent = (marginalRate * 100).toFixed(0) + '%';
+            document.getElementById('resGross').textContent = fmt(r.grossIncome);
+            document.getElementById('resAGI').textContent = fmt(r.agi);
+            document.getElementById('resTaxable').textContent = fmt(r.taxableIncome);
+            document.getElementById('resFederalTax').textContent = fmt(r.federalTaxAfterCredits);
+            document.getElementById('resFICA').textContent = fmt(r.ficaTax);
+            document.getElementById('resTotalTax').textContent = fmt(r.totalTax);
+            document.getElementById('resEffectiveRate').textContent = r.effectiveRate.toFixed(2) + '%';
+            document.getElementById('resMarginalRate').textContent = (r.marginalRate * 100).toFixed(0) + '%';
+
+            // Year badge in the results header, so it is always clear which tax
+            // year the numbers on screen were calculated with.
+            updateResultsYearBadge();
 
             const refundEl = document.getElementById('resRefund');
             const refundCard = document.getElementById('refundCard');
             const t = I18N[currentLang];
-            if (refund >= 0) {
-                refundEl.textContent = fmt(refund);
+            if (r.refund >= 0) {
+                refundEl.textContent = fmt(r.refund);
                 refundEl.style.color = 'var(--success)';
                 refundCard.querySelector('.result-label').textContent = t.refundLabel;
             } else {
-                refundEl.textContent = fmt(Math.abs(refund));
+                refundEl.textContent = fmt(Math.abs(r.refund));
                 refundEl.style.color = 'var(--danger)';
                 refundCard.querySelector('.result-label').textContent = t.owedLabel;
             }
@@ -3834,25 +4179,136 @@
             // Bracket Table
             const tbody = document.getElementById('bracketBody');
             tbody.innerHTML = '';
-            bracketBreakdown.forEach((b, i) => {
+            r.bracketBreakdown.forEach((b, i) => {
                 const row = document.createElement('tr');
-                if (i === bracketBreakdown.length - 1) row.classList.add('active');
+                if (i === r.bracketBreakdown.length - 1) row.classList.add('active');
                 row.innerHTML = `<td>${(b.rate * 100).toFixed(0)}%</td><td>${b.range}</td><td>${fmt(b.amount)}</td><td>${fmt(b.tax)}</td>`;
                 tbody.appendChild(row);
             });
 
             // Build explanation context and render the bilingual explanation panel
             currentExplanationCtx = {
-                status, wages, seIncome, otherIncome, ltcg, deductionType, itemizedAmount,
-                aboveLine, children, withheld, isSE, grossIncome, agi, standardDed, deduction,
-                taxableOrdinary, federalTax, ltcgTax, ctc, federalTaxAfterCredits, ficaTax,
-                seTax, seTaxDeduction, ssTax, medicareTax, additionalMedicareTax,
-                marginalRate, effectiveRate, totalTax, refund, bracketBreakdown
+                status: inp.status, wages: inp.wages, seIncome: inp.seIncome, otherIncome: inp.otherIncome,
+                ltcg: inp.ltcg, deductionType: inp.deductionType, itemizedAmount: inp.itemizedAmount,
+                aboveLine: inp.aboveLine, children: inp.children, withheld: inp.withheld, isSE: inp.isSE,
+                grossIncome: r.grossIncome, agi: r.agi, standardDed: r.standardDed, deduction: r.deduction,
+                taxableOrdinary: r.taxableOrdinary, federalTax: r.federalTax, ltcgTax: r.ltcgTax, ctc: r.ctc,
+                federalTaxAfterCredits: r.federalTaxAfterCredits, ficaTax: r.ficaTax,
+                seTax: r.seTax, seTaxDeduction: r.seTaxDeduction, ssTax: r.ssTax, medicareTax: r.medicareTax,
+                additionalMedicareTax: r.additionalMedicareTax,
+                marginalRate: r.marginalRate, effectiveRate: r.effectiveRate, totalTax: r.totalTax,
+                refund: r.refund, bracketBreakdown: r.bracketBreakdown
             };
             renderResultExplanation(currentExplanationCtx);
 
+            // Optional 2026-vs-2027 side-by-side table
+            renderYearComparison(inp);
+
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function onCompareModeChange() {
+            // If a result is already on screen, recalculate so the comparison
+            // table appears, changes years, or disappears immediately.
+            if (currentResult) calculateTax();
+        }
+
+        function getCompareYears() {
+            const sel = document.getElementById('compareModeSelect');
+            if (!sel || sel.value === 'none') return null;
+            const years = sel.value.split(',').map(Number).filter(function (y) { return TAX_DATA_BY_YEAR[y]; });
+            return years.length >= 2 ? years : null;
+        }
+
+        // --- shared formatting helpers for the comparison tables ---
+        function moneyAbs(v) { return '$' + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+        function signedMoney(v) { return (v >= 0 ? '+' : '−') + moneyAbs(v); }
+        // colored Δ cell: higherIsBetter=true → green when positive; =false → green when
+        // negative; =null → neutral gray (used for input rows, where neither is "better").
+        function diffCell(delta, higherIsBetter) {
+            const rounded = Math.round(delta * 100) / 100;
+            if (Math.abs(rounded) < 0.005) return '<td style="color:var(--text-secondary);">$0.00</td>';
+            const sign = rounded > 0 ? '+' : '−';
+            if (higherIsBetter === null || higherIsBetter === undefined) {
+                return '<td style="color:var(--text-secondary);font-weight:600;">' + sign + moneyAbs(rounded) + '</td>';
+            }
+            const good = higherIsBetter ? rounded > 0 : rounded < 0;
+            return '<td style="color:' + (good ? 'var(--success)' : 'var(--danger)') + ';font-weight:600;">'
+                + sign + moneyAbs(rounded) + '</td>';
+        }
+        function pctDiffCell(delta, higherIsBetter) {
+            const rounded = Math.round(delta * 100) / 100;
+            if (Math.abs(rounded) < 0.005) return '<td style="color:var(--text-secondary);">0.00%</td>';
+            const good = higherIsBetter ? rounded > 0 : rounded < 0;
+            return '<td style="color:' + (good ? 'var(--success)' : 'var(--danger)') + ';font-weight:600;">'
+                + (rounded > 0 ? '+' : '−') + Math.abs(rounded).toFixed(2) + '%</td>';
+        }
+        function yearHeadLabel(y) {
+            return y >= 2027 ? y + ' <span class="yc-est">' + L('(Est.)', '（预测）', '(Est.)') + '</span>' : String(y);
+        }
+
+        // Multi-year comparison: 2 or 3 years chosen via #compareModeSelect. Each pair of
+        // adjacent years gets its own Δ column (later − earlier) directly after the later year.
+        function renderYearComparison(inp) {
+            const section = document.getElementById('yearCompareSection');
+            if (!section) return;
+            const years = getCompareYears();
+            if (!years || !inp) { section.style.display = 'none'; return; }
+            const thead = document.getElementById('yearCompareHead');
+            const tbody = document.getElementById('yearCompareBody');
+            if (!thead || !tbody) return;
+
+            const res = years.map(function (y) { return computeTax(y, inp); });
+
+            // Title suffix ("2025 vs 2026 vs 2027") + projection footnote toggle
+            const ycYears = document.getElementById('ycYears');
+            if (ycYears) ycYears.textContent = years.join(' vs ');
+            const projNote = document.getElementById('ycProjNote');
+            if (projNote) projNote.style.display = years.indexOf(2027) !== -1 ? 'inline' : 'none';
+
+            // Head: Metric | Y1 | Y2 | Δ(Y2−Y1) [ | Y3 | Δ(Y3−Y2) ]
+            let head = '<tr><th style="text-align:left;">' + L('Metric', '指标', 'Métrica') + '</th>';
+            years.forEach(function (y, i) {
+                head += '<th>' + yearHeadLabel(y) + '</th>';
+                if (i > 0) head += '<th>Δ ' + years[i] + '−' + years[i - 1] + '</th>';
+            });
+            thead.innerHTML = head + '</tr>';
+
+            function moneyRow(label, key, higherIsBetter) {
+                let h = '<tr><td style="text-align:left;font-weight:600;">' + label + '</td>';
+                res.forEach(function (r, i) {
+                    h += '<td>' + moneyAbs(r[key]) + '</td>';
+                    if (i > 0) h += diffCell(r[key] - res[i - 1][key], higherIsBetter);
+                });
+                return h + '</tr>';
+            }
+
+            let html = '';
+            html += moneyRow(L('Deduction applied', '适用扣除额', 'Deducción aplicada'), 'deduction', true);
+            html += moneyRow(L('Taxable income', '应税收入', 'Ingreso gravable'), 'taxableIncome', false);
+            html += moneyRow(L('Federal income tax (after credits)', '联邦所得税（抵免后）', 'Impuesto federal (tras créditos)'), 'federalTaxAfterCredits', false);
+            html += moneyRow(L('FICA / SE tax', 'FICA / 自雇税', 'FICA / imp. trabajo propio'), 'ficaTax', false);
+            html += moneyRow(L('Total tax', '总税负', 'Impuesto total'), 'totalTax', false);
+
+            // Effective rate (percentage points)
+            html += '<tr><td style="text-align:left;font-weight:600;">' + L('Effective rate', '有效税率', 'Tasa efectiva') + '</td>';
+            res.forEach(function (r, i) {
+                html += '<td>' + r.effectiveRate.toFixed(2) + '%</td>';
+                if (i > 0) html += pctDiffCell(r.effectiveRate - res[i - 1].effectiveRate, false);
+            });
+            html += '</tr>';
+
+            // Refund (+) / owed (−) — shown signed; a higher value is better.
+            html += '<tr><td style="text-align:left;font-weight:600;">' + L('Refund (+) / owed (−)', '应退（+）/ 应补（−）', 'Reembolso (+) / a pagar (−)') + '</td>';
+            res.forEach(function (r, i) {
+                html += '<td style="color:' + (r.refund >= 0 ? 'var(--success)' : 'var(--danger)') + ';">' + signedMoney(r.refund) + '</td>';
+                if (i > 0) html += diffCell(r.refund - res[i - 1].refund, true);
+            });
+            html += '</tr>';
+
+            tbody.innerHTML = html;
+            section.style.display = 'block';
         }
 
         function fmt(num) {
@@ -4029,6 +4485,12 @@
             document.getElementById('isSelfEmployed').checked = false;
             document.getElementById('taxYearSelect').value = '2026';
             onTaxYearChange();
+            const cms = document.getElementById('compareModeSelect');
+            if (cms) cms.value = 'none';
+            const ycs = document.getElementById('yearCompareSection');
+            if (ycs) ycs.style.display = 'none';
+            const ryb = document.getElementById('resultsYearBadge');
+            if (ryb) ryb.style.display = 'none';
             document.getElementById('itemizedGroup').style.display = 'none';
             document.getElementById('standardDeductionDisplay').style.display = 'block';
             updateStandardDeduction();
@@ -4108,7 +4570,7 @@
             container.innerHTML = '<div class="history-list">' + sorted.map(r => {
                 const date = new Date(r.timestamp).toLocaleDateString(currentLang === 'zh' ? 'zh-CN' : 'en-US');
                 return `<div class="history-item">
-                    <div class="info"><div style="font-weight: 600; margin-bottom: 4px;">${r.label || date}</div><div class="date">${date} · ${statusLabels[r.filingStatus] || r.filingStatus} · ${r.taxYear}</div></div>
+                    <div class="info"><div style="font-weight: 600; margin-bottom: 4px;">${esc(r.label) || date}</div><div class="date">${date} · ${statusLabels[r.filingStatus] || r.filingStatus} · ${r.taxYear}</div></div>
                     <div class="amount">${fmt(r.totalTax)}</div>
                     <div class="actions">
                         <button class="btn btn-sm btn-outline" onclick="downloadRecord('${r.id}')">${currentLang === 'zh' ? '下载' : 'Download'}</button>
@@ -4126,7 +4588,9 @@
             const t = I18N[currentLang];
             if (!confirm(t.btnCancel === '取消' ? '确定删除这条记录吗？' : 'Are you sure you want to delete this record?')) return;
             taxRecords = taxRecords.filter(r => r.id !== id);
+            selectedScenarios = selectedScenarios.filter(x => x !== id);
             updateHistoryDisplay();
+            if (document.getElementById('compare').classList.contains('active')) renderCompare(); else renderScenarioSideBySide();
         }
 
         // ===================== Chart =====================
@@ -4224,7 +4688,9 @@
             const sp = document.getElementById('scenarioPanel');
             const stp = document.getElementById('stateComparePanel');
             if (tp) tp.classList.toggle('visible', type === 'effective' || type === 'total');
-            if (sp) sp.classList.toggle('visible', type === 'scenario');
+            // The scenario table (with its Compare checkboxes and side-by-side detail)
+            // is the core of this tab — keep it visible under every chart view.
+            if (sp) sp.classList.toggle('visible', true);
             if (stp) stp.classList.toggle('visible', type === 'state');
         }
 
@@ -4257,9 +4723,11 @@
             setCompareText('chartMin', fmt(Math.min.apply(null, d.total)));
             setCompareText('chartAvg', fmt(d.total.reduce(function(a,b){ return a+b; }, 0) / d.total.length));
 
-            const ctx = document.getElementById('taxChart').getContext('2d');
-            if (taxChart) taxChart.destroy();
-            taxChart = new Chart(ctx, buildCompareConfig(type, d));
+            if (typeof Chart !== 'undefined') { // chart is optional: tables must render even if the CDN is blocked
+                const ctx = document.getElementById('taxChart').getContext('2d');
+                if (taxChart) taxChart.destroy();
+                taxChart = new Chart(ctx, buildCompareConfig(type, d));
+            }
 
             updateTrendMetrics(sorted);
             renderScenarioTable(sorted);
@@ -4319,7 +4787,7 @@
         });
 
 // ===================== Tooltip System =====================
-        const TOOLTIP_DATA = {"zh": {"tt_tax_year": "选择用哪一年的税率、标准扣除额等规则来计算。2027 年数据是基于历史通胀调整幅度的预测估算，IRS 官方数据预计 2026 年 10 月发布；发布前请仅作规划参考。", "tt_filing_status": "申报身份决定了你的税率级距和标准扣除额。\\\n单身税率最高，已婚联合申报可享受更宽的级距和更高的扣除额。", "tt_wages": "W-2 表格 Box 1 中的金额，即你的工资、薪金、小费等已扣税前收入。这是最常见的收入来源。", "tt_self_employment": "1099-NEC 或 Schedule C 报告的收入。自雇人士需缴纳 SE Tax（15.3%），但可扣除一半作为 above-the-line 扣除。", "tt_other_income": "包括银行存款利息（1099-INT）、股息（1099-DIV）、租金收入、失业金、退休金等普通收入。", "tt_ltcg": "持有超过一年的资产（股票、房产等）出售后的利润。税率优惠：0%、15% 或 20%，取决于你的总收入。", "tt_deduction_type": "标准扣除是固定金额，无需证明。分项扣除需逐项列出（房贷利息、州税、慈善捐赠等），只有当总额超过标准扣除时才划算。", "tt_itemized": "包括：州和地方税（SALT，2026 年上限 $40,400）、房贷利息、慈善捐赠、医疗费用（超过 AGI 7.5% 部分）等。", "tt_standard_deduction": "IRS 自动给予的固定扣除额，无需提供任何证明。2026年单身 $16,100，已婚联合 $32,200。", "tt_above_line": "又称 adjustments to income。包括：学生贷款利息（上限 $2,500）、HSA 供款、传统 IRA 供款、自雇税一半扣除等。这些扣除即使选择标准扣除也能享受。", "tt_children": "16岁以下的合格子女可享受 Child Tax Credit。2026年每名子女最高 $2,200，其中 $1,700 可退还（即使不欠税也能拿到）。", "tt_withheld": "雇主从你的工资中预扣的联邦所得税（W-2 Box 2）。年终报税时，如果预扣 > 实际应缴，差额退税；反之需补税。", "tt_is_se": "自雇人士需缴纳 Self-Employment Tax（15.3% = 12.4% Social Security + 2.9% Medicare），但可扣除其中一半。", "tt_agi": "Adjusted Gross Income = 总收入 - Above-the-line 扣除。AGI 是许多税收抵免和扣除的门槛基准。", "tt_taxable_income": "Taxable Income = AGI - 标准/分项扣除。这是实际用于计算联邦所得税的金额。", "tt_federal_tax": "根据应税收入按 7 级累进税率计算得出的联邦所得税额，已扣除 Child Tax Credit 等抵免。", "tt_fica": "FICA = Social Security Tax (6.2%, 上限 $184,500) + Medicare Tax (1.45%, 无上限)。高收入者额外 0.9% Medicare Tax。", "tt_total_tax": "联邦所得税 + FICA/SE Tax 的总和。这是你的总联邦税负（不含州税）。", "tt_effective_rate": "Effective Rate = 总税负 ÷ 总收入。反映你实际承担的税负比例，通常远低于边际税率。", "tt_marginal_rate": "Marginal Rate = 你最后一美元收入适用的税率。这是你的最高税率，但不是所有收入都按此税率征税。", "tt_refund": "如果预扣税大于实际应缴的联邦所得税（自雇者需另加自雇税），差额为退税；反之则需补税。工资部分的 FICA 由雇主直接代扣代缴，不计入此项对比——只有联邦所得税、以及自雇税（如适用）才会在报税时与预扣税比较。", "tt_bracket": "美国采用累进税制，收入分段征税。每段收入只按对应税率征税，而非全部收入按最高税率征税。", "tt_ctc": "Child Tax Credit 是直接抵减税额的优惠，比扣除（deduction）更有价值。2026年每名合格子女 $2,200。", "tt_se_tax": "Self-Employment Tax 是自雇人士缴纳的 Social Security 和 Medicare 税，总计 15.3%，但可扣除雇主部分（7.65%）。", "tt_qbi": "Qualified Business Income Deduction（199A）允许自雇人士扣除合格商业收入的 20%，但有收入门槛限制。", "tt_amt": "Alternative Minimum Tax 是替代性最低税，防止高收入者通过过多扣除避税。本工具未计算 AMT。", "tt_niit": "Net Investment Income Tax 对高收入者的投资收入（利息、股息、资本收益等）征收 3.8%。本工具未计算。", "tt_salt": "State and Local Tax 扣除上限（OBBBA 后）为 $40,400，已婚分开报税为 $20,200（高收入者逐步减少，MAGI 超 $505,000 起）。本工具未单独计算州税。", "tt_eitc": "Earned Income Tax Credit 是低收入工作者的可退还抵免。本工具未计算 EITC。", "tt_ira": "Traditional IRA 供款可能可扣除，但受收入限制。Roth IRA 供款不可扣除，但退休时免税提取。", "tt_hsa": "Health Savings Account 供款可 above-the-line 扣除。2026年个人上限 $4,400，家庭 $8,750（55岁以上+$1,000）。", "tt_401k": "401(k) 供款降低应税收入。2026年员工供款上限 $24,500（50岁以上+$8,000 catch-up）。", "tt_fbir": "FBAR（FinCEN 114）：海外银行账户超过 $10,000 需申报。Form 8938（FATCA）：海外资产超过门槛需申报。", "tt_itin": "Individual Taxpayer Identification Number，供没有 SSN 的外国人报税使用。需向 IRS 申请。", "tt_substantial_presence": "当年在美 ≥31 天，且近三年累计 ≥183 天（当年全部 + 前一年 1/3 + 前两年 1/6）。满足则为居民外国人。", "tt_treaty": "中美税收协定规定，中国学生/学者前 5 年（学生）或 2-3 年（教师）可享受部分收入免税或降低税率。", "tt_w8ben": "非居民外国人向付款方提交的表格，用于申请税收协定优惠或降低预扣税率。", "tt_8843": "学生/教师/学者提交的豁免声明，即使满足实质居住测试，前 5 年（学生）仍被视为非居民。", "tt_estimated_tax": "自雇人士或收入无预扣者需每季度预缴税款（4/15, 6/15, 9/15, 1/15）。欠税 ≥$1,000 可能面临罚款。", "tt_extension": "Form 4868 可将报税截止日期延至 10 月 15 日，但税款仍需在 4 月 15 日前缴纳，否则产生利息和罚款。", "tt_audit": "IRS 审计是对报税表的审查。保留所有支持文件至少 3 年（建议 7 年）。收到 CP 系列通知需及时回复。"}, "en": {"tt_tax_year": "Choose which year's brackets, standard deduction, and other rules to calculate with. 2027 figures are projected estimates based on typical inflation adjustments; official IRS figures are expected around October 2026 \u2014 treat 2027 as planning guidance only until then.", "tt_filing_status": "Filing status determines your tax brackets and standard deduction.\\\nSingle has the highest rates; Married Filing Jointly gets wider brackets and higher deductions.", "tt_wages": "Amount from W-2 Box 1. Your pre-tax salary, wages, and tips. This is the most common income source.", "tt_self_employment": "Income reported on 1099-NEC or Schedule C. Self-employed pay SE Tax (15.3%) but can deduct half as an above-the-line deduction.", "tt_other_income": "Includes bank interest (1099-INT), dividends (1099-DIV), rental income, unemployment benefits, retirement distributions, etc.", "tt_ltcg": "Profit from selling assets held over one year (stocks, real estate, etc.). Preferential rates: 0%, 15%, or 20% depending on total income.", "tt_deduction_type": "Standard deduction is a fixed amount with no proof needed. Itemized requires listing each deduction (mortgage interest, SALT, charity). Only itemize if total exceeds standard.", "tt_itemized": "Includes: State and Local Taxes (SALT, capped at $40,400 for 2026), mortgage interest, charitable donations, medical expenses (over 7.5% of AGI), etc.", "tt_standard_deduction": "Fixed deduction automatically granted by IRS with no documentation. 2026: Single $16,100, Married Joint $32,200.", "tt_above_line": "Also called adjustments to income. Includes: student loan interest (up to $2,500), HSA contributions, traditional IRA contributions, one-half of SE tax. Available even with standard deduction.", "tt_children": "Children under 17 qualify for Child Tax Credit. 2026 max $2,200 per child, with $1,700 refundable (you get it even if you owe no tax).", "tt_withheld": "Federal income tax withheld from your paycheck by employer (W-2 Box 2). If withholding > actual tax due, you get a refund; otherwise you owe.", "tt_is_se": "Self-employed pay Self-Employment Tax (15.3% = 12.4% Social Security + 2.9% Medicare) but can deduct the employer portion (7.65%).", "tt_agi": "Adjusted Gross Income = Gross Income - Above-the-line deductions. AGI is the threshold benchmark for many credits and deductions.", "tt_taxable_income": "Taxable Income = AGI - Standard/Itemized Deduction. This is the amount actually used to calculate federal income tax.", "tt_federal_tax": "Federal income tax calculated from taxable income using 7 progressive brackets, after subtracting credits like Child Tax Credit.", "tt_fica": "FICA = Social Security Tax (6.2%, cap $184,500) + Medicare Tax (1.45%, no cap). High earners pay additional 0.9% Medicare Tax.", "tt_total_tax": "Sum of Federal Income Tax + FICA/SE Tax. This is your total federal tax liability (state taxes not included).", "tt_effective_rate": "Effective Rate = Total Tax ÷ Gross Income. Reflects your actual tax burden, usually much lower than marginal rate.", "tt_marginal_rate": "Marginal Rate = The rate applied to your last dollar of income. This is your highest bracket, but not all income is taxed at this rate.", "tt_refund": "If your withholding exceeds your actual federal income tax due (plus self-employment tax, if applicable), the difference is a refund; otherwise you owe the difference. FICA withheld from wages is handled directly by your employer and is not part of this comparison \u2014 only federal income tax, and self-employment tax when applicable, are reconciled against withholding when you file.", "tt_bracket": "The US uses a progressive tax system. Income is taxed in segments, each at its corresponding rate, not all at the highest rate.", "tt_ctc": "Child Tax Credit directly reduces your tax liability dollar-for-dollar, making it more valuable than a deduction. 2026: $2,200 per qualifying child.", "tt_se_tax": "Self-Employment Tax covers Social Security and Medicare for self-employed individuals, totaling 15.3%. The employer portion (7.65%) is deductible.", "tt_qbi": "Qualified Business Income Deduction (199A) allows self-employed to deduct 20% of qualified business income, subject to income thresholds.", "tt_amt": "Alternative Minimum Tax prevents high-income taxpayers from using excessive deductions to avoid taxes. This tool does not calculate AMT.", "tt_niit": "Net Investment Income Tax imposes 3.8% on investment income (interest, dividends, capital gains) for high-income individuals. Not calculated here.", "tt_salt": "State and Local Tax deduction is capped at $40,400 for 2026 under OBBBA ($20,200 if Married Filing Separately), phasing down for high earners above $505,000 MAGI. State taxes are not calculated in this tool.", "tt_eitc": "Earned Income Tax Credit is a refundable credit for low-to-moderate income workers. This tool does not calculate EITC.", "tt_ira": "Traditional IRA contributions may be deductible but are subject to income limits. Roth IRA contributions are not deductible but withdrawals in retirement are tax-free.", "tt_hsa": "Health Savings Account contributions are above-the-line deductible. 2026 limits: $4,400 individual, $8,750 family (+$1,000 catch-up if 55+).", "tt_401k": "401(k) contributions reduce taxable income. 2026 employee limit: $24,500 (+$8,000 catch-up if 50+).", "tt_fbir": "FBAR (FinCEN 114): Required if foreign bank accounts exceed $10,000. Form 8938 (FATCA): Required if foreign assets exceed thresholds.", "tt_itin": "Individual Taxpayer Identification Number for foreigners without an SSN who need to file US taxes. Apply through IRS.", "tt_substantial_presence": "≥31 days in current year AND ≥183 days over 3 years (current year + 1/3 of prior year + 1/6 of year before). If met, you are a resident alien.", "tt_treaty": "The US-China tax treaty allows Chinese students/scholars exemption for 5 years (students) or 2-3 years (teachers) on certain income.", "tt_w8ben": "Form submitted by non-resident aliens to payers to claim treaty benefits or reduced withholding rates.", "tt_8843": "Exempt individual statement filed by students/teachers/scholars. Even if substantial presence test is met, first 5 years (students) still treated as non-resident.", "tt_estimated_tax": "Self-employed or those without withholding must pay quarterly (Apr 15, Jun 15, Sep 15, Jan 15). Owing ≥$1,000 may trigger penalties.", "tt_extension": "Form 4868 extends filing deadline to Oct 15, but tax payment is still due Apr 15. Interest and penalties apply to unpaid amounts.", "tt_audit": "An IRS audit reviews your tax return. Keep all supporting documents for at least 3 years (7 years recommended). Respond promptly to CP notices."}};
+        const TOOLTIP_DATA = {"zh": {"tt_tax_year": "选择用哪一年的税率、标准扣除额等规则来计算：2025（官方最终数据）、2026（官方数据）或 2027（预测估算）。2027 数据基于历史通胀调整幅度推算，IRS 官方数据预计 2026 年 10 月发布；发布前请仅作规划参考。", "tt_compare_mode": "选择一个对比组合（如 2026 vs 2027，或 2025 vs 2026 vs 2027），点击「计算税务」后，结果区会展开一张跨税年并排对比表，逐行对比扣除、应税收入、各项税负和退补税。", "tt_filing_status": "申报身份决定了你的税率级距和标准扣除额。\\\n单身税率最高，已婚联合申报可享受更宽的级距和更高的扣除额。", "tt_wages": "W-2 表格 Box 1 中的金额，即你的工资、薪金、小费等已扣税前收入。这是最常见的收入来源。", "tt_self_employment": "1099-NEC 或 Schedule C 报告的收入。自雇人士需缴纳 SE Tax（15.3%），但可扣除一半作为 above-the-line 扣除。", "tt_other_income": "包括银行存款利息（1099-INT）、股息（1099-DIV）、租金收入、失业金、退休金等普通收入。", "tt_ltcg": "持有超过一年的资产（股票、房产等）出售后的利润。税率优惠：0%、15% 或 20%，取决于你的总收入。", "tt_deduction_type": "标准扣除是固定金额，无需证明。分项扣除需逐项列出（房贷利息、州税、慈善捐赠等），只有当总额超过标准扣除时才划算。", "tt_itemized": "包括：州和地方税（SALT，2026 年上限 $40,400）、房贷利息、慈善捐赠、医疗费用（超过 AGI 7.5% 部分）等。", "tt_standard_deduction": "IRS 自动给予的固定扣除额，无需提供任何证明。2026年单身 $16,100，已婚联合 $32,200。", "tt_above_line": "又称 adjustments to income。包括：学生贷款利息（上限 $2,500）、HSA 供款、传统 IRA 供款、自雇税一半扣除等。这些扣除即使选择标准扣除也能享受。", "tt_children": "未满 17 岁的合格子女可享受 Child Tax Credit。2026年每名子女最高 $2,200，其中 $1,700 可退还（即使不欠税也能拿到）。", "tt_withheld": "雇主从你的工资中预扣的联邦所得税（W-2 Box 2）。年终报税时，如果预扣 > 实际应缴，差额退税；反之需补税。", "tt_is_se": "自雇人士需缴纳 Self-Employment Tax（15.3% = 12.4% Social Security + 2.9% Medicare），但可扣除其中一半。", "tt_agi": "Adjusted Gross Income = 总收入 - Above-the-line 扣除。AGI 是许多税收抵免和扣除的门槛基准。", "tt_taxable_income": "Taxable Income = AGI - 标准/分项扣除。这是实际用于计算联邦所得税的金额。", "tt_federal_tax": "根据应税收入按 7 级累进税率计算得出的联邦所得税额，已扣除 Child Tax Credit 等抵免。", "tt_fica": "FICA = Social Security Tax (6.2%, 上限 $184,500) + Medicare Tax (1.45%, 无上限)。高收入者额外 0.9% Medicare Tax。", "tt_total_tax": "联邦所得税 + FICA/SE Tax 的总和。这是你的总联邦税负（不含州税）。", "tt_effective_rate": "Effective Rate = 总税负 ÷ 总收入。反映你实际承担的税负比例，通常远低于边际税率。", "tt_marginal_rate": "Marginal Rate = 你最后一美元收入适用的税率。这是你的最高税率，但不是所有收入都按此税率征税。", "tt_refund": "如果预扣税大于实际应缴的联邦所得税（自雇者需另加自雇税），差额为退税；反之则需补税。工资部分的 FICA 由雇主直接代扣代缴，不计入此项对比——只有联邦所得税、以及自雇税（如适用）才会在报税时与预扣税比较。", "tt_bracket": "美国采用累进税制，收入分段征税。每段收入只按对应税率征税，而非全部收入按最高税率征税。", "tt_ctc": "Child Tax Credit 是直接抵减税额的优惠，比扣除（deduction）更有价值。2026年每名合格子女 $2,200。", "tt_se_tax": "Self-Employment Tax 是自雇人士缴纳的 Social Security 和 Medicare 税，总计 15.3%，但可扣除雇主部分（7.65%）。", "tt_qbi": "Qualified Business Income Deduction（199A）允许自雇人士扣除合格商业收入的 20%，但有收入门槛限制。", "tt_amt": "Alternative Minimum Tax 是替代性最低税，防止高收入者通过过多扣除避税。本工具未计算 AMT。", "tt_niit": "Net Investment Income Tax 对高收入者的投资收入（利息、股息、资本收益等）征收 3.8%。本工具未计算。", "tt_salt": "State and Local Tax 扣除上限（OBBBA 后）为 $40,400，已婚分开报税为 $20,200（高收入者逐步减少，MAGI 超 $505,000 起）。本工具未单独计算州税。", "tt_eitc": "Earned Income Tax Credit 是低收入工作者的可退还抵免。本工具未计算 EITC。", "tt_ira": "Traditional IRA 供款可能可扣除，但受收入限制。Roth IRA 供款不可扣除，但退休时免税提取。", "tt_hsa": "Health Savings Account 供款可 above-the-line 扣除。2026年个人上限 $4,400，家庭 $8,750（55岁以上+$1,000）。", "tt_401k": "401(k) 供款降低应税收入。2026年员工供款上限 $24,500（50岁以上+$8,000 catch-up）。", "tt_fbir": "FBAR（FinCEN 114）：海外银行账户超过 $10,000 需申报。Form 8938（FATCA）：海外资产超过门槛需申报。", "tt_itin": "Individual Taxpayer Identification Number，供没有 SSN 的外国人报税使用。需向 IRS 申请。", "tt_substantial_presence": "当年在美 ≥31 天，且近三年累计 ≥183 天（当年全部 + 前一年 1/3 + 前两年 1/6）。满足则为居民外国人。", "tt_treaty": "中美税收协定规定，中国学生/学者前 5 年（学生）或 2-3 年（教师）可享受部分收入免税或降低税率。", "tt_w8ben": "非居民外国人向付款方提交的表格，用于申请税收协定优惠或降低预扣税率。", "tt_8843": "学生/教师/学者提交的豁免声明，即使满足实质居住测试，前 5 年（学生）仍被视为非居民。", "tt_estimated_tax": "自雇人士或收入无预扣者需每季度预缴税款（4/15, 6/15, 9/15, 1/15）。欠税 ≥$1,000 可能面临罚款。", "tt_extension": "Form 4868 可将报税截止日期延至 10 月 15 日，但税款仍需在 4 月 15 日前缴纳，否则产生利息和罚款。", "tt_audit": "IRS 审计是对报税表的审查。保留所有支持文件至少 3 年（建议 7 年）。收到 CP 系列通知需及时回复。"}, "en": {"tt_tax_year": "Choose which year's brackets, standard deduction, and other rules to calculate with: 2025 (official, final), 2026 (official), or 2027 (projected). 2027 figures are estimates based on typical inflation adjustments; official IRS figures are expected around October 2026 \u2014 treat 2027 as planning guidance only until then.", "tt_compare_mode": "Pick a comparison set (e.g. 2026 vs 2027, or 2025 vs 2026 vs 2027). After you click Calculate, a side-by-side multi-year table expands in the results, comparing deductions, taxable income, each tax, and refund/owed line by line.", "tt_filing_status": "Filing status determines your tax brackets and standard deduction.\\\nSingle has the highest rates; Married Filing Jointly gets wider brackets and higher deductions.", "tt_wages": "Amount from W-2 Box 1. Your pre-tax salary, wages, and tips. This is the most common income source.", "tt_self_employment": "Income reported on 1099-NEC or Schedule C. Self-employed pay SE Tax (15.3%) but can deduct half as an above-the-line deduction.", "tt_other_income": "Includes bank interest (1099-INT), dividends (1099-DIV), rental income, unemployment benefits, retirement distributions, etc.", "tt_ltcg": "Profit from selling assets held over one year (stocks, real estate, etc.). Preferential rates: 0%, 15%, or 20% depending on total income.", "tt_deduction_type": "Standard deduction is a fixed amount with no proof needed. Itemized requires listing each deduction (mortgage interest, SALT, charity). Only itemize if total exceeds standard.", "tt_itemized": "Includes: State and Local Taxes (SALT, capped at $40,400 for 2026), mortgage interest, charitable donations, medical expenses (over 7.5% of AGI), etc.", "tt_standard_deduction": "Fixed deduction automatically granted by IRS with no documentation. 2026: Single $16,100, Married Joint $32,200.", "tt_above_line": "Also called adjustments to income. Includes: student loan interest (up to $2,500), HSA contributions, traditional IRA contributions, one-half of SE tax. Available even with standard deduction.", "tt_children": "Children under 17 qualify for Child Tax Credit. 2026 max $2,200 per child, with $1,700 refundable (you get it even if you owe no tax).", "tt_withheld": "Federal income tax withheld from your paycheck by employer (W-2 Box 2). If withholding > actual tax due, you get a refund; otherwise you owe.", "tt_is_se": "Self-employed pay Self-Employment Tax (15.3% = 12.4% Social Security + 2.9% Medicare) but can deduct the employer portion (7.65%).", "tt_agi": "Adjusted Gross Income = Gross Income - Above-the-line deductions. AGI is the threshold benchmark for many credits and deductions.", "tt_taxable_income": "Taxable Income = AGI - Standard/Itemized Deduction. This is the amount actually used to calculate federal income tax.", "tt_federal_tax": "Federal income tax calculated from taxable income using 7 progressive brackets, after subtracting credits like Child Tax Credit.", "tt_fica": "FICA = Social Security Tax (6.2%, cap $184,500) + Medicare Tax (1.45%, no cap). High earners pay additional 0.9% Medicare Tax.", "tt_total_tax": "Sum of Federal Income Tax + FICA/SE Tax. This is your total federal tax liability (state taxes not included).", "tt_effective_rate": "Effective Rate = Total Tax ÷ Gross Income. Reflects your actual tax burden, usually much lower than marginal rate.", "tt_marginal_rate": "Marginal Rate = The rate applied to your last dollar of income. This is your highest bracket, but not all income is taxed at this rate.", "tt_refund": "If your withholding exceeds your actual federal income tax due (plus self-employment tax, if applicable), the difference is a refund; otherwise you owe the difference. FICA withheld from wages is handled directly by your employer and is not part of this comparison \u2014 only federal income tax, and self-employment tax when applicable, are reconciled against withholding when you file.", "tt_bracket": "The US uses a progressive tax system. Income is taxed in segments, each at its corresponding rate, not all at the highest rate.", "tt_ctc": "Child Tax Credit directly reduces your tax liability dollar-for-dollar, making it more valuable than a deduction. 2026: $2,200 per qualifying child.", "tt_se_tax": "Self-Employment Tax covers Social Security and Medicare for self-employed individuals, totaling 15.3%. The employer portion (7.65%) is deductible.", "tt_qbi": "Qualified Business Income Deduction (199A) allows self-employed to deduct 20% of qualified business income, subject to income thresholds.", "tt_amt": "Alternative Minimum Tax prevents high-income taxpayers from using excessive deductions to avoid taxes. This tool does not calculate AMT.", "tt_niit": "Net Investment Income Tax imposes 3.8% on investment income (interest, dividends, capital gains) for high-income individuals. Not calculated here.", "tt_salt": "State and Local Tax deduction is capped at $40,400 for 2026 under OBBBA ($20,200 if Married Filing Separately), phasing down for high earners above $505,000 MAGI. State taxes are not calculated in this tool.", "tt_eitc": "Earned Income Tax Credit is a refundable credit for low-to-moderate income workers. This tool does not calculate EITC.", "tt_ira": "Traditional IRA contributions may be deductible but are subject to income limits. Roth IRA contributions are not deductible but withdrawals in retirement are tax-free.", "tt_hsa": "Health Savings Account contributions are above-the-line deductible. 2026 limits: $4,400 individual, $8,750 family (+$1,000 catch-up if 55+).", "tt_401k": "401(k) contributions reduce taxable income. 2026 employee limit: $24,500 (+$8,000 catch-up if 50+).", "tt_fbir": "FBAR (FinCEN 114): Required if foreign bank accounts exceed $10,000. Form 8938 (FATCA): Required if foreign assets exceed thresholds.", "tt_itin": "Individual Taxpayer Identification Number for foreigners without an SSN who need to file US taxes. Apply through IRS.", "tt_substantial_presence": "≥31 days in current year AND ≥183 days over 3 years (current year + 1/3 of prior year + 1/6 of year before). If met, you are a resident alien.", "tt_treaty": "The US-China tax treaty allows Chinese students/scholars exemption for 5 years (students) or 2-3 years (teachers) on certain income.", "tt_w8ben": "Form submitted by non-resident aliens to payers to claim treaty benefits or reduced withholding rates.", "tt_8843": "Exempt individual statement filed by students/teachers/scholars. Even if substantial presence test is met, first 5 years (students) still treated as non-resident.", "tt_estimated_tax": "Self-employed or those without withholding must pay quarterly (Apr 15, Jun 15, Sep 15, Jan 15). Owing ≥$1,000 may trigger penalties.", "tt_extension": "Form 4868 extends filing deadline to Oct 15, but tax payment is still due Apr 15. Interest and penalties apply to unpaid amounts.", "tt_audit": "An IRS audit reviews your tax return. Keep all supporting documents for at least 3 years (7 years recommended). Respond promptly to CP notices."}};
 
         let tooltipTimer = null;
         let currentTooltipEl = null;
@@ -4508,13 +4976,25 @@
             setTimeout(detectAdBlock, 3000);
         });
 
-        // Re-render the result explanation in the new language on language switch
+        // Re-render every dynamically generated block in the new language on language switch
         const originalSetLang = setLang;
         setLang = function(lang) {
             originalSetLang(lang);
             if (currentExplanationCtx && document.getElementById('results').style.display !== 'none') {
                 renderResultExplanation(currentExplanationCtx);
             }
+            // Results header year badge + refund/owed card label
+            updateResultsYearBadge();
+            if (currentResult) {
+                const t2 = I18N[currentLang];
+                const rc = document.getElementById('refundCard');
+                if (rc) rc.querySelector('.result-label').textContent = currentResult.refund >= 0 ? t2.refundLabel : t2.owedLabel;
+            }
+            // Multi-year comparison table (row labels, head, title suffix)
+            if (currentResult && lastCalcInput) renderYearComparison(lastCalcInput);
+            // Saved-records list (button labels, empty state) + What-If tables
+            updateHistoryDisplay();
+            if (taxRecords.length) renderCompare(); else renderScenarioSideBySide();
             // Re-render map tooltips / state dropdown names in the new language
             renderStateNames();
             // Re-render the state tax panel in the new language (labels only — no re-calculation)
@@ -5314,8 +5794,15 @@
                 const refundVal = (refund>=0?'+':'-') + '$' + Math.abs(refund).toLocaleString();
                 const yr = r.taxYear || (r.inputs && r.inputs.taxYear) || 2026;
                 const yearLabel = yr >= 2027 ? (yr + ' ' + L('(Est.)','（预测）','(Est.)')) : String(yr);
+                const checked = selectedScenarios.indexOf(r.id) !== -1 ? ' checked' : '';
+                // Only SAVED records (with an id) can join the side-by-side comparison;
+                // the synthetic "Current" row is ephemeral and gets a dash instead.
+                const checkCell = r.id
+                    ? '<td style="text-align:center;"><input type="checkbox" class="scn-check" data-id="'+esc(r.id)+'"'+checked+' onchange="onScenarioCheck(this)" aria-label="compare"></td>'
+                    : '<td style="text-align:center;color:var(--text-secondary);">—</td>';
                 return '<tr class="'+(i===0?'highlight':'')+'">'+
-                    '<td>'+label+' <span class="scenario-badge '+badgeClass+'">'+badgeText+'</span></td>'+
+                    checkCell+
+                    '<td>'+esc(label)+' <span class="scenario-badge '+badgeClass+'">'+badgeText+'</span></td>'+
                     '<td>'+yearLabel+'</td>'+
                     '<td>$'+gross.toLocaleString()+'</td>'+
                     '<td>$'+federal.toLocaleString()+'</td>'+
@@ -5326,6 +5813,142 @@
                     '<td style="color:'+refundColor+';font-weight:600;">'+refundVal+'</td>'+
                 '</tr>';
             }).join('');
+            renderScenarioSideBySide();
+        }
+
+        function onScenarioCheck(box) {
+            const id = box.getAttribute('data-id');
+            if (box.checked) {
+                if (selectedScenarios.length >= 3) {
+                    box.checked = false;
+                    alert(L('You can compare at most 3 scenarios at a time.', '最多同时对比 3 个场景。', 'Puede comparar como máximo 3 escenarios a la vez.'));
+                    return;
+                }
+                if (selectedScenarios.indexOf(id) === -1) selectedScenarios.push(id);
+            } else {
+                selectedScenarios = selectedScenarios.filter(function (x) { return x !== id; });
+            }
+            renderScenarioSideBySide();
+        }
+
+        // Kaan's feature: pick 2–3 saved records (e.g. "W-2 job" vs "full freelance")
+        // and read every input and result side by side on the same page, with a Δ
+        // column when exactly two are selected. Numbers are recomputed from each
+        // record's stored inputs with the current engine so old records stay honest.
+        function renderScenarioSideBySide() {
+            const wrap = document.getElementById('scenarioSideBySide');
+            if (!wrap) return;
+            const recs = selectedScenarios
+                .map(function (id) { return taxRecords.find(function (r) { return r.id === id; }); })
+                .filter(Boolean);
+            if (recs.length < 2) { wrap.style.display = 'none'; return; }
+            const thead = document.getElementById('scnSbsHead');
+            const tbody = document.getElementById('scnSbsBody');
+            if (!thead || !tbody) return;
+
+            const cols = recs.map(function (r, i) {
+                const inp = r.inputs ? Object.assign({}, r.inputs, { status: r.filingStatus }) : null;
+                const c = inp ? computeTax(r.taxYear || 2026, inp) : null;
+                return {
+                    rec: r, inp: inp,
+                    label: r.label || (L('Record', '记录', 'Registro') + ' ' + (i + 1)),
+                    year: r.taxYear || 2026,
+                    deduction: c ? c.deduction : null,
+                    agi: c ? c.agi : (r.agi || 0),
+                    taxableIncome: c ? c.taxableIncome : (r.taxableIncome || 0),
+                    federal: c ? c.federalTaxAfterCredits : (r.federalTax || 0),
+                    fica: c ? c.ficaTax : (r.ficaTax || 0),
+                    total: c ? c.totalTax : (r.totalTax || 0),
+                    effectiveRate: c ? c.effectiveRate : (r.effectiveRate || 0),
+                    marginalRate: (c ? c.marginalRate : (r.marginalRate || 0)) * 100,
+                    gross: c ? c.grossIncome : (r.grossIncome || 0),
+                    refund: c ? c.refund : (typeof r.refund === 'number' ? r.refund : 0)
+                };
+            });
+            const two = cols.length === 2;
+
+            const statusName = function (s) {
+                const map = {
+                    single: L('Single', '单身', 'Soltero'),
+                    married_joint: L('Married Filing Jointly', '已婚联合申报', 'Casado en Conjunto'),
+                    married_separate: L('Married Filing Separately', '已婚分开申报', 'Casado por Separado'),
+                    head_household: L('Head of Household', '户主', 'Cabeza de Familia')
+                };
+                return map[s] || s;
+            };
+
+            let head = '<tr><th style="text-align:left;">' + L('Metric', '指标', 'Métrica') + '</th>';
+            cols.forEach(function (c) {
+                head += '<th>' + esc(c.label) + '<div class="yc-est">' + yearHeadLabel(c.year) + '</div></th>';
+            });
+            if (two) head += '<th>Δ</th>';
+            thead.innerHTML = head + '</tr>';
+
+            function textRow(label, vals) {
+                let h = '<tr><td style="font-weight:600;">' + label + '</td>';
+                vals.forEach(function (v) { h += '<td>' + v + '</td>'; });
+                if (two) h += '<td style="color:var(--text-secondary);">—</td>';
+                return h + '</tr>';
+            }
+            function numRow(label, key, higherIsBetter, isInput) {
+                let h = '<tr><td style="font-weight:600;">' + label + '</td>';
+                cols.forEach(function (c) {
+                    const v = isInput ? ((c.inp && typeof c.inp[key] === 'number') ? c.inp[key] : null) : c[key];
+                    h += '<td>' + (v === null ? '—' : moneyAbs(v)) + '</td>';
+                });
+                if (two) {
+                    const a = isInput ? (c0v(0)) : cols[0][key];
+                    const b = isInput ? (c0v(1)) : cols[1][key];
+                    h += (a === null || b === null) ? '<td style="color:var(--text-secondary);">—</td>' : diffCell(b - a, higherIsBetter);
+                }
+                function c0v(i) { return (cols[i].inp && typeof cols[i].inp[key] === 'number') ? cols[i].inp[key] : null; }
+                return h + '</tr>';
+            }
+            function dividerRow(label) {
+                return '<tr class="scn-divider-row"><td colspan="' + (cols.length + (two ? 2 : 1)) + '">' + label + '</td></tr>';
+            }
+
+            let html = '';
+            html += dividerRow(L('INPUTS', '输入', 'ENTRADAS'));
+            html += textRow(L('Tax year', '税年', 'Año fiscal'), cols.map(function (c) { return yearHeadLabel(c.year); }));
+            html += textRow(L('Filing status', '申报身份', 'Estado civil'), cols.map(function (c) { return statusName(c.rec.filingStatus); }));
+            html += numRow(L('Wages (W-2)', '工资收入（W-2）', 'Sueldos (W-2)'), 'wages', null, true);
+            html += numRow(L('Self-employment income', '自雇收入', 'Ingreso de trabajo propio'), 'seIncome', null, true);
+            html += numRow(L('Other ordinary income', '其他普通收入', 'Otros ingresos'), 'otherIncome', null, true);
+            html += numRow(L('Long-term capital gains', '长期资本利得', 'Ganancias de capital LP'), 'ltcg', null, true);
+            html += numRow(L('Tax withheld', '预扣税', 'Impuesto retenido'), 'withheld', null, true);
+            html += dividerRow(L('RESULTS', '结果', 'RESULTADOS'));
+            html += numRow(L('Deduction applied', '适用扣除额', 'Deducción aplicada'), 'deduction', true);
+            html += numRow(L('AGI', '调整后总收入 AGI', 'AGI'), 'agi', null);
+            html += numRow(L('Taxable income', '应税收入', 'Ingreso gravable'), 'taxableIncome', false);
+            html += numRow(L('Federal income tax (after credits)', '联邦所得税（抵免后）', 'Impuesto federal (tras créditos)'), 'federal', false);
+            html += numRow(L('FICA / SE tax', 'FICA / 自雇税', 'FICA / imp. trabajo propio'), 'fica', false);
+            html += numRow(L('Total tax', '总税负', 'Impuesto total'), 'total', false);
+
+            // Effective / marginal rates
+            html += '<tr><td style="font-weight:600;">' + L('Effective rate', '有效税率', 'Tasa efectiva') + '</td>';
+            cols.forEach(function (c) { html += '<td>' + c.effectiveRate.toFixed(2) + '%</td>'; });
+            if (two) html += pctDiffCell(cols[1].effectiveRate - cols[0].effectiveRate, false);
+            html += '</tr>';
+            html += '<tr><td style="font-weight:600;">' + L('Marginal rate', '边际税率', 'Tasa marginal') + '</td>';
+            cols.forEach(function (c) { html += '<td>' + c.marginalRate.toFixed(0) + '%</td>'; });
+            if (two) html += pctDiffCell(cols[1].marginalRate - cols[0].marginalRate, false);
+            html += '</tr>';
+
+            // After-tax income (gross − total tax): the number Kaan's decision hinges on
+            html += '<tr><td style="font-weight:600;">' + L('After-tax income', '税后净收入', 'Ingreso neto') + '</td>';
+            cols.forEach(function (c) { html += '<td style="font-weight:700;">' + moneyAbs(c.gross - c.total) + '</td>'; });
+            if (two) html += diffCell((cols[1].gross - cols[1].total) - (cols[0].gross - cols[0].total), true);
+            html += '</tr>';
+
+            // Refund (+) / owed (−)
+            html += '<tr><td style="font-weight:600;">' + L('Refund (+) / owed (−)', '应退（+）/ 应补（−）', 'Reembolso (+) / a pagar (−)') + '</td>';
+            cols.forEach(function (c) { html += '<td style="color:' + (c.refund >= 0 ? 'var(--success)' : 'var(--danger)') + ';">' + signedMoney(c.refund) + '</td>'; });
+            if (two) html += diffCell(cols[1].refund - cols[0].refund, true);
+            html += '</tr>';
+
+            tbody.innerHTML = html;
+            wrap.style.display = 'block';
         }
 
         function renderStateCompareChart() {
