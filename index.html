@@ -972,6 +972,28 @@
         #scenarioTable tr.highlight { background: #e4ebfd; font-weight: 600; }
         #scenarioTable td:last-child { text-align: right; }
 
+        /* ===== Guided walkthrough (pinned floater + step highlights) ===== */
+        .tour-float{position:fixed;right:14px;top:76px;width:332px;max-width:calc(100vw - 24px);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 34px rgba(15,23,42,.20);z-index:800;padding:14px 16px;font-size:.86rem;}
+        .tour-float .tf-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font-weight:800;color:var(--primary-dark);font-size:.9rem;line-height:1.35;}
+        .tour-float .tf-close{border:none;background:none;font-size:1.05rem;cursor:pointer;color:var(--text-secondary);line-height:1;padding:2px;flex:none;}
+        .tour-float .tf-progress{font-size:.72rem;color:var(--text-secondary);margin-top:2px;}
+        .tour-float .tf-dots{display:flex;gap:4px;margin:8px 0 10px;flex-wrap:wrap;}
+        .tour-float .tf-dot{width:8px;height:8px;border-radius:50%;background:#dbe3f0;}
+        .tour-float .tf-dot.done{background:var(--success);}
+        .tour-float .tf-dot.on{background:var(--primary);transform:scale(1.25);}
+        .tour-float .tf-text{color:var(--text-primary);line-height:1.6;margin-bottom:12px;}
+        .tour-float .tf-btns{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;}
+        .tour-float .tf-btns .btn{padding:6px 12px;font-size:.78rem;}
+        .tour-highlight{animation:tourPulse 1.1s ease-in-out infinite;border-radius:10px;}
+        @keyframes tourPulse{0%,100%{box-shadow:0 0 0 3px rgba(29,78,216,.55);}50%{box-shadow:0 0 0 9px rgba(29,78,216,.10);}}
+        .tour-flash{animation:none !important;box-shadow:0 0 0 4px rgba(22,163,74,.6) !important;border-radius:10px;}
+        .tour-start-row{margin:0 0 14px;}
+        .tour-start-btn .i18n-zh,.tour-start-btn .i18n-es{display:none;}
+        body.lang-zh .tour-start-btn .i18n-zh{display:inline;}
+        body.lang-zh .tour-start-btn .i18n-en{display:none;}
+        body.lang-es .tour-start-btn .i18n-es{display:inline;}
+        body.lang-es .tour-start-btn .i18n-en{display:none;}
+        @media(max-width:640px){.tour-float{right:8px;width:calc(100vw - 16px);font-size:.82rem;}}
         .stale-warning-box {
             background: #fdecea; border-left: 4px solid var(--danger);
             padding: 10px 14px; border-radius: 0 8px 8px 0; margin: -8px 0 16px;
@@ -2139,8 +2161,8 @@
         <div class="section" id="tutorials">
             <div class="card">
                 <div class="card-title"><div class="icon">🎓</div><span><span class="i18n-zh">使用教程</span><span class="i18n-en">Tutorials</span><span class="i18n-es">Tutoriales</span></span></div>
-                <div class="i18n-zh content-intro">从 5 分钟快速估算到自由职业者季度预估税，手把手学会本计算器的每一项功能。</div>
-                <div class="i18n-en content-intro">From a 5-minute quick estimate to quarterly taxes for freelancers — master every feature of this calculator, step by step.</div><div class="i18n-es content-intro">Desde una estimación rápida de 5 minutos hasta los impuestos trimestrales para autónomos: domine cada función de esta calculadora, paso a paso.</div>
+                <div class="i18n-zh content-intro">从 5 分钟快速估算到自由职业者季度预估税，手把手学会本计算器的每一项功能。每篇教程都带<strong>「▶ 开始互动引导」</strong>按钮：点击后右上角会出现一个跟随浮窗，切换页面也不消失，并按步骤高亮闪烁提示当前要操作的位置——完成一步自动进入下一步。</div>
+                <div class="i18n-en content-intro">From a 5-minute quick estimate to quarterly taxes for freelancers — master every feature of this calculator, step by step. Every tutorial has a <strong>"▶ Start interactive walkthrough"</strong> button: it pins a floating guide to the top-right that survives tab switches and highlights the exact control for each step, automatically advancing as you complete it.</div><div class="i18n-es content-intro">Desde una estimación rápida de 5 minutos hasta los impuestos trimestrales para autónomos: domine cada función, paso a paso. Cada tutorial incluye una <strong>guía interactiva</strong> fijada arriba a la derecha que resalta cada control y avanza automáticamente.</div>
 
                 <!-- Tutorial 1 -->
                 <div class="guide-section">
@@ -2149,16 +2171,18 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t1')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>适合第一次使用、只想快速了解大致税负的用户。</p>
                             <ol class="steps">
                                 <li>在「税务计算」标签页确认处于<strong>便捷模式</strong>（模式切换按钮位于该标签页内容的顶部）。</li>
                                 <li>选择申报身份：单身、已婚联合、已婚分别或户主。</li>
                                 <li>输入工资收入——即 W-2 表格 Box 1 的金额。</li>
-                                <li>输入已预扣的联邦所得税——W-2 表格 Box 2 的金额。</li>
-                                <li>点击「计算税务」按钮查看结果：退税/补税金额、有效税率和边际税率一目了然。</li>
+                                <li>点击「计算税务」按钮。</li>
+                                <li>查看结果：联邦所得税、总税负、有效税率和边际税率一目了然。想对比预扣税并查看退税/补税金额，切换到复杂模式填写「预扣税」即可。</li>
                             </ol>
-                            <div class="tip-box"><p>💡 还没有 W-2？用预计年薪和「预扣 ≈ 年薪 × 10%」做粗略估算，也能快速了解大致税负。</p></div>
+                            <div class="tip-box"><p>💡 还没有 W-2？直接用预计年薪估算即可，同样能快速了解大致税负。</p></div>
                         </div>
                         <div class="i18n-en">
                             <p>Perfect for first-time users who want a fast picture of their tax situation.</p>
@@ -2166,10 +2190,10 @@
                                 <li>In the Calculator tab, make sure you are in <strong>Quick Mode</strong> (the mode toggle sits at the top of that tab's content).</li>
                                 <li>Select your filing status: Single, Married Filing Jointly, Married Filing Separately, or Head of Household.</li>
                                 <li>Enter your wages — the amount in Box 1 of your W-2.</li>
-                                <li>Enter your federal income tax withheld — Box 2 of your W-2.</li>
-                                <li>Click the calculate button and read the results: refund or amount owed, plus your effective and marginal rates.</li>
+                                <li>Click the "Calculate Tax" button.</li>
+                                <li>Read the results: federal income tax, total tax, and your effective and marginal rates at a glance. To compare against your withholding and see the refund/owed figure, switch to Advanced Mode and fill in "Federal Tax Withheld."</li>
                             </ol>
-                            <div class="tip-box"><p>💡 No W-2 yet? Estimate with your expected annual salary and a rough withholding of about 10% of pay — enough for a quick ballpark.</p></div>
+                            <div class="tip-box"><p>💡 No W-2 yet? Just use your expected annual salary — enough for a quick ballpark.</p></div>
                         </div>
                     </div>
                 </div>
@@ -2181,6 +2205,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t2')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>复杂模式覆盖 Form 1040 的主要字段，逐项说明如下：</p>
                             <ol class="steps">
@@ -2219,6 +2245,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t3')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>把每次计算保存下来，就能追踪全年的税负变化。</p>
                             <ol class="steps">
@@ -2249,6 +2277,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t4')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>情景：你是自由设计师，预计 2026 年净自雇收入 $80,000，需要估算季度预估税。</p>
                             <ol class="steps">
@@ -2281,11 +2311,13 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t5')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>情景：你是 W-2 员工，想确认 2026 年的预扣税是否足够，避免明年 4 月补税。</p>
                             <ol class="steps">
                                 <li>用最近一张工资单，把「本年度累计应税工资」年化（除以已过去月数 × 12）。</li>
-                                <li>在计算器（便捷模式即可）输入年化工资和年化预扣税（W-2 Box 2 累计值同样年化）。</li>
+                                <li>在计算器中切换到<strong>复杂模式</strong>，输入年化工资和年化预扣税（W-2 Box 2 累计值同样年化；「预扣税」字段仅在复杂模式显示）。</li>
                                 <li>点击计算，对比结果中的「总税额」与年化预扣税。</li>
                                 <li>如果预扣明显不足（差额超过约 $1,000），向雇主提交新的 W-4 表格提高预扣额。</li>
                                 <li>每季度或加薪后重新检查一次，全年保持预扣与税负同步。</li>
@@ -2295,8 +2327,8 @@
                         <div class="i18n-en">
                             <p>Scenario: you are a W-2 employee and want to confirm your 2026 withholding is on track, avoiding a surprise bill next April.</p>
                             <ol class="steps">
-                                <li>Take your latest pay stub and annualize the year-to-date taxable wages (divide by months elapsed, multiply by 12).</li>
-                                <li>In the calculator (Quick Mode is fine), enter the annualized wages and annualized withholding (annualize the year-to-date Box 2 amount the same way).</li>
+                                <li>Take your most recent pay stub and annualize the year-to-date taxable wages (divide by the months elapsed, then multiply by 12).</li>
+                                <li>In the calculator, switch to <strong>Advanced Mode</strong>, then enter the annualized wages and annualized withholding (annualize the year-to-date Box 2 amount the same way; the withholding field only appears in Advanced Mode).</li>
                                 <li>Click calculate and compare "Total Tax" against your annualized withholding.</li>
                                 <li>If withholding falls short by more than about $1,000, submit a new Form W-4 to your employer to increase it.</li>
                                 <li>Recheck each quarter or after any raise to keep withholding aligned with your actual liability.</li>
@@ -2313,6 +2345,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t6')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>州税标签页覆盖全部 50 个州 + 华盛顿特区，用地图点选即可估算州所得税。</p>
                             <ol class="steps">
@@ -2347,6 +2381,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t7')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>想知道同样的收入去年、今年、明年各要交多少税？或者在纠结把一笔大额可扣除支出放在今年还是明年？跨税年对比功能就是为此设计的——现在支持 2025（官方最终）、2026（官方）与 2027（预测）三个税年的任意组合。</p>
                             <ol class="steps">
@@ -2381,6 +2417,8 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="guide-content article">
+                        <div class="tour-start-row"><button type="button" class="btn btn-primary btn-sm tour-start-btn" onclick="startTour('t8')"><span class="i18n-zh">▶ 开始互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar guía interactiva (panel fijado + pasos resaltados)</span></button></div>
+                        
                         <div class="i18n-zh">
                             <p>在决定「要不要辞职做全职自由职业」「要不要接受这份报价」之前，最想知道的其实是：两种选择的<strong>税后净收入</strong>差多少。场景对比功能让你把任意几种情况分别算出来、保存下来，再在同一页里逐行并排对比——不用再开两个浏览器标签页手动抄数字。</p>
                             <ol class="steps">
@@ -3040,6 +3078,8 @@
             <p>Tax rules last updated: July 2026 · Sources: IRS Rev. Proc. 2025-32 / SSA / OBBBA</p>
         </div>
     </footer>
+
+    <div class="tour-float" id="tourFloat" style="display:none;"></div>
 
     <div class="modal-overlay" id="saveModal">
         <div class="modal">
@@ -4758,6 +4798,307 @@
 
         
         
+        // ===================== Guided Walkthroughs =====================
+        // Pinned floating guide (top-right, never covering the nav) that survives tab
+        // switches, highlights the control(s) for the current step with a pulsing
+        // outline, auto-detects when the user has completed the step, and advances.
+        // T() picks the current language; tours re-render on language switch.
+        function T(en, zh, es) { return L(en, zh, es); }
+
+        const GUIDED_TOURS = {
+            t1: { title: function(){ return T('Quick Estimate in 5 Minutes', '5 分钟快速估算（便捷模式）', 'Estimación rápida en 5 minutos'); }, steps: [
+                { tab: 'calculator', targets: ['.mode-toggle button[data-mode="quick"]'],
+                  done: function(){ return currentMode === 'quick'; },
+                  text: function(){ return T('Make sure you are in Quick Mode (this advances automatically once you are).', '确认处于「便捷模式」（已处于时会自动进入下一步）。', 'Asegúrese de estar en Modo Rápido (avanza solo).'); } },
+                { tab: 'calculator', targets: ['#filingStatus'],
+                  done: function(){ return tourTouched('filingStatus'); },
+                  text: function(){ return T('Pick your filing status. Keeping the default "Single"? Just press Next.', '选择申报身份。保持默认「单身」也可以，直接点「下一步」。', 'Elija su estado civil; si mantiene "Soltero", pulse Siguiente.'); } },
+                { tab: 'calculator', targets: ['#wages'],
+                  done: function(){ return parseFloat(document.getElementById('wages').value) > 0; },
+                  text: function(){ return T('Enter your wages — W-2 Box 1 (or your expected annual salary).', '输入工资收入——W-2 表格 Box 1 的金额（没有 W-2 就填预计年薪）。', 'Ingrese sus sueldos: W-2 casilla 1 (o su salario anual estimado).'); } },
+                { tab: 'calculator', targets: ['#btnCalc'],
+                  done: function(){ return !!currentResult; },
+                  text: function(){ return T('Click "Calculate Tax".', '点击「计算税务」按钮。', 'Haga clic en "Calcular".'); } },
+                { tab: 'calculator', targets: ['#results .result-grid'],
+                  done: null,
+                  text: function(){ return T('Read your federal tax, total tax, and effective/marginal rates here. For refund vs withholding, switch to Advanced Mode. Press Finish when done.', '在这里查看联邦所得税、总税负、有效/边际税率。想看退税/补税请切换复杂模式填预扣税。看完点「完成」。', 'Lea aquí su impuesto federal y tasas. Pulse Terminar al acabar.'); } }
+            ] },
+            t2: { title: function(){ return T('Advanced Mode: Field by Field', '复杂模式字段逐项引导', 'Modo avanzado: campo por campo'); }, steps: [
+                { tab: 'calculator', targets: ['.mode-toggle button[data-mode="complex"]'],
+                  done: function(){ return currentMode === 'complex'; },
+                  text: function(){ return T('Switch to Advanced Mode using the toggle at the top of the Calculator tab.', '用页面顶部的模式切换按钮切换到「复杂模式」。', 'Cambie a Modo Avanzado con el interruptor superior.'); } },
+                { tab: 'calculator', targets: ['#wages'], done: function(){ return tourTouched('wages'); },
+                  text: function(){ return T('Wages: taxable W-2 Box 1 amount. Enter a value (or 0) — then it advances.', '工资收入：W-2 Box 1 的应税工资。输入金额（可为 0）即进入下一步。', 'Sueldos: casilla 1 del W-2. Ingrese un valor (o 0).'); } },
+                { tab: 'calculator', targets: ['#selfEmployment', '#seCheckboxGroup'],
+                  done: function(){ return tourTouched('selfEmployment') || tourTouched('isSelfEmployed'); },
+                  text: function(){ return T('Self-employment income (1099-NEC / Schedule C net profit). Tick "I am self-employed" so the 15.3% SE tax is calculated. No SE income? Press Next.', '自雇收入：1099-NEC / Schedule C 净利润，并勾选「我是自雇人士」才会计算 15.3% 自雇税。没有则点「下一步」。', 'Ingreso de trabajo propio; marque la casilla para calcular el SE tax. Si no aplica, Siguiente.'); } },
+                { tab: 'calculator', targets: ['#otherIncome'], done: function(){ return tourTouched('otherIncome'); },
+                  text: function(){ return T('Other ordinary income: interest, rent, short-term gains… (0 is fine — press Next to skip).', '其他普通收入：利息、租金、短期资本利得等（没有就点「下一步」）。', 'Otros ingresos ordinarios (0 está bien; Siguiente para omitir).'); } },
+                { tab: 'calculator', targets: ['#ltcg'], done: function(){ return tourTouched('ltcg'); },
+                  text: function(){ return T('Long-term capital gains (assets held > 1 year) — taxed at 0/15/20% separately.', '长期资本利得：持有超一年的资产收益，按 0/15/20% 单独计税。', 'Ganancias de capital a largo plazo (0/15/20%).'); } },
+                { tab: 'calculator', targets: ['#aboveLineDeductions'], done: function(){ return tourTouched('aboveLineDeductions'); },
+                  text: function(){ return T('Above-the-line deductions: traditional IRA, student-loan interest, HSA…', 'Above-the-line 扣除：传统 IRA、学生贷款利息、HSA 供款等。', 'Deducciones "above-the-line": IRA, intereses de préstamos estudiantiles…'); } },
+                { tab: 'calculator', targets: ['#deductionType'], done: function(){ return tourTouched('deductionType'); },
+                  text: function(){ return T('Deduction type: standard by default; choose "Itemized" to enter your own total.', '扣除方式：默认标准扣除；切「逐项扣除」可输入自己的总额比较。', 'Tipo de deducción: estándar o detallada.'); } },
+                { tab: 'calculator', targets: ['#childrenCount'], done: function(){ return tourTouched('childrenCount'); },
+                  text: function(){ return T('Qualifying children under 17 — each is worth up to the Child Tax Credit.', '未满 17 岁的合格子女数量——每名可享儿童税收抵免。', 'Hijos calificados menores de 17.'); } },
+                { tab: 'calculator', targets: ['#withheld'], done: function(){ return tourTouched('withheld'); },
+                  text: function(){ return T('Federal tax withheld (W-2 Box 2 + estimated payments) — used for the refund/owed line.', '预扣税：W-2 Box 2 加已预缴的预估税——用于计算退税/补税。', 'Impuesto federal retenido (casilla 2 del W-2).'); } },
+                { tab: 'calculator', targets: ['#btnCalc'], done: function(){ return !!currentResult; },
+                  text: function(){ return T('Click Calculate — the results break down income tax, FICA/SE tax, and refund/owed.', '点击「计算税务」——结果会分解所得税、FICA/自雇税与退/补税。', 'Haga clic en Calcular para ver el desglose.'); } }
+            ] },
+            t3: { title: function(){ return T('Saving Records & the Comparison Chart', '保存记录与对比图表', 'Guardar registros y comparar'); }, steps: [
+                { tab: 'calculator', targets: ['#btnCalc'], done: function(){ return !!currentResult; },
+                  text: function(){ return T('First run any calculation (enter wages, click Calculate).', '先完成一次计算（输入工资后点「计算税务」）。', 'Primero complete un cálculo.'); } },
+                { tab: 'calculator', targets: ['#btnSave'],
+                  onEnter: function(s){ s.rec0 = taxRecords.length; },
+                  done: function(s){ return taxRecords.length > s.rec0; },
+                  text: function(){ return T('Click "Save Record" below the results and give it a label like "January 2026".', '点击结果区底部的「保存本次记录」，命名如「2026 年 1 月」。', 'Pulse "Guardar registro" y póngale nombre.'); } },
+                { tab: 'history', targets: ['#historyList'], done: null,
+                  text: function(){ return T('This is the History tab: every saved record lives here — delete individually, or use Download JSON in the results to keep them across sessions. Press Next.', '这里是「历史记录」页：所有已保存记录都在此，可逐条删除；需要长期保存请在结果区下载 JSON。点「下一步」。', 'Esta es la pestaña Historial. Pulse Siguiente.'); } },
+                { tab: 'compare', targets: ['#mainChartContainer', '#scenarioPanel'], done: null,
+                  text: function(){ return T('And this is the Compare tab: the chart compares your saved records, and the What-If table below supports side-by-side scenario comparison. Press Finish.', '这里是「对比图表」页：图表对比各条记录，下方「情景对比」表还支持并排对比场景。点「完成」。', 'Esta es la pestaña Comparar. Pulse Terminar.'); } }
+            ] },
+            t4: { title: function(){ return T('Freelancer: Quarterly Estimated Taxes', '自由职业者估算季度预估税', 'Autónomo: impuestos trimestrales'); }, steps: [
+                { tab: 'calculator', targets: ['.mode-toggle button[data-mode="complex"]'],
+                  done: function(){ return currentMode === 'complex'; },
+                  text: function(){ return T('Switch to Advanced Mode.', '切换到「复杂模式」。', 'Cambie a Modo Avanzado.'); } },
+                { tab: 'calculator', targets: ['#filingStatus'],
+                  done: function(){ return document.getElementById('filingStatus').value === 'single'; },
+                  text: function(){ return T('Set filing status to "Single" for this scenario.', '本情景将申报身份设为「单身」。', 'Estado civil: "Soltero".'); } },
+                { tab: 'calculator', targets: ['#selfEmployment', '#seCheckboxGroup'],
+                  done: function(){ return parseFloat(document.getElementById('selfEmployment').value) > 0 && document.getElementById('isSelfEmployed').checked; },
+                  text: function(){ return T('Leave wages at 0, enter 80000 in Self-Employment Income, and tick "I am self-employed".', '工资留 0，在「自雇收入」输入 80000，并勾选「我是自雇人士」。', 'Ingrese 80000 en trabajo propio y marque la casilla.'); } },
+                { tab: 'calculator', targets: ['#withheld', '#btnCalc'],
+                  done: function(){ return currentResult && currentResult.inputs && currentResult.inputs.seIncome > 0; },
+                  text: function(){ return T('Set withholding to 0 (nothing prepaid yet) and click Calculate.', '预扣税填 0（假设尚未预缴），点击「计算税务」。', 'Retención 0 y Calcular.'); } },
+                { tab: 'calculator', targets: ['#resTotalTax'], done: null,
+                  text: function(){ return T('Read "Total Tax" (income tax + SE tax). Divide it by 4 — that is roughly each quarterly payment (Form 1040-ES: Apr 15 / Jun 15 / Sep 15 / Jan 15). Press Finish.', '查看「总税负」（所得税 + 自雇税），除以 4 即每季度大致应预缴额（Form 1040-ES：4/15、6/15、9/15、1/15）。点「完成」。', 'Divida el impuesto total entre 4: ese es su pago trimestral. Terminar.'); } }
+            ] },
+            t5: { title: function(){ return T('W-2 Employee: Withholding Check', 'W-2 雇员检查预扣税是否足够', 'Empleado W-2: revisión de retención'); }, steps: [
+                { tab: 'calculator', targets: ['.mode-toggle button[data-mode="complex"]'],
+                  done: function(){ return currentMode === 'complex'; },
+                  text: function(){ return T('Switch to Advanced Mode (the withholding field only appears there).', '切换到「复杂模式」（预扣税字段仅在复杂模式显示）。', 'Cambie a Modo Avanzado (la retención solo aparece allí).'); } },
+                { tab: 'calculator', targets: ['#wages'],
+                  done: function(){ return parseFloat(document.getElementById('wages').value) > 0; },
+                  text: function(){ return T('Enter your ANNUALIZED wages: year-to-date taxable wages ÷ months elapsed × 12.', '输入「年化」工资：本年度累计应税工资 ÷ 已过月数 × 12。', 'Ingrese sus sueldos anualizados.'); } },
+                { tab: 'calculator', targets: ['#withheld'],
+                  done: function(){ return tourTouched('withheld'); },
+                  text: function(){ return T('Enter your annualized withholding (annualize the W-2 Box 2 year-to-date figure the same way).', '输入年化预扣税（W-2 Box 2 累计值按同样方法年化）。', 'Ingrese la retención anualizada.'); } },
+                { tab: 'calculator', targets: ['#btnCalc'], done: function(){ return !!currentResult; },
+                  text: function(){ return T('Click Calculate.', '点击「计算税务」。', 'Calcular.'); } },
+                { tab: 'calculator', targets: ['#refundCard'], done: null,
+                  text: function(){ return T('Check the Refund/Owed card: owing more than about $1,000 means your withholding falls short — submit a new W-4 to your employer. Press Finish.', '查看「应退/补」卡片：补税超过约 $1,000 说明预扣不足——向雇主提交新 W-4 提高预扣。点「完成」。', 'Revise la tarjeta Reembolso/A pagar. Terminar.'); } }
+            ] },
+            t6: { title: function(){ return T('Using the State Tax Calculator', '使用州税地图计算器', 'Calculadora de impuestos estatales'); }, steps: [
+                { tab: 'states', targets: ['#stateSelect'],
+                  done: function(){ return typeof currentState !== 'undefined' && !!currentState; },
+                  text: function(){ return T('Pick a state on the map or from this dropdown.', '在地图上点击一个州，或用这个下拉列表选择。', 'Elija un estado en el mapa o la lista.'); } },
+                { tab: 'states', targets: ['#stateIncome'],
+                  done: function(){ var el = document.getElementById('stateIncome'); return !el || parseFloat(el.value) > 0; },
+                  text: function(){ return T('Enter your annual income (no-income-tax states skip straight ahead).', '输入年收入（无州所得税的州会直接跳过此步）。', 'Ingrese su ingreso anual (los estados sin impuesto se omiten).'); } },
+                { tab: 'states', targets: ['#statePanel .btn-primary'],
+                  done: function(){ return !document.getElementById('stateIncome') || (typeof lastStateResult !== 'undefined' && !!lastStateResult); },
+                  text: function(){ return T('Click "Estimate State Tax".', '点击「计算州税」。', 'Haga clic en "Calcular".'); } },
+                { tab: 'states', targets: ['#statePanel'], done: null,
+                  text: function(){ return T('Read the state tax, effective/top rates, bracket table, and take-home pay. The comparison section below ranks the same income across all 51 states/DC. Press Finish.', '查看州税金额、有效/最高税率、级距表与税后实得；下方还能把同一收入在 51 个州/特区排序对比。点「完成」。', 'Lea el resultado estatal. Terminar.'); } }
+            ] },
+            t7: { title: function(){ return T('Multi-Year Comparison (2025/2026/2027)', '跨税年对比（2025/2026/2027）', 'Comparación multianual'); }, steps: [
+                { tab: 'calculator', targets: ['#compareModeSelect'],
+                  done: function(){ return document.getElementById('compareModeSelect').value !== 'none'; },
+                  text: function(){ return T('In "Compare Tax Years", pick a set: 2025 vs 2026, 2026 vs 2027 (projected), or all three.', '在「跨税年对比」下拉框选择组合：2025 vs 2026、2026 vs 2027（预测）或三年全对比。', 'Elija una combinación en "Comparar Años Fiscales".'); } },
+                { tab: 'calculator', targets: ['#wages'],
+                  done: function(){ return parseFloat(document.getElementById('wages').value) > 0; },
+                  text: function(){ return T('Enter your income as usual.', '照常输入收入。', 'Ingrese su ingreso.'); } },
+                { tab: 'calculator', targets: ['#btnCalc'],
+                  done: function(){ return document.getElementById('yearCompareSection').style.display !== 'none'; },
+                  text: function(){ return T('Click Calculate — the Multi-Year Comparison table expands below the results.', '点击「计算税务」——结果下方会展开跨税年对比表。', 'Calcule: la tabla multianual se despliega abajo.'); } },
+                { tab: 'calculator', targets: ['#yearCompareSection'], done: null,
+                  text: function(){ return T('Each selected year is a column; Δ columns between adjacent years show the change — green = better for you, red = worse. Press Finish.', '各年并排成列，相邻年之间的 Δ 列显示差额——绿色对您更有利、红色更不利。点「完成」。', 'Columnas por año con Δ entre años. Terminar.'); } }
+            ] },
+            t8: { title: function(){ return T('Scenarios Side by Side (W-2 vs Freelance)', '场景并排对比（W-2 vs 全职自由职业）', 'Escenarios lado a lado'); }, steps: [
+                { tab: 'calculator', targets: ['#wages', '#btnCalc'],
+                  done: function(){ return currentResult && currentResult.inputs && currentResult.inputs.wages > 0; },
+                  text: function(){ return T('Scenario A — your W-2 job: enter wages (e.g. 85000) and click Calculate.', '场景 A——W-2 现职：输入工资（如 85000）并点击「计算税务」。', 'Escenario A: sueldos (p. ej. 85000) y Calcular.'); } },
+                { tab: 'calculator', targets: ['#btnSave'],
+                  onEnter: function(s){ s.rec0 = taxRecords.length; },
+                  done: function(s){ return taxRecords.length > s.rec0; },
+                  text: function(){ return T('Click "Save Record" and name it, e.g. "W-2 job".', '点击「保存本次记录」，命名如「W-2 现职」。', 'Guarde el registro como "Empleo W-2".'); } },
+                { tab: 'calculator', targets: ['.mode-toggle button[data-mode="complex"]', '#selfEmployment', '#seCheckboxGroup'],
+                  done: function(){ return currentMode === 'complex' && parseFloat(document.getElementById('selfEmployment').value) > 0 && document.getElementById('isSelfEmployed').checked; },
+                  text: function(){ return T('Scenario B — freelance: switch to Advanced Mode, clear wages, enter self-employment income (e.g. 110000) and tick "I am self-employed".', '场景 B——自由职业：切到复杂模式，清空工资，填自雇收入（如 110000）并勾选「我是自雇人士」。', 'Escenario B: modo avanzado, ingreso de trabajo propio y casilla marcada.'); } },
+                { tab: 'calculator', targets: ['#btnCalc'],
+                  done: function(){ return currentResult && currentResult.inputs && currentResult.inputs.seIncome > 0; },
+                  text: function(){ return T('Click Calculate for the freelance scenario.', '为自由职业场景点击「计算税务」。', 'Calcule el escenario freelance.'); } },
+                { tab: 'calculator', targets: ['#btnSave'],
+                  onEnter: function(s){ s.rec1 = taxRecords.length; },
+                  done: function(s){ return taxRecords.length > s.rec1; },
+                  text: function(){ return T('Save this one too, e.g. "Full-time freelance".', '同样保存，命名如「全职自由职业」。', 'Guárdelo como "Freelance a tiempo completo".'); } },
+                { tab: 'compare', targets: ['#scenarioTableBody .scn-check'],
+                  done: function(){ return selectedScenarios.length >= 2; },
+                  text: function(){ return T('Tick the Compare box on both rows of the What-If table.', '在「情景对比」表勾选这两行最左侧的「对比」框。', 'Marque la casilla Comparar en ambas filas.'); } },
+                { tab: 'compare', targets: ['#scenarioSideBySide'], done: null,
+                  text: function(){ return T('The side-by-side detail expands right below: inputs, results, bold after-tax income, and a green/red Δ column. Press Finish.', '并排明细在表格正下方展开：输入、结果、加粗的税后净收入与绿/红 Δ 列。点「完成」。', 'El detalle lado a lado aparece abajo. Terminar.'); } }
+            ] }
+        };
+
+        let activeTour = null; // { id, idx, timer, state, touched:Set, clicked:Set, finished }
+        let tourHighlighted = [];
+
+        document.addEventListener('input', function (e) { if (activeTour && e.target && e.target.id) activeTour.touched.add(e.target.id); }, true);
+        document.addEventListener('change', function (e) { if (activeTour && e.target && e.target.id) activeTour.touched.add(e.target.id); }, true);
+        document.addEventListener('click', function (e) { if (activeTour && e.target) { var el = e.target.closest ? e.target.closest('[id]') : null; if (el) activeTour.clicked.add(el.id); } }, true);
+        function tourTouched(id) { return !!(activeTour && activeTour.touched.has(id)); }
+
+        function tourGoTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+            document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('active'); });
+            var btn = document.querySelector('.tab-btn[data-tab="' + tab + '"]');
+            if (btn) btn.classList.add('active');
+            var sec = document.getElementById(tab);
+            if (sec) sec.classList.add('active');
+            if (tab === 'compare') updateChart();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function tourTabName(tab) {
+            var map = { calculator: T('Calculator', '税务计算', 'Calculadora'), states: T('State Tax', '州税计算', 'Imp. Estatales'),
+                        history: T('History', '历史记录', 'Historial'), compare: T('Compare', '对比图表', 'Comparar') };
+            return map[tab] || tab;
+        }
+
+        function clearTourHighlights() {
+            tourHighlighted.forEach(function (el) { el.classList.remove('tour-highlight'); });
+            tourHighlighted = [];
+        }
+        function applyTourHighlights(selectors) {
+            var want = [];
+            selectors.forEach(function (sel) { document.querySelectorAll(sel).forEach(function (el) { want.push(el); }); });
+            tourHighlighted.forEach(function (el) { if (want.indexOf(el) === -1) el.classList.remove('tour-highlight'); });
+            want.forEach(function (el) { el.classList.add('tour-highlight'); });
+            tourHighlighted = want;
+        }
+
+        function startTour(id) {
+            if (!GUIDED_TOURS[id]) return;
+            endTour(true);
+            activeTour = { id: id, idx: 0, state: {}, touched: new Set(), clicked: new Set(), finished: false };
+            var first = GUIDED_TOURS[id].steps[0];
+            if (first.tab && !document.getElementById(first.tab).classList.contains('active')) tourGoTab(first.tab);
+            enterTourStep(0);
+            activeTour.timer = setInterval(tourTick, 400);
+            positionTourFloat();
+            var t0 = document.querySelector((first.targets || [])[0]);
+            if (t0) { try { t0.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
+        }
+        function endTour(silent) {
+            if (activeTour && activeTour.timer) clearInterval(activeTour.timer);
+            activeTour = null;
+            clearTourHighlights();
+            var f = document.getElementById('tourFloat');
+            if (f) f.style.display = 'none';
+        }
+        function enterTourStep(i) {
+            if (!activeTour) return;
+            activeTour.idx = i;
+            activeTour.finished = false;
+            activeTour.touched.clear();
+            activeTour.clicked.clear();
+            var step = GUIDED_TOURS[activeTour.id].steps[i];
+            if (step.onEnter) step.onEnter(activeTour.state);
+            renderTourFloat();
+            tourTick();
+        }
+        function tourAdvance() {
+            if (!activeTour) return;
+            var steps = GUIDED_TOURS[activeTour.id].steps;
+            if (activeTour.idx >= steps.length - 1) {
+                activeTour.finished = true;
+                clearTourHighlights();
+                renderTourFloat();
+                return;
+            }
+            // brief success flash on the current highlights
+            tourHighlighted.forEach(function (el) { el.classList.add('tour-flash'); setTimeout(function () { el.classList.remove('tour-flash'); }, 550); });
+            var next = activeTour.idx + 1;
+            var nstep = steps[next];
+            enterTourStep(next);
+            var t0 = nstep.targets && document.querySelector(nstep.targets[0]);
+            if (t0 && nstep.tab && document.getElementById(nstep.tab).classList.contains('active')) {
+                try { t0.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+            }
+        }
+        function tourPrev() { if (activeTour && activeTour.idx > 0) enterTourStep(activeTour.idx - 1); }
+
+        function tourTick() {
+            if (!activeTour || activeTour.finished) return;
+            var step = GUIDED_TOURS[activeTour.id].steps[activeTour.idx];
+            var tabOk = !step.tab || document.getElementById(step.tab).classList.contains('active');
+            if (!tabOk) {
+                applyTourHighlights(['.tab-btn[data-tab="' + step.tab + '"]']);
+                var gt = document.getElementById('tfGotoHint');
+                if (!gt) renderTourFloat();
+                return;
+            }
+            var gt2 = document.getElementById('tfGotoHint');
+            if (gt2) renderTourFloat(); // tab just became correct — restore normal step text
+            applyTourHighlights(step.targets || []);
+            if (step.done && step.done(activeTour.state)) {
+                // small debounce so the user sees the flash on what they just did
+                var myIdx = activeTour.idx, myId = activeTour.id;
+                setTimeout(function () {
+                    if (activeTour && activeTour.id === myId && activeTour.idx === myIdx && !activeTour.finished) tourAdvance();
+                }, 250);
+            }
+        }
+
+        function renderTourFloat() {
+            var f = document.getElementById('tourFloat');
+            if (!f) return;
+            if (!activeTour) { f.style.display = 'none'; return; }
+            var tour = GUIDED_TOURS[activeTour.id];
+            var steps = tour.steps, i = activeTour.idx, n = steps.length;
+            var step = steps[i];
+            var tabOk = !step.tab || document.getElementById(step.tab).classList.contains('active');
+            var dots = '';
+            for (var d = 0; d < n; d++) dots += '<span class="tf-dot ' + (d < i || activeTour.finished ? 'done' : (d === i ? 'on' : '')) + '"></span>';
+            var body;
+            if (activeTour.finished) {
+                body = '<div class="tf-text">🎉 ' + T('Walkthrough complete! You can restart any tutorial from the Tutorials page.', '引导完成！随时可在「使用教程」页重新开始任意教程。', '¡Guía completada!') + '</div>'
+                    + '<div class="tf-btns"><button class="btn btn-success" onclick="endTour()">' + T('Done', '关闭', 'Cerrar') + '</button></div>';
+            } else if (!tabOk) {
+                body = '<div class="tf-text" id="tfGotoHint">👉 ' + T('This step happens on the "', '本步骤在「', 'Este paso ocurre en «')
+                    + tourTabName(step.tab)
+                    + T('" tab — the nav button is highlighted, or use the button below.', '」页——顶部对应按钮已高亮，也可以点下方按钮直达。', '»: use el botón de abajo.') + '</div>'
+                    + '<div class="tf-btns"><button class="btn btn-primary" onclick="tourGoTab(GUIDED_TOURS[activeTour.id].steps[activeTour.idx].tab); renderTourFloat();">' + T('Take me there', '带我去', 'Llévame') + '</button>'
+                    + '<button class="btn btn-outline" onclick="endTour()">' + T('Exit', '结束引导', 'Salir') + '</button></div>';
+            } else {
+                var isLast = i === n - 1;
+                body = '<div class="tf-text">' + step.text() + '</div>'
+                    + '<div class="tf-btns">'
+                    + '<button class="btn btn-outline"' + (i === 0 ? ' disabled' : '') + ' onclick="tourPrev()">' + T('Back', '上一步', 'Atrás') + '</button>'
+                    + '<button class="btn btn-primary" onclick="tourAdvance()">' + (isLast ? T('Finish', '完成', 'Terminar') : T('Next', '下一步', 'Siguiente')) + '</button>'
+                    + '</div>';
+            }
+            f.innerHTML = '<div class="tf-head"><span>🧭 ' + tour.title() + '</span>'
+                + '<button class="tf-close" onclick="endTour()" aria-label="close">✕</button></div>'
+                + '<div class="tf-progress">' + T('Step', '步骤', 'Paso') + ' ' + Math.min(i + 1, n) + ' / ' + n + '</div>'
+                + '<div class="tf-dots">' + dots + '</div>'
+                + body;
+            f.style.display = 'block';
+            positionTourFloat();
+        }
+
+        // Keep the floater pinned top-right WITHOUT covering the nav bar
+        function positionTourFloat() {
+            var f = document.getElementById('tourFloat');
+            if (!f || f.style.display === 'none') return;
+            var nav = document.querySelector('.apple-nav');
+            var nb = nav ? nav.getBoundingClientRect().bottom : 0;
+            f.style.top = Math.max(12, nb + 12) + 'px';
+        }
+        window.addEventListener('scroll', positionTourFloat, { passive: true });
+        window.addEventListener('resize', positionTourFloat);
+
         // ===================== Tutorial System =====================
         const TUTORIAL_SEEN_KEY = 'taxCalculatorTutorialSeen_v4';
 
@@ -5016,6 +5357,8 @@
             if (currentResult && lastCalcInput) renderYearComparison(lastCalcInput);
             // Data-freshness banners (their text is built with L() at render time)
             renderFreshnessBanners();
+            // Guided-walkthrough floater
+            if (activeTour) renderTourFloat();
             // Saved-records list (button labels, empty state) + What-If tables
             updateHistoryDisplay();
             if (taxRecords.length) renderCompare(); else renderScenarioSideBySide();
