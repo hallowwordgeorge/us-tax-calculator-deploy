@@ -173,6 +173,76 @@
             color: white; box-shadow: 0 4px 12px rgba(22,163,74,0.3);
         }
         .btn-success:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(22,163,74,0.4); }
+
+        /* ===================== International Withholding Tax (premium feature) ===================== */
+        .premium-pill {
+            display: inline-block; background: linear-gradient(135deg,#b8860b,#f0c14b);
+            color: #2b1d00; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.04em;
+            padding: 3px 9px; border-radius: 999px; vertical-align: middle; margin-left: 4px;
+            box-shadow: 0 2px 6px rgba(184,134,11,0.35);
+        }
+        .intl-country-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px;
+        }
+        .intl-country-btn {
+            display: flex; align-items: center; gap: 8px; padding: 12px 14px;
+            border: 1.5px solid #d8e0ee; border-radius: 12px; background: #fbfcff;
+            cursor: pointer; font-weight: 600; font-size: 0.92rem; transition: all .2s;
+        }
+        .intl-country-btn .flag { font-size: 1.25rem; }
+        .intl-country-btn:hover { border-color: var(--primary-light); }
+        .intl-country-btn.active { border-color: var(--primary); background: #eef3ff; color: var(--primary-dark); box-shadow: 0 2px 8px rgba(29,78,216,0.15); }
+        .intl-cat-select { margin-bottom: 22px; }
+        .intl-result-card {
+            border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+            padding: 22px; background: linear-gradient(135deg,#f8faff,#f0f4ff); position: relative; overflow: hidden;
+        }
+        .intl-rate-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 6px; }
+        .intl-rate-num { font-size: 2.4rem; font-weight: 800; color: var(--primary-dark); letter-spacing: -0.02em; }
+        .intl-rate-sub { color: var(--text-secondary); font-size: 0.92rem; }
+        .intl-article-tag {
+            display: inline-block; font-family: 'SF Mono', Monaco, monospace; font-size: 0.78rem;
+            background: #e3e8f2; color: var(--text); padding: 3px 9px; border-radius: 7px; margin-top: 6px;
+        }
+        .intl-note-list { margin-top: 14px; padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); }
+        .intl-note-list li { margin-bottom: 6px; }
+        .intl-source-line { margin-top: 16px; font-size: 0.8rem; color: var(--text-secondary); border-top: 1px dashed var(--border); padding-top: 12px; }
+        .intl-source-line a { color: var(--primary); }
+        .intl-lob-box { margin-top: 18px; background: #fff9ec; border: 1px solid #f0dfae; border-radius: 12px; padding: 14px 16px; font-size: 0.86rem; color: #6b4c00; }
+
+        /* Locked / blurred state for non-premium users */
+        .intl-locked { position: relative; }
+        .intl-locked .intl-result-card { filter: blur(6px); pointer-events: none; user-select: none; }
+        .intl-lock-overlay {
+            position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+            justify-content: center; gap: 12px; text-align: center; padding: 20px;
+            background: rgba(255,255,255,0.5); border-radius: var(--radius-sm);
+        }
+        .intl-lock-overlay .lock-icon { font-size: 2.2rem; }
+        .intl-free-note {
+            display: inline-block; margin: 14px 0 4px; font-size: 0.85rem; color: var(--success);
+            background: #eafaf1; border: 1px solid #b8ecd0; border-radius: 999px; padding: 5px 14px; font-weight: 600;
+        }
+
+        /* Unlock modal */
+        .intl-modal-backdrop {
+            display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.55);
+            z-index: 999; align-items: center; justify-content: center; padding: 20px;
+        }
+        .intl-modal-backdrop.open { display: flex; }
+        .intl-modal-box {
+            background: #fff; border-radius: var(--radius); padding: 32px; max-width: 420px; width: 100%;
+            box-shadow: var(--shadow-lg); position: relative;
+        }
+        .intl-modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-secondary); }
+        .intl-modal-tabs { display: flex; gap: 6px; margin-bottom: 18px; background: #f1f4fa; border-radius: 10px; padding: 4px; }
+        .intl-modal-tab { flex: 1; text-align: center; padding: 8px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text-secondary); }
+        .intl-modal-tab.active { background: #fff; color: var(--primary-dark); box-shadow: 0 1px 4px rgba(15,23,42,0.1); }
+        .intl-modal-pane { display: none; }
+        .intl-modal-pane.active { display: block; }
+        .intl-modal-msg { font-size: 0.85rem; margin-top: 10px; min-height: 18px; }
+        .intl-modal-msg.err { color: var(--danger); }
+        .intl-modal-msg.ok { color: var(--success); }
         .btn-outline {
             background: transparent; color: var(--primary); border: 2px solid var(--primary);
         }
@@ -1461,11 +1531,18 @@
                         <a href="/#/capital-gains" class="sn-link"><span class="i18n-zh">资本利得税</span><span class="i18n-en">Capital Gains</span><span class="i18n-es">Ganancias de Capital</span></a>
                         <a href="/#/child-tax-credit" class="sn-link"><span class="i18n-zh">儿童税收抵免</span><span class="i18n-en">Child Tax Credit</span><span class="i18n-es">Crédito Tributario por Hijos</span></a>
                         <a href="/#/fica" class="sn-link"><span class="i18n-zh">FICA 工资税</span><span class="i18n-en">FICA / Payroll</span><span class="i18n-es">FICA / Nómina</span></a>
+                        <a href="/calculator/" class="sn-link"><span class="i18n-zh">按收入金额查询</span><span class="i18n-en">By Salary Amount</span><span class="i18n-es">Por Monto de Salario</span></a>
                     </div>
                 </li>
                 <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ <span class="i18n-zh">州税计算</span><span class="i18n-en">State Tax</span><span class="i18n-es">Impuesto Estatal</span></a></li>
                 <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 <span class="i18n-zh">历史记录</span><span class="i18n-en">History</span><span class="i18n-es">Historial</span></a></li>
                 <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 <span class="i18n-zh">对比图表</span><span class="i18n-en">Compare</span><span class="i18n-es">Comparar</span></a></li>
+                <!-- PAUSED: International Withholding Tax premium feature — nav entry hidden until the
+                     JS data/render logic is wired up and Stripe checkout is available. The #intltax section,
+                     its CSS, and the unlock modal markup are left in place below so this can be resumed later
+                     without redoing the layout. See /home/claude/intl_block.js (build sandbox) for the drafted
+                     INTL_TAX_DATA dataset + render/access-control logic that still needs to be inserted. -->
+                <!-- <li class="an-item"><a href="/#/intltax" class="tab-btn an-link" data-tab="intltax" id="tabIntlTax">🌍 <span class="i18n-zh">国际预扣税</span><span class="i18n-en">Intl. Withholding</span><span class="i18n-es">Retención Intl.</span> <span class="premium-pill">PRO</span></a></li> -->
                 <li class="an-item">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 <span class="i18n-zh">资源</span><span class="i18n-en">Resources</span><span class="i18n-es">Recursos</span></button>
                     <div class="an-menu">
@@ -1473,7 +1550,9 @@
                         <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 <span class="i18n-zh">计算详解</span><span class="i18n-en">How It Works</span><span class="i18n-es">Cómo Funciona</span></a>
                         <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 <span class="i18n-zh">使用教程</span><span class="i18n-en">Tutorials</span><span class="i18n-es">Tutoriales</span></a>
                         <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ <span class="i18n-zh">常见问题</span><span class="i18n-en">FAQ</span><span class="i18n-es">Preguntas</span></a>
-                        <a href="/#/about" class="tab-btn dropdown-tab-btn" data-tab="about" id="tabAbout">ℹ️ <span class="i18n-zh">关于我们</span><span class="i18n-en">About</span><span class="i18n-es">Acerca de</span></a>
+                        <a href="/about-us/">ℹ️ <span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Acerca de</span></a>
+                        <a href="/methodology/">🧮 <span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a>
+                        <a href="/disclaimer/">⚖️ <span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
                     </div>
                 </li>
                 <li class="an-item">
@@ -1520,6 +1599,11 @@
         <!-- Hidden helper: keeps applyRoute()'s querySelector('.tab-btn[data-tab="calculator"]') working now
              that the visible "Calculator" nav word is a <summary> disclosure trigger, not a tab-btn itself. -->
         <button type="button" class="tab-btn" data-tab="calculator" id="tabCalc" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Calculator</button>
+        <!-- Hidden helper: the visible "About Us" nav link now points straight to the real /about-us/ page
+             for SEO, so it's no longer a tab-btn. This keeps applyRoute()'s querySelector('.tab-btn[data-tab="about"]')
+             working for the legacy in-app #/contact, #/privacy and #/disclaimer hash routes (LEGAL_VIEWS), which still
+             live inside this SPA's "about" section and need the tab to switch to before scrolling to their sub-section. -->
+        <button type="button" class="tab-btn" data-tab="about" id="tabAbout" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">About</button>
 
         <!-- Calculator Section -->        <!-- Calculator Section -->
         <div class="section active" id="calculator">
@@ -1887,6 +1971,72 @@
                 </div>
             </div>
         </div>
+<div class="section" id="intltax">
+    <div class="card">
+        <div class="card-title"><div class="icon">🌍</div>
+            <span class="i18n-zh">非居民外国人预扣税 &amp; 税收协定</span><span class="i18n-en">Nonresident Alien Withholding &amp; Tax Treaties</span><span class="i18n-es">Retención de Impuestos y Tratados para Extranjeros No Residentes</span>
+            <span class="premium-pill">PREMIUM</span>
+        </div>
+        <div class="i18n-zh content-intro" style="margin-bottom:20px;">查询非居民外国人（Nonresident Alien）取得美国来源收入时适用的预扣税率与税收协定优惠——覆盖股息、利息、特许权使用费、养老金、社会保障，以及独立/雇佣个人劳务收入。全部数据来自 IRS 官方 Tax Treaty Tables 1–4（irs.gov），非二手/聚合网站信息。</div>
+        <div class="i18n-en content-intro" style="margin-bottom:20px;">Look up U.S. withholding tax rates and tax-treaty benefits that apply to nonresident aliens — covering dividends, interest, royalties, pensions, social security, and independent/dependent personal-service income. All data comes directly from the IRS's official Tax Treaty Tables 1–4 (irs.gov), not secondary or aggregator sites.</div>
+
+        <div class="form-group">
+            <label class="form-label" id="intlCountryLabel">选择国家 / Select Country</label>
+            <div class="intl-country-grid" id="intlCountryGrid"></div>
+        </div>
+
+        <div class="form-group intl-cat-select">
+            <label class="form-label" id="intlCatLabel">选择收入类型 / Select Income Type</label>
+            <select class="form-select" id="intlCategorySelect" onchange="renderIntlResult()"></select>
+        </div>
+
+        <div id="intlResultWrapper">
+            <div class="intl-result-card" id="intlResultCard"></div>
+        </div>
+
+        <div class="intl-source-line">
+            <span class="i18n-zh">官方数据来源：</span><span class="i18n-en">Official sources: </span>
+            IRS <a href="https://www.irs.gov/pub/irs-lbi/tax-treaty-table-1.pdf" target="_blank" rel="noopener">Tax Treaty Table 1</a> (Rev. May 2023) ·
+            <a href="https://www.irs.gov/pub/irs-lbi/tax-treaty-table-2.pdf" target="_blank" rel="noopener">Table 2</a> ·
+            <a href="https://www.irs.gov/pub/irs-lbi/table-3-list-of-tax-treaties.pdf" target="_blank" rel="noopener">Table 3</a> (updated through Sept. 26, 2025) ·
+            <a href="https://www.irs.gov/pub/irs-lbi/Tax_Treaty_Table_4.pdf" target="_blank" rel="noopener">Table 4</a> — <a href="https://www.irs.gov/individuals/international-taxpayers/tax-treaty-tables" target="_blank" rel="noopener">irs.gov/individuals/international-taxpayers/tax-treaty-tables</a>.
+            <br><span class="i18n-zh">这些表格不是所有条约条款的完整指南，具体资格仍需核对条约原文、财政部技术说明及 Limitation on Benefits 条款。本工具仅供参考，不构成税务建议。</span><span class="i18n-en">These tables are not a comprehensive guide to every treaty provision; actual eligibility still depends on the treaty text, the Treasury Technical Explanation, and the Limitation on Benefits article. This tool is for reference only and is not tax advice.</span>
+        </div>
+    </div>
+</div>
+
+<!-- Unlock modal -->
+<div class="intl-modal-backdrop" id="intlModalBackdrop">
+    <div class="intl-modal-box">
+        <button type="button" class="intl-modal-close" onclick="closeIntlModal()">✕</button>
+        <div class="card-title" style="margin-bottom:14px;"><div class="icon">🔓</div><span class="i18n-zh">解锁国际预扣税查询</span><span class="i18n-en">Unlock International Withholding Lookup</span><span class="i18n-es">Desbloquear Consulta de Retención Internacional</span></div>
+        <div class="intl-modal-tabs">
+            <div class="intl-modal-tab active" id="intlTabPay" onclick="switchIntlModalTab('pay')"><span class="i18n-zh">购买解锁</span><span class="i18n-en">Purchase</span><span class="i18n-es">Comprar</span></div>
+            <div class="intl-modal-tab" id="intlTabRestore" onclick="switchIntlModalTab('restore')"><span class="i18n-zh">已购买？恢复访问</span><span class="i18n-en">Already bought? Restore</span><span class="i18n-es">¿Ya compró? Restaurar</span></div>
+        </div>
+        <div class="intl-modal-pane active" id="intlPanePay">
+            <p class="i18n-zh" style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:14px;">一次性付费，永久解锁六国×全部收入类型的预扣税率与协定查询（本浏览器与任意设备均可用邮箱恢复访问，无需注册账号）。</p>
+            <p class="i18n-en" style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:14px;">One-time payment, lifetime unlock for all 6 countries × all income types. No account needed — restore access on any device later with your email.</p>
+            <div class="form-group">
+                <label class="form-label" id="intlEmailPayLabel">邮箱 / Email</label>
+                <input type="email" class="form-input" id="intlEmailPay" placeholder="you@example.com">
+            </div>
+            <button type="button" class="btn btn-primary" style="width:100%;" onclick="startIntlCheckout()"><span class="i18n-zh">前往支付 →</span><span class="i18n-en">Continue to Payment →</span></button>
+            <div class="intl-modal-msg" id="intlPayMsg"></div>
+        </div>
+        <div class="intl-modal-pane" id="intlPaneRestore">
+            <p class="i18n-zh" style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:14px;">输入你购买时使用的邮箱，我们会在这台设备上恢复你的访问权限。</p>
+            <p class="i18n-en" style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:14px;">Enter the email you used when purchasing — we'll restore access on this device.</p>
+            <div class="form-group">
+                <label class="form-label" id="intlEmailRestoreLabel">邮箱 / Email</label>
+                <input type="email" class="form-input" id="intlEmailRestore" placeholder="you@example.com">
+            </div>
+            <button type="button" class="btn btn-success" style="width:100%;" onclick="restoreIntlAccess()"><span class="i18n-zh">恢复访问</span><span class="i18n-en">Restore Access</span></button>
+            <div class="intl-modal-msg" id="intlRestoreMsg"></div>
+        </div>
+    </div>
+</div>
+
 <div class="section" id="guide">
             <div class="card">
                 <div class="card-title"><div class="icon">📖</div><span id="guideTitle">使用说明 & 注意事项 Guide & Notes</span></div>
@@ -3107,10 +3257,11 @@
     <footer class="site-footer">
         <div class="footer-links">
             <a href="/articles/"><span class="i18n-zh">📰 税务文章</span><span class="i18n-en">📰 Articles</span><span class="i18n-es">📰 Artículos</span></a> ·
-            <a href="#/about"><span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Sobre Nosotros</span></a> ·
+            <a href="/about-us/"><span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Sobre Nosotros</span></a> ·
+            <a href="/methodology/"><span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a> ·
             <a href="#/contact"><span class="i18n-zh">联系我们</span><span class="i18n-en">Contact</span><span class="i18n-es">Contacto</span></a> ·
             <a href="#/privacy"><span class="i18n-zh">隐私政策</span><span class="i18n-en">Privacy Policy</span><span class="i18n-es">Política de Privacidad</span></a> ·
-            <a href="#/disclaimer"><span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
+            <a href="/disclaimer/"><span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
         </div>
         <div class="i18n-zh">
             <p><strong>关于本站</strong>：免费的英中西三语 2026 年美国联邦税计算器，基于 IRS 官方数据，覆盖联邦与全 50 州税务，并提供原创税务文章库，帮助您理解税率、扣除与抵免。</p>
@@ -5624,6 +5775,21 @@
             WV:{en:'West Virginia', zh:'西弗吉尼亚州'}, WI:{en:'Wisconsin', zh:'威斯康星州'}, WY:{en:'Wyoming', zh:'怀俄明州'}
         };
 
+        // Maps each state code to its dedicated real-URL page (e.g. CA -> /california-tax-calculator/),
+        // used so map/dropdown selection navigates to a crawlable, individually-rankable page
+        // instead of just switching an in-app hash tab (see /areas SEO pivot notes).
+        const STATE_SLUGS = {
+            AL:'alabama', AK:'alaska', AZ:'arizona', AR:'arkansas', CA:'california', CO:'colorado',
+            CT:'connecticut', DE:'delaware', DC:'washington-dc', FL:'florida', GA:'georgia', HI:'hawaii',
+            ID:'idaho', IL:'illinois', IN:'indiana', IA:'iowa', KS:'kansas', KY:'kentucky', LA:'louisiana',
+            ME:'maine', MD:'maryland', MA:'massachusetts', MI:'michigan', MN:'minnesota', MS:'mississippi',
+            MO:'missouri', MT:'montana', NE:'nebraska', NV:'nevada', NH:'new-hampshire', NJ:'new-jersey',
+            NM:'new-mexico', NY:'new-york', NC:'north-carolina', ND:'north-dakota', OH:'ohio', OK:'oklahoma',
+            OR:'oregon', PA:'pennsylvania', RI:'rhode-island', SC:'south-carolina', SD:'south-dakota',
+            TN:'tennessee', TX:'texas', UT:'utah', VT:'vermont', VA:'virginia', WA:'washington',
+            WV:'west-virginia', WI:'wisconsin', WY:'wyoming'
+        };
+
         // Returns the state's display name in the active page language (fallback: English).
         function currentStateName(code) {
             const n = STATE_NAMES[code];
@@ -5947,30 +6113,40 @@
             }
         }
 
-        // Map interactions: click + keyboard (Enter/Space) via delegation on the map wrapper
+        // Map interactions: click + keyboard (Enter/Space) via delegation on the map wrapper.
+        // Per the SEO pivot, selecting a state here navigates to its dedicated real-URL page
+        // (e.g. /california-tax-calculator/) rather than showing the old inline panel — that
+        // dedicated page has its own map (highlighting the same state) plus the full federal
+        // calculator. selectState()/renderStatePanel() are left untouched below for the
+        // #/states/<code> deep-link route, which still works if visited directly.
         (function() {
             const mapWrap = document.getElementById('stateMap');
             if (mapWrap) {
                 mapWrap.addEventListener('click', function(e) {
                     const p = e.target && e.target.closest ? e.target.closest('[data-state]') : null;
-                    if (p) selectState(p.getAttribute('data-state'));
+                    if (p) goToStateTaxPage(p.getAttribute('data-state'));
                 });
                 mapWrap.addEventListener('keydown', function(e) {
                     if (e.key !== 'Enter' && e.key !== ' ') return;
                     const p = e.target && e.target.closest ? e.target.closest('[data-state]') : null;
                     if (p) {
                         e.preventDefault();
-                        selectState(p.getAttribute('data-state'));
+                        goToStateTaxPage(p.getAttribute('data-state'));
                     }
                 });
             }
             const sel = document.getElementById('stateSelect');
             if (sel) {
                 sel.addEventListener('change', function() {
-                    if (this.value) selectState(this.value);
+                    if (this.value) goToStateTaxPage(this.value);
                 });
             }
         })();
+
+        function goToStateTaxPage(code) {
+            const slug = STATE_SLUGS[String(code || '').toUpperCase()];
+            if (slug) window.location.href = '/' + slug + '-tax-calculator/';
+        }
 
         // Computes the state tax for the current panel income/status across all 50 states + DC,
         // sorted descending, and renders a ranked bar list into #stateCompareList.
