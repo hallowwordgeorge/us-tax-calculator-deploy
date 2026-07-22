@@ -1,7 +1,7 @@
 {
   "_purpose": "INTERNAL FILE - not linked from any page, not in sitemap.xml, disallowed in robots.txt. Not meant for site visitors. Before writing new articles for this site, read this file and make sure no new topic duplicates or substantially overlaps an entry below. Each entry's 'covers' field summarizes the specific angle/scope of that article so overlap is easy to spot.",
-  "last_updated": "2026-07-21",
-  "article_count": 26,
+  "last_updated": "2026-07-22",
+  "article_count": 31,
   "articles": [
     {
       "slug": "obbba-2026-changes",
@@ -184,6 +184,41 @@
       "category": "tutorials",
       "published": "2026-04-16",
       "covers": "Marriage, a new job, or new side income all change your tax picture — but most people only find out how much at filing time. Here's how to check before then, step by step."
+    },
+    {
+      "slug": "how-to-file-taxes-capital-gains-first-time",
+      "title": "How to File Taxes After Selling Stocks for the First Time",
+      "category": "tutorials",
+      "published": "2026-04-20",
+      "covers": "Sold stock, crypto, or a fund for the first time? Here's the exact step-by-step process for reporting it — cost basis, short vs. long-term, and where to run the real numbers."
+    },
+    {
+      "slug": "how-to-file-taxes-retirement-income",
+      "title": "How to File Taxes in Retirement: Social Security, 401(k), and IRA Withdrawals",
+      "category": "tutorials",
+      "published": "2026-04-23",
+      "covers": "Filing with retirement income for the first time? Here's the step-by-step process for Social Security, 401(k)/IRA withdrawals, and RMDs — plus where to check the real numbers."
+    },
+    {
+      "slug": "how-to-file-taxes-international-student",
+      "title": "How to File Taxes as an International Student or Visa Holder",
+      "category": "tutorials",
+      "published": "2026-04-27",
+      "covers": "Filing as an international student or visa holder starts with one question everything else depends on: resident or nonresident alien? Here's the step-by-step process to find out and file correctly."
+    },
+    {
+      "slug": "how-to-file-taxes-unemployment-income",
+      "title": "How to File Taxes If You Received Unemployment Income This Year",
+      "category": "tutorials",
+      "published": "2026-05-01",
+      "covers": "Lost a job and collected unemployment this year? Here's the step-by-step process for reporting it correctly — including the withholding trap most people don't know about."
+    },
+    {
+      "slug": "how-to-file-taxes-cant-pay-in-full",
+      "title": "How to File Taxes When You Owe Money and Can't Pay in Full",
+      "category": "tutorials",
+      "published": "2026-05-04",
+      "covers": "Owe more than you can pay right now? Here's the step-by-step process — file anyway, understand the two different penalties, and set up a real payment plan instead of avoiding it."
     }
   ]
 }
