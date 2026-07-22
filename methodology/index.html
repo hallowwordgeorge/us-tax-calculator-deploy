@@ -7,7 +7,11 @@
 <meta name="description" content="A detailed explanation of every data source and calculation rule behind US Tax Calculator — federal brackets, standard deduction, FICA, self-employment tax, capital gains, state taxes, and what is intentionally not modeled.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://us-tax-calculator.com/methodology/">
-<meta property="og:type" content="article">
+<link rel="alternate" hreflang="en" href="https://us-tax-calculator.com/methodology/">
+<link rel="alternate" hreflang="zh" href="https://us-tax-calculator.com/zh/methodology/">
+<link rel="alternate" hreflang="es" href="https://us-tax-calculator.com/es/methodology/">
+<link rel="alternate" hreflang="x-default" href="https://us-tax-calculator.com/methodology/">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Methodology: How We Calculate Your Taxes | US Tax Calculator">
 <meta property="og:description" content="A detailed explanation of every data source and calculation rule behind US Tax Calculator — federal brackets, standard deduction, FICA, self-employment tax, capital gains, state taxes, and what is intentionally not modeled.">
 <meta property="og:url" content="https://us-tax-calculator.com/methodology/">
@@ -24,7 +28,8 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0A3D8F">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Methodology: How We Calculate Your Taxes", "description": "A detailed explanation of every data source and calculation rule behind US Tax Calculator.", "image": "https://us-tax-calculator.com/logo-icon.png", "datePublished": "2026-07-22", "dateModified": "2026-07-22", "author": {"@type": "Organization", "name": "US Tax Calculator"}, "publisher": {"@type": "Organization", "name": "US Tax Calculator", "logo": {"@type": "ImageObject", "url": "https://us-tax-calculator.com/logo-icon.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://us-tax-calculator.com/methodology/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "name": "Methodology: How We Calculate Your Taxes | US Tax Calculator", "description": "A detailed explanation of every data source and calculation rule behind US Tax Calculator — federal brackets, standard deduction, FICA, self-employment tax, capital gains, state taxes, and what is intentionally not modeled.", "url": "https://us-tax-calculator.com/methodology/", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "US Tax Calculator", "logo": {"@type": "ImageObject", "url": "https://us-tax-calculator.com/logo-icon.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://us-tax-calculator.com/methodology/"}}</script>
+<link rel="stylesheet" href="/assets/state-calc.css">
 <style>
 :root{
   --primary:#1d4ed8;--primary-light:#3b82f6;--primary-dark:#12275e;
@@ -164,7 +169,7 @@ a{color:var(--primary);}
 </style>
 </head>
 <body>
-    <nav class="apple-nav">
+<nav class="apple-nav">
         <div class="an-wrap">
             <a href="/#/" class="an-logo">
                 <img src="/logo-icon.svg" alt="" width="24" height="24">
@@ -205,78 +210,62 @@ a{color:var(--primary);}
                         <a href="/articles/?cat=tutorials">Filing Tutorials</a>
                         <a href="/articles/?cat=news">Tax News 2026</a>
                         <a href="/articles/?cat=guides">Filing Guides</a>
-                        <a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
+                        <a href="/articles/?cat=deductions">Deductions & Credits</a>
                         <a href="/articles/?cat=self-employment">Self-Employment</a>
-                        <a href="/articles/?cat=investing">Investing &amp; Gains</a>
+                        <a href="/articles/?cat=investing">Investing & Gains</a>
                         <a href="/articles/" class="an-menu-all">Browse All Articles →</a>
                     </div>
+                </li>
+                <li class="an-item an-lang-item">
+                    <div class="lang-toggle an-lang"><span class="an-lang-current active">EN</span><a href="https://us-tax-calculator.com/zh/methodology/" class="an-lang-link">中文</a><a href="https://us-tax-calculator.com/es/methodology/" class="an-lang-link">ES</a></div>
                 </li>
             </ul>
         </div>
     </nav>
-
 <div class="prose">
-  <a class="back-link" href="/">&larr; Back to Home</a>
+  <a class="back-link" href="/">← Back to Home</a>
   <div class="article-head">
-    <div class="meta-row"><span class="badge">Methodology</span><span class="meta">Last reviewed: July 2026</span></div>
+    <div class="meta-row"><span class="badge">Methodology</span></div>
     <h1>Methodology: How We Calculate Your Taxes</h1>
   </div>
   <div class="article-body">
-<p>This page documents exactly where every figure in <a href="/#/">US Tax Calculator</a> comes from and how each calculation is performed, so you can verify our work against the primary sources yourself. If anything here looks out of date or wrong, please <a href="mailto:contact@us-tax-calculator.com">tell us</a> &mdash; see our note on corrections at the bottom.</p>
-
+<p>This page documents exactly where every figure in <a href="/#/">US Tax Calculator</a> comes from and how each calculation is performed, so you can verify our work against the primary sources yourself.</p>
 <h5>Federal Income Tax Brackets &amp; Standard Deduction</h5>
-<p>2026 federal tax brackets, the standard deduction amounts, and related inflation-adjusted thresholds are taken from <strong>IRS Revenue Procedure 2025-32</strong>, the IRS's official annual inflation-adjustment announcement. 2025 figures use the prior year's official Rev. Proc.; 2027 figures shown in the calculator are our own projected estimates (inflation-indexed forward from 2026) and are explicitly labeled as projections, not official IRS numbers, since the IRS has not yet published them.</p>
-<p>Tax is computed using the standard progressive-bracket method: each dollar of taxable income is taxed at the rate for the bracket it falls into, not at a single flat rate applied to the whole amount (this is the difference between your "marginal" and "effective" rate, explained further in our <a href="/#/howitworks">How It Works</a> guide).</p>
-
+<p>2026 federal tax brackets, the standard deduction amounts, and related inflation-adjusted thresholds are taken from <strong>IRS Revenue Procedure 2025-32</strong>. 2025 figures use the prior year's official Rev. Proc.; 2027 figures are our own projected estimates (inflation-indexed forward from 2026), explicitly labeled as projections, not official IRS numbers.</p>
+<p>Tax is computed using the standard progressive-bracket method: each dollar of taxable income is taxed at the rate for the bracket it falls into, not at a single flat rate applied to the whole amount.</p>
 <h5>FICA / Payroll Tax</h5>
-<p>Social Security tax is calculated at 6.2% on wages up to the annual wage base ($184,500 for 2026), which is set each year by the <strong>Social Security Administration</strong> based on national average wage growth. Medicare tax is 1.45% with no wage cap, plus the 0.9% Additional Medicare Tax on wages above $200,000 (Single) / $250,000 (Married Filing Jointly), per IRC &sect;3101(b)(2).</p>
-
+<p>Social Security tax is 6.2% on wages up to the annual wage base ($184,500 for 2026), set each year by the <strong>Social Security Administration</strong>. Medicare tax is 1.45% with no wage cap, plus the 0.9% Additional Medicare Tax above $200,000 (Single) / $250,000 (Married Filing Jointly).</p>
 <h5>Self-Employment Tax</h5>
-<p>Self-employment tax follows IRC &sect;1401: 92.35% of net self-employment earnings is subject to 12.4% Social Security (up to the same annual wage base) plus 2.9% Medicare (uncapped), and 50% of the resulting SE tax is applied as an above-the-line deduction. See our <a href="/articles/self-employment-tax-guide/">Self-Employment Tax guide</a> for a full worked example.</p>
-
+<p>Follows IRC &sect;1401: 92.35% of net self-employment earnings is subject to 12.4% Social Security (up to the same wage base) plus 2.9% Medicare, and 50% of the resulting SE tax is an above-the-line deduction.</p>
 <h5>Long-Term Capital Gains</h5>
-<p>Long-term capital gains (assets held more than one year) are taxed at the 0% / 15% / 20% preferential rates based on the income thresholds published in Rev. Proc. 2025-32, stacked on top of ordinary income to determine which bracket the gain falls into. The calculator does not currently model the 3.8% Net Investment Income Tax (NIIT) or short-term capital gains (which are taxed as ordinary income and are already covered by the standard calculator).</p>
-
+<p>Taxed at 0% / 15% / 20% preferential rates based on Rev. Proc. 2025-32 thresholds, stacked on top of ordinary income. We do not model the 3.8% Net Investment Income Tax (NIIT).</p>
 <h5>Child Tax Credit</h5>
-<p>The Child Tax Credit amount, the refundable portion, and the income phase-out thresholds follow the current-law figures in effect for the 2026 tax year, including adjustments made by the One Big Beautiful Bill Act (OBBBA). We do not model the Credit for Other Dependents' interaction with more complex multi-credit phase-outs.</p>
-
+<p>Amount, refundable portion, and phase-out thresholds follow current-law 2026 figures including OBBBA adjustments.</p>
 <h5>State Income Tax</h5>
-<p>All 50 states plus DC use each state's own published tax-department bracket tables, flat-rate figures, or "no income tax" status for the selected tax year. Because state conformity to federal rules (standard deduction, bracket indexing, treatment of capital gains) varies significantly by state, our state calculator applies each state's own published rules rather than assuming federal conformity by default.</p>
-
+<p>All 50 states plus DC use each state's own published tax-department bracket tables, flat-rate figures, or "no income tax" status, applied on each state's own rules rather than assuming federal conformity.</p>
 <h5>What This Calculator Intentionally Does Not Model</h5>
-<p>To keep results transparent and avoid false precision, several real-world items are deliberately left out of every calculation:</p>
 <ul>
-<li><strong>Alternative Minimum Tax (AMT)</strong> &mdash; affects a small share of filers, mostly with large state-tax deductions or incentive stock options.</li>
-<li><strong>3.8% Net Investment Income Tax (NIIT)</strong> on investment income above $200,000 / $250,000 thresholds.</li>
-<li><strong>Earned Income Tax Credit (EITC)</strong> and other income-based refundable credits beyond the Child Tax Credit.</li>
-<li><strong>Education credits</strong> (American Opportunity Credit, Lifetime Learning Credit).</li>
-<li><strong>Local (city/county) income taxes</strong>, which exist in some states independently of state income tax.</li>
-<li><strong>Prior-year carryovers</strong> such as capital loss carryforwards or passive activity losses.</li>
+<li><strong>Alternative Minimum Tax (AMT)</strong></li>
+<li><strong>3.8% Net Investment Income Tax (NIIT)</strong></li>
+<li><strong>Earned Income Tax Credit (EITC)</strong> and other income-based refundable credits</li>
+<li><strong>Education credits</strong> (AOTC, Lifetime Learning Credit)</li>
+<li><strong>Local (city/county) income taxes</strong></li>
+<li><strong>Prior-year carryovers</strong> (capital loss carryforwards, etc.)</li>
 </ul>
-<p>If any of these apply to you, treat the calculator's output as a starting estimate, not a final number, and consult a CPA or Enrolled Agent before filing.</p>
-
-<h5>Rounding &amp; Precision</h5>
-<p>All intermediate calculations are performed in full floating-point precision and only rounded for display, to avoid compounding rounding errors across a multi-step calculation (e.g., standard deduction &rarr; taxable income &rarr; bracket tax &rarr; credits).</p>
-
 <h5>Review Cadence</h5>
-<p>We review every calculator against the latest IRS and SSA guidance at least once per tax year, and immediately whenever the IRS issues a mid-year correction or new Revenue Procedure. The current version of this page and the underlying tax-year data were last reviewed in July 2026. Our <a href="/#/about">in-app data freshness notes</a> track the exact review date for each data set.</p>
-
+<p>We review every calculator against the latest IRS and SSA guidance at least once per tax year, and immediately whenever the IRS issues a mid-year correction. Last reviewed July 2026.</p>
 <h5>Corrections</h5>
-<p>If you find a figure that doesn't match the official source it's supposed to reflect, please email <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a> with the page, the number you're questioning, and (if possible) a link to the IRS/SSA publication you're comparing it to. We prioritize data-accuracy reports above all other feedback.</p>
-
-<div class="warning-box">
-<p>This page describes our methodology for educational transparency. It is not tax advice, and using this calculator does not create any professional relationship. See our full <a href="/disclaimer/">Disclaimer</a> for details.</p>
-</div>
+<p>Found a figure that doesn't match the official source? Email <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a> with the page, the number in question, and a link to the IRS/SSA source you're comparing against.</p>
+<div class="warning-box"><p>This page describes our methodology for educational transparency. It is not tax advice. See our full <a href="/disclaimer/">Disclaimer</a> for details.</p></div>
   </div>
   <div class="more-box"><h4>Related Pages</h4><a href="/about-us/">About Us</a>
-<a href="/disclaimer/">Disclaimer</a>
-<a href="/#/howitworks">How It Works (in-app walkthrough)</a></div>
+<a href="/disclaimer/">Disclaimer</a></div>
 </div>
 <footer class="site-footer"><div class="page-wide">
   <div class="flinks">
     <a href="/articles/">Articles</a> ·
     <a href="/#/">Calculator</a> ·
-    <a href="/about-us/">About</a> ·
+    <a href="/about-us/">About Us</a> ·
     <a href="/methodology/">Methodology</a> ·
     <a href="/disclaimer/">Disclaimer</a>
   </div>

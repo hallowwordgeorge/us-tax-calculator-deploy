@@ -104,3 +104,10 @@
 @media(max-width:700px){
   .cmp-header, .cmp-row { font-size: 0.8rem; }
 }
+
+.an-lang-link, .an-lang-current {
+    display: inline-block; padding: 6px 10px; font-size: 0.76rem; font-weight: 600;
+    border-radius: 6px; text-decoration: none; color: var(--text-secondary);
+}
+.an-lang-link:hover { color: var(--primary); background: #fff; }
+.an-lang-current { background: #fff; color: var(--primary-dark); box-shadow: 0 1px 3px rgba(15,23,42,0.12); }

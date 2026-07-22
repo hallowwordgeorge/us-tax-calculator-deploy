@@ -1531,7 +1531,7 @@
                         <a href="/#/capital-gains" class="sn-link"><span class="i18n-zh">资本利得税</span><span class="i18n-en">Capital Gains</span><span class="i18n-es">Ganancias de Capital</span></a>
                         <a href="/#/child-tax-credit" class="sn-link"><span class="i18n-zh">儿童税收抵免</span><span class="i18n-en">Child Tax Credit</span><span class="i18n-es">Crédito Tributario por Hijos</span></a>
                         <a href="/#/fica" class="sn-link"><span class="i18n-zh">FICA 工资税</span><span class="i18n-en">FICA / Payroll</span><span class="i18n-es">FICA / Nómina</span></a>
-                        <a href="/calculator/" class="sn-link"><span class="i18n-zh">按收入金额查询</span><span class="i18n-en">By Salary Amount</span><span class="i18n-es">Por Monto de Salario</span></a>
+                        <a href="/calculator/" class="sn-link" id="navSalaryLink"><span class="i18n-zh">按收入金额查询</span><span class="i18n-en">By Salary Amount</span><span class="i18n-es">Por Monto de Salario</span></a>
                     </div>
                 </li>
                 <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ <span class="i18n-zh">州税计算</span><span class="i18n-en">State Tax</span><span class="i18n-es">Impuesto Estatal</span></a></li>
@@ -1550,9 +1550,9 @@
                         <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 <span class="i18n-zh">计算详解</span><span class="i18n-en">How It Works</span><span class="i18n-es">Cómo Funciona</span></a>
                         <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 <span class="i18n-zh">使用教程</span><span class="i18n-en">Tutorials</span><span class="i18n-es">Tutoriales</span></a>
                         <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ <span class="i18n-zh">常见问题</span><span class="i18n-en">FAQ</span><span class="i18n-es">Preguntas</span></a>
-                        <a href="/about-us/">ℹ️ <span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Acerca de</span></a>
-                        <a href="/methodology/">🧮 <span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a>
-                        <a href="/disclaimer/">⚖️ <span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
+                        <a href="/about-us/" id="navAboutLink">ℹ️ <span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Acerca de</span></a>
+                        <a href="/methodology/" id="navMethodLink">🧮 <span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a>
+                        <a href="/disclaimer/" id="navDisclaimerLink">⚖️ <span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
                     </div>
                 </li>
                 <li class="an-item">
@@ -3257,11 +3257,11 @@
     <footer class="site-footer">
         <div class="footer-links">
             <a href="/articles/"><span class="i18n-zh">📰 税务文章</span><span class="i18n-en">📰 Articles</span><span class="i18n-es">📰 Artículos</span></a> ·
-            <a href="/about-us/"><span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Sobre Nosotros</span></a> ·
-            <a href="/methodology/"><span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a> ·
+            <a href="/about-us/" id="footerAboutLink"><span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Sobre Nosotros</span></a> ·
+            <a href="/methodology/" id="footerMethodLink"><span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a> ·
             <a href="#/contact"><span class="i18n-zh">联系我们</span><span class="i18n-en">Contact</span><span class="i18n-es">Contacto</span></a> ·
             <a href="#/privacy"><span class="i18n-zh">隐私政策</span><span class="i18n-en">Privacy Policy</span><span class="i18n-es">Política de Privacidad</span></a> ·
-            <a href="/disclaimer/"><span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
+            <a href="/disclaimer/" id="footerDisclaimerLink"><span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
         </div>
         <div class="i18n-zh">
             <p><strong>关于本站</strong>：免费的英中西三语 2026 年美国联邦税计算器，基于 IRS 官方数据，覆盖联邦与全 50 州税务，并提供原创税务文章库，帮助您理解税率、扣除与抵免。</p>
@@ -3924,6 +3924,7 @@
             });
             applyI18N();
             updateFilingStatusOptions();
+            if (typeof updateLangAwareLinks === 'function') updateLangAwareLinks();
         }
 
         function setMode(mode) {
@@ -6145,8 +6146,28 @@
 
         function goToStateTaxPage(code) {
             const slug = STATE_SLUGS[String(code || '').toUpperCase()];
-            if (slug) window.location.href = '/' + slug + '-tax-calculator/';
+            if (!slug) return;
+            const prefix = currentLang === 'zh' ? '/zh' : (currentLang === 'es' ? '/es' : '');
+            window.location.href = prefix + '/' + slug + '-tax-calculator/';
         }
+
+        // Keeps the About/Methodology/Disclaimer/Salary-calculator nav+footer links pointed at
+        // the correct language-specific real-URL page (see the SEO pivot notes) whenever the
+        // in-app language changes. Called once on load and again from setLang().
+        function updateLangAwareLinks() {
+            const prefix = currentLang === 'zh' ? '/zh' : (currentLang === 'es' ? '/es' : '');
+            const map = {
+                navAboutLink: prefix + '/about-us/', footerAboutLink: prefix + '/about-us/',
+                navMethodLink: prefix + '/methodology/', footerMethodLink: prefix + '/methodology/',
+                navDisclaimerLink: prefix + '/disclaimer/', footerDisclaimerLink: prefix + '/disclaimer/',
+                navSalaryLink: prefix + '/calculator/'
+            };
+            Object.keys(map).forEach(function (id) {
+                const el = document.getElementById(id);
+                if (el) el.setAttribute('href', map[id]);
+            });
+        }
+        updateLangAwareLinks();
 
         // Computes the state tax for the current panel income/status across all 50 states + DC,
         // sorted descending, and renders a ranked bar list into #stateCompareList.

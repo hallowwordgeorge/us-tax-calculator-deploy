@@ -181,7 +181,7 @@ const STATE_SLUGS = {
 };
 
 let STANDARD_DEDUCTION = TAX_DATA_BY_YEAR[2026].STANDARD_DEDUCTION;
-let currentLang = (function(){ try { return localStorage.getItem('lang') || 'en'; } catch(e){ return 'en'; } })();
+let currentLang = (typeof window !== 'undefined' && window.PAGE_LANG) || 'en';
 function L(en, zh, es){ return currentLang === 'zh' ? zh : (currentLang === 'es' && es !== undefined ? es : en); }
 function fmt(num){ return '$' + Number(num || 0).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
 function fmtPctNum(r){ return (r * 100).toFixed(3).replace(/\.?0+$/, '') + '%'; }
@@ -372,7 +372,8 @@ function goToStatePage(code) {
     const slug = STATE_SLUGS[code];
     if (!slug) return;
     if (code === CURRENT_STATE_CODE) return; // already here
-    window.location.href = '/' + slug + '-tax-calculator/';
+    const prefix = (currentLang === 'zh') ? '/zh' : (currentLang === 'es' ? '/es' : '');
+    window.location.href = prefix + '/' + slug + '-tax-calculator/';
 }
 
 function initMap(selectedCode) {
