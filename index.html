@@ -2546,28 +2546,28 @@
                     </div>
                     <div class="guide-content article">
                         <div class="i18n-zh">
-                            <p>州税标签页覆盖全部 50 个州 + 华盛顿特区，用地图点选即可估算州所得税。</p>
+                            <p>州税计算覆盖全部 50 个州 + 华盛顿特区，每个州都有自己的专属页面。</p>
                             <ol class="steps">
                                 <li>将鼠标悬停在顶部导航即可看到各个入口，直接点击「州税计算」。</li>
-                                <li>在地图上点击一个州，或使用地图下方的下拉列表选择。</li>
-                                <li>绿色州（如德州、佛州）不征州所得税——会显示提示并给出联邦计算器链接，无需进一步操作。</li>
-                                <li>其他州会显示迷你计算器：输入年收入、选择申报身份，点击「计算州税」。</li>
-                                <li>查看结果：州税金额、有效税率、最高边际税率、累进级距表，以及税后实得（年度 + 月均）。</li>
-                                <li>展开「同样的收入在各州要交多少税？」，点击生成按钮，即可把同一收入在全部 51 个州/特区的州税排序对比。</li>
+                                <li>在地图上点击一个州，或使用下拉列表选择——会跳转到该州的专属页面（例如 /california-tax-calculator/），网址可以直接收藏或分享。</li>
+                                <li>无州所得税的州（如德州、佛州）会显示提示，并提供跳转到联邦计算器的按钮；页面下方依然保留完整的联邦计算器可用。</li>
+                                <li>有州所得税的州：输入年工资、申报身份等信息，点击「计算我的税额」。</li>
+                                <li>查看结果：联邦 + 州合计税额、合计有效税率、税后实得（年度 + 月均），以及联邦和州各自的税率区间明细。</li>
+                                <li>页面顶部的地图会一直显示，随时可以点击切换到其他州；还可以用「跨税年对比」查看 2025 vs 2026 vs 2027。</li>
                             </ol>
-                            <div class="tip-box"><p>💡 如果先在主页运行了联邦计算，州税结果还会显示联邦 + 州合计税额、合计有效税率与合计月均实得。</p></div>
+                            <div class="tip-box"><p>💡 每个州现在都有自己的专属网址，可以直接分享给朋友或收藏，不需要先在主计算器里操作。</p></div>
                         </div>
                         <div class="i18n-en">
-                            <p>The State Tax tab covers all 50 states + DC — pick a state on the map to estimate its income tax.</p>
+                            <p>State Tax coverage spans all 50 states + DC, and each state now has its own dedicated page.</p>
                             <ol class="steps">
                                 <li>Click "State Tax" directly in the top navigation.</li>
-                                <li>Click a state on the map, or choose one from the dropdown list below the map.</li>
-                                <li>Green states (like Texas or Florida) levy no state income tax — you will see a notice with a link to the federal calculator, and nothing more is needed.</li>
-                                <li>For other states, a mini calculator appears: enter your annual income, choose a filing status, and click "Estimate State Tax."</li>
-                                <li>Read the results: state tax, effective rate, top marginal rate, the bracket table, and your take-home pay (annual + monthly).</li>
-                                <li>Expand "Compare All States" and click the generate button to rank the same income across all 51 states/DC.</li>
+                                <li>Click a state on the map, or choose one from the dropdown — this takes you to that state's own dedicated page (e.g. /california-tax-calculator/), with its own shareable, bookmarkable URL.</li>
+                                <li>States with no income tax (like Texas or Florida) show a notice with a button to the federal calculator; the full federal calculator is still available further down the same page.</li>
+                                <li>States with income tax: enter your annual wages, filing status, and other details, then click "Calculate My Tax."</li>
+                                <li>Read the results: combined federal + state tax, combined effective rate, take-home pay (annual + monthly), and separate bracket breakdowns for both federal and state.</li>
+                                <li>The map stays at the top of the page so you can jump to another state anytime — use "Compare Tax Years" there too for 2025 vs 2026 vs 2027.</li>
                             </ol>
-                            <div class="tip-box"><p>💡 Run the federal calculation first and the state results also show combined federal + state tax, the combined effective rate, and combined monthly take-home.</p></div>
+                            <div class="tip-box"><p>💡 Each state now has its own dedicated URL you can bookmark or share directly — no need to start from the main calculator.</p></div>
                         </div>
                         <div class="tour-start-row" style="margin:14px 0 2px;"><button type="button" class="btn btn-primary tour-start-btn" onclick="startTour('t6')"><span class="i18n-zh">▶ 开始本教程的互动引导（浮窗跟随 + 分步高亮）</span><span class="i18n-en">▶ Start this tutorial's interactive walkthrough (pinned guide + step highlights)</span><span class="i18n-es">▶ Iniciar la guía interactiva de este tutorial</span></button></div>
                     </div>
@@ -5143,9 +5143,9 @@
                   text: function(){ return T('Check the Refund/Owed card: owing more than about $1,000 means your withholding falls short — submit a new W-4 to your employer. Press Finish.', '查看「应退/补」卡片：补税超过约 $1,000 说明预扣不足——向雇主提交新 W-4 提高预扣。点「完成」。', 'Revise la tarjeta Reembolso/A pagar. Terminar.'); } }
             ] },
             t6: { title: function(){ return T('Using the State Tax Calculator', '使用州税地图计算器', 'Calculadora de impuestos estatales'); }, steps: [
-                { tab: 'states', targets: ['#stateSelect'],
-                  done: function(){ return typeof currentState !== 'undefined' && !!currentState; },
-                  text: function(){ return T('Pick a state on the map or from this dropdown.', '在地图上点击一个州，或用这个下拉列表选择。', 'Elija un estado en el mapa o la lista.'); } },
+                { tab: 'states', targets: ['#stateSelect', '#stateMap'],
+                  done: null,
+                  text: function(){ return T('Pick a state on the map or from this dropdown — you\'ll be taken to that state\'s own page, and this guide will follow you there.', '在地图上点击一个州，或用这个下拉列表选择——系统会跳转到该州的专属页面，本引导会跟着你一起过去。', 'Elija un estado en el mapa o la lista — será llevado a la página propia de ese estado, y esta guía lo seguirá allí.'); } },
                 { tab: 'states', targets: ['#stateIncome'],
                   done: function(){ var el = document.getElementById('stateIncome'); return !el || parseFloat(el.value) > 0; },
                   text: function(){ return T('Enter your annual income (no-income-tax states skip straight ahead).', '输入年收入（无州所得税的州会直接跳过此步）。', 'Ingrese su ingreso anual (los estados sin impuesto se omiten).'); } },
@@ -6148,6 +6148,12 @@
             const slug = STATE_SLUGS[String(code || '').toUpperCase()];
             if (!slug) return;
             const prefix = currentLang === 'zh' ? '/zh' : (currentLang === 'es' ? '/es' : '');
+            // Hand the guided tour off to the destination state page (see stateTourContinue.js logic
+            // in state-calc.js) so the floating guide keeps going instead of vanishing on navigation.
+            if (activeTour && activeTour.id === 't6' && activeTour.idx === 0) {
+                try { sessionStorage.setItem('taxCalcTourContinue', JSON.stringify({ tour: 't6', lang: currentLang })); } catch (e) { /* best-effort */ }
+                endTour(true);
+            }
             window.location.href = prefix + '/' + slug + '-tax-calculator/';
         }
 

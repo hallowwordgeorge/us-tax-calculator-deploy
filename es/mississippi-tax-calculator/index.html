@@ -217,7 +217,7 @@ a{color:var(--primary);}
                     </div>
                 </li>
                 <li class="an-item an-lang-item">
-                    <div class="lang-toggle an-lang"><a href="https://us-tax-calculator.com/mississippi-tax-calculator/" class="an-lang-link">EN</a><a href="https://us-tax-calculator.com/zh/mississippi-tax-calculator/" class="an-lang-link">中文</a><span class="an-lang-current active">ES</span></div>
+                    <div class="lang-toggle an-lang"><a href="https://us-tax-calculator.com/mississippi-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">EN</a><a href="https://us-tax-calculator.com/zh/mississippi-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">中文</a><span class="an-lang-current active">ES</span></div>
                 </li>
             </ul>
         </div>
@@ -329,6 +329,7 @@ a{color:var(--primary);}
     <button type="button" class="btn btn-primary" id="spCalcBtn">Calcular Mi Impuesto</button>
     <div id="spResult"></div>
   </div>
+  <div class="tour-float" id="stateTourFloat" style="display:none;"></div>
 
   <p class="sp-note">Esta calculadora usa el mismo motor que la <a href="/#/">calculadora principal de US Tax Calculator</a> — vea nuestra página de <a href="/es/methodology/">Metodología</a> para saber exactamente de dónde viene cada cifra, y nuestro <a href="/es/disclaimer/">Aviso Legal</a> para lo que esta herramienta no modela (AMT, NIIT, EITC, impuestos locales y más).</p>
   </div>

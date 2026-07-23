@@ -372,6 +372,9 @@ function goToStatePage(code) {
     const slug = STATE_SLUGS[code];
     if (!slug) return;
     if (code === CURRENT_STATE_CODE) return; // already here
+    if (stateTour) {
+        try { sessionStorage.setItem('taxCalcTourContinue', JSON.stringify({ tour: 't6' })); } catch (e) { /* best-effort */ }
+    }
     const prefix = (currentLang === 'zh') ? '/zh' : (currentLang === 'es' ? '/es' : '');
     window.location.href = prefix + '/' + slug + '-tax-calculator/';
 }
@@ -534,6 +537,7 @@ function initStatePage(code) {
     if (dedSel) dedSel.addEventListener('change', toggleItemizedField);
     const calcBtn = document.getElementById('spCalcBtn');
     if (calcBtn) calcBtn.addEventListener('click', runStateCalculator);
+    checkTourContinuation();
 }
 
 // ---- Salary-amount pages (/calculator/{amount}-salary-tax-calculator/) ----
@@ -624,4 +628,111 @@ function initSalaryPage(defaultWages) {
     if (dedSel) dedSel.addEventListener('change', toggleItemizedField);
     const calcBtn = document.getElementById('spCalcBtn');
     if (calcBtn) calcBtn.addEventListener('click', runSalaryCalculator);
+}
+
+// ---- Guided-tour continuation (state pages only) ----
+// When the main SPA's "Using the State Tax Calculator" tour (t6) hands off here (see
+// goToStateTaxPage() in index.html), this renders a small floating guide — visually
+// identical to the SPA's .tour-float — that walks through entering wages, calculating,
+// and reading the result, then clears itself. Also re-armed if the user switches
+// language mid-tour (the language-switcher links call preserveTourOnLangSwitch()).
+const STATE_TOUR_STEPS = [
+    { target: '#spWages', done: function () { var el = document.getElementById('spWages'); return !!(el && parseFloat(el.value) > 0); },
+        text: { en: 'Enter your annual income here.', zh: '在这里输入你的年收入。', es: 'Ingrese aquí su ingreso anual.' } },
+    { target: '#spCalcBtn', done: function () { var el = document.getElementById('spResult'); return !!(el && el.innerHTML.trim().length > 0); },
+        text: { en: 'Click "Calculate My Tax".', zh: '点击"计算我的税额"。', es: 'Haga clic en "Calcular Mi Impuesto".' } },
+    { target: '#spResult', done: null,
+        text: { en: 'Read your combined federal + state tax, effective rate, and take-home pay here. Press Finish when done.', zh: '在这里查看联邦+州税合计、有效税率与税后实得收入。看完点"完成"。', es: 'Lea aquí su impuesto combinado, tasa efectiva e ingreso neto. Pulse Terminar al terminar.' } }
+];
+let stateTour = null; // { idx, timer, finished }
+
+function stateTourTitle() { return L('Using the State Tax Calculator', '使用州税地图计算器', 'Calculadora de impuestos estatales'); }
+function stateTourClearHighlights() {
+    document.querySelectorAll('.tour-highlight').forEach(function (el) { el.classList.remove('tour-highlight'); });
+}
+function stateTourApplyHighlight(sel) {
+    stateTourClearHighlights();
+    var el = document.querySelector(sel);
+    if (el) el.classList.add('tour-highlight');
+}
+function stateTourRender() {
+    var f = document.getElementById('stateTourFloat');
+    if (!f) return;
+    if (!stateTour) { f.style.display = 'none'; return; }
+    var n = STATE_TOUR_STEPS.length, i = stateTour.idx;
+    var dots = '';
+    for (var d = 0; d < n; d++) dots += '<span class="tf-dot ' + (d < i || stateTour.finished ? 'done' : (d === i ? 'on' : '')) + '"></span>';
+    var body;
+    if (stateTour.finished) {
+        body = '<div class="tf-text">🎉 ' + L('Walkthrough complete!', '引导完成！', '¡Guía completada!') + '</div>'
+            + '<div class="tf-btns"><button class="btn btn-success" onclick="stateTourEnd()">' + L('Done', '关闭', 'Cerrar') + '</button></div>';
+    } else {
+        var step = STATE_TOUR_STEPS[i];
+        var isLast = i === n - 1;
+        body = '<div class="tf-text">' + L(step.text.en, step.text.zh, step.text.es) + '</div>'
+            + '<div class="tf-btns">'
+            + '<button class="btn btn-outline"' + (i === 0 ? ' disabled' : '') + ' onclick="stateTourPrev()">' + L('Back', '上一步', 'Atrás') + '</button>'
+            + '<button class="btn btn-primary" onclick="stateTourAdvance()">' + (isLast ? L('Finish', '完成', 'Terminar') : L('Next', '下一步', 'Siguiente')) + '</button>'
+            + '</div>';
+    }
+    f.innerHTML = '<div class="tf-head"><span>🧭 ' + stateTourTitle() + '</span>'
+        + '<button class="tf-close" onclick="stateTourEnd()" aria-label="close">✕</button></div>'
+        + '<div class="tf-progress">' + L('Step', '步骤', 'Paso') + ' ' + Math.min(i + 1, n) + ' / ' + n + '</div>'
+        + '<div class="tf-dots">' + dots + '</div>' + body;
+    f.style.display = 'block';
+    if (!stateTour.finished) stateTourApplyHighlight(STATE_TOUR_STEPS[i].target);
+    else stateTourClearHighlights();
+}
+function stateTourTick() {
+    if (!stateTour || stateTour.finished) return;
+    var step = STATE_TOUR_STEPS[stateTour.idx];
+    if (step.done && step.done()) {
+        var myIdx = stateTour.idx;
+        setTimeout(function () {
+            if (stateTour && stateTour.idx === myIdx && !stateTour.finished) stateTourAdvance();
+        }, 250);
+    }
+}
+function stateTourAdvance() {
+    if (!stateTour) return;
+    if (stateTour.idx >= STATE_TOUR_STEPS.length - 1) {
+        stateTour.finished = true;
+        stateTourRender();
+        return;
+    }
+    stateTour.idx += 1;
+    stateTourRender();
+}
+function stateTourPrev() { if (stateTour && stateTour.idx > 0) { stateTour.idx -= 1; stateTour.finished = false; stateTourRender(); } }
+function stateTourEnd() {
+    if (stateTour && stateTour.timer) clearInterval(stateTour.timer);
+    stateTour = null;
+    stateTourClearHighlights();
+    try { sessionStorage.removeItem('taxCalcTourContinue'); } catch (e) { /* best-effort */ }
+    var f = document.getElementById('stateTourFloat');
+    if (f) f.style.display = 'none';
+}
+function stateTourStart() {
+    var f = document.getElementById('stateTourFloat');
+    if (!f) return; // page has no calculator form (shouldn't happen, but be defensive)
+    stateTour = { idx: 0, finished: false };
+    stateTourRender();
+    stateTour.timer = setInterval(stateTourTick, 400);
+    f.classList.remove('tf-enter'); void f.offsetWidth; f.classList.add('tf-enter');
+}
+function checkTourContinuation() {
+    var raw;
+    try { raw = sessionStorage.getItem('taxCalcTourContinue'); } catch (e) { return; }
+    if (!raw) return;
+    try {
+        var data = JSON.parse(raw);
+        if (data && data.tour === 't6') stateTourStart();
+    } catch (e) { /* ignore malformed data */ }
+}
+// Called by the nav language-switcher links (see nav_builder.py) so a tour in progress
+// survives a language switch too, not just a state-to-state jump.
+function preserveTourOnLangSwitch() {
+    try {
+        if (stateTour) sessionStorage.setItem('taxCalcTourContinue', JSON.stringify({ tour: 't6' }));
+    } catch (e) { /* best-effort */ }
 }
