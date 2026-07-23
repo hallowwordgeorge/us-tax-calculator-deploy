@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break | US Tax Calculator</title>
+<meta name="description" content="How tax-loss harvesting works: selling losing investments to offset capital gains, the $3,000 annual limit against ordinary income, the 30-day wash-sale rule that can disqualify a loss, and why this strategy doesn't apply to cryptocurrency the same way.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://us-tax-calculator.com/articles/tax-loss-harvesting/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break | US Tax Calculator">
+<meta property="og:description" content="How tax-loss harvesting works: selling losing investments to offset capital gains, the $3,000 annual limit against ordinary income, the 30-day wash-sale rule that can disqualify a loss, and why this strategy doesn't apply to cryptocurrency the same way.">
+<meta property="og:url" content="https://us-tax-calculator.com/articles/tax-loss-harvesting/">
+<meta property="og:image" content="https://us-tax-calculator.com/articles/assets/hero-tax-loss-harvesting.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="US Tax Calculator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break | US Tax Calculator">
+<meta name="twitter:description" content="How tax-loss harvesting works: selling losing investments to offset capital gains, the $3,000 annual limit against ordinary income, the 30-day wash-sale rule that can disqualify a loss, and why this strategy doesn't apply to cryptocurrency the same way.">
+<meta name="twitter:image" content="https://us-tax-calculator.com/articles/assets/hero-tax-loss-harvesting.svg">
+<link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A3D8F">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break", "description": "How tax-loss harvesting works: selling losing investments to offset capital gains, the $3,000 annual limit against ordinary income, the 30-day wash-sale rule that can disqualify a loss, and why this strategy doesn't apply to cryptocurrency the same way.", "image": "https://us-tax-calculator.com/articles/assets/hero-tax-loss-harvesting.svg", "datePublished": "2026-07-23", "dateModified": "2026-07-23", "author": {"@type": "Organization", "name": "US Tax Calculator"}, "publisher": {"@type": "Organization", "name": "US Tax Calculator", "logo": {"@type": "ImageObject", "url": "https://us-tax-calculator.com/logo-icon.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://us-tax-calculator.com/articles/tax-loss-harvesting/"}}</script>
+<link href="/assets/state-calc.css" rel="stylesheet"/>
+<style>
+:root{
+  --primary:#1d4ed8;--primary-light:#3b82f6;--primary-dark:#12275e;
+  --success:#16a34a;--warning:#f59e0b;--danger:#dc2626;
+  --bg:#f3f5fa;--card-bg:#ffffff;--text:#0f172a;--text-secondary:#64748b;--border:#e3e8f2;
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 10px 30px rgba(15,23,42,.06);
+  --shadow-lg:0 4px 12px rgba(15,23,42,.06),0 24px 60px rgba(15,23,42,.12);
+  --radius:18px;--radius-sm:12px;
+}
+
+.tab-btn{flex:0 0 auto;min-width:max-content;padding:12px 20px;border:none;background:transparent;color:var(--text-secondary);font-size:.95rem;font-weight:600;border-radius:10px;cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-sizing:border-box;}
+.tab-btn:hover{color:var(--primary);}
+.site-nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding:5px;background:#e9edf6;border-radius:14px;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+.sn-link{flex:none;padding:7px 14px;border-radius:10px;background:transparent;border:none;color:var(--text-secondary);text-decoration:none;font-size:.85rem;font-weight:600;transition:all .22s cubic-bezier(.4,0,.2,1);}
+.sn-link:hover{color:var(--primary);}
+
+        /* ===== Apple-style flat nav ===== */
+        .apple-nav{background:#ffffff;border-bottom:1px solid var(--border);position:relative;z-index:100;}
+        .an-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:54px;display:flex;align-items:center;gap:4px;position:relative;}
+        .an-logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex:none;margin-right:18px;}
+        .an-logo img{border-radius:7px;}
+        .an-wordmark{font-size:.92rem;font-weight:800;color:var(--primary-dark);letter-spacing:-0.01em;white-space:nowrap;}
+        .an-items{display:flex;align-items:center;gap:2px;list-style:none;flex:1;min-width:0;}
+        .an-item{position:relative;}
+        .an-lang-item{margin-left:auto;}
+        .an-link,.an-details summary{
+            display:inline-flex;align-items:center;gap:5px;background:transparent;border:none;
+            color:var(--text);font-size:.86rem;font-weight:500;padding:8px 12px;border-radius:8px;
+            cursor:pointer;white-space:nowrap;list-style:none;
+        }
+        .an-link{text-decoration:none;}
+        .an-item:hover>.an-link,.an-item.open>.an-link{color:var(--primary);background:#f5f7fb;}
+        .an-menu{display:none;flex-direction:column;gap:1px;min-width:200px;position:absolute;top:100%;left:0;margin-top:6px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:8px;z-index:110;}
+        .an-item.open>.an-menu,.an-item:focus-within>.an-menu{display:flex;}
+        @media (hover:hover) and (pointer:fine){
+            /* Bridge the visual gap between the trigger button and the dropdown (.an-menu
+               has margin-top:6px for spacing) so the mouse never truly exits the hoverable
+               area while moving from the button down into the menu — without this, :hover
+               drops the instant the cursor crosses that empty strip and the menu vanishes
+               before the user can reach an option. An absolutely-positioned pseudo-element
+               is used (rather than padding) so it never affects the nav bar's own height.*/
+            .an-item::after{content:'';position:absolute;left:0;right:0;top:100%;height:14px;}
+            .an-item:hover>.an-menu{display:flex;}
+        }
+        .an-menu a,.an-menu button.dropdown-tab-btn{
+            display:block;width:100%;text-align:left;padding:9px 12px;border-radius:8px;
+            font-size:.86rem;color:var(--text);text-decoration:none;background:transparent;border:none;
+        }
+        .an-menu a:hover,.an-menu button.dropdown-tab-btn:hover{background:#f5f7fb;color:var(--primary);}
+        .an-menu a[aria-current="page"]{color:var(--primary);font-weight:700;}
+        .an-menu .an-menu-all{color:var(--primary);font-weight:700;border-top:1px solid var(--border);margin-top:4px;padding-top:10px;}
+        .an-lang{background:#f2f4f8;padding:3px;border-radius:8px;gap:2px;}
+        .an-lang button{padding:6px 10px;font-size:.76rem;}
+        .an-mobile-toggle{display:none;margin-left:auto;background:none;border:none;font-size:1.3rem;color:var(--text);cursor:pointer;padding:6px 8px;}
+        .an-menu.site-nav{margin-bottom:0;overflow:visible;}
+
+        @media(max-width:860px){
+            .an-wordmark{display:none;}
+            .an-mobile-toggle{display:block;}
+            .an-items{
+                display:none;position:absolute;top:100%;left:0;right:0;
+                flex-direction:column;align-items:stretch;background:#fff;
+                border-top:1px solid var(--border);box-shadow:var(--shadow-lg);
+                padding:10px;gap:0;max-height:calc(100vh - 54px);overflow-y:auto;
+            }
+            .an-wrap.an-open .an-items{display:flex;}
+            .an-lang-item{margin-left:0;order:99;padding-top:8px;border-top:1px solid var(--border);margin-top:6px;}
+            .an-link{width:100%;padding:12px 10px;}
+            .an-item.open>.an-menu{
+                position:static;display:flex;box-shadow:none;border:none;padding:0 0 4px 20px;margin-top:0;
+            }
+                }
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;}
+a{color:var(--primary);}
+
+.page-wide{max-width:1200px;margin:0 auto;padding:0 24px;}
+.prose{max-width:760px;margin:0 auto;padding:0 24px;}
+
+.page-intro{padding:30px 0 6px;}
+.page-intro h1{font-size:1.6rem;font-weight:800;color:var(--primary-dark);margin-bottom:8px;}
+.page-intro p{color:var(--text-secondary);font-size:.97rem;max-width:680px;}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px;}
+.chip{padding:6px 14px;border:1px solid var(--border);background:#fff;border-radius:999px;font-size:.85rem;color:var(--text-secondary);cursor:pointer;text-decoration:none;}
+.chip:hover{border-color:var(--primary-light);color:var(--primary);}
+.chip.active{background:var(--primary);border-color:var(--primary);color:#fff !important;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:48px;}
+.card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:16px;background:var(--card-bg);text-decoration:none;color:inherit;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,42,90,.10);border-color:var(--primary-light);}
+.card img{width:100%;height:150px;object-fit:cover;display:block;background:#e9edf6;}
+.card .card-body{display:flex;flex-direction:column;gap:9px;padding:18px 20px 22px;flex:1;}
+.badge{align-self:flex-start;font-size:.72rem;font-weight:700;color:var(--primary);background:rgba(26,95,180,.10);padding:3px 11px;border-radius:999px;}
+.card h3{font-size:1.06rem;font-weight:700;line-height:1.35;color:var(--text);}
+.card p{font-size:.89rem;color:var(--text-secondary);line-height:1.55;flex:1;}
+.meta{font-size:.76rem;color:#93a0b3;}
+
+.back-link{display:inline-block;margin:26px 0 8px;font-size:.87rem;font-weight:700;text-decoration:none;}
+.article-head{padding:10px 0 6px;}
+.article-head .meta-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.article-head h1{font-size:1.9rem;line-height:1.28;font-weight:800;color:var(--primary-dark);margin:6px 0 24px;letter-spacing:-.01em;}
+.article-hero-img{width:100%;height:auto;border-radius:16px;margin-bottom:28px;display:block;box-shadow:var(--shadow);}
+.article-body{font-size:1.06rem;line-height:1.85;padding-bottom:14px;}
+.article-body h5{font-size:1.15rem;font-weight:700;margin:28px 0 10px;color:var(--primary-dark);}
+.article-body p{margin:0 0 16px;}
+.article-body ul{margin:0 0 16px;padding-left:24px;}
+.article-body li{margin-bottom:7px;}
+.article-body table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:.93rem;}
+.article-body th,.article-body td{border:1px solid var(--border);padding:9px 11px;text-align:left;}
+.article-body th{background:#eef1f8;}
+.article-body .tip-box,.article-body .warning-box,.article-body .danger-box{padding:13px 15px;border-radius:12px;margin:0 0 18px;font-size:.94rem;}
+.article-body .tip-box{background:#eef6ff;border:1px solid #cfe3ff;}
+.article-body .warning-box{background:#fff8ec;border:1px solid #ffe2ad;}
+.article-body .danger-box{background:#fef1f1;border:1px solid #ffc9c9;}
+.more-box{margin:34px 0 50px;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--card-bg);}
+.more-box h4{font-size:.85rem;margin-bottom:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.05em;font-weight:700;}
+.more-box a{display:block;padding:9px 0;font-size:.95rem;font-weight:600;text-decoration:none;border-bottom:1px solid var(--border);}
+.more-box a:last-child{border-bottom:none;}
+
+.empty{padding:44px 0;text-align:center;color:var(--text-secondary);}
+
+.site-footer{border-top:1px solid var(--border);margin-top:24px;padding:26px 0 44px;color:var(--text-secondary);font-size:.83rem;}
+.site-footer a{color:var(--text-secondary);text-decoration:none;}
+.site-footer a:hover{color:var(--primary);}
+.site-footer .flinks{margin-bottom:10px;}
+.site-footer .flinks a{color:var(--primary);font-weight:600;}
+
+@media(max-width:600px){
+  .article-head h1{font-size:1.5rem;}
+  .page-intro h1{font-size:1.35rem;}
+}
+
+</style>
+</head>
+<body>
+<nav class="apple-nav">
+<div class="an-wrap">
+<a class="an-logo" href="/#/">
+<img alt="" height="24" src="/logo-icon.svg" width="24"/>
+<span class="an-wordmark">US Tax Calculator</span>
+</a>
+<button aria-controls="anItems" aria-expanded="false" aria-label="Menu" class="an-mobile-toggle" id="anMobileToggle" type="button">☰</button>
+<ul class="an-items" id="anItems">
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">🧮 Calculator</button>
+<div aria-label="Site" class="an-menu site-nav">
+<a class="sn-link" href="/#/">Federal Tax</a>
+<a class="sn-link" href="/#/self-employment">Self-Employment</a>
+<a class="sn-link" href="/#/capital-gains">Capital Gains</a>
+<a class="sn-link" href="/#/child-tax-credit">Child Tax Credit</a>
+<a class="sn-link" href="/#/fica">FICA / Payroll</a>
+<a class="sn-link" href="/calculator/">By Salary Amount</a>
+</div>
+</li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="states" href="/#/states" id="tabStates">🗺️ State Tax</a></li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="history" href="/#/history" id="tabHistory">📊 History</a></li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="compare" href="/#/compare" id="tabCompare">📈 Compare</a></li>
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📖 Resources</button>
+<div class="an-menu">
+<a class="tab-btn dropdown-tab-btn" data-tab="guide" href="/#/guide" id="tabGuide">📖 Guide</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="howitworks" href="/#/howitworks" id="tabHow">🧾 How It Works</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="tutorials" href="/#/tutorials" id="tabTutorial">🎓 Tutorials</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="faq" href="/#/faq" id="tabFaq">❓ FAQ</a>
+<a href="/about-us/">ℹ️ About Us</a>
+<a href="/methodology/">🧮 Methodology</a>
+<a href="/disclaimer/">⚖️ Disclaimer</a>
+</div>
+</li>
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📰 Articles</button>
+<div class="an-menu">
+<a href="/articles/?cat=tutorials">Filing Tutorials</a>
+<a href="/articles/?cat=news">Tax News 2026</a>
+<a href="/articles/?cat=guides">Filing Guides</a>
+<a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
+<a href="/articles/?cat=self-employment">Self-Employment</a>
+<a href="/articles/?cat=investing">Investing &amp; Gains</a>
+<a class="an-menu-all" href="/articles/">Browse All Articles →</a>
+</div>
+</li>
+<li class="an-item an-social-item" tabindex="0">
+<div class="social-row">
+<a aria-label="X (Twitter)" class="social-circle-btn" href="https://x.com/UsTaxCalculator" id="xAccountBtn" rel="noopener" target="_blank">X</a>
+<button aria-label="Share" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" type="button">🔗</button>
+<div class="social-popup" role="tooltip">
+<div class="sp-title">📣 Updates &amp; Contact</div>
+<div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" rel="noopener" target="_blank">@UsTaxCalculator</a></div>
+<div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+<div class="sp-row"><a href="https://us-tax-calculator.instatus.com" rel="noopener" target="_blank">🟢 Site status &amp; uptime →</a></div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+<div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
+<div class="prose">
+<a class="back-link" href="/articles/">&larr; Back to Articles</a>
+<div class="article-head">
+<div class="meta-row"><span class="badge">Investing</span><span class="meta">Published 2026-07-23</span></div>
+<h1>Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break</h1>
+</div>
+<img alt="Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break" class="article-hero-img" height="630" loading="eager" src="/articles/assets/hero-tax-loss-harvesting.svg" width="1200"/>
+<div class="article-body">
+<p>Tax-loss harvesting is one of the few genuinely proactive tax strategies available to ordinary investors — deliberately selling an investment at a loss specifically to generate a tax benefit, often while immediately reinvesting in something similar to maintain your overall market position.</p>
+
+<h5>How Losses Offset Gains</h5>
+<p>Capital losses first offset capital gains of the same type: short-term losses offset short-term gains, and long-term losses offset long-term gains. If you have an excess of one type after that first-pass matching, it then offsets the other type — an excess short-term loss can offset a long-term gain, and vice versa. This matters because short-term gains are taxed at your ordinary income rate while long-term gains get the preferential <a href="/articles/long-term-capital-gains/">0/15/20% rates</a>, so which type of gain you're offsetting affects how much tax benefit a given harvested loss actually delivers.</p>
+
+<h5>The $3,000 Annual Limit Against Ordinary Income</h5>
+<p>If your total capital losses for the year exceed your total capital gains, you can deduct up to <strong>$3,000</strong> of the excess against your ordinary income ($1,500 if Married Filing Separately). Any remaining excess beyond that $3,000 doesn't disappear — it carries forward indefinitely to future tax years, where it can offset future capital gains or, again, up to $3,000 of ordinary income per year until it's fully used up.</p>
+
+<h5>The Wash-Sale Rule: The Trap That Disqualifies a Loss</h5>
+<p>You cannot claim a loss on a security if you buy the same security, or one the IRS considers "substantially identical," within 30 days before or 30 days after the sale — a 61-day window total. If you trigger a wash sale, the loss isn't lost entirely, but it's disallowed for the current year and instead added to the cost basis of the replacement shares you bought, deferring the benefit rather than eliminating it.</p>
+<div class="tip-box"><p>💡 A common way to harvest a loss without triggering the wash-sale rule while staying invested in a similar asset: sell the losing position and immediately buy a similar-but-not-identical fund (a different S&amp;P 500 index fund from a different provider, for example, rather than buying back the exact same fund), then optionally switch back to your original holding after the 30-day window closes if you prefer it.</p></div>
+
+<h5>Crypto: Currently Outside the Wash-Sale Rule</h5>
+<p>As covered in our <a href="/articles/cryptocurrency-taxes-guide/">cryptocurrency tax guide</a>, digital assets are not currently subject to the wash-sale rule, since it technically applies to "stock or securities" and crypto has generally not been classified that way. This means you can sell crypto at a loss and immediately repurchase the same asset, claiming the loss right away while maintaining your position — something the wash-sale rule specifically prevents for stocks. This has been a frequent target of proposed legislation to close the gap, so don't assume this distinction is permanent.</p>
+
+<h5>Year-End Timing</h5>
+<p>Tax-loss harvesting is most commonly done in the final weeks of the calendar year, once your realized gains and losses for the year are largely known, so you can strategically decide which additional losses (if any) are worth realizing to offset those gains. That said, harvesting can be done at any point during the year — some investors harvest losses opportunistically whenever a holding dips significantly, rather than waiting until December.</p>
+
+<h5>A Worked Example</h5>
+<p>You have $8,000 in long-term capital gains from selling one stock at a profit this year, and a different stock position is down $12,000 from your purchase price. You sell the losing position, realizing a $12,000 long-term capital loss. That offsets your entire $8,000 gain, and $3,000 of the remaining $4,000 loss offsets your ordinary income this year. The final $1,000 carries forward to next year, available to offset future gains or another $1,000 of ordinary income (subject to the $3,000 annual cap applying to the total across whatever gains/losses arise that year, not a separate cap just for the carryforward amount).</p>
+
+<h5>Automated Harvesting</h5>
+<p>Many robo-advisors and some brokerages now offer automated tax-loss harvesting as a standing feature, continuously monitoring your taxable accounts for harvesting opportunities throughout the year rather than requiring you to manually watch positions and time trades yourself. This can capture more opportunities than manual, once-a-year harvesting, though it's typically only offered on taxable brokerage accounts of a certain minimum size and usually comes with an advisory fee — weigh the added tax benefit against that cost before assuming automation is worth it for a smaller account.</p>
+
+<h5>Common Questions</h5>
+<p><strong>Does tax-loss harvesting work inside a 401(k) or IRA?</strong> No — the wash-sale rule and the entire concept of harvesting losses only applies to taxable brokerage accounts. Buying and selling inside a tax-advantaged retirement account has no current-year tax consequence either way, so there's nothing to harvest.</p>
+<p><strong>Can I harvest a loss and buy back the same stock in my spouse's account?</strong> No — the wash-sale rule applies across accounts you or your spouse control, including a spouse's separate account or an IRA either of you owns, not just the account where the sale occurred.</p>
+<p><strong>Is there a limit to how many years I can carry forward an unused loss?</strong> No — capital loss carryforwards continue indefinitely until fully used, with no expiration, as long as you keep filing returns that report them.</p>
+
+<div class="tip-box"><p>💡 Once you know your net capital gain or loss for the year after any harvesting, run it through <a href="/#/capital-gains">the Capital Gains preset</a> to see your resulting tax.</p></div>
+
+</div>
+<div class="more-box"><h4>Related Articles</h4><a href="/articles/">Browse All Articles</a>
+<a href="/#/">Federal Tax Calculator</a>
+<a href="/methodology/">Methodology: How We Calculate Your Taxes</a></div>
+</div>
+<footer class="site-footer"><div class="page-wide">
+<div class="flinks">
+<a href="/articles/">Articles</a> ·
+    <a href="/#/">Calculator</a> ·
+    <a href="/about-us/">About</a> ·
+    <a href="/methodology/">Methodology</a> ·
+    <a href="/#/privacy">Privacy</a> ·
+    <a href="/disclaimer/">Disclaimer</a>
+</div>
+<p>These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
+</div></footer>
+<script src="/assets/share-widget.js"></script>
+<script>
+        // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +
+        // click-outside-to-close on touch; auto-detected via matchMedia.
+        (function () {
+            var supportsHover = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+
+            function closeAllMenus() {
+                document.querySelectorAll('.an-item.open').forEach(function (item) {
+                    item.classList.remove('open');
+                    var trig = item.querySelector('.an-link[aria-haspopup]');
+                    if (trig) trig.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            document.querySelectorAll('.an-item').forEach(function (item) {
+                var trigger = item.querySelector('.an-link[aria-haspopup]');
+                if (!trigger) return; // items with no submenu need no toggle logic
+                trigger.addEventListener('click', function (e) {
+                    if (supportsHover) return; // desktop: hover alone controls visibility
+                    e.preventDefault();
+                    var willOpen = !item.classList.contains('open');
+                    closeAllMenus();
+                    if (willOpen) {
+                        item.classList.add('open');
+                        trigger.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.an-item')) closeAllMenus();
+            });
+
+            var toggle = document.getElementById('anMobileToggle');
+            var wrap = document.querySelector('.an-wrap');
+            if (toggle && wrap) {
+                toggle.addEventListener('click', function () {
+                    var open = wrap.classList.toggle('an-open');
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    if (!open) closeAllMenus();
+                });
+            }
+            // Choosing an actual destination closes the submenu and the mobile panel
+            document.querySelectorAll('.an-items a, .an-items button:not([aria-haspopup])').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    closeAllMenus();
+                    if (wrap) wrap.classList.remove('an-open');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+
+</script>
+</body>
+</html>

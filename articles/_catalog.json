@@ -1,7 +1,7 @@
 {
   "_purpose": "INTERNAL FILE - not linked from any page, not in sitemap.xml, disallowed in robots.txt. Not meant for site visitors. Before writing new articles for this site, read this file and make sure no new topic duplicates or substantially overlaps an entry below. Each entry's 'covers' field summarizes the specific angle/scope of that article so overlap is easy to spot.",
-  "last_updated": "2026-07-22",
-  "article_count": 31,
+  "last_updated": "2026-07-23",
+  "article_count": 51,
   "articles": [
     {
       "slug": "obbba-2026-changes",
@@ -219,6 +219,146 @@
       "category": "tutorials",
       "published": "2026-05-04",
       "covers": "Owe more than you can pay right now? Here's the step-by-step process — file anyway, understand the two different penalties, and set up a real payment plan instead of avoiding it."
+    },
+    {
+      "slug": "earned-income-tax-credit-eitc",
+      "title": "Earned Income Tax Credit (EITC) 2026: Who Qualifies and How Much You Can Get",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "2026 EITC maximum credit amounts by number of qualifying children, phase-in/phase-out mechanics, the $12,200 investment income cliff, childless-worker age rules (25-64), and state EITC piggyback credits."
+    },
+    {
+      "slug": "net-investment-income-tax-niit",
+      "title": "Net Investment Income Tax (NIIT): The 3.8% Surtax on Investment Income",
+      "category": "investing",
+      "published": "2026-07-23",
+      "covers": "NIIT mechanics: 3.8% rate, unindexed $200k/$250k/$125k MAGI thresholds, what counts as net investment income vs. what's excluded, the lesser-of calculation, and planning considerations."
+    },
+    {
+      "slug": "qualified-business-income-deduction-qbi",
+      "title": "The Qualified Business Income (QBI) Deduction: The 20% Write-Off Explained",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "Section 199A QBI deduction for 2026: 20% deduction, $201,750/$403,500 thresholds and expanded $75k/$150k OBBBA phase-in range, SSTB vs non-SSTB treatment, W-2 wage/UBIA limitation, aggregation election, and the new $400 minimum deduction floor."
+    },
+    {
+      "slug": "home-sale-capital-gains-exclusion",
+      "title": "Selling Your Home: The $250,000/$500,000 Capital Gains Exclusion Explained",
+      "category": "investing",
+      "published": "2026-07-23",
+      "covers": "Section 121 primary residence exclusion: $250k/$500k amounts, 2-of-5-year ownership/use test, once-per-2-years limit, partial exclusion for job/health/unforeseen-circumstances moves, depreciation recapture, inherited homes, and converted rentals/vacation homes."
+    },
+    {
+      "slug": "quarterly-estimated-taxes-safe-harbor",
+      "title": "Quarterly Estimated Taxes: Safe Harbor Rules and How to Avoid the Underpayment Penalty",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "Estimated tax safe harbor: 90% current-year or 100%/110% prior-year (110% if prior AGI over $150k) tests, 2026 quarterly due dates, Form 2210 underpayment penalty, annualized income installment method for irregular income, and payment methods."
+    },
+    {
+      "slug": "cryptocurrency-taxes-guide",
+      "title": "Cryptocurrency Taxes: Form 1099-DA, Cost Basis, and What Actually Triggers a Taxable Event",
+      "category": "investing",
+      "published": "2026-07-23",
+      "covers": "Crypto tax mechanics: taxable vs non-taxable events, capital gains treatment, staking/mining/airdrops as ordinary income, Form 1099-DA phase-in (2025 gross proceeds only, 2026 basis reporting), account-by-account cost-basis method, and absence of a wash-sale rule for digital assets."
+    },
+    {
+      "slug": "1099-forms-explained",
+      "title": "1099 Forms Explained: NEC, MISC, DIV, INT, and K — What Each One Means for Your Taxes",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "1099-NEC/MISC/DIV/INT/K form types and what each reports; 2026 threshold changes: NEC/MISC $600→$2,000 (OBBBA), 1099-K reverted to $20,000/200 transactions; what to do with a missing or incorrect 1099."
+    },
+    {
+      "slug": "home-office-deduction",
+      "title": "The Home Office Deduction: Simplified vs. Actual Expense Method",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "Home office deduction for self-employed: exclusive-and-regular-use test, simplified method ($5/sq ft, $1,500 max), actual expense method (Form 8829, depreciation and recapture), why W-2 employees generally cannot claim it post-TCJA."
+    },
+    {
+      "slug": "divorce-and-taxes",
+      "title": "Divorce and Taxes: Filing Status, Alimony, and Claiming Kids After a Split",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Tax implications of divorce: filing status by Dec 31 marital status, post-2018 alimony rules (not deductible/taxable, reversed from pre-2019 law), dependency/CTC assignment via Form 8332, Head of Household eligibility, splitting the home-sale exclusion, QDROs for retirement account division."
+    },
+    {
+      "slug": "kiddie-tax-explained",
+      "title": "The Kiddie Tax: How a Child's Unearned Income Gets Taxed at the Parent's Rate",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "Kiddie tax for 2026: $2,700 unearned income threshold ($1,350 two-tier floor), age/support tests, Form 8615 vs Form 8814 parental election, 529 plan exclusion, historical purpose (1986 income-shifting closure)."
+    },
+    {
+      "slug": "estate-and-gift-tax-basics",
+      "title": "Estate and Gift Tax Basics: The $15 Million Exemption and $19,000 Annual Exclusion",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Federal estate/gift tax: $19,000 annual gift exclusion, $15,000,000 lifetime exemption (made permanent by OBBBA), gift-splitting, unlimited marital/charitable deduction, GST tax, 529 front-loading, and why almost no estates owe this tax."
+    },
+    {
+      "slug": "fbar-fatca-foreign-accounts",
+      "title": "FBAR and FATCA: Reporting Foreign Bank Accounts and Assets",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "FBAR (FinCEN 114, $10,000 aggregate threshold) vs FATCA (Form 8938, filing-status/residency-dependent thresholds), penalties for non-willful/willful failure to file, Streamlined Filing Compliance Procedures, inherited foreign accounts."
+    },
+    {
+      "slug": "premium-tax-credit-aca-subsidies",
+      "title": "The Premium Tax Credit After the Enhanced Subsidies Expired: What Changed for 2026",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "ACA Premium Tax Credit after enhanced subsidies expired end of 2025: return of 400% FPL cliff, higher contribution percentages, Form 8962 reconciliation, repayment limitation caps, state supplemental subsidy programs."
+    },
+    {
+      "slug": "1031-like-kind-exchange",
+      "title": "The 1031 Like-Kind Exchange: Deferring Capital Gains Tax on Real Estate",
+      "category": "investing",
+      "published": "2026-07-23",
+      "covers": "Section 1031 exchange: defers (not eliminates) gain, real-property-only since TCJA 2018, 45-day ID/180-day close deadlines, qualified intermediary requirement, boot/partial exchanges, depreciation recapture."
+    },
+    {
+      "slug": "irs-penalties-failure-to-file-pay",
+      "title": "IRS Penalties Explained: Failure to File, Failure to Pay, and Accuracy-Related Penalties",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Failure-to-file (5%/month, 25% cap) vs failure-to-pay (0.5%/month, 25% cap) penalties, combined-penalty offset, interest, 20% accuracy-related penalty, reasonable-cause and first-time abatement."
+    },
+    {
+      "slug": "innocent-spouse-relief",
+      "title": "Innocent Spouse Relief: When You're Not Responsible for Your Spouse's Tax Debt",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Joint-and-several liability on joint returns, three relief types (innocent spouse, separation of liability, equitable relief), 2-year deadline, Form 8857, factors IRS weighs."
+    },
+    {
+      "slug": "gambling-lottery-winnings-tax",
+      "title": "Gambling and Lottery Winnings: How They're Taxed (and the New 90% Loss Limit)",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "All gambling winnings taxable regardless of W-2G, OBBBA's new 90% cap on deductible losses starting 2026 (phantom income), raised $2,000 W-2G threshold for slots/bingo/keno, professional vs casual treatment, session recordkeeping."
+    },
+    {
+      "slug": "tax-loss-harvesting",
+      "title": "Tax-Loss Harvesting: Turning Investment Losses Into a Tax Break",
+      "category": "investing",
+      "published": "2026-07-23",
+      "covers": "Offsetting gains with losses (short/long-term matching), $3,000 annual limit against ordinary income with indefinite carryforward, 30-day wash-sale rule, crypto's current exemption from wash-sale, automated harvesting."
+    },
+    {
+      "slug": "nanny-tax-household-employment",
+      "title": "The Nanny Tax: Household Employment Taxes Explained",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "$3,000 2026 FICA threshold for household employees (up from $2,800), separate $1,000/quarter FUTA threshold, exemptions (spouse/parent/child under 21/under 18), Schedule H, W-2 requirements, Dependent Care FSA interaction."
+    },
+    {
+      "slug": "espp-employee-stock-purchase-plan-taxes",
+      "title": "Employee Stock Purchase Plans (ESPP): How the Discount and Sale Are Taxed",
+      "category": "investing",
+      "published": "2026-07-23",
+      "covers": "Qualified §423 ESPP: purchase discount/lookback provision, qualifying disposition (2yr from grant + 1yr from purchase) vs disqualifying disposition, ordinary income vs capital gain split, Form 3922/Schedule D, 1099-B basis errors."
     }
   ]
 }
