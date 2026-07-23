@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply | US Tax Calculator</title>
+<meta name="description" content="How inherited IRA rules work under the SECURE Act and SECURE 2.0: the 10-year rule that ended the 'stretch IRA,' when annual RMDs are still required within that window, the eligible-designated-beneficiary exceptions, and the spousal rollover option.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://us-tax-calculator.com/articles/inherited-ira-rules/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply | US Tax Calculator">
+<meta property="og:description" content="How inherited IRA rules work under the SECURE Act and SECURE 2.0: the 10-year rule that ended the 'stretch IRA,' when annual RMDs are still required within that window, the eligible-designated-beneficiary exceptions, and the spousal rollover option.">
+<meta property="og:url" content="https://us-tax-calculator.com/articles/inherited-ira-rules/">
+<meta property="og:image" content="https://us-tax-calculator.com/articles/assets/hero-inherited-ira-rules.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="US Tax Calculator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply | US Tax Calculator">
+<meta name="twitter:description" content="How inherited IRA rules work under the SECURE Act and SECURE 2.0: the 10-year rule that ended the 'stretch IRA,' when annual RMDs are still required within that window, the eligible-designated-beneficiary exceptions, and the spousal rollover option.">
+<meta name="twitter:image" content="https://us-tax-calculator.com/articles/assets/hero-inherited-ira-rules.svg">
+<link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A3D8F">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply", "description": "How inherited IRA rules work under the SECURE Act and SECURE 2.0: the 10-year rule that ended the 'stretch IRA,' when annual RMDs are still required within that window, the eligible-designated-beneficiary exceptions, and the spousal rollover option.", "image": "https://us-tax-calculator.com/articles/assets/hero-inherited-ira-rules.svg", "datePublished": "2026-07-23", "dateModified": "2026-07-23", "author": {"@type": "Organization", "name": "US Tax Calculator"}, "publisher": {"@type": "Organization", "name": "US Tax Calculator", "logo": {"@type": "ImageObject", "url": "https://us-tax-calculator.com/logo-icon.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://us-tax-calculator.com/articles/inherited-ira-rules/"}}</script>
+<link href="/assets/state-calc.css" rel="stylesheet"/>
+<style>
+:root{
+  --primary:#1d4ed8;--primary-light:#3b82f6;--primary-dark:#12275e;
+  --success:#16a34a;--warning:#f59e0b;--danger:#dc2626;
+  --bg:#f3f5fa;--card-bg:#ffffff;--text:#0f172a;--text-secondary:#64748b;--border:#e3e8f2;
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 10px 30px rgba(15,23,42,.06);
+  --shadow-lg:0 4px 12px rgba(15,23,42,.06),0 24px 60px rgba(15,23,42,.12);
+  --radius:18px;--radius-sm:12px;
+}
+
+.tab-btn{flex:0 0 auto;min-width:max-content;padding:12px 20px;border:none;background:transparent;color:var(--text-secondary);font-size:.95rem;font-weight:600;border-radius:10px;cursor:pointer;transition:all .22s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-sizing:border-box;}
+.tab-btn:hover{color:var(--primary);}
+.site-nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding:5px;background:#e9edf6;border-radius:14px;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+.sn-link{flex:none;padding:7px 14px;border-radius:10px;background:transparent;border:none;color:var(--text-secondary);text-decoration:none;font-size:.85rem;font-weight:600;transition:all .22s cubic-bezier(.4,0,.2,1);}
+.sn-link:hover{color:var(--primary);}
+
+        /* ===== Apple-style flat nav ===== */
+        .apple-nav{background:#ffffff;border-bottom:1px solid var(--border);position:relative;z-index:100;}
+        .an-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:54px;display:flex;align-items:center;gap:4px;position:relative;}
+        .an-logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex:none;margin-right:18px;}
+        .an-logo img{border-radius:7px;}
+        .an-wordmark{font-size:.92rem;font-weight:800;color:var(--primary-dark);letter-spacing:-0.01em;white-space:nowrap;}
+        .an-items{display:flex;align-items:center;gap:2px;list-style:none;flex:1;min-width:0;}
+        .an-item{position:relative;}
+        .an-lang-item{margin-left:auto;}
+        .an-link,.an-details summary{
+            display:inline-flex;align-items:center;gap:5px;background:transparent;border:none;
+            color:var(--text);font-size:.86rem;font-weight:500;padding:8px 12px;border-radius:8px;
+            cursor:pointer;white-space:nowrap;list-style:none;
+        }
+        .an-link{text-decoration:none;}
+        .an-item:hover>.an-link,.an-item.open>.an-link{color:var(--primary);background:#f5f7fb;}
+        .an-menu{display:none;flex-direction:column;gap:1px;min-width:200px;position:absolute;top:100%;left:0;margin-top:6px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:8px;z-index:110;}
+        .an-item.open>.an-menu,.an-item:focus-within>.an-menu{display:flex;}
+        @media (hover:hover) and (pointer:fine){
+            /* Bridge the visual gap between the trigger button and the dropdown (.an-menu
+               has margin-top:6px for spacing) so the mouse never truly exits the hoverable
+               area while moving from the button down into the menu — without this, :hover
+               drops the instant the cursor crosses that empty strip and the menu vanishes
+               before the user can reach an option. An absolutely-positioned pseudo-element
+               is used (rather than padding) so it never affects the nav bar's own height.*/
+            .an-item::after{content:'';position:absolute;left:0;right:0;top:100%;height:14px;}
+            .an-item:hover>.an-menu{display:flex;}
+        }
+        .an-menu a,.an-menu button.dropdown-tab-btn{
+            display:block;width:100%;text-align:left;padding:9px 12px;border-radius:8px;
+            font-size:.86rem;color:var(--text);text-decoration:none;background:transparent;border:none;
+        }
+        .an-menu a:hover,.an-menu button.dropdown-tab-btn:hover{background:#f5f7fb;color:var(--primary);}
+        .an-menu a[aria-current="page"]{color:var(--primary);font-weight:700;}
+        .an-menu .an-menu-all{color:var(--primary);font-weight:700;border-top:1px solid var(--border);margin-top:4px;padding-top:10px;}
+        .an-lang{background:#f2f4f8;padding:3px;border-radius:8px;gap:2px;}
+        .an-lang button{padding:6px 10px;font-size:.76rem;}
+        .an-mobile-toggle{display:none;margin-left:auto;background:none;border:none;font-size:1.3rem;color:var(--text);cursor:pointer;padding:6px 8px;}
+        .an-menu.site-nav{margin-bottom:0;overflow:visible;}
+
+        @media(max-width:860px){
+            .an-wordmark{display:none;}
+            .an-mobile-toggle{display:block;}
+            .an-items{
+                display:none;position:absolute;top:100%;left:0;right:0;
+                flex-direction:column;align-items:stretch;background:#fff;
+                border-top:1px solid var(--border);box-shadow:var(--shadow-lg);
+                padding:10px;gap:0;max-height:calc(100vh - 54px);overflow-y:auto;
+            }
+            .an-wrap.an-open .an-items{display:flex;}
+            .an-lang-item{margin-left:0;order:99;padding-top:8px;border-top:1px solid var(--border);margin-top:6px;}
+            .an-link{width:100%;padding:12px 10px;}
+            .an-item.open>.an-menu{
+                position:static;display:flex;box-shadow:none;border:none;padding:0 0 4px 20px;margin-top:0;
+            }
+                }
+
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;}
+a{color:var(--primary);}
+
+.page-wide{max-width:1200px;margin:0 auto;padding:0 24px;}
+.prose{max-width:760px;margin:0 auto;padding:0 24px;}
+
+.page-intro{padding:30px 0 6px;}
+.page-intro h1{font-size:1.6rem;font-weight:800;color:var(--primary-dark);margin-bottom:8px;}
+.page-intro p{color:var(--text-secondary);font-size:.97rem;max-width:680px;}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px;}
+.chip{padding:6px 14px;border:1px solid var(--border);background:#fff;border-radius:999px;font-size:.85rem;color:var(--text-secondary);cursor:pointer;text-decoration:none;}
+.chip:hover{border-color:var(--primary-light);color:var(--primary);}
+.chip.active{background:var(--primary);border-color:var(--primary);color:#fff !important;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:48px;}
+.card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:16px;background:var(--card-bg);text-decoration:none;color:inherit;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,42,90,.10);border-color:var(--primary-light);}
+.card img{width:100%;height:150px;object-fit:cover;display:block;background:#e9edf6;}
+.card .card-body{display:flex;flex-direction:column;gap:9px;padding:18px 20px 22px;flex:1;}
+.badge{align-self:flex-start;font-size:.72rem;font-weight:700;color:var(--primary);background:rgba(26,95,180,.10);padding:3px 11px;border-radius:999px;}
+.card h3{font-size:1.06rem;font-weight:700;line-height:1.35;color:var(--text);}
+.card p{font-size:.89rem;color:var(--text-secondary);line-height:1.55;flex:1;}
+.meta{font-size:.76rem;color:#93a0b3;}
+
+.back-link{display:inline-block;margin:26px 0 8px;font-size:.87rem;font-weight:700;text-decoration:none;}
+.article-head{padding:10px 0 6px;}
+.article-head .meta-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.article-head h1{font-size:1.9rem;line-height:1.28;font-weight:800;color:var(--primary-dark);margin:6px 0 24px;letter-spacing:-.01em;}
+.article-hero-img{width:100%;height:auto;border-radius:16px;margin-bottom:28px;display:block;box-shadow:var(--shadow);}
+.article-body{font-size:1.06rem;line-height:1.85;padding-bottom:14px;}
+.article-body h5{font-size:1.15rem;font-weight:700;margin:28px 0 10px;color:var(--primary-dark);}
+.article-body p{margin:0 0 16px;}
+.article-body ul{margin:0 0 16px;padding-left:24px;}
+.article-body li{margin-bottom:7px;}
+.article-body table{width:100%;border-collapse:collapse;margin:0 0 18px;font-size:.93rem;}
+.article-body th,.article-body td{border:1px solid var(--border);padding:9px 11px;text-align:left;}
+.article-body th{background:#eef1f8;}
+.article-body .tip-box,.article-body .warning-box,.article-body .danger-box{padding:13px 15px;border-radius:12px;margin:0 0 18px;font-size:.94rem;}
+.article-body .tip-box{background:#eef6ff;border:1px solid #cfe3ff;}
+.article-body .warning-box{background:#fff8ec;border:1px solid #ffe2ad;}
+.article-body .danger-box{background:#fef1f1;border:1px solid #ffc9c9;}
+.more-box{margin:34px 0 50px;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--card-bg);}
+.more-box h4{font-size:.85rem;margin-bottom:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.05em;font-weight:700;}
+.more-box a{display:block;padding:9px 0;font-size:.95rem;font-weight:600;text-decoration:none;border-bottom:1px solid var(--border);}
+.more-box a:last-child{border-bottom:none;}
+
+.empty{padding:44px 0;text-align:center;color:var(--text-secondary);}
+
+.site-footer{border-top:1px solid var(--border);margin-top:24px;padding:26px 0 44px;color:var(--text-secondary);font-size:.83rem;}
+.site-footer a{color:var(--text-secondary);text-decoration:none;}
+.site-footer a:hover{color:var(--primary);}
+.site-footer .flinks{margin-bottom:10px;}
+.site-footer .flinks a{color:var(--primary);font-weight:600;}
+
+@media(max-width:600px){
+  .article-head h1{font-size:1.5rem;}
+  .page-intro h1{font-size:1.35rem;}
+}
+
+</style>
+</head>
+<body>
+<nav class="apple-nav">
+<div class="an-wrap">
+<a class="an-logo" href="/#/">
+<img alt="" height="24" src="/logo-icon.svg" width="24"/>
+<span class="an-wordmark">US Tax Calculator</span>
+</a>
+<button aria-controls="anItems" aria-expanded="false" aria-label="Menu" class="an-mobile-toggle" id="anMobileToggle" type="button">☰</button>
+<ul class="an-items" id="anItems">
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">🧮 Calculator</button>
+<div aria-label="Site" class="an-menu site-nav">
+<a class="sn-link" href="/#/">Federal Tax</a>
+<a class="sn-link" href="/#/self-employment">Self-Employment</a>
+<a class="sn-link" href="/#/capital-gains">Capital Gains</a>
+<a class="sn-link" href="/#/child-tax-credit">Child Tax Credit</a>
+<a class="sn-link" href="/#/fica">FICA / Payroll</a>
+<a class="sn-link" href="/calculator/">By Salary Amount</a>
+</div>
+</li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="states" href="/#/states" id="tabStates">🗺️ State Tax</a></li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="history" href="/#/history" id="tabHistory">📊 History</a></li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="compare" href="/#/compare" id="tabCompare">📈 Compare</a></li>
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📖 Resources</button>
+<div class="an-menu">
+<a class="tab-btn dropdown-tab-btn" data-tab="guide" href="/#/guide" id="tabGuide">📖 Guide</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="howitworks" href="/#/howitworks" id="tabHow">🧾 How It Works</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="tutorials" href="/#/tutorials" id="tabTutorial">🎓 Tutorials</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="faq" href="/#/faq" id="tabFaq">❓ FAQ</a>
+<a href="/about-us/">ℹ️ About Us</a>
+<a href="/methodology/">🧮 Methodology</a>
+<a href="/disclaimer/">⚖️ Disclaimer</a>
+</div>
+</li>
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📰 Articles</button>
+<div class="an-menu">
+<a href="/articles/?cat=tutorials">Filing Tutorials</a>
+<a href="/articles/?cat=news">Tax News 2026</a>
+<a href="/articles/?cat=guides">Filing Guides</a>
+<a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
+<a href="/articles/?cat=self-employment">Self-Employment</a>
+<a href="/articles/?cat=investing">Investing &amp; Gains</a>
+<a class="an-menu-all" href="/articles/">Browse All Articles →</a>
+</div>
+</li>
+<li class="an-item an-social-item" tabindex="0">
+<div class="social-row">
+<a aria-label="X (Twitter)" class="social-circle-btn" href="https://x.com/UsTaxCalculator" id="xAccountBtn" rel="noopener" target="_blank">X</a>
+<button aria-label="Share" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" type="button">🔗</button>
+<div class="social-popup" role="tooltip">
+<div class="sp-title">📣 Updates &amp; Contact</div>
+<div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" rel="noopener" target="_blank">@UsTaxCalculator</a></div>
+<div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+<div class="sp-row"><a href="https://us-tax-calculator.instatus.com" rel="noopener" target="_blank">🟢 Site status &amp; uptime →</a></div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+<div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
+<div class="prose">
+<a class="back-link" href="/articles/">&larr; Back to Articles</a>
+<div class="article-head">
+<div class="meta-row"><span class="badge">Deductions</span><span class="meta">Published 2026-07-23</span></div>
+<h1>Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply</h1>
+</div>
+<img alt="Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply" class="article-hero-img" height="630" loading="eager" src="/articles/assets/hero-inherited-ira-rules.svg" width="1200"/>
+<div class="article-body">
+<p>Inheriting an IRA used to come with decades of flexibility to spread out withdrawals and the tax bill that comes with them. Since 2020, most people who inherit no longer have that option — but exactly how restrictive the new rules are depends heavily on your relationship to the original owner and their age at death.</p>
+
+<h5>The End of the "Stretch IRA"</h5>
+<p>Before the SECURE Act of 2019, a non-spouse beneficiary — an adult child, for example — could spread required withdrawals over their own life expectancy, sometimes 40 or 50 years, letting most of the account continue growing tax-deferred for decades. For accounts inherited from owners who died in 2020 or later, most non-spouse beneficiaries must instead empty the account entirely within <strong>10 years</strong> of the original owner's death.</p>
+
+<h5>Do You Owe Annual RMDs During the 10 Years, or Just at the End?</h5>
+<p>This is the detail that trips up the most people: whether you owe annual RMDs <em>during</em> the 10-year window depends on whether the original owner had already reached their required beginning date (generally age 73) before they died.</p>
+<ul>
+<li><strong>If the owner died on or after their required beginning date:</strong> you must take annual RMDs in years 1 through 9 (calculated using your own single life expectancy), and the full remaining balance by the end of year 10.</li>
+<li><strong>If the owner died before their required beginning date:</strong> you have flexibility — withdraw nothing for years, take it all in year 10, or spread it however you like — as long as the entire balance is withdrawn by the end of the 10th year.</li>
+</ul>
+<p>Since most people who die owning a substantial IRA are already past age 73, the annual-RMD scenario is actually the more common one in practice, not the exception.</p>
+
+<h5>Eligible Designated Beneficiaries: Who Still Gets the Old Stretch Rules</h5>
+<p>A specific category of "eligible designated beneficiaries" (EDBs) is exempt from the 10-year rule and can still use the traditional life-expectancy stretch method:</p>
+<ul>
+<li>A surviving spouse</li>
+<li>A minor child of the original owner (though once the child reaches the age of majority, the 10-year clock then starts)</li>
+<li>A beneficiary who is disabled or chronically ill under the tax code's specific definitions</li>
+<li>A beneficiary who is not more than 10 years younger than the original owner</li>
+</ul>
+
+<h5>The Spousal Rollover: The Most Flexible Option</h5>
+<p>A surviving spouse has an option unavailable to any other beneficiary: rolling the inherited IRA into their own IRA and treating it as their own account entirely. This means no 10-year rule at all, and their own RMDs don't begin until they reach their own required beginning age. Alternatively, a spouse can choose to remain a beneficiary rather than rolling it over — which can actually be preferable if the surviving spouse is under 59½ and might need penalty-free access to the funds before that age, something the rollover option would restrict.</p>
+
+<h5>The Penalty for Missing an Annual RMD</h5>
+<p>The same 25% excise tax penalty (reducible to 10% if corrected within two years) that applies to <a href="/articles/required-minimum-distributions-rmd/">ordinary RMDs</a> applies to missed annual RMDs within the inherited-IRA 10-year window too. The IRS provided transitional relief for certain years while the final regulations on this specific rule were being finalized, but going forward, beneficiaries subject to annual RMDs are expected to take them each year, not just at the 10-year deadline.</p>
+
+<h5>Inherited Roth IRAs</h5>
+<p>Inherited Roth IRAs follow the same 10-year rule for non-spouse beneficiaries, but never require annual RMDs during that window — because the original Roth owner never had a required beginning date to begin with, there's no "owner already started RMDs" scenario to trigger annual withdrawals. The entire balance still must come out by the end of year 10, but you have full flexibility on timing within that window.</p>
+
+<h5>A Worked Example</h5>
+<p>A 55-year-old inherits a $500,000 traditional IRA from a parent who died at age 78 — well past their required beginning date. As a non-EDB, the beneficiary is subject to the 10-year rule and must take annual RMDs in years 1 through 9 based on their own single life expectancy, with the account fully emptied by the end of year 10. Had the parent died at, say, age 70 (before reaching the required beginning date), the same beneficiary would have full flexibility on timing and could simply withdraw the entire balance any time before the 10-year deadline.</p>
+
+<h5>Common Questions</h5>
+<p><strong>Does the 10-year rule apply to inherited 401(k)s too, not just IRAs?</strong> Generally yes — the same SECURE Act framework applies to most inherited employer-sponsored retirement accounts, not just IRAs specifically.</p>
+<p><strong>What if I already missed annual RMDs during my 10-year window?</strong> Correct the shortfall as soon as possible to reduce the excise tax exposure (25%, dropping to 10% if corrected within two years), and consider consulting a tax professional given the transitional guidance history around this specific rule.</p>
+<p><strong>Can I take more than the required annual RMD during the 10-year window?</strong> Yes — the annual RMD is a minimum, not a maximum; you can withdraw more in any given year if it suits your tax planning, as long as the full balance is out by the end of year 10.</p>
+
+<div class="tip-box"><p>💡 Add any inherited-IRA distribution as Other Income in <a href="/#/">the calculator</a> to see its effect on your total federal tax for the year.</p></div>
+
+</div>
+<div class="more-box"><h4>Related Articles</h4><a href="/articles/">Browse All Articles</a>
+<a href="/#/">Federal Tax Calculator</a>
+<a href="/methodology/">Methodology: How We Calculate Your Taxes</a></div>
+</div>
+<footer class="site-footer"><div class="page-wide">
+<div class="flinks">
+<a href="/articles/">Articles</a> ·
+    <a href="/#/">Calculator</a> ·
+    <a href="/about-us/">About</a> ·
+    <a href="/methodology/">Methodology</a> ·
+    <a href="/#/privacy">Privacy</a> ·
+    <a href="/disclaimer/">Disclaimer</a>
+</div>
+<p>These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
+</div></footer>
+<script src="/assets/share-widget.js"></script>
+<script>
+        // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +
+        // click-outside-to-close on touch; auto-detected via matchMedia.
+        (function () {
+            var supportsHover = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+
+            function closeAllMenus() {
+                document.querySelectorAll('.an-item.open').forEach(function (item) {
+                    item.classList.remove('open');
+                    var trig = item.querySelector('.an-link[aria-haspopup]');
+                    if (trig) trig.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            document.querySelectorAll('.an-item').forEach(function (item) {
+                var trigger = item.querySelector('.an-link[aria-haspopup]');
+                if (!trigger) return; // items with no submenu need no toggle logic
+                trigger.addEventListener('click', function (e) {
+                    if (supportsHover) return; // desktop: hover alone controls visibility
+                    e.preventDefault();
+                    var willOpen = !item.classList.contains('open');
+                    closeAllMenus();
+                    if (willOpen) {
+                        item.classList.add('open');
+                        trigger.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.an-item')) closeAllMenus();
+            });
+
+            var toggle = document.getElementById('anMobileToggle');
+            var wrap = document.querySelector('.an-wrap');
+            if (toggle && wrap) {
+                toggle.addEventListener('click', function () {
+                    var open = wrap.classList.toggle('an-open');
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    if (!open) closeAllMenus();
+                });
+            }
+            // Choosing an actual destination closes the submenu and the mobile panel
+            document.querySelectorAll('.an-items a, .an-items button:not([aria-haspopup])').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    closeAllMenus();
+                    if (wrap) wrap.classList.remove('an-open');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+
+</script>
+</body>
+</html>

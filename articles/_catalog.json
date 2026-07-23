@@ -1,7 +1,7 @@
 {
   "_purpose": "INTERNAL FILE - not linked from any page, not in sitemap.xml, disallowed in robots.txt. Not meant for site visitors. Before writing new articles for this site, read this file and make sure no new topic duplicates or substantially overlaps an entry below. Each entry's 'covers' field summarizes the specific angle/scope of that article so overlap is easy to spot.",
   "last_updated": "2026-07-23",
-  "article_count": 51,
+  "article_count": 71,
   "articles": [
     {
       "slug": "obbba-2026-changes",
@@ -359,6 +359,146 @@
       "category": "investing",
       "published": "2026-07-23",
       "covers": "Qualified §423 ESPP: purchase discount/lookback provision, qualifying disposition (2yr from grant + 1yr from purchase) vs disqualifying disposition, ordinary income vs capital gain split, Form 3922/Schedule D, 1099-B basis errors."
+    },
+    {
+      "slug": "no-tax-on-tips-deduction-2026",
+      "title": "No Tax on Tips: How the New $25,000 Deduction Actually Works",
+      "category": "news",
+      "published": "2026-07-23",
+      "covers": "OBBBA Section 224 tip income deduction: $25,000 cap, $150k/$300k MAGI phase-out, above-the-line, qualifying occupations, new W-2/1099 separate reporting starting 2026, still subject to FICA/state tax."
+    },
+    {
+      "slug": "no-tax-on-overtime-deduction-2026",
+      "title": "No Tax on Overtime: How the New $12,500/$25,000 Deduction Works",
+      "category": "news",
+      "published": "2026-07-23",
+      "covers": "OBBBA overtime deduction: only the FLSA half-time premium portion counts (not full overtime wage), $12,500 single/$25,000 MFJ cap, same phase-out as tips deduction, new W-2 Box 12 Code TT."
+    },
+    {
+      "slug": "auto-loan-interest-deduction-2026",
+      "title": "The New Auto Loan Interest Deduction: Up to $10,000 on a US-Assembled Vehicle",
+      "category": "news",
+      "published": "2026-07-23",
+      "covers": "OBBBA IRC 163(h)(4) auto loan interest deduction: $10,000 cap, new-vehicle-assembled-in-US requirement, MAGI phase-out, Form 1098-VLI, leases excluded, state non-conformity."
+    },
+    {
+      "slug": "senior-deduction-2026",
+      "title": "The New $6,000 Senior Deduction: Who Qualifies and How the Phase-Out Works",
+      "category": "news",
+      "published": "2026-07-23",
+      "covers": "OBBBA senior deduction: $6,000/$12,000 for age 65+, 6%-per-dollar phase-out ($75k/$150k start, $175k/$250k full elimination), not the same as exempting Social Security, still subject to FICA if working."
+    },
+    {
+      "slug": "required-minimum-distributions-rmd",
+      "title": "Required Minimum Distributions: The Age-73 Rule and the 25% Penalty for Missing One",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "RMD age 73 (rising to 75 in 2033), calculation via life expectancy tables, 25% excise tax penalty (10% if corrected within 2 years), still-working exception, QCD up to $111,000, Roth 401(k) RMD exemption."
+    },
+    {
+      "slug": "inherited-ira-rules",
+      "title": "Inherited IRA Rules: The 10-Year Rule and When Annual RMDs Still Apply",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "SECURE Act 10-year rule for non-spouse beneficiaries, annual RMDs required if owner died after required beginning date, eligible designated beneficiary exceptions, spousal rollover option, 25% penalty."
+    },
+    {
+      "slug": "solo-401k-sep-ira-self-employed",
+      "title": "Solo 401(k) vs. SEP-IRA: Retirement Plans for the Self-Employed",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "Solo 401(k) (employee deferral + employer contribution, Roth option, loan provision) vs SEP-IRA (employer-only contribution, simpler admin), 2026 limits, setup deadlines."
+    },
+    {
+      "slug": "backdoor-roth-ira-mega-backdoor",
+      "title": "Backdoor Roth IRA and Mega Backdoor Roth: How High Earners Still Get Roth Money In",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "Nondeductible traditional IRA contribution + conversion strategy for high earners above Roth income limits, pro-rata rule trap, Form 8606, mega backdoor Roth via 401(k) after-tax contributions."
+    },
+    {
+      "slug": "s-corp-election-self-employed",
+      "title": "S-Corp Election for the Self-Employed: Is It Worth the Extra Complexity?",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "S-corp salary/distribution split to reduce SE tax, reasonable salary IRS scrutiny, added payroll/compliance costs, QBI deduction interaction (wages excluded, distributions included)."
+    },
+    {
+      "slug": "section-179-bonus-depreciation",
+      "title": "Section 179 and Bonus Depreciation: Writing Off Business Equipment in 2026",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "2026 Section 179 ($2,560,000 max, $4,090,000 phase-out, $32,000 SUV cap) vs 100% bonus depreciation (OBBBA permanently restored, no dollar/income limit), how they combine, state non-conformity."
+    },
+    {
+      "slug": "self-employed-health-insurance-deduction",
+      "title": "The Self-Employed Health Insurance Deduction: An Above-the-Line Write-Off for Your Premiums",
+      "category": "self-employment",
+      "published": "2026-07-23",
+      "covers": "IRC 162(l) above-the-line health insurance premium deduction for self-employed, net-profit limitation, doesn't reduce SE tax, employer-coverage disqualification (incl. spouse's plan), ACA PTC interaction."
+    },
+    {
+      "slug": "adoption-tax-credit",
+      "title": "The Adoption Tax Credit: Up to $17,670 for 2026",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "2026 Adoption Tax Credit $17,670 max, special-needs adoption full credit regardless of expenses, income phase-out, 5-year nonrefundable carryforward, domestic vs foreign timing rules."
+    },
+    {
+      "slug": "529-plan-rules-2026",
+      "title": "529 Plan Rules for 2026: Contribution Limits, Qualified Expenses, and the Roth IRA Rollover",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "529 plans: no federal contribution cap (gift tax exclusion/5-year front-loading), qualified expenses incl. K-12 tuition and student loan repayment, 10% penalty on non-qualified withdrawals, state deduction variability, SECURE 2.0 Roth IRA rollover ($35,000 lifetime cap, 15-year account age)."
+    },
+    {
+      "slug": "student-loan-interest-deduction",
+      "title": "The Student Loan Interest Deduction: Up to $2,500, Even If You Don't Itemize",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "$2,500 above-the-line student loan interest deduction, MAGI phase-out, MFS excluded, who can claim it (legally obligated borrower), refinancing and forgiveness interaction, Form 1098-E."
+    },
+    {
+      "slug": "foreign-earned-income-exclusion",
+      "title": "The Foreign Earned Income Exclusion: Excluding Up to $132,900 for 2026",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "FEIE 2026 $132,900 exclusion, bona fide residence vs physical presence (330 days) tests, Foreign Housing Exclusion/Deduction, SE tax still applies, FEIE vs Foreign Tax Credit trade-off with EITC/CTC eligibility."
+    },
+    {
+      "slug": "foreign-tax-credit",
+      "title": "The Foreign Tax Credit: Avoiding Double Taxation on Foreign Income",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Foreign Tax Credit (Form 1116): credit vs deduction election, limitation formula, passive vs general income baskets, simplified election under $300/$600, 1-year carryback/10-year carryforward, FEIE interaction."
+    },
+    {
+      "slug": "medical-expense-deduction",
+      "title": "The Medical Expense Deduction: The 7.5% AGI Threshold Explained",
+      "category": "deductions",
+      "published": "2026-07-23",
+      "covers": "Itemized medical expense deduction: 7.5% AGI floor, qualifying vs non-qualifying expenses, HSA/FSA-reimbursed amounts excluded, bunching strategy, dependent/parent medical expenses."
+    },
+    {
+      "slug": "multi-state-tax-credit-for-taxes-paid",
+      "title": "The Multi-State Tax Credit: Avoiding Double State Taxation on the Same Income",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Credit for taxes paid to another state: resident-state credit capped at resident state's own rate on that income, reciprocity agreements for commuters as a simpler alternative, business-income sourcing complexity, nonresident filing still required."
+    },
+    {
+      "slug": "legal-settlement-taxes",
+      "title": "Legal Settlements and Taxes: What's Taxable, What Isn't",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "IRC 104(a)(2) physical injury exclusion, emotional distress usually taxable unless from physical injury, punitive damages always taxable, employment settlements taxed as wages, settlement allocation language, post-TCJA attorney fee deduction trap."
+    },
+    {
+      "slug": "hobby-loss-rules-section-183",
+      "title": "Hobby Loss Rules: When the IRS Says Your “Business” Is Actually a Hobby",
+      "category": "guides",
+      "published": "2026-07-23",
+      "covers": "Section 183 nine-factor test for business vs hobby classification, consequence of hobby status (income taxable, expenses not deductible post-TCJA), 3-of-5-years profit presumption, documentation strategies."
     }
   ]
 }
