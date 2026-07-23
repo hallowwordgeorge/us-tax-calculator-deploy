@@ -16,6 +16,6 @@
   <circle cx="120" cy="560" r="180" fill="#ffffff" opacity="0.05"/>
   <text x="90" y="230" font-size="120" font-family="-apple-system, 'Segoe UI', Roboto, Arial, sans-serif">📋</text>
   <text x="90" y="330" font-size="58" font-weight="800" fill="#ffffff" font-family="-apple-system, 'Segoe UI', Roboto, Arial, sans-serif"><tspan x="90" dy="0">Divorce and Taxes</tspan></text>
-  <text x="90" y="430" font-size="34" font-weight="600" fill="#cfe0ff" font-family="-apple-system, 'Segoe UI', Roboto, Arial, sans-serif">Filing Status, Alimony & Kids</text>
+  <text x="90" y="430" font-size="34" font-weight="600" fill="#cfe0ff" font-family="-apple-system, 'Segoe UI', Roboto, Arial, sans-serif">Filing Status, Alimony &amp; Kids</text>
   <text x="90" y="560" font-size="26" font-weight="700" fill="#ffffff" opacity="0.85" font-family="-apple-system, 'Segoe UI', Roboto, Arial, sans-serif">US Tax Calculator</text>
 </svg>
