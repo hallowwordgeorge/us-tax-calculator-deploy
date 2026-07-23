@@ -1,29 +1,30 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Marginal vs. Effective Tax Rate: Understanding What You Really Pay | US Tax Calculator Articles</title>
-<meta name="description" content="US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://us-tax-calculator.com/articles/marginal-vs-effective-rate/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Marginal vs. Effective Tax Rate: Understanding What You Really Pay | US Tax Calculator Articles">
-<meta property="og:description" content="US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…">
-<meta property="og:url" content="https://us-tax-calculator.com/articles/marginal-vs-effective-rate/">
-<meta property="og:image" content="https://us-tax-calculator.com/articles/assets/hero-marginal-vs-effective-rate.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="US Tax Calculator">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Marginal vs. Effective Tax Rate: Understanding What You Really Pay | US Tax Calculator Articles">
-<meta name="twitter:description" content="US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…">
-<meta name="twitter:image" content="https://us-tax-calculator.com/articles/assets/hero-marginal-vs-effective-rate.png">
-<link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="shortcut icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#0A3D8F">
+<meta content="US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…" name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://us-tax-calculator.com/articles/marginal-vs-effective-rate/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Marginal vs. Effective Tax Rate: Understanding What You Really Pay | US Tax Calculator Articles" property="og:title"/>
+<meta content="US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…" property="og:description"/>
+<meta content="https://us-tax-calculator.com/articles/marginal-vs-effective-rate/" property="og:url"/>
+<meta content="https://us-tax-calculator.com/articles/assets/hero-marginal-vs-effective-rate.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="US Tax Calculator" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Marginal vs. Effective Tax Rate: Understanding What You Really Pay | US Tax Calculator Articles" name="twitter:title"/>
+<meta content="US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…" name="twitter:description"/>
+<meta content="https://us-tax-calculator.com/articles/assets/hero-marginal-vs-effective-rate.png" name="twitter:image"/>
+<link href="/logo-icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/favicon.ico" rel="shortcut icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta content="#0A3D8F" name="theme-color"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Marginal vs. Effective Tax Rate: Understanding What You Really Pay", "description": "US federal income tax is progressive: your income is sliced into layers, and each layer is taxed at its own rate. Your m…", "image": "https://us-tax-calculator.com/articles/assets/hero-marginal-vs-effective-rate.png", "datePublished": "2026-01-22", "dateModified": "2026-01-22", "author": {"@type": "Organization", "name": "US Tax Calculator"}, "publisher": {"@type": "Organization", "name": "US Tax Calculator", "logo": {"@type": "ImageObject", "url": "https://us-tax-calculator.com/logo-icon.png"}}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://us-tax-calculator.com/articles/marginal-vs-effective-rate/"}}</script>
 <style>
 :root{
@@ -162,85 +163,82 @@ a{color:var(--primary);}
 }
 
 </style>
-<link rel="stylesheet" href="/assets/state-calc.css">
+<link href="/assets/state-calc.css" rel="stylesheet"/>
 </head>
 <body>
-    <nav class="apple-nav">
-        <div class="an-wrap">
-            <a href="/#/" class="an-logo">
-                <img src="/logo-icon.svg" alt="" width="24" height="24">
-                <span class="an-wordmark">US Tax Calculator</span>
-            </a>
-            <button type="button" class="an-mobile-toggle" id="anMobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="anItems">☰</button>
-
-            <ul class="an-items" id="anItems">
-                <li class="an-item">
-                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 Calculator</button>
-                    <div class="an-menu site-nav" aria-label="Site">
-                        <a href="/#/" class="sn-link">Federal Tax</a>
-                        <a href="/#/self-employment" class="sn-link">Self-Employment</a>
-                        <a href="/#/capital-gains" class="sn-link">Capital Gains</a>
-                        <a href="/#/child-tax-credit" class="sn-link">Child Tax Credit</a>
-                        <a href="/#/fica" class="sn-link">FICA / Payroll</a>
-                        <a href="/calculator/" class="sn-link">By Salary Amount</a>
-                    </div>
-                </li>
-                <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ State Tax</a></li>
-                <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 History</a></li>
-                <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 Compare</a></li>
-                <li class="an-item">
-                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 Resources</button>
-                    <div class="an-menu">
-                        <a href="/#/guide" class="tab-btn dropdown-tab-btn" data-tab="guide" id="tabGuide">📖 Guide</a>
-                        <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 How It Works</a>
-                        <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 Tutorials</a>
-                        <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ FAQ</a>
-                        <a href="/about-us/">ℹ️ About Us</a>
-                        <a href="/methodology/">🧮 Methodology</a>
-                        <a href="/disclaimer/">⚖️ Disclaimer</a>
-                    </div>
-                </li>
-                <li class="an-item">
-                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 Articles</button>
-                    <div class="an-menu">
-                        <a href="/articles/?cat=tutorials">Filing Tutorials</a>
-                        <a href="/articles/?cat=news">Tax News 2026</a>
-                        <a href="/articles/?cat=guides">Filing Guides</a>
-                        <a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
-                        <a href="/articles/?cat=self-employment">Self-Employment</a>
-                        <a href="/articles/?cat=investing">Investing &amp; Gains</a>
-                        <a href="/articles/" class="an-menu-all">Browse All Articles →</a>
-                    </div>
-                </li>
-                <li class="an-item an-social-item" tabindex="0">
-                    <div class="social-row">
-                        <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
-                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
-                        <div class="social-popup" role="tooltip">
-                            <div class="sp-title">📣 Updates &amp; Contact</div>
-                            <div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener">@UsTaxCalculator</a></div>
-                            <div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
-                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 Site status &amp; uptime →</a></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
-
+<nav class="apple-nav">
+<div class="an-wrap">
+<a class="an-logo" href="/#/">
+<img alt="" height="24" src="/logo-icon.svg" width="24"/>
+<span class="an-wordmark">US Tax Calculator</span>
+</a>
+<button aria-controls="anItems" aria-expanded="false" aria-label="Menu" class="an-mobile-toggle" id="anMobileToggle" type="button">☰</button>
+<ul class="an-items" id="anItems">
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">🧮 Calculator</button>
+<div aria-label="Site" class="an-menu site-nav">
+<a class="sn-link" href="/#/">Federal Tax</a>
+<a class="sn-link" href="/#/self-employment">Self-Employment</a>
+<a class="sn-link" href="/#/capital-gains">Capital Gains</a>
+<a class="sn-link" href="/#/child-tax-credit">Child Tax Credit</a>
+<a class="sn-link" href="/#/fica">FICA / Payroll</a>
+<a class="sn-link" href="/calculator/">By Salary Amount</a>
+</div>
+</li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="states" href="/#/states" id="tabStates">🗺️ State Tax</a></li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="history" href="/#/history" id="tabHistory">📊 History</a></li>
+<li class="an-item"><a class="tab-btn an-link" data-tab="compare" href="/#/compare" id="tabCompare">📈 Compare</a></li>
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📖 Resources</button>
+<div class="an-menu">
+<a class="tab-btn dropdown-tab-btn" data-tab="guide" href="/#/guide" id="tabGuide">📖 Guide</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="howitworks" href="/#/howitworks" id="tabHow">🧾 How It Works</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="tutorials" href="/#/tutorials" id="tabTutorial">🎓 Tutorials</a>
+<a class="tab-btn dropdown-tab-btn" data-tab="faq" href="/#/faq" id="tabFaq">❓ FAQ</a>
+<a href="/about-us/">ℹ️ About Us</a>
+<a href="/methodology/">🧮 Methodology</a>
+<a href="/disclaimer/">⚖️ Disclaimer</a>
+</div>
+</li>
+<li class="an-item">
+<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📰 Articles</button>
+<div class="an-menu">
+<a href="/articles/?cat=tutorials">Filing Tutorials</a>
+<a href="/articles/?cat=news">Tax News 2026</a>
+<a href="/articles/?cat=guides">Filing Guides</a>
+<a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
+<a href="/articles/?cat=self-employment">Self-Employment</a>
+<a href="/articles/?cat=investing">Investing &amp; Gains</a>
+<a class="an-menu-all" href="/articles/">Browse All Articles →</a>
+</div>
+</li>
+<li class="an-item an-social-item" tabindex="0">
+<div class="social-row">
+<a aria-label="X (Twitter)" class="social-circle-btn" href="https://x.com/UsTaxCalculator" id="xAccountBtn" rel="noopener" target="_blank">X</a>
+<button aria-label="Share" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" type="button">🔗</button>
+<div class="social-popup" role="tooltip">
+<div class="sp-title">📣 Updates &amp; Contact</div>
+<div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" rel="noopener" target="_blank">@UsTaxCalculator</a></div>
+<div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+<div class="sp-row"><a href="https://us-tax-calculator.instatus.com" rel="noopener" target="_blank">🟢 Site status &amp; uptime →</a></div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+<div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
 <div class="prose">
-  <a class="back-link" href="/articles/">&larr; Back to Articles</a>
-  <div class="article-head">
-    <div class="meta-row"><span class="badge">Filing Guides</span><span class="meta">2026-01-22 · 4 min read</span></div>
-    <h1>Marginal vs. Effective Tax Rate: Understanding What You Really Pay</h1>
-  </div>
-  <img class="article-hero-img" src="/articles/assets/hero-marginal-vs-effective-rate.png" alt="Marginal vs. Effective Tax Rate: Understanding What You Really Pay" width="1200" height="630" loading="eager">
-  <div class="article-body">
+<a class="back-link" href="/articles/">← Back to Articles</a>
+<div class="article-head">
+<div class="meta-row"><span class="badge">Filing Guides</span><span class="meta">2026-01-22 · 4 min read</span></div>
+<h1>Marginal vs. Effective Tax Rate: Understanding What You Really Pay</h1>
+</div>
+<img alt="Marginal vs. Effective Tax Rate: Understanding What You Really Pay" class="article-hero-img" height="630" loading="eager" src="/articles/assets/hero-marginal-vs-effective-rate.png" width="1200"/>
+<div class="article-body">
 <p>US federal income tax is progressive: your income is sliced into layers (brackets), and each layer is taxed at its own rate. Two numbers describe your tax burden, and they are often confused with each other. Your <strong>marginal rate</strong> is the rate on the last layer of income you reach — the rate that would apply to one more dollar. Your <strong>effective rate</strong> is your total tax divided by your total income — the actual average rate you paid. The gap between the two is often much larger than people expect, and understanding it prevents a lot of unnecessary anxiety about raises, bonuses, and side income.</p>
-
 <h5>Worked Example: Single Filer With $80,000 of Wages</h5>
-<p>A Single filer earns $80,000 in wages in 2026. After the $16,100 standard deduction, taxable income is $63,900. The tax is computed layer by layer, not as a flat percentage of the whole:</p>
+<p>A Single filer earns <a href="/calculator/80000-salary-tax-calculator/">$80,000</a> in wages in 2026. After the $16,100 standard deduction, taxable income is $63,900. The tax is computed layer by layer, not as a flat percentage of the whole:</p>
 <table class="bracket-table">
 <thead><tr><th>Bracket</th><th>Income in Bracket</th><th>Tax</th></tr></thead>
 <tbody>
@@ -251,47 +249,39 @@ a{color:var(--primary);}
 </tbody>
 </table>
 <p>Federal income tax comes to $8,770. The marginal rate is 22% — the highest bracket reached — while the effective rate is $8,770 ÷ $80,000 ≈ <strong>10.96%</strong> of gross income (or about 13.7% of taxable income). The marginal rate is double the effective rate, which is typical.</p>
-
 <h5>A Second Example: Married Filing Jointly at $150,000</h5>
-<p>A married couple filing jointly earns $150,000 combined. After the $32,200 standard deduction, taxable income is $117,800, which reaches the 22% bracket for joint filers. Working through the layers produces a total federal tax in the same general range of an 12–14% effective rate — noticeably below the 22% marginal rate they'd quote if asked "what tax bracket are you in?" The pattern holds at every income level: your effective rate is always lower than your marginal rate, because only the top slice of income is taxed at the top rate.</p>
-
+<p>A married couple filing jointly earns <a href="/calculator/150000-salary-tax-calculator/">$150,000</a> combined. After the $32,200 standard deduction, taxable income is $117,800, which reaches the 22% bracket for joint filers. Working through the layers produces a total federal tax in the same general range of an 12–14% effective rate — noticeably below the 22% marginal rate they'd quote if asked "what tax bracket are you in?" The pattern holds at every income level: your effective rate is always lower than your marginal rate, because only the top slice of income is taxed at the top rate.</p>
 <h5>Why "A Raise Can Cost You" Is a Myth</h5>
 <p>Many people fear that a raise, bonus, or overtime will push them into a higher bracket and leave them worse off overall. In reality, only the income that falls inside the higher bracket is taxed at the new rate — in the first example, just $13,500 was taxed at 22%, while the rest was still taxed at 10% and 12%. A raise never reduces your after-tax income; at worst, the marginal portion is taxed a bit more heavily, but you always keep more than you did before the raise.</p>
-
 <h5>Why the Distinction Matters for Real Decisions</h5>
 <p>Use your <strong>marginal rate</strong> when the decision is about the next dollar: whether a Roth conversion is worth it this year, how to time a year-end bonus, or how to price an extra freelance project. Use your <strong>effective rate</strong> when the question is about your overall tax burden: comparing your total tax load year over year, or judging whether a career or life change meaningfully changed how much of your income goes to federal tax. Confusing the two leads to bad decisions in both directions — either overestimating the cost of extra income, or underestimating your true average burden.</p>
-
 <h5>State Taxes Add Another Layer</h5>
 <p>Everything above covers federal tax only. Most states layer their own income tax on top, with their own brackets or flat rates, which changes both your effective and (in states with progressive brackets) your marginal rate. Use the calculator's State Tax tab to see how your state's rules combine with the federal picture.</p>
-
 <div class="tip-box">
 <p>💡 After every calculation, the results panel shows your marginal and effective rates side by side — a quick way to see how progressive brackets tax your income in layers, and to sanity-check any "which bracket am I in" question with real numbers.</p>
 </div>
 <h5>The Pattern Holds at Higher Incomes Too</h5>
-<p>The same layered mechanics apply no matter how high your income climbs. A filer who reaches the 32% or 35% bracket still pays 10%, 12%, 22%, and 24% on the corresponding lower slices of their income exactly as a lower-income filer does &mdash; only the portion above each threshold is taxed at the next rate. That's why even very high earners typically have an effective rate meaningfully below their top marginal rate; it simply takes a larger share of very high income to pull the effective rate closer to the marginal one.</p>
-
+<p>The same layered mechanics apply no matter how high your income climbs. A filer who reaches the 32% or 35% bracket still pays 10%, 12%, 22%, and 24% on the corresponding lower slices of their income exactly as a lower-income filer does — only the portion above each threshold is taxed at the next rate. That's why even very high earners typically have an effective rate meaningfully below their top marginal rate; it simply takes a larger share of very high income to pull the effective rate closer to the marginal one.</p>
 <h5>Marginal Rate and Side Income</h5>
-<p>Freelance income, a side business, or investment income stacks on top of your existing wages and is taxed starting at your current marginal rate, not from zero. If your day job already puts you at the 22% marginal bracket, the next dollar of freelance profit is generally also taxed starting around 22% (plus self-employment tax, if applicable) &mdash; not at some blended average rate. This is exactly why marginal rate, not effective rate, is the right number to use when pricing extra work or deciding whether a side project is worth the after-tax return.</p>
-
+<p>Freelance income, a side business, or investment income stacks on top of your existing wages and is taxed starting at your current marginal rate, not from zero. If your day job already puts you at the 22% marginal bracket, the next dollar of freelance profit is generally also taxed starting around 22% (plus self-employment tax, if applicable) — not at some blended average rate. This is exactly why marginal rate, not effective rate, is the right number to use when pricing extra work or deciding whether a side project is worth the after-tax return.</p>
 <h5>Common Misunderstanding: "Bonus Tax"</h5>
-<p>Employers often withhold bonuses and other supplemental wages at a flat rate (commonly around 22% for amounts under $1 million) rather than using your normal paycheck withholding formula. This can make a bonus feel like it was taxed unusually heavily &mdash; but flat withholding is not the same as your final tax rate. When you file your return, the bonus is combined with your other income and taxed at your actual marginal and effective rates like any other dollar; if too much was withheld from the bonus specifically, you get it back as part of your refund.</p>
-
+<p>Employers often withhold bonuses and other supplemental wages at a flat rate (commonly around 22% for amounts under $1 million) rather than using your normal paycheck withholding formula. This can make a bonus feel like it was taxed unusually heavily — but flat withholding is not the same as your final tax rate. When you file your return, the bonus is combined with your other income and taxed at your actual marginal and effective rates like any other dollar; if too much was withheld from the bonus specifically, you get it back as part of your refund.</p>
 <div class="tip-box">💡 A simple mental model: your <strong>marginal rate</strong> answers "what happens to my next dollar," while your <strong>effective rate</strong> answers "what happened to all of my dollars." Keep the question in mind and the right number follows naturally.</div>
-  </div>
-  <div class="more-box"><h4>More Articles</h4><a href="/articles/is-social-security-taxable/">Is Social Security Taxable? Understanding Tax on Retirement and Other Non-Wage Income</a>
+<div class="tip-box"><p>💡 Want to see your own marginal vs. effective rate? <a href="/#/">the calculator</a> shows both, plus the full bracket breakdown.</p></div></div>
+<div class="more-box"><h4>More Articles</h4><a href="/articles/is-social-security-taxable/">Is Social Security Taxable? Understanding Tax on Retirement and Other Non-Wage Income</a>
 <a href="/articles/amending-tax-return-1040x/">Amending Your Tax Return: When and How to File Form 1040-X</a>
 <a href="/articles/alternative-minimum-tax-amt-explained/">The Alternative Minimum Tax (AMT): What It Is and Who It Actually Affects</a></div>
 </div>
 <footer class="site-footer"><div class="page-wide">
-  <div class="flinks">
-    <a href="/articles/">Articles</a> ·
+<div class="flinks">
+<a href="/articles/">Articles</a> ·
     <a href="/#/">Calculator</a> ·
     <a href="/about-us/">About</a> ·
     <a href="/methodology/">Methodology</a> ·
     <a href="/#/privacy">Privacy</a> ·
     <a href="/disclaimer/">Disclaimer</a>
-  </div>
-  <p>These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
+</div>
+<p>These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
 </div></footer>
 <script>
         // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +
