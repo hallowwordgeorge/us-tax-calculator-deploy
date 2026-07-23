@@ -219,9 +219,22 @@ a{color:var(--primary);}
                 <li class="an-item an-lang-item">
                     <div class="lang-toggle an-lang"><span class="an-lang-current active">EN</span><a href="https://us-tax-calculator.com/zh/south-carolina-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">中文</a><a href="https://us-tax-calculator.com/es/south-carolina-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">ES</a></div>
                 </li>
+                <li class="an-item an-social-item" tabindex="0">
+                    <div class="social-row">
+                        <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
+                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
+                        <div class="social-popup" role="tooltip">
+                            <div class="sp-title">📣 Updates &amp; Contact</div>
+                            <div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener">@UsTaxCalculator</a></div>
+                            <div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 Site status &amp; uptime →</a></div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+    <div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
 <div class="prose" style="max-width:980px;">
   <a class="back-link" href="/">← Back to Home</a>
   <div class="article-head">
@@ -348,6 +361,7 @@ a{color:var(--primary);}
   <p>US Tax Calculator is an educational tool, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
 </div></footer>
 <script>window.PAGE_LANG = 'en';</script>
+<script src="/assets/share-widget.js"></script>
 <script src="/assets/state-calc.js"></script>
 <script>document.addEventListener('DOMContentLoaded', function(){ initStatePage('SC'); });</script>
 <script>

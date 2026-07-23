@@ -219,9 +219,22 @@ a{color:var(--primary);}
                 <li class="an-item an-lang-item">
                     <div class="lang-toggle an-lang"><a href="https://us-tax-calculator.com/west-virginia-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">EN</a><span class="an-lang-current active">中文</span><a href="https://us-tax-calculator.com/es/west-virginia-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">ES</a></div>
                 </li>
+                <li class="an-item an-social-item" tabindex="0">
+                    <div class="social-row">
+                        <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
+                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
+                        <div class="social-popup" role="tooltip">
+                            <div class="sp-title">📣 动态与联系方式</div>
+                            <div class="sp-row">在 X 上关注：<a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener">@UsTaxCalculator</a></div>
+                            <div class="sp-row">联系邮箱：<a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 网站运行状态 →</a></div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+    <div class="share-toast" id="shareToast">🔗 链接已复制！感谢分享 🙌</div>
 <div class="prose" style="max-width:980px;">
   <a class="back-link" href="/">← 返回首页</a>
   <div class="article-head">
@@ -348,6 +361,7 @@ a{color:var(--primary);}
   <p>US Tax Calculator 仅供教育参考，不构成税务建议。具体报税决策请咨询注册会计师（CPA）或注册税务师（EA）。</p>
 </div></footer>
 <script>window.PAGE_LANG = 'zh';</script>
+<script src="/assets/share-widget.js"></script>
 <script src="/assets/state-calc.js"></script>
 <script>document.addEventListener('DOMContentLoaded', function(){ initStatePage('WV'); });</script>
 <script>

@@ -162,6 +162,7 @@ a{color:var(--primary);}
 }
 
 </style>
+<link rel="stylesheet" href="/assets/state-calc.css">
 </head>
 <body>
     <nav class="apple-nav">
@@ -211,9 +212,22 @@ a{color:var(--primary);}
                         <a href="/articles/" class="an-menu-all">Browse All Articles →</a>
                     </div>
                 </li>
+                <li class="an-item an-social-item" tabindex="0">
+                    <div class="social-row">
+                        <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
+                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
+                        <div class="social-popup" role="tooltip">
+                            <div class="sp-title">📣 Updates &amp; Contact</div>
+                            <div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener">@UsTaxCalculator</a></div>
+                            <div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 Site status &amp; uptime →</a></div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+    <div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
 
 <div class="prose">
   <a class="back-link" href="/articles/">&larr; Back to Articles</a>
@@ -336,5 +350,6 @@ a{color:var(--primary);}
         })();
 
 </script>
+<script src="/assets/share-widget.js"></script>
 </body>
 </html>

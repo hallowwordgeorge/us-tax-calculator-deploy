@@ -218,9 +218,22 @@ a{color:var(--primary);}
                 <li class="an-item an-lang-item">
                     <div class="lang-toggle an-lang"><a href="https://us-tax-calculator.com/calculator/75000-salary-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">EN</a><a href="https://us-tax-calculator.com/zh/calculator/75000-salary-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">中文</a><span class="an-lang-current active">ES</span></div>
                 </li>
+                <li class="an-item an-social-item" tabindex="0">
+                    <div class="social-row">
+                        <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
+                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
+                        <div class="social-popup" role="tooltip">
+                            <div class="sp-title">📣 Novedades y Contacto</div>
+                            <div class="sp-row">Síguenos en X: <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener">@UsTaxCalculator</a></div>
+                            <div class="sp-row">Contacto: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 Estado del sitio →</a></div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+    <div class="share-toast" id="shareToast">🔗 ¡Enlace copiado! Gracias por compartir 🙌</div>
 <div class="prose" style="max-width:900px;">
   <a class="back-link" href="/es/calculator/">← Volver a Calculadoras de Salario</a>
   <div class="article-head">
@@ -330,6 +343,7 @@ a{color:var(--primary);}
   <p>US Tax Calculator es una herramienta educativa, no asesoría fiscal. Consulte a un CPA o Agente Inscrito para sus decisiones de declaración.</p>
 </div></footer>
 <script>window.PAGE_LANG = 'es';</script>
+<script src="/assets/share-widget.js"></script>
 <script src="/assets/state-calc.js"></script>
 <script>document.addEventListener('DOMContentLoaded', function(){ initSalaryPage(75000); });</script>
 <script>

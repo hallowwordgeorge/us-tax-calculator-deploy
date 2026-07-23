@@ -141,3 +141,18 @@
 @keyframes tourPulse{0%,100%{box-shadow:0 0 0 3px rgba(29,78,216,.55);}50%{box-shadow:0 0 0 9px rgba(29,78,216,.10);}}
 .tour-flash{animation:none !important;box-shadow:0 0 0 4px rgba(22,163,74,.6) !important;border-radius:10px;}
 @media(max-width:640px){.tour-float{right:8px;width:calc(100vw - 16px);font-size:.82rem;}}
+
+/* X-link + share button (nav social row), matching the main SPA exactly. */
+.an-social-item{display:flex;align-items:center;}
+.social-row{display:flex;align-items:center;gap:8px;position:relative;}
+.social-circle-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--text);cursor:pointer;text-decoration:none;transition:background .15s,transform .15s,border-color .15s;flex:none;}
+.social-circle-btn:hover{background:#f5f7fb;border-color:var(--primary);color:var(--primary);transform:translateY(-1px);}
+.social-popup{display:none;position:absolute;top:100%;right:0;margin-top:10px;width:266px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-lg);padding:16px;z-index:120;font-size:.84rem;line-height:1.6;color:var(--text);text-align:left;}
+.an-social-item:hover .social-popup,.an-social-item:focus-within .social-popup{display:block;}
+.social-popup .sp-title{font-weight:800;color:var(--primary-dark);margin-bottom:8px;font-size:.86rem;}
+.social-popup a{color:var(--primary);text-decoration:none;font-weight:600;}
+.social-popup a:hover{text-decoration:underline;}
+.social-popup .sp-row{margin-bottom:6px;}
+.share-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--primary-dark);color:#fff;padding:12px 20px;border-radius:12px;font-size:.86rem;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}
+.share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media(max-width:900px){.social-popup{right:-40px;}}
