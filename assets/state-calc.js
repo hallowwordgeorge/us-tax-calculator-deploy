@@ -686,10 +686,13 @@ function stateTourRender() {
     } else {
         var step = steps[i];
         var isLast = i === n - 1;
+        var requiresAction = typeof step.done === 'function';
+        var actionDone = requiresAction && step.done();
+        var nextDisabled = requiresAction && !actionDone;
         body = '<div class="tf-text">' + L(step.text.en, step.text.zh, step.text.es) + '</div>'
             + '<div class="tf-btns">'
             + '<button class="btn btn-outline"' + (i === 0 ? ' disabled' : '') + ' onclick="stateTourPrev()">' + L('Back', '上一步', 'Atrás') + '</button>'
-            + '<button class="btn btn-primary" onclick="stateTourAdvance()">' + (isLast ? L('Finish', '完成', 'Terminar') : L('Next', '下一步', 'Siguiente')) + '</button>'
+            + '<button class="btn btn-primary"' + (nextDisabled ? ' disabled title="' + L('Complete the step above first', '请先完成上面的操作', 'Complete el paso primero') + '"' : '') + ' onclick="stateTourAdvance()">' + (isLast ? L('Finish', '完成', 'Terminar') : L('Next', '下一步', 'Siguiente')) + '</button>'
             + '</div>';
     }
     f.innerHTML = '<div class="tf-head"><span>🧭 ' + stateTourTitle() + '</span>'
@@ -712,6 +715,8 @@ function stateTourTick() {
 }
 function stateTourAdvance() {
     if (!stateTour) return;
+    var current = stateTour.steps[stateTour.idx];
+    if (typeof current.done === 'function' && !current.done()) return; // block skipping an incomplete required action
     if (stateTour.idx >= stateTour.steps.length - 1) {
         stateTour.finished = true;
         stateTourRender();
