@@ -171,52 +171,93 @@ a{color:var(--primary);}
 <body>
 <nav class="apple-nav">
         <div class="an-wrap">
-            <a href="/#/" class="an-logo">
+            <a href="/zh/" class="an-logo">
                 <img src="/logo-icon.svg" alt="" width="24" height="24">
                 <span class="an-wordmark">US Tax Calculator</span>
             </a>
             <button type="button" class="an-mobile-toggle" id="anMobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="anItems">☰</button>
 
             <ul class="an-items" id="anItems">
-                <li class="an-item">
+                <li class="an-item" data-mega="calculator">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 税务计算</button>
-                    <div class="an-menu site-nav" aria-label="Site">
-                        <a href="/#/" class="sn-link">联邦税计算器</a>
-                        <a href="/#/self-employment" class="sn-link">自雇税</a>
-                        <a href="/#/capital-gains" class="sn-link">资本利得税</a>
-                        <a href="/#/child-tax-credit" class="sn-link">儿童税收抵免</a>
-                        <a href="/#/fica" class="sn-link">FICA 工资税</a>
-                        <a href="/zh/calculator/" class="sn-link">按收入金额查询</a>
-                    </div>
+                    <template data-mega-tpl="calculator">
+                        <div class="mega-section-label">计算器入口</div>
+                        <div class="mega-grid">
+                            <a href="/#/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🏛️</span><span class="mt-label">联邦税计算器</span></div></a>
+                            <a href="/#/self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label">自雇税</span></div></a>
+                            <a href="/#/capital-gains" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label">资本利得税</span></div></a>
+                            <a href="/#/child-tax-credit" class="mega-tile"><div class="mt-top"><span class="mt-icon">👨‍👩‍👧</span><span class="mt-label">儿童税收抵免</span></div></a>
+                            <a href="/#/fica" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label">FICA 工资税</span></div></a>
+                            <a href="/zh/calculator/" class="mega-tile"><div class="mt-top"><span class="mt-icon">💰</span><span class="mt-label">按收入金额查询</span></div></a>
+                        </div>
+                    </template>
                 </li>
-                <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ 州税计算</a></li>
-                <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 历史记录</a></li>
-                <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 对比图表</a></li>
-                <li class="an-item">
+                <li class="an-item" data-mega="statetax">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🗺️ 州税计算</button>
+                    <template data-mega-tpl="statetax">
+                        <div class="mega-section-label">热门州</div>
+                        <div class="mega-grid"><a href="/zh/california-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">California</span><span class="mt-badge prog">累进</span></div></a><a href="/zh/texas-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Texas</span><span class="mt-badge none">免税</span></div></a><a href="/zh/new-york-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">New York</span><span class="mt-badge prog">累进</span></div></a><a href="/zh/florida-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Florida</span><span class="mt-badge none">免税</span></div></a><a href="/zh/illinois-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Illinois</span><span class="mt-badge flat">统一税率</span></div></a><a href="/zh/pennsylvania-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Pennsylvania</span><span class="mt-badge flat">统一税率</span></div></a><a href="/zh/washington-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Washington</span><span class="mt-badge none">免税</span></div></a><a href="/zh/georgia-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Georgia</span><span class="mt-badge flat">统一税率</span></div></a></div>
+                        <div class="mega-more-row"><a href="/#/states">查看全部 50 个州 + 华盛顿特区 →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="history">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📊 历史记录</button>
+                    <template data-mega-tpl="history">
+                        <div class="mega-quicklink">您保存的税务记录都在主计算器里管理——所有数据只保存在您自己的浏览器中。</div>
+                        <div class="mega-more-row"><a href="/#/history">前往历史记录 →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="compare">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📈 对比图表</button>
+                    <template data-mega-tpl="compare">
+                        <div class="mega-quicklink">在主计算器里对比 2025/2026/2027 多个税年，或并排比较已保存的多条记录。</div>
+                        <div class="mega-more-row"><a href="/#/compare">前往对比图表 →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="resources">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 资源</button>
-                    <div class="an-menu">
-                        <a href="/#/guide" class="tab-btn dropdown-tab-btn" data-tab="guide" id="tabGuide">📖 使用说明</a>
-                        <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 计算详解</a>
-                        <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 使用教程</a>
-                        <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ 常见问题</a>
-                        <a href="/zh/about-us/">ℹ️ 关于我们</a>
-                        <a href="/zh/methodology/">🧮 计算方法说明</a>
-                        <a href="/zh/disclaimer/">⚖️ 免责声明</a>
-                        <a href="/zh/contact/">✉️ 联系我们</a>
-                        <a href="/zh/privacy/">🔒 隐私政策</a>
-                    </div>
+                    <template data-mega-tpl="resources">
+                        <div class="mega-section-label">使用帮助</div>
+                        <div class="mega-grid">
+                            <a href="/#/guide" class="mega-tile"><div class="mt-top"><span class="mt-icon">📖</span><span class="mt-label">使用说明</span></div></a>
+                            <a href="/#/howitworks" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label">计算详解</span></div></a>
+                            <a href="/#/tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🎓</span><span class="mt-label">使用教程</span></div></a>
+                            <a href="/#/faq" class="mega-tile"><div class="mt-top"><span class="mt-icon">❓</span><span class="mt-label">常见问题</span></div></a>
+                        </div>
+                        <div class="mega-section-label">关于本站</div>
+                        <div class="mega-grid">
+                            <a href="/zh/about-us/" class="mega-tile"><div class="mt-top"><span class="mt-icon">ℹ️</span><span class="mt-label">关于我们</span></div></a>
+                            <a href="/zh/methodology/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label">计算方法说明</span></div></a>
+                            <a href="/zh/disclaimer/" class="mega-tile"><div class="mt-top"><span class="mt-icon">⚖️</span><span class="mt-label">免责声明</span></div></a>
+                            <a href="/zh/contact/" class="mega-tile"><div class="mt-top"><span class="mt-icon">✉️</span><span class="mt-label">联系我们</span></div></a>
+                            <a href="/zh/privacy/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🔒</span><span class="mt-label">隐私政策</span></div></a>
+                        </div>
+                    </template>
                 </li>
-                <li class="an-item">
+                <li class="an-item" data-mega="articles">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 文章</button>
-                    <div class="an-menu">
-                        <a href="/articles/?cat=tutorials">报税教程</a>
-                        <a href="/articles/?cat=news">2026 税务动态</a>
-                        <a href="/articles/?cat=guides">报税指南</a>
-                        <a href="/articles/?cat=deductions">扣除与抵免</a>
-                        <a href="/articles/?cat=self-employment">自雇税</a>
-                        <a href="/articles/?cat=investing">投资与资本利得</a>
-                        <a href="/articles/" class="an-menu-all">浏览全部文章 →</a>
-                    </div>
+                    <template data-mega-tpl="articles">
+                        <div class="mega-section-label">分类浏览</div>
+                        <div class="mega-grid">
+                            <a href="/articles/?cat=tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧭</span><span class="mt-label">报税教程</span></div></a>
+                            <a href="/articles/?cat=news" class="mega-tile"><div class="mt-top"><span class="mt-icon">🗞️</span><span class="mt-label">2026 税务动态</span></div></a>
+                            <a href="/articles/?cat=guides" class="mega-tile"><div class="mt-top"><span class="mt-icon">📚</span><span class="mt-label">报税指南</span></div></a>
+                            <a href="/articles/?cat=deductions" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label">扣除与抵免</span></div></a>
+                            <a href="/articles/?cat=self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label">自雇税</span></div></a>
+                            <a href="/articles/?cat=investing" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label">投资与资本利得</span></div></a>
+                        </div>
+                        <div class="mega-more-row"><a href="/articles/">浏览全部 71 篇文章 →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="search">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false" id="navSearchBtn">🔍 搜索</button>
+                    <template data-mega-tpl="search">
+                        <div class="mega-search-box">
+                            <span>🔍</span>
+                            <input type="text" id="siteSearchInput" autocomplete="off" data-ph-en="Search articles &amp; calculators..." data-ph-zh="搜索文章或计算功能..." data-ph-es="Buscar artículos y calculadoras...">
+                        </div>
+                        <div class="mega-search-results" id="siteSearchResults"></div>
+                    </template>
                 </li>
                 <li class="an-item an-lang-item">
                     <div class="lang-toggle an-lang"><a href="https://us-tax-calculator.com/new-mexico-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">EN</a><span class="an-lang-current active">中文</span><a href="https://us-tax-calculator.com/es/new-mexico-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">ES</a></div>
@@ -236,6 +277,7 @@ a{color:var(--primary);}
             </ul>
         </div>
     </nav>
+    <div class="mega-menu" id="sharedMegaMenu"><div id="megaMenuContent"></div></div>
     <div class="share-toast" id="shareToast">🔗 链接已复制！感谢分享 🙌</div>
 <div class="prose" style="max-width:980px;">
   <a class="back-link" href="/">← 返回首页</a>
@@ -367,6 +409,8 @@ a{color:var(--primary);}
 <script>window.PAGE_LANG = 'zh';</script>
 <script src="/assets/share-widget.js"></script>
 <script src="/assets/state-calc.js"></script>
+<script src="/assets/site-search.js"></script>
+<script src="/assets/mega-nav.js"></script>
 <script>document.addEventListener('DOMContentLoaded', function(){ initStatePage('NM'); });</script>
 <script>
         // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +

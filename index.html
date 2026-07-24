@@ -1163,6 +1163,56 @@
         .an-menu a[aria-current="page"]{color:var(--primary);font-weight:700;}
         .an-menu .an-menu-all{color:var(--primary);font-weight:700;border-top:1px solid var(--border);margin-top:4px;padding-top:10px;}
         .an-lang{background:#f2f4f8;padding:3px;border-radius:8px;gap:2px;}
+        /* ---- Apple-style mega-menu: ONE shared panel (#sharedMegaMenu, placed once after the
+           nav, not nested per-item) whose content is swapped by JS when a nav item is
+           hovered/tapped — this is what makes switching between items change only the
+           content with no flicker, since the panel element itself is never removed/re-added.
+           position:fixed + left:0;right:0 is genuinely viewport-relative regardless of which
+           item triggered it (the earlier left:50vw/-50vw approach was measured from each
+           .an-item's own position, not the viewport, which is why it used to misalign). The
+           padding's calc() keeps the *content* centered to the same 1200px the nav uses. ---- */
+        .mega-menu{display:none;position:fixed;left:0;right:0;top:55px;margin:0;
+            background:#fff;border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(15,23,42,.10);
+            z-index:110;width:100%;padding:36px max(24px,calc((100vw - 1200px) / 2));max-height:calc(100vh - 55px);overflow:auto;text-align:left;}
+        .mega-menu.mega-visible{display:block;animation:megaIn .14s ease;}
+        @keyframes megaIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+        #sharedMegaMenu .mega-import-zone,#sharedMegaMenu .mega-quicklink{max-width:440px;}
+        .mega-section-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);margin:0 0 12px 2px;}
+        .mega-section-label:not(:first-child){margin-top:20px;}
+        .mega-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 10px;}
+        .mega-tile{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border-radius:14px;text-decoration:none;color:var(--text);transition:background .15s,transform .15s;}
+        .mega-tile:hover{background:#f5f7fb;transform:translateY(-1px);}
+        .mega-tile .mt-top{display:flex;align-items:center;gap:8px;}
+        .mega-tile .mt-icon{font-size:1.3rem;line-height:1;}
+        .mega-tile .mt-label{font-weight:700;font-size:.88rem;color:var(--primary-dark);}
+        .mega-tile .mt-desc{font-size:.76rem;color:var(--text-secondary);line-height:1.3;}
+        .mega-tile .mt-badge{font-size:.66rem;font-weight:700;padding:1px 6px;border-radius:6px;margin-left:auto;}
+        .mega-tile .mt-badge.none{background:#dcf3e6;color:#166a3f;}
+        .mega-tile .mt-badge.flat{background:#e2e8f7;color:#2d3f8f;}
+        .mega-tile .mt-badge.prog{background:#fdecd2;color:#8a5a12;}
+        .mega-more-row{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);text-align:center;}
+        .mega-more-row a{color:var(--primary);font-weight:700;text-decoration:none;font-size:.86rem;}
+        .mega-more-row a:hover{text-decoration:underline;}
+        .mega-import-zone{border:2px dashed var(--border);border-radius:16px;padding:26px 20px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;}
+        .mega-import-zone:hover,.mega-import-zone.dragover{border-color:var(--primary-light);background:#f8faff;}
+        .mega-import-zone .mi-icon{font-size:1.8rem;margin-bottom:6px;}
+        .mega-import-zone .mi-title{font-weight:700;color:var(--primary-dark);font-size:.9rem;margin-bottom:3px;}
+        .mega-import-zone .mi-sub{font-size:.78rem;color:var(--text-secondary);}
+        /* Search: big Apple-style bar (icon + large input, no pill background), arrow-prefixed results below */
+        .mega-search-box{display:flex;align-items:center;gap:14px;max-width:640px;}
+        .mega-search-box span{font-size:1.3rem;color:var(--text-secondary);}
+        .mega-search-box input{flex:1;border:none;border-bottom:2px solid var(--border);background:transparent;outline:none;font-size:1.5rem;font-weight:600;color:var(--text);padding:4px 0 10px;}
+        .mega-search-box input:focus{border-bottom-color:var(--primary);}
+        .mega-search-results{margin-top:18px;display:flex;flex-direction:column;gap:2px;max-width:640px;max-height:340px;overflow:auto;}
+        .mega-search-result{display:flex;align-items:baseline;gap:10px;padding:10px 6px;border-radius:10px;text-decoration:none;color:var(--text);}
+        .mega-search-result:before{content:'→';color:var(--text-secondary);font-size:.86rem;}
+        .mega-search-result:hover,.mega-search-result.msr-active{background:#f5f7fb;}
+        .mega-search-result .msr-title{font-weight:700;font-size:.88rem;color:var(--primary-dark);}
+        .mega-search-result .msr-type{font-size:.7rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.03em;}
+        .mega-search-empty{padding:14px 6px;color:var(--text-secondary);font-size:.85rem;}
+        @media(max-width:640px){
+            .mega-menu{top:54px;max-height:calc(100vh - 54px);padding:24px;}
+        }
         .an-lang button{padding:6px 10px;font-size:.76rem;}
         .an-mobile-toggle{display:none;margin-left:auto;background:none;border:none;font-size:1.3rem;color:var(--text);cursor:pointer;padding:6px 8px;}
         .an-menu.site-nav{margin-bottom:0;overflow:visible;}
@@ -1523,51 +1573,135 @@
             <button type="button" class="an-mobile-toggle" id="anMobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="anItems">☰</button>
 
             <ul class="an-items" id="anItems">
-                <li class="an-item">
+                <li class="an-item" data-mega="calculator">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 <span class="i18n-zh">税务计算</span><span class="i18n-en">Calculator</span><span class="i18n-es">Calculadora</span></button>
-                    <div class="an-menu site-nav" aria-label="Site">
-                        <a href="/#/" class="sn-link" aria-current="page"><span class="i18n-zh">联邦税计算器</span><span class="i18n-en">Federal Tax</span><span class="i18n-es">Impuesto Federal</span></a>
-                        <a href="/#/self-employment" class="sn-link"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Trabajo por Cuenta Propia</span></a>
-                        <a href="/#/capital-gains" class="sn-link"><span class="i18n-zh">资本利得税</span><span class="i18n-en">Capital Gains</span><span class="i18n-es">Ganancias de Capital</span></a>
-                        <a href="/#/child-tax-credit" class="sn-link"><span class="i18n-zh">儿童税收抵免</span><span class="i18n-en">Child Tax Credit</span><span class="i18n-es">Crédito Tributario por Hijos</span></a>
-                        <a href="/#/fica" class="sn-link"><span class="i18n-zh">FICA 工资税</span><span class="i18n-en">FICA / Payroll</span><span class="i18n-es">FICA / Nómina</span></a>
-                        <a href="/calculator/" class="sn-link" id="navSalaryLink"><span class="i18n-zh">按收入金额查询</span><span class="i18n-en">By Salary Amount</span><span class="i18n-es">Por Monto de Salario</span></a>
-                    </div>
+                    <template data-mega-tpl="calculator">
+                        <div class="mega-section-label"><span class="i18n-zh">计算器入口</span><span class="i18n-en">Calculator Presets</span><span class="i18n-es">Calculadoras</span></div>
+                        <div class="mega-grid">
+                            <a href="/#/" class="mega-tile" aria-current="page">
+                                <div class="mt-top"><span class="mt-icon">🏛️</span><span class="mt-label"><span class="i18n-zh">联邦税计算器</span><span class="i18n-en">Federal Tax</span><span class="i18n-es">Impuesto Federal</span></span></div>
+                                <div class="mt-desc"><span class="i18n-zh">工资、申报身份、扣除项</span><span class="i18n-en">Wages, filing status, deductions</span><span class="i18n-es">Salario, estado civil, deducciones</span></div>
+                            </a>
+                            <a href="/#/self-employment" class="mega-tile">
+                                <div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Cuenta Propia</span></span></div>
+                                <div class="mt-desc"><span class="i18n-zh">1099 收入、SE 税计算</span><span class="i18n-en">1099 income, SE tax</span><span class="i18n-es">Ingreso 1099, impuesto SE</span></div>
+                            </a>
+                            <a href="/#/capital-gains" class="mega-tile">
+                                <div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label"><span class="i18n-zh">资本利得税</span><span class="i18n-en">Capital Gains</span><span class="i18n-es">Ganancias de Capital</span></span></div>
+                                <div class="mt-desc"><span class="i18n-zh">长期/短期资本利得</span><span class="i18n-en">Long &amp; short-term gains</span><span class="i18n-es">Ganancias largo/corto plazo</span></div>
+                            </a>
+                            <a href="/#/child-tax-credit" class="mega-tile">
+                                <div class="mt-top"><span class="mt-icon">👨‍👩‍👧</span><span class="mt-label"><span class="i18n-zh">儿童税收抵免</span><span class="i18n-en">Child Tax Credit</span><span class="i18n-es">Crédito por Hijos</span></span></div>
+                                <div class="mt-desc"><span class="i18n-zh">CTC 金额与退还计算</span><span class="i18n-en">CTC amount &amp; refundability</span><span class="i18n-es">Monto y reembolso del CTC</span></div>
+                            </a>
+                            <a href="/#/fica" class="mega-tile">
+                                <div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label"><span class="i18n-zh">FICA 工资税</span><span class="i18n-en">FICA / Payroll</span><span class="i18n-es">FICA / Nómina</span></span></div>
+                                <div class="mt-desc"><span class="i18n-zh">社安税与联邦医疗保险税</span><span class="i18n-en">Social Security &amp; Medicare</span><span class="i18n-es">Seguro Social y Medicare</span></div>
+                            </a>
+                            <a href="/calculator/" class="mega-tile" id="navSalaryLink">
+                                <div class="mt-top"><span class="mt-icon">💰</span><span class="mt-label"><span class="i18n-zh">按收入金额查询</span><span class="i18n-en">By Salary Amount</span><span class="i18n-es">Por Monto de Salario</span></span></div>
+                                <div class="mt-desc"><span class="i18n-zh">$30K 至 $1M，15 档收入</span><span class="i18n-en">$30K–$1M, 15 income levels</span><span class="i18n-es">$30K–$1M, 15 niveles</span></div>
+                            </a>
+                        </div>
+                    </template>
                 </li>
-                <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ <span class="i18n-zh">州税计算</span><span class="i18n-en">State Tax</span><span class="i18n-es">Impuesto Estatal</span></a></li>
-                <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 <span class="i18n-zh">历史记录</span><span class="i18n-en">History</span><span class="i18n-es">Historial</span></a></li>
-                <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 <span class="i18n-zh">对比图表</span><span class="i18n-en">Compare</span><span class="i18n-es">Comparar</span></a></li>
+                <li class="an-item" data-mega="statetax">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🗺️ <span class="i18n-zh">州税计算</span><span class="i18n-en">State Tax</span><span class="i18n-es">Impuesto Estatal</span></button>
+                    <template data-mega-tpl="statetax">
+                        <div class="mega-section-label"><span class="i18n-zh">热门州</span><span class="i18n-en">Popular States</span><span class="i18n-es">Estados Populares</span></div>
+                        <div class="mega-grid" id="megaStateGrid">
+                            <a href="/california-tax-calculator/" class="mega-tile" data-state="CA"><div class="mt-top"><span class="mt-label">California</span><span class="mt-badge prog">Prog.</span></div></a>
+                            <a href="/texas-tax-calculator/" class="mega-tile" data-state="TX"><div class="mt-top"><span class="mt-label">Texas</span><span class="mt-badge none">No tax</span></div></a>
+                            <a href="/new-york-tax-calculator/" class="mega-tile" data-state="NY"><div class="mt-top"><span class="mt-label">New York</span><span class="mt-badge prog">Prog.</span></div></a>
+                            <a href="/florida-tax-calculator/" class="mega-tile" data-state="FL"><div class="mt-top"><span class="mt-label">Florida</span><span class="mt-badge none">No tax</span></div></a>
+                            <a href="/illinois-tax-calculator/" class="mega-tile" data-state="IL"><div class="mt-top"><span class="mt-label">Illinois</span><span class="mt-badge flat">Flat</span></div></a>
+                            <a href="/pennsylvania-tax-calculator/" class="mega-tile" data-state="PA"><div class="mt-top"><span class="mt-label">Pennsylvania</span><span class="mt-badge flat">Flat</span></div></a>
+                            <a href="/washington-tax-calculator/" class="mega-tile" data-state="WA"><div class="mt-top"><span class="mt-label">Washington</span><span class="mt-badge none">No tax</span></div></a>
+                            <a href="/georgia-tax-calculator/" class="mega-tile" data-state="GA"><div class="mt-top"><span class="mt-label">Georgia</span><span class="mt-badge flat">Flat</span></div></a>
+                        </div>
+                        <div class="mega-more-row"><a href="/#/states"><span class="i18n-zh">查看全部 50 个州 + 华盛顿特区 →</span><span class="i18n-en">See all 50 states + DC →</span><span class="i18n-es">Ver los 50 estados + DC →</span></a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="history">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📊 <span class="i18n-zh">历史记录</span><span class="i18n-en">History</span><span class="i18n-es">Historial</span></button>
+                    <template data-mega-tpl="history">
+                        <div class="mega-import-zone" onclick="document.getElementById('fileInput').click();">
+                            <div class="mi-icon">📁</div>
+                            <div class="mi-title"><span class="i18n-zh">导入历史记录文件</span><span class="i18n-en">Import a history file</span><span class="i18n-es">Importar un archivo</span></div>
+                            <div class="mi-sub"><span class="i18n-zh">点击或拖拽 .json 文件</span><span class="i18n-en">Click, or drag a .json file here</span><span class="i18n-es">Haga clic o arrastre un archivo .json</span></div>
+                        </div>
+                        <div class="mega-more-row"><a href="/#/history" class="tab-btn" data-tab="history" id="tabHistory"><span class="i18n-zh">查看完整历史记录 →</span><span class="i18n-en">View full history →</span><span class="i18n-es">Ver historial completo →</span></a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="compare">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📈 <span class="i18n-zh">对比图表</span><span class="i18n-en">Compare</span><span class="i18n-es">Comparar</span></button>
+                    <template data-mega-tpl="compare">
+                        <div class="mega-import-zone" onclick="document.getElementById('fileInput').click();">
+                            <div class="mi-icon">📁</div>
+                            <div class="mi-title"><span class="i18n-zh">导入记录用于对比</span><span class="i18n-en">Import records to compare</span><span class="i18n-es">Importar para comparar</span></div>
+                            <div class="mi-sub"><span class="i18n-zh">点击或拖拽 .json 文件</span><span class="i18n-en">Click, or drag a .json file here</span><span class="i18n-es">Haga clic o arrastre un archivo .json</span></div>
+                        </div>
+                        <div class="mega-more-row"><a href="/#/compare" class="tab-btn" data-tab="compare" id="tabCompare"><span class="i18n-zh">查看对比图表 →</span><span class="i18n-en">View comparison charts →</span><span class="i18n-es">Ver gráficos de comparación →</span></a></div>
+                    </template>
+                </li>
                 <!-- PAUSED: International Withholding Tax premium feature — nav entry hidden until the
                      JS data/render logic is wired up and Stripe checkout is available. The #intltax section,
                      its CSS, and the unlock modal markup are left in place below so this can be resumed later
                      without redoing the layout. See /home/claude/intl_block.js (build sandbox) for the drafted
                      INTL_TAX_DATA dataset + render/access-control logic that still needs to be inserted. -->
                 <!-- <li class="an-item"><a href="/#/intltax" class="tab-btn an-link" data-tab="intltax" id="tabIntlTax">🌍 <span class="i18n-zh">国际预扣税</span><span class="i18n-en">Intl. Withholding</span><span class="i18n-es">Retención Intl.</span> <span class="premium-pill">PRO</span></a></li> -->
-                <li class="an-item">
+                <li class="an-item" data-mega="resources">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 <span class="i18n-zh">资源</span><span class="i18n-en">Resources</span><span class="i18n-es">Recursos</span></button>
-                    <div class="an-menu">
-                        <a href="/#/guide" class="tab-btn dropdown-tab-btn" data-tab="guide" id="tabGuide">📖 <span class="i18n-zh">使用说明</span><span class="i18n-en">Guide</span><span class="i18n-es">Guía</span></a>
-                        <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 <span class="i18n-zh">计算详解</span><span class="i18n-en">How It Works</span><span class="i18n-es">Cómo Funciona</span></a>
-                        <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 <span class="i18n-zh">使用教程</span><span class="i18n-en">Tutorials</span><span class="i18n-es">Tutoriales</span></a>
-                        <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ <span class="i18n-zh">常见问题</span><span class="i18n-en">FAQ</span><span class="i18n-es">Preguntas</span></a>
-                        <a href="/about-us/" id="navAboutLink">ℹ️ <span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Acerca de</span></a>
-                        <a href="/methodology/" id="navMethodLink">🧮 <span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></a>
-                        <a href="/disclaimer/" id="navDisclaimerLink">⚖️ <span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></a>
-                        <a href="/contact/" id="navContactLink">✉️ <span class="i18n-zh">联系我们</span><span class="i18n-en">Contact</span><span class="i18n-es">Contacto</span></a>
-                        <a href="/privacy/" id="navPrivacyLink">🔒 <span class="i18n-zh">隐私政策</span><span class="i18n-en">Privacy Policy</span><span class="i18n-es">Política de Privacidad</span></a>
-                    </div>
+                    <template data-mega-tpl="resources">
+                        <div class="mega-section-label"><span class="i18n-zh">使用帮助</span><span class="i18n-en">Help &amp; Guides</span><span class="i18n-es">Ayuda y Guías</span></div>
+                        <div class="mega-grid">
+                            <a href="/#/guide" class="tab-btn dropdown-tab-btn mega-tile" data-tab="guide" id="tabGuide">
+                                <div class="mt-top"><span class="mt-icon">📖</span><span class="mt-label"><span class="i18n-zh">使用说明</span><span class="i18n-en">Guide</span><span class="i18n-es">Guía</span></span></div>
+                            </a>
+                            <a href="/#/howitworks" class="tab-btn dropdown-tab-btn mega-tile" data-tab="howitworks" id="tabHow">
+                                <div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label"><span class="i18n-zh">计算详解</span><span class="i18n-en">How It Works</span><span class="i18n-es">Cómo Funciona</span></span></div>
+                            </a>
+                            <a href="/#/tutorials" class="tab-btn dropdown-tab-btn mega-tile" data-tab="tutorials" id="tabTutorial">
+                                <div class="mt-top"><span class="mt-icon">🎓</span><span class="mt-label"><span class="i18n-zh">使用教程</span><span class="i18n-en">Tutorials</span><span class="i18n-es">Tutoriales</span></span></div>
+                            </a>
+                            <a href="/#/faq" class="tab-btn dropdown-tab-btn mega-tile" data-tab="faq" id="tabFaq">
+                                <div class="mt-top"><span class="mt-icon">❓</span><span class="mt-label"><span class="i18n-zh">常见问题</span><span class="i18n-en">FAQ</span><span class="i18n-es">Preguntas</span></span></div>
+                            </a>
+                        </div>
+                        <div class="mega-section-label"><span class="i18n-zh">关于本站</span><span class="i18n-en">About the Site</span><span class="i18n-es">Sobre el Sitio</span></div>
+                        <div class="mega-grid">
+                            <a href="/about-us/" class="mega-tile" id="navAboutLink"><div class="mt-top"><span class="mt-icon">ℹ️</span><span class="mt-label"><span class="i18n-zh">关于我们</span><span class="i18n-en">About Us</span><span class="i18n-es">Acerca de</span></span></div></a>
+                            <a href="/methodology/" class="mega-tile" id="navMethodLink"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label"><span class="i18n-zh">计算方法说明</span><span class="i18n-en">Methodology</span><span class="i18n-es">Metodología</span></span></div></a>
+                            <a href="/disclaimer/" class="mega-tile" id="navDisclaimerLink"><div class="mt-top"><span class="mt-icon">⚖️</span><span class="mt-label"><span class="i18n-zh">免责声明</span><span class="i18n-en">Disclaimer</span><span class="i18n-es">Aviso Legal</span></span></div></a>
+                            <a href="/contact/" class="mega-tile" id="navContactLink"><div class="mt-top"><span class="mt-icon">✉️</span><span class="mt-label"><span class="i18n-zh">联系我们</span><span class="i18n-en">Contact</span><span class="i18n-es">Contacto</span></span></div></a>
+                            <a href="/privacy/" class="mega-tile" id="navPrivacyLink"><div class="mt-top"><span class="mt-icon">🔒</span><span class="mt-label"><span class="i18n-zh">隐私政策</span><span class="i18n-en">Privacy Policy</span><span class="i18n-es">Política de Privacidad</span></span></div></a>
+                        </div>
+                    </template>
                 </li>
-                <li class="an-item">
+                <li class="an-item" data-mega="articles">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 <span class="i18n-zh">文章</span><span class="i18n-en">Articles</span><span class="i18n-es">Artículos</span></button>
-                    <div class="an-menu">
-                        <a href="/articles/?cat=tutorials"><span class="i18n-zh">报税教程</span><span class="i18n-en">Filing Tutorials</span><span class="i18n-es">Tutoriales de Declaración</span></a>
-                        <a href="/articles/?cat=news"><span class="i18n-zh">2026 税务动态</span><span class="i18n-en">Tax News 2026</span><span class="i18n-es">Novedades 2026</span></a>
-                        <a href="/articles/?cat=guides"><span class="i18n-zh">报税指南</span><span class="i18n-en">Filing Guides</span><span class="i18n-es">Guías</span></a>
-                        <a href="/articles/?cat=deductions"><span class="i18n-zh">扣除与抵免</span><span class="i18n-en">Deductions &amp; Credits</span><span class="i18n-es">Deducciones</span></a>
-                        <a href="/articles/?cat=self-employment"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Cuenta Propia</span></a>
-                        <a href="/articles/?cat=investing"><span class="i18n-zh">投资与资本利得</span><span class="i18n-en">Investing &amp; Gains</span><span class="i18n-es">Inversiones</span></a>
-                        <a href="/articles/" class="an-menu-all"><span class="i18n-zh">浏览全部文章 →</span><span class="i18n-en">Browse All Articles →</span><span class="i18n-es">Ver Todos →</span></a>
-                    </div>
+                    <template data-mega-tpl="articles">
+                        <div class="mega-section-label"><span class="i18n-zh">分类浏览</span><span class="i18n-en">Browse by Category</span><span class="i18n-es">Por Categoría</span></div>
+                        <div class="mega-grid">
+                            <a href="/articles/?cat=tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧭</span><span class="mt-label"><span class="i18n-zh">报税教程</span><span class="i18n-en">Filing Tutorials</span><span class="i18n-es">Tutoriales</span></span></div></a>
+                            <a href="/articles/?cat=news" class="mega-tile"><div class="mt-top"><span class="mt-icon">🗞️</span><span class="mt-label"><span class="i18n-zh">2026 税务动态</span><span class="i18n-en">Tax News 2026</span><span class="i18n-es">Novedades 2026</span></span></div></a>
+                            <a href="/articles/?cat=guides" class="mega-tile"><div class="mt-top"><span class="mt-icon">📚</span><span class="mt-label"><span class="i18n-zh">报税指南</span><span class="i18n-en">Filing Guides</span><span class="i18n-es">Guías</span></span></div></a>
+                            <a href="/articles/?cat=deductions" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label"><span class="i18n-zh">扣除与抵免</span><span class="i18n-en">Deductions &amp; Credits</span><span class="i18n-es">Deducciones</span></span></div></a>
+                            <a href="/articles/?cat=self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label"><span class="i18n-zh">自雇税</span><span class="i18n-en">Self-Employment</span><span class="i18n-es">Cuenta Propia</span></span></div></a>
+                            <a href="/articles/?cat=investing" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label"><span class="i18n-zh">投资与资本利得</span><span class="i18n-en">Investing &amp; Gains</span><span class="i18n-es">Inversiones</span></span></div></a>
+                        </div>
+                        <div class="mega-more-row"><a href="/articles/"><span class="i18n-zh">浏览全部 71 篇文章 →</span><span class="i18n-en">Browse all 71 articles →</span><span class="i18n-es">Ver los 71 artículos →</span></a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="search">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false" id="navSearchBtn">🔍 <span class="i18n-zh">搜索</span><span class="i18n-en">Search</span><span class="i18n-es">Buscar</span></button>
+                    <template data-mega-tpl="search">
+                        <div class="mega-search-box">
+                            <span>🔍</span>
+                            <input type="text" id="siteSearchInput" autocomplete="off" placeholder="Search articles &amp; calculators…" data-ph-en="Search articles &amp; calculators…" data-ph-zh="搜索文章或计算功能…" data-ph-es="Buscar artículos y calculadoras…">
+                        </div>
+                        <div class="mega-search-results" id="siteSearchResults"></div>
+                    </template>
                 </li>
                 <li class="an-item an-lang-item">
                     <div class="lang-toggle an-lang">
@@ -1591,6 +1725,7 @@
             </ul>
         </div>
     </nav>
+    <div class="mega-menu" id="sharedMegaMenu"><div id="megaMenuContent"></div></div>
 
     <div class="container">
         <div class="page-eyebrow">
@@ -3927,6 +4062,11 @@
             applyI18N();
             updateFilingStatusOptions();
             if (typeof updateLangAwareLinks === 'function') updateLangAwareLinks();
+            if (typeof siteSearchPlaceholder === 'function') siteSearchPlaceholder();
+            if (typeof runSiteSearch === 'function') {
+                var si = document.getElementById('siteSearchInput');
+                if (si && si.value) runSiteSearch(si.value);
+            }
         }
 
         function setMode(mode) {
@@ -4131,56 +4271,7 @@
 
         // ===================== Tab Switching =====================
 
-        // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +
-        // click-outside-to-close on touch; auto-detected via matchMedia.
-        (function () {
-            var supportsHover = !!(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches);
 
-            function closeAllMenus() {
-                document.querySelectorAll('.an-item.open').forEach(function (item) {
-                    item.classList.remove('open');
-                    var trig = item.querySelector('.an-link[aria-haspopup]');
-                    if (trig) trig.setAttribute('aria-expanded', 'false');
-                });
-            }
-
-            document.querySelectorAll('.an-item').forEach(function (item) {
-                var trigger = item.querySelector('.an-link[aria-haspopup]');
-                if (!trigger) return; // items with no submenu need no toggle logic
-                trigger.addEventListener('click', function (e) {
-                    if (supportsHover) return; // desktop: hover alone controls visibility
-                    e.preventDefault();
-                    var willOpen = !item.classList.contains('open');
-                    closeAllMenus();
-                    if (willOpen) {
-                        item.classList.add('open');
-                        trigger.setAttribute('aria-expanded', 'true');
-                    }
-                });
-            });
-
-            document.addEventListener('click', function (e) {
-                if (!e.target.closest('.an-item')) closeAllMenus();
-            });
-
-            var toggle = document.getElementById('anMobileToggle');
-            var wrap = document.querySelector('.an-wrap');
-            if (toggle && wrap) {
-                toggle.addEventListener('click', function () {
-                    var open = wrap.classList.toggle('an-open');
-                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                    if (!open) closeAllMenus();
-                });
-            }
-            // Choosing an actual destination closes the submenu and the mobile panel
-            document.querySelectorAll('.an-items a, .an-items button:not([aria-haspopup])').forEach(function (el) {
-                el.addEventListener('click', function () {
-                    closeAllMenus();
-                    if (wrap) wrap.classList.remove('an-open');
-                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
-                });
-            });
-        })();
 
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -4820,6 +4911,20 @@
             const files = e.dataTransfer.files;
             if (files.length > 0) handleFileUpload({ target: { files: files } });
         });
+
+        // Same drag-and-drop behavior for the nav mega-menu's History/Compare import zones —
+        // these just trigger the same hidden #fileInput on click, but also accept a direct drop.
+        document.querySelectorAll('.mega-import-zone').forEach(function (zone) {
+            zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('dragover'); });
+            zone.addEventListener('dragleave', function () { zone.classList.remove('dragover'); });
+            zone.addEventListener('drop', function (e) {
+                e.preventDefault(); zone.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) handleFileUpload({ target: { files: files } });
+            });
+        });
+
+
 
         // ===================== History Display =====================
         function updateHistoryDisplay() {
@@ -6866,5 +6971,7 @@
         renderStateNames();
         applyRoute();
     </script>
+    <script src="/assets/site-search.js"></script>
+    <script src="/assets/mega-nav.js"></script>
 </body>
 </html>

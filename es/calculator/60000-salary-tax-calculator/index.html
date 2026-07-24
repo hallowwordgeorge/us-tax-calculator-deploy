@@ -170,52 +170,93 @@ a{color:var(--primary);}
 <body>
 <nav class="apple-nav">
         <div class="an-wrap">
-            <a href="/#/" class="an-logo">
+            <a href="/es/" class="an-logo">
                 <img src="/logo-icon.svg" alt="" width="24" height="24">
                 <span class="an-wordmark">US Tax Calculator</span>
             </a>
             <button type="button" class="an-mobile-toggle" id="anMobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="anItems">☰</button>
 
             <ul class="an-items" id="anItems">
-                <li class="an-item">
+                <li class="an-item" data-mega="calculator">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 Calculadora</button>
-                    <div class="an-menu site-nav" aria-label="Site">
-                        <a href="/#/" class="sn-link">Impuesto Federal</a>
-                        <a href="/#/self-employment" class="sn-link">Trabajo por Cuenta Propia</a>
-                        <a href="/#/capital-gains" class="sn-link">Ganancias de Capital</a>
-                        <a href="/#/child-tax-credit" class="sn-link">Crédito Tributario por Hijos</a>
-                        <a href="/#/fica" class="sn-link">FICA / Nómina</a>
-                        <a href="/es/calculator/" class="sn-link">Por Monto de Salario</a>
-                    </div>
+                    <template data-mega-tpl="calculator">
+                        <div class="mega-section-label">Calculadoras</div>
+                        <div class="mega-grid">
+                            <a href="/#/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🏛️</span><span class="mt-label">Impuesto Federal</span></div></a>
+                            <a href="/#/self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label">Trabajo por Cuenta Propia</span></div></a>
+                            <a href="/#/capital-gains" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label">Ganancias de Capital</span></div></a>
+                            <a href="/#/child-tax-credit" class="mega-tile"><div class="mt-top"><span class="mt-icon">👨‍👩‍👧</span><span class="mt-label">Crédito Tributario por Hijos</span></div></a>
+                            <a href="/#/fica" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label">FICA / Nómina</span></div></a>
+                            <a href="/es/calculator/" class="mega-tile"><div class="mt-top"><span class="mt-icon">💰</span><span class="mt-label">Por Monto de Salario</span></div></a>
+                        </div>
+                    </template>
                 </li>
-                <li class="an-item"><a href="/#/states" class="tab-btn an-link" data-tab="states" id="tabStates">🗺️ Impuesto Estatal</a></li>
-                <li class="an-item"><a href="/#/history" class="tab-btn an-link" data-tab="history" id="tabHistory">📊 Historial</a></li>
-                <li class="an-item"><a href="/#/compare" class="tab-btn an-link" data-tab="compare" id="tabCompare">📈 Comparar</a></li>
-                <li class="an-item">
+                <li class="an-item" data-mega="statetax">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🗺️ Impuesto Estatal</button>
+                    <template data-mega-tpl="statetax">
+                        <div class="mega-section-label">Estados Populares</div>
+                        <div class="mega-grid"><a href="/es/california-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">California</span><span class="mt-badge prog">Prog.</span></div></a><a href="/es/texas-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Texas</span><span class="mt-badge none">Sin imp.</span></div></a><a href="/es/new-york-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">New York</span><span class="mt-badge prog">Prog.</span></div></a><a href="/es/florida-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Florida</span><span class="mt-badge none">Sin imp.</span></div></a><a href="/es/illinois-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Illinois</span><span class="mt-badge flat">Fija</span></div></a><a href="/es/pennsylvania-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Pennsylvania</span><span class="mt-badge flat">Fija</span></div></a><a href="/es/washington-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Washington</span><span class="mt-badge none">Sin imp.</span></div></a><a href="/es/georgia-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Georgia</span><span class="mt-badge flat">Fija</span></div></a></div>
+                        <div class="mega-more-row"><a href="/#/states">Ver los 50 estados + DC →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="history">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📊 Historial</button>
+                    <template data-mega-tpl="history">
+                        <div class="mega-quicklink">Sus registros guardados se gestionan en la calculadora principal — todo permanece solo en su navegador.</div>
+                        <div class="mega-more-row"><a href="/#/history">Ir al Historial →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="compare">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📈 Comparar</button>
+                    <template data-mega-tpl="compare">
+                        <div class="mega-quicklink">Compare 2025/2026/2027 en paralelo, o varios registros guardados, en la calculadora principal.</div>
+                        <div class="mega-more-row"><a href="/#/compare">Ir a Comparar →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="resources">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 Recursos</button>
-                    <div class="an-menu">
-                        <a href="/#/guide" class="tab-btn dropdown-tab-btn" data-tab="guide" id="tabGuide">📖 Guía</a>
-                        <a href="/#/howitworks" class="tab-btn dropdown-tab-btn" data-tab="howitworks" id="tabHow">🧾 Cómo Funciona</a>
-                        <a href="/#/tutorials" class="tab-btn dropdown-tab-btn" data-tab="tutorials" id="tabTutorial">🎓 Tutoriales</a>
-                        <a href="/#/faq" class="tab-btn dropdown-tab-btn" data-tab="faq" id="tabFaq">❓ Preguntas</a>
-                        <a href="/es/about-us/">ℹ️ Acerca de</a>
-                        <a href="/es/methodology/">🧮 Metodología</a>
-                        <a href="/es/disclaimer/">⚖️ Aviso Legal</a>
-                        <a href="/es/contact/">✉️ Contacto</a>
-                        <a href="/es/privacy/">🔒 Política de Privacidad</a>
-                    </div>
+                    <template data-mega-tpl="resources">
+                        <div class="mega-section-label">Ayuda y Guías</div>
+                        <div class="mega-grid">
+                            <a href="/#/guide" class="mega-tile"><div class="mt-top"><span class="mt-icon">📖</span><span class="mt-label">Guía</span></div></a>
+                            <a href="/#/howitworks" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label">Cómo Funciona</span></div></a>
+                            <a href="/#/tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🎓</span><span class="mt-label">Tutoriales</span></div></a>
+                            <a href="/#/faq" class="mega-tile"><div class="mt-top"><span class="mt-icon">❓</span><span class="mt-label">Preguntas</span></div></a>
+                        </div>
+                        <div class="mega-section-label">Sobre el Sitio</div>
+                        <div class="mega-grid">
+                            <a href="/es/about-us/" class="mega-tile"><div class="mt-top"><span class="mt-icon">ℹ️</span><span class="mt-label">Acerca de</span></div></a>
+                            <a href="/es/methodology/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label">Metodología</span></div></a>
+                            <a href="/es/disclaimer/" class="mega-tile"><div class="mt-top"><span class="mt-icon">⚖️</span><span class="mt-label">Aviso Legal</span></div></a>
+                            <a href="/es/contact/" class="mega-tile"><div class="mt-top"><span class="mt-icon">✉️</span><span class="mt-label">Contacto</span></div></a>
+                            <a href="/es/privacy/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🔒</span><span class="mt-label">Política de Privacidad</span></div></a>
+                        </div>
+                    </template>
                 </li>
-                <li class="an-item">
+                <li class="an-item" data-mega="articles">
                     <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 Artículos</button>
-                    <div class="an-menu">
-                        <a href="/articles/?cat=tutorials">Tutoriales de Declaración</a>
-                        <a href="/articles/?cat=news">Novedades 2026</a>
-                        <a href="/articles/?cat=guides">Guías</a>
-                        <a href="/articles/?cat=deductions">Deducciones</a>
-                        <a href="/articles/?cat=self-employment">Cuenta Propia</a>
-                        <a href="/articles/?cat=investing">Inversiones</a>
-                        <a href="/articles/" class="an-menu-all">Ver Todos →</a>
-                    </div>
+                    <template data-mega-tpl="articles">
+                        <div class="mega-section-label">Por Categoría</div>
+                        <div class="mega-grid">
+                            <a href="/articles/?cat=tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧭</span><span class="mt-label">Tutoriales de Declaración</span></div></a>
+                            <a href="/articles/?cat=news" class="mega-tile"><div class="mt-top"><span class="mt-icon">🗞️</span><span class="mt-label">Novedades 2026</span></div></a>
+                            <a href="/articles/?cat=guides" class="mega-tile"><div class="mt-top"><span class="mt-icon">📚</span><span class="mt-label">Guías</span></div></a>
+                            <a href="/articles/?cat=deductions" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label">Deducciones</span></div></a>
+                            <a href="/articles/?cat=self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label">Cuenta Propia</span></div></a>
+                            <a href="/articles/?cat=investing" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label">Inversiones</span></div></a>
+                        </div>
+                        <div class="mega-more-row"><a href="/articles/">Ver los 71 artículos →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="search">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false" id="navSearchBtn">🔍 Buscar</button>
+                    <template data-mega-tpl="search">
+                        <div class="mega-search-box">
+                            <span>🔍</span>
+                            <input type="text" id="siteSearchInput" autocomplete="off" data-ph-en="Search articles &amp; calculators..." data-ph-zh="搜索文章或计算功能..." data-ph-es="Buscar artículos y calculadoras...">
+                        </div>
+                        <div class="mega-search-results" id="siteSearchResults"></div>
+                    </template>
                 </li>
                 <li class="an-item an-lang-item">
                     <div class="lang-toggle an-lang"><a href="https://us-tax-calculator.com/calculator/60000-salary-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">EN</a><a href="https://us-tax-calculator.com/zh/calculator/60000-salary-tax-calculator/" class="an-lang-link" onclick="if(typeof preserveTourOnLangSwitch==='function')preserveTourOnLangSwitch();">中文</a><span class="an-lang-current active">ES</span></div>
@@ -235,6 +276,7 @@ a{color:var(--primary);}
             </ul>
         </div>
     </nav>
+    <div class="mega-menu" id="sharedMegaMenu"><div id="megaMenuContent"></div></div>
     <div class="share-toast" id="shareToast">🔗 ¡Enlace copiado! Gracias por compartir 🙌</div>
 <div class="prose" style="max-width:900px;">
   <a class="back-link" href="/es/calculator/">← Volver a Calculadoras de Salario</a>
@@ -349,6 +391,8 @@ a{color:var(--primary);}
 <script>window.PAGE_LANG = 'es';</script>
 <script src="/assets/share-widget.js"></script>
 <script src="/assets/state-calc.js"></script>
+<script src="/assets/site-search.js"></script>
+<script src="/assets/mega-nav.js"></script>
 <script>document.addEventListener('DOMContentLoaded', function(){ initSalaryPage(60000); });</script>
 <script>
         // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +

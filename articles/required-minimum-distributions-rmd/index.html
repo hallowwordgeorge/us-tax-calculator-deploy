@@ -166,69 +166,116 @@ a{color:var(--primary);}
 </head>
 <body>
 <nav class="apple-nav">
-<div class="an-wrap">
-<a class="an-logo" href="/#/">
-<img alt="" height="24" src="/logo-icon.svg" width="24"/>
-<span class="an-wordmark">US Tax Calculator</span>
-</a>
-<button aria-controls="anItems" aria-expanded="false" aria-label="Menu" class="an-mobile-toggle" id="anMobileToggle" type="button">☰</button>
-<ul class="an-items" id="anItems">
-<li class="an-item">
-<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">🧮 Calculator</button>
-<div aria-label="Site" class="an-menu site-nav">
-<a class="sn-link" href="/#/">Federal Tax</a>
-<a class="sn-link" href="/#/self-employment">Self-Employment</a>
-<a class="sn-link" href="/#/capital-gains">Capital Gains</a>
-<a class="sn-link" href="/#/child-tax-credit">Child Tax Credit</a>
-<a class="sn-link" href="/#/fica">FICA / Payroll</a>
-<a class="sn-link" href="/calculator/">By Salary Amount</a>
-</div>
-</li>
-<li class="an-item"><a class="tab-btn an-link" data-tab="states" href="/#/states" id="tabStates">🗺️ State Tax</a></li>
-<li class="an-item"><a class="tab-btn an-link" data-tab="history" href="/#/history" id="tabHistory">📊 History</a></li>
-<li class="an-item"><a class="tab-btn an-link" data-tab="compare" href="/#/compare" id="tabCompare">📈 Compare</a></li>
-<li class="an-item">
-<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📖 Resources</button>
-<div class="an-menu">
-<a class="tab-btn dropdown-tab-btn" data-tab="guide" href="/#/guide" id="tabGuide">📖 Guide</a>
-<a class="tab-btn dropdown-tab-btn" data-tab="howitworks" href="/#/howitworks" id="tabHow">🧾 How It Works</a>
-<a class="tab-btn dropdown-tab-btn" data-tab="tutorials" href="/#/tutorials" id="tabTutorial">🎓 Tutorials</a>
-<a class="tab-btn dropdown-tab-btn" data-tab="faq" href="/#/faq" id="tabFaq">❓ FAQ</a>
-<a href="/about-us/">ℹ️ About Us</a>
-<a href="/methodology/">🧮 Methodology</a>
-<a href="/disclaimer/">⚖️ Disclaimer</a>
-                        <a href="/contact/">✉️ Contact</a>
-                        <a href="/privacy/">🔒 Privacy Policy</a>
-</div>
-</li>
-<li class="an-item">
-<button aria-expanded="false" aria-haspopup="true" class="an-link" type="button">📰 Articles</button>
-<div class="an-menu">
-<a href="/articles/?cat=tutorials">Filing Tutorials</a>
-<a href="/articles/?cat=news">Tax News 2026</a>
-<a href="/articles/?cat=guides">Filing Guides</a>
-<a href="/articles/?cat=deductions">Deductions &amp; Credits</a>
-<a href="/articles/?cat=self-employment">Self-Employment</a>
-<a href="/articles/?cat=investing">Investing &amp; Gains</a>
-<a class="an-menu-all" href="/articles/">Browse All Articles →</a>
-</div>
-</li>
-<li class="an-item an-social-item" tabindex="0">
-<div class="social-row">
-<a aria-label="X (Twitter)" class="social-circle-btn" href="https://x.com/UsTaxCalculator" id="xAccountBtn" rel="noopener" target="_blank">X</a>
-<button aria-label="Share" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" type="button">🔗</button>
-<div class="social-popup" role="tooltip">
-<div class="sp-title">📣 Updates &amp; Contact</div>
-<div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" rel="noopener" target="_blank">@UsTaxCalculator</a></div>
-<div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
-<div class="sp-row"><a href="https://us-tax-calculator.instatus.com" rel="noopener" target="_blank">🟢 Site status &amp; uptime →</a></div>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</nav>
-<div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
+        <div class="an-wrap">
+            <a href="/" class="an-logo">
+                <img src="/logo-icon.svg" alt="" width="24" height="24">
+                <span class="an-wordmark">US Tax Calculator</span>
+            </a>
+            <button type="button" class="an-mobile-toggle" id="anMobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="anItems">☰</button>
+
+            <ul class="an-items" id="anItems">
+                <li class="an-item" data-mega="calculator">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🧮 Calculator</button>
+                    <template data-mega-tpl="calculator">
+                        <div class="mega-section-label">Calculator Presets</div>
+                        <div class="mega-grid">
+                            <a href="/#/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🏛️</span><span class="mt-label">Federal Tax</span></div></a>
+                            <a href="/#/self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label">Self-Employment</span></div></a>
+                            <a href="/#/capital-gains" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label">Capital Gains</span></div></a>
+                            <a href="/#/child-tax-credit" class="mega-tile"><div class="mt-top"><span class="mt-icon">👨‍👩‍👧</span><span class="mt-label">Child Tax Credit</span></div></a>
+                            <a href="/#/fica" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label">FICA / Payroll</span></div></a>
+                            <a href="/calculator/" class="mega-tile"><div class="mt-top"><span class="mt-icon">💰</span><span class="mt-label">By Salary Amount</span></div></a>
+                        </div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="statetax">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">🗺️ State Tax</button>
+                    <template data-mega-tpl="statetax">
+                        <div class="mega-section-label">Popular States</div>
+                        <div class="mega-grid"><a href="/california-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">California</span><span class="mt-badge prog">Prog.</span></div></a><a href="/texas-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Texas</span><span class="mt-badge none">No tax</span></div></a><a href="/new-york-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">New York</span><span class="mt-badge prog">Prog.</span></div></a><a href="/florida-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Florida</span><span class="mt-badge none">No tax</span></div></a><a href="/illinois-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Illinois</span><span class="mt-badge flat">Flat</span></div></a><a href="/pennsylvania-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Pennsylvania</span><span class="mt-badge flat">Flat</span></div></a><a href="/washington-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Washington</span><span class="mt-badge none">No tax</span></div></a><a href="/georgia-tax-calculator/" class="mega-tile"><div class="mt-top"><span class="mt-label">Georgia</span><span class="mt-badge flat">Flat</span></div></a></div>
+                        <div class="mega-more-row"><a href="/#/states">See all 50 states + DC →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="history">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📊 History</button>
+                    <template data-mega-tpl="history">
+                        <div class="mega-quicklink">Your saved tax records live on the main calculator — all data stays in your own browser only.</div>
+                        <div class="mega-more-row"><a href="/#/history">Go to History →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="compare">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📈 Compare</button>
+                    <template data-mega-tpl="compare">
+                        <div class="mega-quicklink">Compare 2025/2026/2027 side by side, or put several saved records next to each other, on the main calculator.</div>
+                        <div class="mega-more-row"><a href="/#/compare">Go to Compare →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="resources">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📖 Resources</button>
+                    <template data-mega-tpl="resources">
+                        <div class="mega-section-label">Help &amp; Guides</div>
+                        <div class="mega-grid">
+                            <a href="/#/guide" class="mega-tile"><div class="mt-top"><span class="mt-icon">📖</span><span class="mt-label">Guide</span></div></a>
+                            <a href="/#/howitworks" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧾</span><span class="mt-label">How It Works</span></div></a>
+                            <a href="/#/tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🎓</span><span class="mt-label">Tutorials</span></div></a>
+                            <a href="/#/faq" class="mega-tile"><div class="mt-top"><span class="mt-icon">❓</span><span class="mt-label">FAQ</span></div></a>
+                        </div>
+                        <div class="mega-section-label">About the Site</div>
+                        <div class="mega-grid">
+                            <a href="/about-us/" class="mega-tile"><div class="mt-top"><span class="mt-icon">ℹ️</span><span class="mt-label">About Us</span></div></a>
+                            <a href="/methodology/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label">Methodology</span></div></a>
+                            <a href="/disclaimer/" class="mega-tile"><div class="mt-top"><span class="mt-icon">⚖️</span><span class="mt-label">Disclaimer</span></div></a>
+                            <a href="/contact/" class="mega-tile"><div class="mt-top"><span class="mt-icon">✉️</span><span class="mt-label">Contact</span></div></a>
+                            <a href="/privacy/" class="mega-tile"><div class="mt-top"><span class="mt-icon">🔒</span><span class="mt-label">Privacy Policy</span></div></a>
+                        </div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="articles">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false">📰 Articles</button>
+                    <template data-mega-tpl="articles">
+                        <div class="mega-section-label">Browse by Category</div>
+                        <div class="mega-grid">
+                            <a href="/articles/?cat=tutorials" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧭</span><span class="mt-label">Filing Tutorials</span></div></a>
+                            <a href="/articles/?cat=news" class="mega-tile"><div class="mt-top"><span class="mt-icon">🗞️</span><span class="mt-label">Tax News 2026</span></div></a>
+                            <a href="/articles/?cat=guides" class="mega-tile"><div class="mt-top"><span class="mt-icon">📚</span><span class="mt-label">Filing Guides</span></div></a>
+                            <a href="/articles/?cat=deductions" class="mega-tile"><div class="mt-top"><span class="mt-icon">🧮</span><span class="mt-label">Deductions & Credits</span></div></a>
+                            <a href="/articles/?cat=self-employment" class="mega-tile"><div class="mt-top"><span class="mt-icon">💼</span><span class="mt-label">Self-Employment</span></div></a>
+                            <a href="/articles/?cat=investing" class="mega-tile"><div class="mt-top"><span class="mt-icon">📈</span><span class="mt-label">Investing & Gains</span></div></a>
+                        </div>
+                        <div class="mega-more-row"><a href="/articles/">Browse all 71 articles →</a></div>
+                    </template>
+                </li>
+                <li class="an-item" data-mega="search">
+                    <button type="button" class="an-link" aria-haspopup="true" aria-expanded="false" id="navSearchBtn">🔍 Search</button>
+                    <template data-mega-tpl="search">
+                        <div class="mega-search-box">
+                            <span>🔍</span>
+                            <input type="text" id="siteSearchInput" autocomplete="off" data-ph-en="Search articles &amp; calculators..." data-ph-zh="搜索文章或计算功能..." data-ph-es="Buscar artículos y calculadoras...">
+                        </div>
+                        <div class="mega-search-results" id="siteSearchResults"></div>
+                    </template>
+                </li>
+                <li class="an-item an-lang-item">
+                    
+                </li>
+                <li class="an-item an-social-item" tabindex="0">
+                    <div class="social-row">
+                        <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener" class="social-circle-btn" id="xAccountBtn" aria-label="X (Twitter)">X</a>
+                        <button type="button" class="social-circle-btn" id="shareSiteBtn" onclick="shareSite()" aria-label="Share">🔗</button>
+                        <div class="social-popup" role="tooltip">
+                            <div class="sp-title">📣 Updates &amp; Contact</div>
+                            <div class="sp-row">Follow on X: <a href="https://x.com/UsTaxCalculator" target="_blank" rel="noopener">@UsTaxCalculator</a></div>
+                            <div class="sp-row">Contact: <a href="mailto:contact@us-tax-calculator.com">contact@us-tax-calculator.com</a></div>
+                            <div class="sp-row"><a href="https://us-tax-calculator.instatus.com" target="_blank" rel="noopener">🟢 Site status &amp; uptime →</a></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="mega-menu" id="sharedMegaMenu"><div id="megaMenuContent"></div></div>
+    <div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
+    <div class="share-toast" id="shareToast">🔗 Link copied! Thanks for sharing 🙌</div>
 <div class="prose">
 <a class="back-link" href="/articles/">&larr; Back to Articles</a>
 <div class="article-head">
@@ -284,7 +331,10 @@ a{color:var(--primary);}
 </div>
 <p>These articles are educational content, not tax advice. Please consult a CPA or Enrolled Agent for your filing decisions.</p>
 </div></footer>
+<script>window.PAGE_LANG = 'en';</script>
 <script src="/assets/share-widget.js"></script>
+<script src="/assets/site-search.js"></script>
+<script src="/assets/mega-nav.js"></script>
 <script>
         // Apple-style nav: hover shows/hides on desktop; tap-to-toggle +
         // click-outside-to-close on touch; auto-detected via matchMedia.
