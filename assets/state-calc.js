@@ -385,6 +385,7 @@ function initMap(selectedCode) {
     fetch('/assets/us-map.svg').then(function (r) { return r.text(); }).then(function (svg) {
         mapWrap.innerHTML = svg;
         highlightMap(selectedCode);
+        renderMapTitles();
         mapWrap.addEventListener('click', function (e) {
             const p = e.target && e.target.closest ? e.target.closest('[data-state]') : null;
             if (p) goToStatePage(p.getAttribute('data-state'));
@@ -399,6 +400,23 @@ function initMap(selectedCode) {
     if (sel) {
         sel.addEventListener('change', function () { if (this.value) goToStatePage(this.value); });
     }
+}
+
+// /assets/us-map.svg's <title> tags ship with both English and Chinese baked in
+// (e.g. "Alaska 阿拉斯加州 (AK)") since it's one shared file used on every page in
+// every language -- this rewrites each one to the *current page's own* language only,
+// right after the map is injected. Also called again on a language switch.
+function renderMapTitles() {
+    document.querySelectorAll('#stateMap .stg[data-state]').forEach(function (g) {
+        const code = g.getAttribute('data-state');
+        const n = STATE_NAMES[code];
+        if (!n) return;
+        const name = (currentLang === 'zh' ? n.zh : n.en) || n.en || code;
+        const label = name + ' (' + code + ')';
+        const t = g.querySelector('title');
+        if (t) t.textContent = label;
+        g.setAttribute('aria-label', label);
+    });
 }
 
 // ---- Federal + state calculator (full form, used on every state page) ----
@@ -552,7 +570,9 @@ function buildSalaryStateSelect() {
     });
     let html = '<option value="">' + L('Federal only (no state selected)', '仅联邦（未选择州）') + '</option>';
     codes.forEach(function (code) {
-        html += '<option value="' + code + '">' + STATE_NAMES[code].en + '</option>';
+        const n = STATE_NAMES[code];
+        const name = (currentLang === 'zh' ? n.zh : n.en) || n.en;
+        html += '<option value="' + code + '">' + name + '</option>';
     });
     sel.innerHTML = html;
 }
