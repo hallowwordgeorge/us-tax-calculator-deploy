@@ -1173,7 +1173,7 @@
            padding's calc() keeps the *content* centered to the same 1200px the nav uses. ---- */
         .mega-menu{display:none;position:fixed;left:0;right:0;top:55px;margin:0;
             background:#fff;border-top:1px solid var(--border);box-shadow:0 24px 40px rgba(15,23,42,.10);
-            z-index:110;width:100%;padding:36px max(24px,calc((100vw - 1200px) / 2));max-height:calc(100vh - 55px);overflow:auto;text-align:left;}
+            z-index:110;width:100%;padding:36px max(24px,calc((100vw - 1200px) / 2));height:270px;max-height:calc(100vh - 55px);overflow:auto;text-align:left;}
         .mega-menu.mega-visible{display:block;animation:megaIn .14s ease;}
         @keyframes megaIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
         #sharedMegaMenu .mega-import-zone,#sharedMegaMenu .mega-quicklink{max-width:440px;}
@@ -1212,6 +1212,14 @@
         .mega-search-empty{padding:14px 6px;color:var(--text-secondary);font-size:.85rem;}
         @media(max-width:640px){
             .mega-menu{top:54px;max-height:calc(100vh - 54px);padding:24px;}
+        }
+        @media(max-width:480px){
+            .mega-grid{grid-template-columns:1fr 1fr;gap:4px 8px;}
+            .mega-search-box input{font-size:1.15rem;}
+            .mega-search-box span{font-size:1.1rem;}
+        }
+        @media(max-width:380px){
+            .mega-grid{grid-template-columns:1fr;}
         }
         .an-lang button{padding:6px 10px;font-size:.76rem;}
         .an-mobile-toggle{display:none;margin-left:auto;background:none;border:none;font-size:1.3rem;color:var(--text);cursor:pointer;padding:6px 8px;}
