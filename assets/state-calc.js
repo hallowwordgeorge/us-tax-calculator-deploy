@@ -636,15 +636,31 @@ function initSalaryPage(defaultWages) {
 // identical to the SPA's .tour-float — that walks through entering wages, calculating,
 // and reading the result, then clears itself. Also re-armed if the user switches
 // language mid-tour (the language-switcher links call preserveTourOnLangSwitch()).
-const STATE_TOUR_STEPS = [
-    { target: '#spWages', done: function () { var el = document.getElementById('spWages'); return !!(el && parseFloat(el.value) > 0); },
-        text: { en: 'Enter your annual income here.', zh: '在这里输入你的年收入。', es: 'Ingrese aquí su ingreso anual.' } },
-    { target: '#spCalcBtn', done: function () { var el = document.getElementById('spResult'); return !!(el && el.innerHTML.trim().length > 0); },
-        text: { en: 'Click "Calculate My Tax".', zh: '点击"计算我的税额"。', es: 'Haga clic en "Calcular Mi Impuesto".' } },
-    { target: '#spResult', done: null,
-        text: { en: 'Read your combined federal + state tax, effective rate, and take-home pay here. Press Finish when done.', zh: '在这里查看联邦+州税合计、有效税率与税后实得收入。看完点"完成"。', es: 'Lea aquí su impuesto combinado, tasa efectiva e ingreso neto. Pulse Terminar al terminar.' } }
-];
-let stateTour = null; // { idx, timer, finished }
+// States with no state income tax get an extra intro step pointing out that the
+// federal calculator below can be used directly, since there's no state form to fill in.
+function stateTourIsNoTaxState() {
+    var box = document.getElementById('spNoTaxBox');
+    return !!(box && box.offsetParent !== null);
+}
+function getStateTourSteps() {
+    var steps = [];
+    if (stateTourIsNoTaxState()) {
+        steps.push({ target: '#spNoTaxBox', done: null,
+            text: { en: 'This state has no state income tax — you can just use the federal calculator below directly, no separate state form needed.', zh: '该州不征收州个人所得税——您可以直接使用下方的联邦计算器，无需额外填写州税表格。', es: 'Este estado no tiene impuesto estatal sobre la renta — puede usar directamente la calculadora federal a continuación, sin necesidad de un formulario estatal aparte.' } });
+    }
+    steps.push(
+        { target: '#spWages', done: function () { var el = document.getElementById('spWages'); return !!(el && parseFloat(el.value) > 0); },
+            text: { en: 'Enter your annual income here.', zh: '在这里输入你的年收入。', es: 'Ingrese aquí su ingreso anual.' } },
+        { target: '#spCalcBtn', done: function () { var el = document.getElementById('spResult'); return !!(el && el.innerHTML.trim().length > 0); },
+            text: { en: 'Click "Calculate My Tax".', zh: '点击"计算我的税额"。', es: 'Haga clic en "Calcular Mi Impuesto".' } },
+        { target: '#spResult', done: null,
+            text: stateTourIsNoTaxState()
+                ? { en: 'Read your federal tax, effective rate, and take-home pay here. Press Finish when done.', zh: '在这里查看联邦税额、有效税率与税后实得收入。看完点"完成"。', es: 'Lea aquí su impuesto federal, tasa efectiva e ingreso neto. Pulse Terminar al terminar.' }
+                : { en: 'Read your combined federal + state tax, effective rate, and take-home pay here. Press Finish when done.', zh: '在这里查看联邦+州税合计、有效税率与税后实得收入。看完点"完成"。', es: 'Lea aquí su impuesto combinado, tasa efectiva e ingreso neto. Pulse Terminar al terminar.' } }
+    );
+    return steps;
+}
+let stateTour = null; // { idx, finished, timer, steps }
 
 function stateTourTitle() { return L('Using the State Tax Calculator', '使用州税地图计算器', 'Calculadora de impuestos estatales'); }
 function stateTourClearHighlights() {
@@ -659,7 +675,8 @@ function stateTourRender() {
     var f = document.getElementById('stateTourFloat');
     if (!f) return;
     if (!stateTour) { f.style.display = 'none'; return; }
-    var n = STATE_TOUR_STEPS.length, i = stateTour.idx;
+    var steps = stateTour.steps;
+    var n = steps.length, i = stateTour.idx;
     var dots = '';
     for (var d = 0; d < n; d++) dots += '<span class="tf-dot ' + (d < i || stateTour.finished ? 'done' : (d === i ? 'on' : '')) + '"></span>';
     var body;
@@ -667,7 +684,7 @@ function stateTourRender() {
         body = '<div class="tf-text">🎉 ' + L('Walkthrough complete!', '引导完成！', '¡Guía completada!') + '</div>'
             + '<div class="tf-btns"><button class="btn btn-success" onclick="stateTourEnd()">' + L('Done', '关闭', 'Cerrar') + '</button></div>';
     } else {
-        var step = STATE_TOUR_STEPS[i];
+        var step = steps[i];
         var isLast = i === n - 1;
         body = '<div class="tf-text">' + L(step.text.en, step.text.zh, step.text.es) + '</div>'
             + '<div class="tf-btns">'
@@ -680,12 +697,12 @@ function stateTourRender() {
         + '<div class="tf-progress">' + L('Step', '步骤', 'Paso') + ' ' + Math.min(i + 1, n) + ' / ' + n + '</div>'
         + '<div class="tf-dots">' + dots + '</div>' + body;
     f.style.display = 'block';
-    if (!stateTour.finished) stateTourApplyHighlight(STATE_TOUR_STEPS[i].target);
+    if (!stateTour.finished) stateTourApplyHighlight(steps[i].target);
     else stateTourClearHighlights();
 }
 function stateTourTick() {
     if (!stateTour || stateTour.finished) return;
-    var step = STATE_TOUR_STEPS[stateTour.idx];
+    var step = stateTour.steps[stateTour.idx];
     if (step.done && step.done()) {
         var myIdx = stateTour.idx;
         setTimeout(function () {
@@ -695,7 +712,7 @@ function stateTourTick() {
 }
 function stateTourAdvance() {
     if (!stateTour) return;
-    if (stateTour.idx >= STATE_TOUR_STEPS.length - 1) {
+    if (stateTour.idx >= stateTour.steps.length - 1) {
         stateTour.finished = true;
         stateTourRender();
         return;
@@ -715,7 +732,7 @@ function stateTourEnd() {
 function stateTourStart() {
     var f = document.getElementById('stateTourFloat');
     if (!f) return; // page has no calculator form (shouldn't happen, but be defensive)
-    stateTour = { idx: 0, finished: false };
+    stateTour = { idx: 0, finished: false, steps: getStateTourSteps() };
     stateTourRender();
     stateTour.timer = setInterval(stateTourTick, 400);
     f.classList.remove('tf-enter'); void f.offsetWidth; f.classList.add('tf-enter');
